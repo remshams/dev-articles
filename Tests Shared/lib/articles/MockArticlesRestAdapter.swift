@@ -11,9 +11,13 @@ import Combine
 
 struct MockArticlesRestAdapter: ArticlesRestAdapter {
   let articles: [Article];
+  let shouldFail: Bool
   
   func list$() -> AnyPublisher<[Article], RestError> {
-    Just(articles).setFailureType(to: RestError.self).eraseToAnyPublisher()
+    guard !shouldFail else {
+      return Fail<[Article], RestError>(error: RestError.serverError).eraseToAnyPublisher()
+    }
+    return Just(articles).setFailureType(to: RestError.self).eraseToAnyPublisher()
   }
   
 }

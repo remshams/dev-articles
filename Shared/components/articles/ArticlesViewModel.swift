@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class ArticlesPresenter: ObservableObject {
+class ArticlesViewModel: ObservableObject {
   private let articlesRestAdapter: ArticlesRestAdapter
   private var cancellables: Set<AnyCancellable> = []
   
