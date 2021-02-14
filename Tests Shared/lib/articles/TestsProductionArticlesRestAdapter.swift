@@ -10,11 +10,11 @@ import Combine
 @testable import dev_articles
 
 class TestsProductionArticlesRestAdapter: XCTestCase {
-  var adapter: ProductionArticlesRestAdapter!
+  var adapter: ArticlesRestAdapter!
   var cancellables: Set<AnyCancellable>!
   
   override func setUp() {
-    adapter = ProductionArticlesRestAdapter()
+    adapter = ArticlesRestAdapter()
     cancellables = []
   }
   

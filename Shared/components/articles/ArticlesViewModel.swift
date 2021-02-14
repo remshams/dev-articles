@@ -9,14 +9,14 @@ import Foundation
 import Combine
 
 class ArticlesViewModel: ObservableObject {
-  private let articlesRestAdapter: ArticlesRestAdapter
+  private let articlesRestAdapter: ArticlesRepository
   private var cancellables: Set<AnyCancellable> = []
   
   private let loadArticles$ = PassthroughSubject<Void, Never>()
-  @Published private var articles: [Article] = []
+  private let articles = CurrentValueSubject<[Article], Never>([])
   @Published var articleTitles: [String] = []
   
-  init(articlesRestAdapter: ArticlesRestAdapter) {
+  init(articlesRestAdapter: ArticlesRepository) {
     self.articlesRestAdapter = articlesRestAdapter
     
     setupLoadArticles()
@@ -32,12 +32,12 @@ class ArticlesViewModel: ObservableObject {
       self.articlesRestAdapter.list$()
     })
     .replaceError(with: [])
-    .assign(to: \.articles, on: self)
+    .assign(to: \.value, on: self.articles)
     .store(in: &cancellables)
   }
   
   private func setupArticleTitles() -> Void {
-    $articles
+    articles
       .map({$0.map(\.title)})
       .assign(to: \.articleTitles, on: self)
       .store(in: &cancellables)

@@ -13,14 +13,14 @@ import Combine
 class ArticleViewModelTests: XCTestCase {
   let articles = createArticlesListFixture()
   var articleTitles: [String]!
-  var articleRestAdapter: MockArticlesRestAdapter!
+  var articleRestAdapter: ArticlesRepository!
   var presenter: ArticlesViewModel!
   var cancellables: Set<AnyCancellable>!
   
   private func prepareTest(articles: [Article]? = nil, shouldFail: Bool = false) -> Void {
     let articlesForTest = articles ?? self.articles
     articleTitles = articlesForTest.map({$0.title})
-    articleRestAdapter = MockArticlesRestAdapter(articles: articlesForTest, shouldFail: shouldFail)
+    articleRestAdapter = shouldFail ? FailingArticlesRepository(error: RestError.serverError) : InMemoryArticlesRepository(articles: articlesForTest)
     presenter = ArticlesViewModel(articlesRestAdapter: articleRestAdapter)
     cancellables = []
   }
