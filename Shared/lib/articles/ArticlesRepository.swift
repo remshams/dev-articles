@@ -1,6 +1,6 @@
 import Foundation
 import Combine
 
-protocol ArticlesRepository {
+protocol ListArticle {
   func list$() -> AnyPublisher<[Article], RestError>
 }

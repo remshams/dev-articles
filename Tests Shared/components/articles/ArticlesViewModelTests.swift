@@ -11,17 +11,26 @@ import Combine
 @testable import dev_articles
 
 class ArticleViewModelTests: XCTestCase {
+  
+  struct ListArticleStatic: InMemoryListArticle {
+    let articles: [Article]
+  }
+  
+  struct ListArticleFailing: FailingListArticle {
+    let listError: RestError
+  }
+  
   let articles = createArticlesListFixture()
   var articleTitles: [String]!
-  var articleRestAdapter: ArticlesRepository!
+  var listArticle: ListArticle!
   var presenter: ArticlesViewModel!
   var cancellables: Set<AnyCancellable>!
   
   private func prepareTest(articles: [Article]? = nil, shouldFail: Bool = false) -> Void {
     let articlesForTest = articles ?? self.articles
     articleTitles = articlesForTest.map({$0.title})
-    articleRestAdapter = shouldFail ? FailingArticlesRepository(error: RestError.serverError) : InMemoryArticlesRepository(articles: articlesForTest)
-    presenter = ArticlesViewModel(articlesRestAdapter: articleRestAdapter)
+    listArticle = shouldFail ? ListArticleFailing(listError: RestError.serverError) : ListArticleStatic(articles: articlesForTest)
+    presenter = ArticlesViewModel(listArticle: listArticle)
     cancellables = []
   }
   
