@@ -1,15 +1,19 @@
 import Foundation
 import Combine
 
-struct InMemoryArticlesDb: ListArticle {
+class InMemoryArticlesDb: ListArticle {
   private var articlesById: [Article.ID: Article]
   
   init(articlesById: [Article.ID: Article] = [:]) {
     self.articlesById = articlesById
   }
   
-  init(articles: [Article]) {
+  convenience init(articles: [Article]) {
     self.init(articlesById: articles.toDictionaryById())
+  }
+
+  func add(article: Article) -> Void {
+    articlesById[article.id] = article
   }
   
   func list$() -> AnyPublisher<[Article], RestError> {

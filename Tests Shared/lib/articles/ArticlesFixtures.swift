@@ -6,5 +6,5 @@ func createArticleFixture(title: String = "title", description: String = "descri
 }
 
 func createArticlesListFixture(min: Int = 0, max: Int = 12) -> [Article] {
-  (0...Int.random(in: min...max)).map({_ in createArticleFixture()})
+  (0...Int.random(in: min...max)).map({createArticleFixture(id: $0)})
 }

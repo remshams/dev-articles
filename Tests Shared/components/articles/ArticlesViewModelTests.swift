@@ -36,6 +36,10 @@ class ArticleViewModelTests: XCTestCase {
     prepareTest()
   }
   
+  override func tearDown() {
+    cancellables = []
+  }
+  
   func testArticles_ShouldEmitEmptyListOnInit() throws {
     let exp = expectation(description: "ArticleTitles")
     
