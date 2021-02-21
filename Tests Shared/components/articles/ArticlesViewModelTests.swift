@@ -21,14 +21,12 @@ class ArticleViewModelTests: XCTestCase {
   }
   
   let articles = createArticlesListFixture()
-  var articleTitles: [String]!
   var listArticle: ListArticle!
   var presenter: ArticlesViewModel!
   var cancellables: Set<AnyCancellable>!
   
   private func prepareTest(articles: [Article]? = nil, shouldFail: Bool = false) -> Void {
     let articlesForTest = articles ?? self.articles
-    articleTitles = articlesForTest.map({$0.title})
     listArticle = shouldFail ? ListArticleFailing(listError: RestError.serverError) : ListArticleStatic(articles: articlesForTest)
     presenter = ArticlesViewModel(listArticle: listArticle)
     cancellables = []
@@ -38,10 +36,10 @@ class ArticleViewModelTests: XCTestCase {
     prepareTest()
   }
   
-  func testArticeTitles_ShouldEmitEmptyListOnInit() throws {
+  func testArticles_ShouldEmitEmptyListOnInit() throws {
     let exp = expectation(description: "ArticleTitles")
     
-    presenter.$articleTitles.sink(receiveValue: {articlesReceived in
+    presenter.$articles.sink(receiveValue: {articlesReceived in
       
       XCTAssertEqual(articlesReceived, [])
       
@@ -51,12 +49,12 @@ class ArticleViewModelTests: XCTestCase {
     waitForExpectations(timeout: 2)
   }
   
-  func testArticleTitles_ShouldEmitWhenLoaded() throws {
+  func testArticles_ShouldEmitWhenLoaded() throws {
     let exp = expectation(description: "ArticleTitles")
     presenter.loadArticles()
     
-    presenter.$articleTitles.sink(receiveValue: {articleTitlesReceived in
-      XCTAssertEqual(articleTitlesReceived, self.articleTitles)
+    presenter.$articles.sink(receiveValue: {articleTitlesReceived in
+      XCTAssertEqual(articleTitlesReceived, self.articles)
       
       exp.fulfill()
     }).store(in: &cancellables)
@@ -64,12 +62,12 @@ class ArticleViewModelTests: XCTestCase {
     waitForExpectations(timeout: 1)
   }
   
-  func testArticleTitles_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() throws {
+  func testArticles_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() throws {
     prepareTest(shouldFail: true)
     presenter.loadArticles()
     let exp = expectation(description: "ArticleTitles")
     
-    presenter.$articleTitles.sink(receiveValue: { articleTtitlesReceived in
+    presenter.$articles.sink(receiveValue: { articleTtitlesReceived in
       XCTAssertEqual(articleTtitlesReceived, [])
       
       exp.fulfill()

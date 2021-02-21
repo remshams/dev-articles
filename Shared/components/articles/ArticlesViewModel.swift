@@ -13,14 +13,12 @@ class ArticlesViewModel: ObservableObject {
   private var cancellables: Set<AnyCancellable> = []
   
   private let loadArticles$ = PassthroughSubject<Void, Never>()
-  private let articles = CurrentValueSubject<[Article], Never>([])
-  @Published var articleTitles: [String] = []
+  @Published var articles: [Article] = []
   
   init(listArticle: ListArticle) {
     self.listArticle = listArticle
     
     setupLoadArticles()
-    setupArticleTitles()
   }
   
   func loadArticles() -> Void {
@@ -32,15 +30,8 @@ class ArticlesViewModel: ObservableObject {
       self.listArticle.list$()
     })
     .replaceError(with: [])
-    .assign(to: \.value, on: self.articles)
+    .assign(to: \.articles, on: self)
     .store(in: &cancellables)
-  }
-  
-  private func setupArticleTitles() -> Void {
-    articles
-      .map({$0.map(\.title)})
-      .assign(to: \.articleTitles, on: self)
-      .store(in: &cancellables)
   }
   
 }

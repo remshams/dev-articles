@@ -1,9 +1,9 @@
 import Foundation
 import Combine
 
-struct ArticlesRestAdapter: ListArticle {
+class ArticlesRestAdapter: ListArticle {
   func list$() -> AnyPublisher<[Article], RestError> {
-    return Just([Article(title: "title", id: 0, description: "description", published: false)])
+    return Just([Article(title: "Rolling (up) a multi module system (esm, cjs...) compatible npm library with TypeScript and Babel", id: 0, description: "description", published: false)])
       .setFailureType(to: RestError.self)
       .eraseToAnyPublisher()
   }
