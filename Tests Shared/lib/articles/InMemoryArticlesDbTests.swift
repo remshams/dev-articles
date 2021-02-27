@@ -3,6 +3,15 @@ import XCTest
 import Combine
 @testable import dev_articles
 
+extension Article: Comparable {
+  public static func < (lhs: Article, rhs: Article) -> Bool {
+    lhs.id < rhs.id
+  }
+  
+  
+  
+}
+
 class InMemoryArticlesDbTests: XCTestCase {
   
   let articles = createArticlesListFixture(min: 2)
@@ -22,66 +31,37 @@ class InMemoryArticlesDbTests: XCTestCase {
   }
   
   func test_list$_ShouldEmitNothingWhenNoArticleHasBeenStored() -> Void {
-    let exp = expectation(description: #function)
-    db.list$().sink(
-      receiveCompletion: { _ in
-        exp.fulfill()
-      },
-      receiveValue: { self.result.append(contentsOf: $0) }
-    ).store(in: &cancellables)
+    assertStreamEquals(cancellables: &cancellables, received$: db.list$(), expected: [])
     
-    XCTAssertEqual(result, [])
-    
-    waitForExpectations(timeout: 2)
   }
   
   func test_list$_ShoudEmitArticlesWhenInitalizedWithList() -> Void {
-    let exp = expectation(description: #function)
     db = InMemoryArticlesDb(articles: articles)
     
-    db.list$().sink(
-      receiveCompletion: { _ in
-        exp.fulfill()
-      },
-      receiveValue: { self.result.append(contentsOf: $0) }
-    ).store(in: &cancellables)
+    assertStreamEquals(
+      cancellables: &cancellables,
+      received$: db.list$().map({$0.sorted()}).eraseToAnyPublisher(),
+      expected: articles
+    )
     
-    result.sort(by: { $0.id <= $1.id })
-    XCTAssertEqual(result, articles)
-    
-    waitForExpectations(timeout: 2)
   }
   
   func test_list$_ShouldEmitArticlesWhenInitializedWithDictionary() -> Void {
-    let exp = expectation(description: #function)
     db = InMemoryArticlesDb(articlesById: articles.toDictionaryById())
     
-    db.list$().sink(
-      receiveCompletion: { _ in
-        exp.fulfill()
-      },
-      receiveValue: { self.result.append(contentsOf: $0) }
-    ).store(in: &cancellables)
+    assertStreamEquals(
+      cancellables: &cancellables,
+      received$: db.list$().map({$0.sorted()}).eraseToAnyPublisher(),
+      expected: articles
+    )
     
-    result.sort(by: { $0.id <= $1.id })
-    XCTAssertEqual(result, articles)
-    
-    waitForExpectations(timeout: 2)
   }
   
-  func test_add_ShouldEmitAddNewArticle() -> Void {
-    let exp = expectation(description: #function);
+  func test_add_ShouldEmitNewlyAddedArticle() -> Void {
     db = InMemoryArticlesDb();
-    db.add(article: articles[0])
+    db.add(article: articles.first!)
     
-    db.list$().sink(
-      receiveCompletion: { _ in exp.fulfill() },
-      receiveValue: { self.result.append(contentsOf: $0) }
-    ).store(in: &cancellables)
-    
-    XCTAssertEqual(result, [articles.first])
-    
-    waitForExpectations(timeout: 2)
+    assertStreamEquals(cancellables: &cancellables, received$: db.list$(), expected: [articles.first!])
   }
   
 }
