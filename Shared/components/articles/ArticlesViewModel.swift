@@ -27,7 +27,7 @@ class ArticlesViewModel: ObservableObject {
   
   private func setupLoadArticles() -> Void {
     loadArticles$.flatMap({[unowned self] in
-      self.listArticle.list$()
+      self.listArticle.list$(for: .feed)
     })
     .replaceError(with: [])
     .assign(to: \.articles, on: self)

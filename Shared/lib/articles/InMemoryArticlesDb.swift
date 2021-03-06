@@ -16,7 +16,7 @@ class InMemoryArticlesDb: ListArticle {
     articlesById[article.id] = article
   }
   
-  func list$() -> AnyPublisher<[Article], RestError> {
+  func list$(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RestError> {
     Just(Array(articlesById.values)).setFailureType(to: RestError.self).eraseToAnyPublisher()
   }
   
