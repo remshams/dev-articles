@@ -144,12 +144,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4B72346E25D030B400766126 /* rest */ = {
+		4B72346E25D030B400766126 /* http */ = {
 			isa = PBXGroup;
 			children = (
 				4B72346F25D030C600766126 /* RestError.swift */,
 			);
-			path = rest;
+			path = http;
 			sourceTree = "<group>";
 		};
 		4B7BACB325E18088004A0C4B /* environments */ = {
@@ -301,7 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				4BE4FA4925D99E16006D355E /* foundation */,
-				4B72346E25D030B400766126 /* rest */,
+				4B72346E25D030B400766126 /* http */,
 				4BC96C1E25CF10280081B8FF /* articles */,
 			);
 			path = lib;
