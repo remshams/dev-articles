@@ -27,8 +27,9 @@ class ArticlesViewModel: ObservableObject {
   
   private func setupLoadArticles() -> Void {
     loadArticles$.flatMap({[unowned self] in
-      self.listArticle.list$(for: .feed)
+      self.listArticle.list$(for: .month)
     })
+    .receive(on: DispatchQueue.main)
     .replaceError(with: [])
     .assign(to: \.articles, on: self)
     .store(in: &cancellables)

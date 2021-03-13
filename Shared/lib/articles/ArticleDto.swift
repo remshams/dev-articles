@@ -1,14 +1,12 @@
-//
-//  ArticleDto.swift
-//  dev-articles
-//
-//  Created by Mathias Remshardt on 06.03.21.
-//
+import Foundation
 
-struct ArticleDto: Identifiable, Decodable {
+struct ArticleDto: Identifiable, Codable {
   let id: Int
   let title: String
   let description: String
   let url: String
-  
+}
+
+func convertToArticle(articleDto: ArticleDto) -> Article {
+  Article(title: articleDto.title, id: articleDto.id, description: articleDto.description, link: URL(string: articleDto.url)!)
 }

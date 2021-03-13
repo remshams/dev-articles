@@ -1,20 +1,26 @@
-//
-//  ProductionArticlesRestAdapter.swift
-//  SharedTests
-//
-//  Created by Mathias Remshardt on 07.02.21.
-//
-
 import XCTest
 import Combine
 @testable import dev_articles
 
+struct TestClient: MockHttpGet {
+  let getResponse: [ArticleDto]
+  let urlCalledSubject: CurrentValueSubject<[URL], Never>
+}
+
 class ArticlesRestAdapterTests: XCTestCase {
+  var articleDtos: [ArticleDto]!
+  var articles: [Article]!
+  let urlCalled$ = CurrentValueSubject<[URL], Never>([])
+  let articleUrl = devCommunityUrl + articlesPath
+  var client: TestClient!
   var adapter: ArticlesRestAdapter!
   var cancellables: Set<AnyCancellable>!
   
   override func setUp() {
-    adapter = ArticlesRestAdapter()
+    articleDtos = createArticleDtoListFixture(min: 2)
+    client = TestClient(getResponse: articleDtos, urlCalledSubject: urlCalled$)
+    adapter = ArticlesRestAdapter(httpGet: client)
+    articles = articleDtos.map(convertToArticle)
     cancellables = []
   }
   
@@ -22,17 +28,13 @@ class ArticlesRestAdapterTests: XCTestCase {
     cancellables = []
   }
   
-  func test_list$_ShouldEmitListOfArticles() -> Void {
-    let exp = expectation(description: "List emitted")
-    
-    adapter.list$().sink(receiveCompletion: { _ in exp.fulfill() }, receiveValue: { articles in
-      
-      XCTAssertNotNil(articles)
-      XCTAssertGreaterThan(articles.count, 0)
-      
-    }).store(in: &cancellables)
-    
-    waitForExpectations(timeout: 1, handler: nil)
-    
+  func test_list$_ShouldEmitListOfArticlesForFeed() -> Void {
+    assertStreamEquals(cancellables: &cancellables, received$: adapter.list$(for: .feed), expected: articles)
+    assertStreamEquals(cancellables: &cancellables, received$: client.urlCalledSubject.eraseToAnyPublisher(), expected: [URL(string: articleUrl)!])
+  }
+
+  func test_list$_ShouldEmitListOfArticlesForTimeCategory() -> Void {
+    assertStreamEquals(cancellables: &cancellables, received$: adapter.list$(for: .week), expected: articles)
+    assertStreamEquals(cancellables: &cancellables, received$: client.urlCalledSubject.eraseToAnyPublisher(), expected: [URL(string: articleUrl + "?top=7")!])
   }
 }

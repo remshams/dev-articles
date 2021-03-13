@@ -23,7 +23,13 @@ struct EnvironmentsView: View {
 //                                                    link: URL(string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg")!)
 //                                                ]))
   
-  let articleEnvironment = ArticlesEnvironment(listArticle: ArticlesRestAdapter())
+  let restClient: RestHttpClient
+  let articleEnvironment: ArticlesEnvironment
+  
+  init() {
+    restClient = RestHttpClient()
+    articleEnvironment = ArticlesEnvironment(listArticle: ArticlesRestAdapter(httpGet: restClient))
+  }
   
   var body: some View {
     ArticlesView().environmentObject(articleEnvironment)

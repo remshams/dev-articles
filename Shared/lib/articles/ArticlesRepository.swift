@@ -4,8 +4,10 @@ import Combine
 enum TimeCategory {
   case feed
   case day
+  case week
+  case month
   case year
-  case custom(days: String)
+  case custom(days: Int)
 }
 
 protocol ListArticle {
