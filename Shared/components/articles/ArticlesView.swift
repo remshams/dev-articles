@@ -15,12 +15,21 @@ struct ArticlesList: View {
   
   init(model: ArticlesViewModel) {
     self.model = model
-    model.loadArticles()
   }
   
   var body: some View {
     VStack {
       Text("Posts").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+      Picker("Select a time category", selection: $model.selectedTimeCategory) {
+        Text("Feed").tag(TimeCategory.feed)
+        Text("Day").tag(TimeCategory.day)
+        Text("Week").tag(TimeCategory.week)
+        Text("Month").tag(TimeCategory.month)
+        Text("Year").tag(TimeCategory.year)
+      }
+      .padding(.leading, 10)
+      .padding(.trailing, 10)
+      .pickerStyle(SegmentedPickerStyle())
       List(model.articles) { article in
         ArticleView(article: article)
       }

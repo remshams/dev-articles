@@ -35,8 +35,6 @@ class ArticlesRestAdapter: ListArticle {
       topParamValue = 30
     case .year:
       topParamValue = 356
-    case .custom(let days):
-      topParamValue = days
     }
     if let topParamValue = topParamValue {
       return URL(string: devCommunityUrl + articlesPath + "?top=\(topParamValue)")!

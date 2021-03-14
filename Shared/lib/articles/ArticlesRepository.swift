@@ -7,7 +7,6 @@ enum TimeCategory {
   case week
   case month
   case year
-  case custom(days: Int)
 }
 
 protocol ListArticle {

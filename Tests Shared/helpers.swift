@@ -17,12 +17,13 @@ extension XCTestCase {
       exp.fulfill()
     }).store(in: &cancellables)
     
+    waitForExpectations(timeout: 2)
+    
     if let result = result {
       XCTAssertEqual(result, expected)
     } else {
       XCTFail("Test did not run")
     }
     
-    waitForExpectations(timeout: 2)
   }
 }

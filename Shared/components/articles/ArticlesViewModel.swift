@@ -13,12 +13,15 @@ class ArticlesViewModel: ObservableObject {
   private var cancellables: Set<AnyCancellable> = []
   
   private let loadArticles$ = PassthroughSubject<Void, Never>()
-  @Published var articles: [Article] = []
+  
+  @Published private(set) var articles: [Article] = []
+  @Published var selectedTimeCategory = TimeCategory.feed
   
   init(listArticle: ListArticle) {
     self.listArticle = listArticle
     
     setupLoadArticles()
+    loadArticles()
   }
   
   func loadArticles() -> Void {
@@ -26,8 +29,8 @@ class ArticlesViewModel: ObservableObject {
   }
   
   private func setupLoadArticles() -> Void {
-    loadArticles$.flatMap({[unowned self] in
-      self.listArticle.list$(for: .month)
+    $selectedTimeCategory.flatMap({ [unowned self] timeCategory in
+      self.listArticle.list$(for: timeCategory)
     })
     .receive(on: DispatchQueue.main)
     .replaceError(with: [])

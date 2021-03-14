@@ -13,7 +13,7 @@ import Combine
 class ArticleViewModelTests: XCTestCase {
   
   struct ListArticleStatic: InMemoryListArticle {
-    let articles: [Article]
+    var articles: [Article]
   }
   
   struct ListArticleFailing: FailingListArticle {
@@ -40,31 +40,11 @@ class ArticleViewModelTests: XCTestCase {
     cancellables = []
   }
   
-  func testArticles_ShouldEmitEmptyListOnInit() throws {
-    let exp = expectation(description: "ArticleTitles")
+  func testArticles_ShouldEmitFeedListOnInit() throws {
+    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.dropFirst().eraseToAnyPublisher(), expected: articles)
     
-    presenter.$articles.sink(receiveValue: {articlesReceived in
-      
-      XCTAssertEqual(articlesReceived, [])
-      
-      exp.fulfill()
-    }).store(in: &cancellables)
-    
-    waitForExpectations(timeout: 2)
   }
   
-  func testArticles_ShouldEmitWhenLoaded() throws {
-    let exp = expectation(description: "ArticleTitles")
-    presenter.loadArticles()
-    
-    presenter.$articles.sink(receiveValue: {articleTitlesReceived in
-      XCTAssertEqual(articleTitlesReceived, self.articles)
-      
-      exp.fulfill()
-    }).store(in: &cancellables)
-    
-    waitForExpectations(timeout: 1)
-  }
   
   func testArticles_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() throws {
     prepareTest(shouldFail: true)
