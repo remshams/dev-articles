@@ -50,14 +50,14 @@ class ArticleViewModelTests: XCTestCase {
   }
   
   func testArticles_ShouldEmitFeedListOnInit() throws {
-    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.dropFirst(1).eraseToAnyPublisher(), expected: articles)
+    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [[], articles])
   }
   
   func testArticles_ShouldEmitReloadedArticlesWhenTimeCategoryChanges() -> Void {
     let newArticles = [createArticleFixture(id: 99)]
     listArticleStatic.articles = newArticles
     presenter.selectedTimeCategory = .week
-    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.dropFirst(2).eraseToAnyPublisher(), expected: newArticles)
+    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [[], articles, newArticles])
   }
   
   

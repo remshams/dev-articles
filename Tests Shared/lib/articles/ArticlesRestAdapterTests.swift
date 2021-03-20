@@ -29,12 +29,12 @@ class ArticlesRestAdapterTests: XCTestCase {
   }
   
   func test_list$_ShouldEmitListOfArticlesForFeed() -> Void {
-    assertStreamEquals(cancellables: &cancellables, received$: adapter.list$(for: .feed), expected: articles)
-    assertStreamEquals(cancellables: &cancellables, received$: client.urlCalledSubject.eraseToAnyPublisher(), expected: [URL(string: articleUrl)!])
+    assertStreamEquals(cancellables: &cancellables, received$: adapter.list$(for: .feed), expected: [articles])
+    assertStreamEquals(cancellables: &cancellables, received$: client.urlCalledSubject.eraseToAnyPublisher(), expected: [[URL(string: articleUrl)!]])
   }
 
   func test_list$_ShouldEmitListOfArticlesForTimeCategory() -> Void {
-    assertStreamEquals(cancellables: &cancellables, received$: adapter.list$(for: .week), expected: articles)
-    assertStreamEquals(cancellables: &cancellables, received$: client.urlCalledSubject.eraseToAnyPublisher(), expected: [URL(string: articleUrl + "?top=7")!])
+    assertStreamEquals(cancellables: &cancellables, received$: adapter.list$(for: .week), expected: [articles])
+    assertStreamEquals(cancellables: &cancellables, received$: client.urlCalledSubject.eraseToAnyPublisher(), expected: [[URL(string: articleUrl + "?top=7")!]])
   }
 }

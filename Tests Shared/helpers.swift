@@ -6,25 +6,21 @@ extension XCTestCase {
   func assertStreamEquals<Output: Equatable, Failure: Error>(
     cancellables: inout Set<AnyCancellable>,
     received$: AnyPublisher<Output, Failure>,
-    expected: Output
+    expected: [Output]
   ) -> Void {
     let exp = expectation(description: #function)
-    var result: Output? = nil
+    var result: [Output] = []
     
     received$.sink(receiveCompletion: { _ in  }, receiveValue: { received in
+      result += [received]
       
-      result = received
-      print(received)
-      exp.fulfill()
+      if (result.count == expected.count) {
+        exp.fulfill()
+      }
     }).store(in: &cancellables)
     
     waitForExpectations(timeout: 2)
     
-    if let result = result {
-      XCTAssertEqual(result, expected)
-    } else {
-      XCTFail("Test did not run")
-    }
-    
+    XCTAssertEqual(result, expected)
   }
 }
