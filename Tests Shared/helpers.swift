@@ -14,6 +14,7 @@ extension XCTestCase {
     received$.sink(receiveCompletion: { _ in  }, receiveValue: { received in
       
       result = received
+      print(received)
       exp.fulfill()
     }).store(in: &cancellables)
     

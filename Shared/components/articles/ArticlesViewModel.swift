@@ -1,10 +1,3 @@
-//
-//  presenter.swift
-//  dev-articles
-//
-//  Created by Mathias Remshardt on 06.02.21.
-//
-
 import Foundation
 import Combine
 

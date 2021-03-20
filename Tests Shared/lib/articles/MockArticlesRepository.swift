@@ -27,7 +27,7 @@ extension FailingListArticle {
 }
 
 protocol InMemoryListArticle: ListArticle {
-  var articles: [Article] { get }
+  var articles: [Article] { get set }
 }
 
 extension InMemoryListArticle {

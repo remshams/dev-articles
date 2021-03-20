@@ -12,7 +12,12 @@ import Combine
 
 class ArticleViewModelTests: XCTestCase {
   
-  struct ListArticleStatic: InMemoryListArticle {
+  class ListArticleStatic: InMemoryListArticle {
+    
+    init(articles: [Article]) {
+      self.articles = articles
+    }
+    
     var articles: [Article]
   }
   
@@ -22,12 +27,16 @@ class ArticleViewModelTests: XCTestCase {
   
   let articles = createArticlesListFixture()
   var listArticle: ListArticle!
+  var listArticleStatic: ListArticleStatic!
+  var listArticleFailing: ListArticleFailing!
   var presenter: ArticlesViewModel!
   var cancellables: Set<AnyCancellable>!
   
   private func prepareTest(articles: [Article]? = nil, shouldFail: Bool = false) -> Void {
     let articlesForTest = articles ?? self.articles
-    listArticle = shouldFail ? ListArticleFailing(listError: RestError.serverError) : ListArticleStatic(articles: articlesForTest)
+    listArticleStatic = ListArticleStatic(articles: articlesForTest)
+    listArticleFailing = ListArticleFailing(listError: RestError.serverError)
+    listArticle = shouldFail ? listArticleFailing : listArticleStatic
     presenter = ArticlesViewModel(listArticle: listArticle)
     cancellables = []
   }
@@ -41,8 +50,14 @@ class ArticleViewModelTests: XCTestCase {
   }
   
   func testArticles_ShouldEmitFeedListOnInit() throws {
-    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.dropFirst().eraseToAnyPublisher(), expected: articles)
-    
+    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.dropFirst(1).eraseToAnyPublisher(), expected: articles)
+  }
+  
+  func testArticles_ShouldEmitReloadedArticlesWhenTimeCategoryChanges() -> Void {
+    let newArticles = [createArticleFixture(id: 99)]
+    listArticleStatic.articles = newArticles
+    presenter.selectedTimeCategory = .week
+    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.dropFirst(2).eraseToAnyPublisher(), expected: newArticles)
   }
   
   
@@ -50,14 +65,14 @@ class ArticleViewModelTests: XCTestCase {
     prepareTest(shouldFail: true)
     presenter.loadArticles()
     let exp = expectation(description: "ArticleTitles")
-    
+
     presenter.$articles.sink(receiveValue: { articleTtitlesReceived in
       XCTAssertEqual(articleTtitlesReceived, [])
-      
+
       exp.fulfill()
-      
+
     }).store(in: &cancellables)
-    
+
     waitForExpectations(timeout: 1)
   }
   
