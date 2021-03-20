@@ -11,6 +11,10 @@
 		4B03E6D625FCEAFD000A6F7A /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */; };
 		4B24F8A425F3E2D20088EE1B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24F8A325F3E2D20088EE1B /* HttpClient.swift */; };
 		4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24F8A325F3E2D20088EE1B /* HttpClient.swift */; };
+		4B3DB051260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */; };
+		4B3DB052260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */; };
+		4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB05D26065B0A003B5CD6 /* Persistence.swift */; };
+		4B3DB05F26065B0A003B5CD6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB05D26065B0A003B5CD6 /* Persistence.swift */; };
 		4B5C88AF25F3B3B900F375F2 /* ArticlesFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB876BC25D0698F00671A06 /* ArticlesFixtures.swift */; };
 		4B5C88B025F3B3B900F375F2 /* MockArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB876BE25D0698F00671A06 /* MockArticlesRepository.swift */; };
 		4B5C88B125F3B3B900F375F2 /* ArticlesRestAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB876BD25D0698F00671A06 /* ArticlesRestAdapterTests.swift */; };
@@ -77,6 +81,8 @@
 /* Begin PBXFileReference section */
 		4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		4B24F8A325F3E2D20088EE1B /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		4B3DB050260659FE003B5CD6 /* DevArticles.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DevArticles.xcdatamodel; sourceTree = "<group>"; };
+		4B3DB05D26065B0A003B5CD6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		4B5C889B25F3B39C00F375F2 /* Tests Shared.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests Shared.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRestAdapter.swift; sourceTree = "<group>"; };
 		4B72346725CF12FD00766126 /* ArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRepository.swift; sourceTree = "<group>"; };
@@ -238,6 +244,8 @@
 				4BC96C1C25CF0FF60081B8FF /* components */,
 				4BC96BCF25CF0EE80081B8FF /* dev_articlesApp.swift */,
 				4BC96BD125CF0EE90081B8FF /* Assets.xcassets */,
+				4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */,
+				4B3DB05D26065B0A003B5CD6 /* Persistence.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -549,10 +557,12 @@
 			files = (
 				4BC96C2025CF103C0081B8FF /* Article.swift in Sources */,
 				4B7BACB525E180A3004A0C4B /* AppEnvironment.swift in Sources */,
+				4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4B72346825CF12FD00766126 /* ArticlesRepository.swift in Sources */,
 				4BE4FA4225D999CD006D355E /* InMemoryArticlesDb.swift in Sources */,
 				4B24F8A425F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B7BACC725E184E9004A0C4B /* EnvironmentsView.swift in Sources */,
+				4B3DB051260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */,
 				4BC96C1225CF0F430081B8FF /* ArticlesViewModel.swift in Sources */,
 				4B03E6D525FCEAFD000A6F7A /* ArticleView.swift in Sources */,
 				4BA500AD25D97467005AD7D8 /* ArticlesView.swift in Sources */,
@@ -571,10 +581,12 @@
 			files = (
 				4BC96C2125CF103C0081B8FF /* Article.swift in Sources */,
 				4B7BACB625E180A3004A0C4B /* AppEnvironment.swift in Sources */,
+				4B3DB05F26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4B72346925CF12FD00766126 /* ArticlesRepository.swift in Sources */,
 				4BE4FA4325D999CD006D355E /* InMemoryArticlesDb.swift in Sources */,
 				4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B7BACC825E184E9004A0C4B /* EnvironmentsView.swift in Sources */,
+				4B3DB052260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */,
 				4BC96C1325CF0F430081B8FF /* ArticlesViewModel.swift in Sources */,
 				4B03E6D625FCEAFD000A6F7A /* ArticleView.swift in Sources */,
 				4BA500AE25D97467005AD7D8 /* ArticlesView.swift in Sources */,
@@ -1032,6 +1044,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4B3DB050260659FE003B5CD6 /* DevArticles.xcdatamodel */,
+			);
+			currentVersion = 4B3DB050260659FE003B5CD6 /* DevArticles.xcdatamodel */;
+			path = DevArticles.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4BC96BCA25CF0EE80081B8FF /* Project object */;
 }

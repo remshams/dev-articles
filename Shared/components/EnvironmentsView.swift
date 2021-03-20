@@ -23,6 +23,7 @@ struct EnvironmentsView: View {
 //                                                    link: URL(string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg")!)
 //                                                ]))
   
+  let persistenceController = PersistenceController.shared
   let restClient: RestHttpClient
   let articleEnvironment: ArticlesEnvironment
   
@@ -32,6 +33,8 @@ struct EnvironmentsView: View {
   }
   
   var body: some View {
-    ArticlesView().environmentObject(articleEnvironment)
+    ArticlesView()
+      .environment(\.managedObjectContext, persistenceController.container.viewContext)
+      .environmentObject(articleEnvironment)
   }
 }
