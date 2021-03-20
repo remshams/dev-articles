@@ -63,17 +63,7 @@ class ArticleViewModelTests: XCTestCase {
   
   func testArticles_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() throws {
     prepareTest(shouldFail: true)
-    presenter.loadArticles()
-    let exp = expectation(description: "ArticleTitles")
-
-    presenter.$articles.sink(receiveValue: { articleTtitlesReceived in
-      XCTAssertEqual(articleTtitlesReceived, [])
-
-      exp.fulfill()
-
-    }).store(in: &cancellables)
-
-    waitForExpectations(timeout: 1)
+    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [[]])
   }
   
 }
