@@ -21,10 +21,14 @@
 		4B5C88B225F3B3B900F375F2 /* InMemoryArticlesDbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BACD325E18809004A0C4B /* InMemoryArticlesDbTests.swift */; };
 		4B5C88B325F3B3B900F375F2 /* ArticlesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB876D325D069A700671A06 /* ArticlesViewModelTests.swift */; };
 		4B5C88B425F3B3B900F375F2 /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFE153F25E2A23A00660C50 /* helpers.swift */; };
-		4B6AD78726075DFB009EA5E7 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD78526075DFB009EA5E7 /* Article+CoreDataClass.swift */; };
-		4B6AD78826075DFB009EA5E7 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD78526075DFB009EA5E7 /* Article+CoreDataClass.swift */; };
-		4B6AD78926075DFB009EA5E7 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD78626075DFB009EA5E7 /* Article+CoreDataProperties.swift */; };
-		4B6AD78A26075DFB009EA5E7 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD78626075DFB009EA5E7 /* Article+CoreDataProperties.swift */; };
+		4B6AD7B626076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7B426076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift */; };
+		4B6AD7B726076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7B526076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift */; };
+		4B6AD7C926078280009EA5E7 /* ReadingListCoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7C826078280009EA5E7 /* ReadingListCoreDataRepository.swift */; };
+		4B6AD7CA26078280009EA5E7 /* ReadingListCoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7C826078280009EA5E7 /* ReadingListCoreDataRepository.swift */; };
+		4B6AD7EA26078630009EA5E7 /* ReadingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */; };
+		4B6AD7EB26078630009EA5E7 /* ReadingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */; };
+		4B6AD7F226078ABD009EA5E7 /* ReadingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7F126078ABD009EA5E7 /* ReadingListItem.swift */; };
+		4B6AD7F326078ABD009EA5E7 /* ReadingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7F126078ABD009EA5E7 /* ReadingListItem.swift */; };
 		4B72346125CF12E400766126 /* ArticlesRestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */; };
 		4B72346225CF12E400766126 /* ArticlesRestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */; };
 		4B72346825CF12FD00766126 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346725CF12FD00766126 /* ArticlesRepository.swift */; };
@@ -88,8 +92,11 @@
 		4B3DB050260659FE003B5CD6 /* DevArticles.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DevArticles.xcdatamodel; sourceTree = "<group>"; };
 		4B3DB05D26065B0A003B5CD6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		4B5C889B25F3B39C00F375F2 /* Tests Shared.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests Shared.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B6AD78526075DFB009EA5E7 /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4B6AD78626075DFB009EA5E7 /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4B6AD7B426076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReadingListItemDbDto+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4B6AD7B526076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReadingListItemDbDto+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4B6AD7C826078280009EA5E7 /* ReadingListCoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListCoreDataRepository.swift; sourceTree = "<group>"; };
+		4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListRepository.swift; sourceTree = "<group>"; };
+		4B6AD7F126078ABD009EA5E7 /* ReadingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListItem.swift; sourceTree = "<group>"; };
 		4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRestAdapter.swift; sourceTree = "<group>"; };
 		4B72346725CF12FD00766126 /* ArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRepository.swift; sourceTree = "<group>"; };
 		4B72346F25D030C600766126 /* RestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestError.swift; sourceTree = "<group>"; };
@@ -164,13 +171,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4B3DB06A26075878003B5CD6 /* dbdtos */ = {
+		4B6AD7B326076A7C009EA5E7 /* readling-list */ = {
 			isa = PBXGroup;
 			children = (
-				4B6AD78526075DFB009EA5E7 /* Article+CoreDataClass.swift */,
-				4B6AD78626075DFB009EA5E7 /* Article+CoreDataProperties.swift */,
+				4B6AD7C72607824D009EA5E7 /* db */,
+				4B6AD7C826078280009EA5E7 /* ReadingListCoreDataRepository.swift */,
+				4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */,
+				4B6AD7F126078ABD009EA5E7 /* ReadingListItem.swift */,
 			);
-			path = dbdtos;
+			path = "readling-list";
+			sourceTree = "<group>";
+		};
+		4B6AD7C72607824D009EA5E7 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				4B6AD7B426076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift */,
+				4B6AD7B526076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift */,
+			);
+			path = db;
 			sourceTree = "<group>";
 		};
 		4B72346E25D030B400766126 /* http */ = {
@@ -254,7 +272,6 @@
 		4BC96BCE25CF0EE80081B8FF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				4B3DB06A26075878003B5CD6 /* dbdtos */,
 				4B7BACB325E18088004A0C4B /* environments */,
 				4BC96C1D25CF10100081B8FF /* lib */,
 				4BC96C1C25CF0FF60081B8FF /* components */,
@@ -335,6 +352,7 @@
 		4BC96C1D25CF10100081B8FF /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				4B6AD7B326076A7C009EA5E7 /* readling-list */,
 				4BE4FA4925D99E16006D355E /* foundation */,
 				4B72346E25D030B400766126 /* http */,
 				4BC96C1E25CF10280081B8FF /* articles */,
@@ -576,19 +594,22 @@
 				4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4B72346825CF12FD00766126 /* ArticlesRepository.swift in Sources */,
 				4BE4FA4225D999CD006D355E /* InMemoryArticlesDb.swift in Sources */,
+				4B6AD7B626076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */,
 				4B24F8A425F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B7BACC725E184E9004A0C4B /* EnvironmentsView.swift in Sources */,
 				4B3DB051260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */,
 				4BC96C1225CF0F430081B8FF /* ArticlesViewModel.swift in Sources */,
 				4B03E6D525FCEAFD000A6F7A /* ArticleView.swift in Sources */,
+				4B6AD7EA26078630009EA5E7 /* ReadingListRepository.swift in Sources */,
 				4BA500AD25D97467005AD7D8 /* ArticlesView.swift in Sources */,
+				4B6AD7F226078ABD009EA5E7 /* ReadingListItem.swift in Sources */,
 				4BE4FA4B25D99E36006D355E /* Collection.swift in Sources */,
-				4B6AD78926075DFB009EA5E7 /* Article+CoreDataProperties.swift in Sources */,
-				4B6AD78726075DFB009EA5E7 /* Article+CoreDataClass.swift in Sources */,
+				4B6AD7B726076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */,
 				4BC96BF825CF0EE90081B8FF /* dev_articlesApp.swift in Sources */,
 				4B93DBC325F3C18400DBCFA2 /* ArticleDto.swift in Sources */,
 				4B72347025D030C600766126 /* RestError.swift in Sources */,
 				4B72346125CF12E400766126 /* ArticlesRestAdapter.swift in Sources */,
+				4B6AD7C926078280009EA5E7 /* ReadingListCoreDataRepository.swift in Sources */,
 				E1A0EE431C9E745D859AC967 /* RestClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,10 +618,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B6AD7CA26078280009EA5E7 /* ReadingListCoreDataRepository.swift in Sources */,
 				4BC96C2125CF103C0081B8FF /* Article.swift in Sources */,
 				4B7BACB625E180A3004A0C4B /* AppEnvironment.swift in Sources */,
 				4B3DB05F26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4B72346925CF12FD00766126 /* ArticlesRepository.swift in Sources */,
+				4B6AD7EB26078630009EA5E7 /* ReadingListRepository.swift in Sources */,
 				4BE4FA4325D999CD006D355E /* InMemoryArticlesDb.swift in Sources */,
 				4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B7BACC825E184E9004A0C4B /* EnvironmentsView.swift in Sources */,
@@ -609,11 +632,10 @@
 				4B03E6D625FCEAFD000A6F7A /* ArticleView.swift in Sources */,
 				4BA500AE25D97467005AD7D8 /* ArticlesView.swift in Sources */,
 				4BE4FA4C25D99E36006D355E /* Collection.swift in Sources */,
-				4B6AD78A26075DFB009EA5E7 /* Article+CoreDataProperties.swift in Sources */,
-				4B6AD78826075DFB009EA5E7 /* Article+CoreDataClass.swift in Sources */,
 				4B93DBC425F3C18400DBCFA2 /* ArticleDto.swift in Sources */,
 				4BC96BF925CF0EE90081B8FF /* dev_articlesApp.swift in Sources */,
 				4B72347125D030C600766126 /* RestError.swift in Sources */,
+				4B6AD7F326078ABD009EA5E7 /* ReadingListItem.swift in Sources */,
 				4B72346225CF12E400766126 /* ArticlesRestAdapter.swift in Sources */,
 				E1A0E3F70B5F627D3EBC0ADC /* RestClient.swift in Sources */,
 			);

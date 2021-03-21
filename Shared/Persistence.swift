@@ -8,14 +8,19 @@
 import CoreData
 
 struct PersistenceController {
-  static let shared = PersistenceController(inMemory: true)
+  
+  #if DEBUG
+    static let shared = PersistenceController(inMemory: true)
+  #else
+    static let shared = PersistenceController()
+  #endif
   
   
   
   let container: NSPersistentContainer
   
   init(inMemory: Bool = false) {
-    container = NSPersistentContainer(name: "CoreDataPlain")
+    container = NSPersistentContainer(name: "DevArticles")
     if inMemory {
       container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
     }
