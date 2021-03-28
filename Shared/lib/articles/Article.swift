@@ -7,4 +7,5 @@ struct Article: Identifiable, Equatable {
   let id: ArticleId
   let description: String
   let link: URL
+  var bookmarked: Bool = false
 }
