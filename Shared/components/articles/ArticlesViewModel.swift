@@ -22,7 +22,7 @@ class ArticlesViewModel: ObservableObject {
   }
   
   private func setupLoadArticles() -> Void {
-    $selectedTimeCategory.flatMap({ [unowned self] timeCategory in
+    $selectedTimeCategory.flatMap({ timeCategory in
       self.listArticle.list$(for: timeCategory)
     })
     .receive(on: DispatchQueue.main)

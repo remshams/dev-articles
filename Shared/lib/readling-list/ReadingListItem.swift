@@ -7,9 +7,15 @@
 
 import Foundation
 
-struct ReadlingListItem {
+struct ReadingListItem: Equatable {
   let articleId: Int
   let title: String
   let link: URL
-  let saveAt: Date
+  let savedAt: Date
+}
+
+extension ReadingListItem {
+  init(from article: Article, savedAt: Date) {
+    self.init(articleId: article.id, title: article.title, link: article.link, savedAt: savedAt)
+  }
 }

@@ -24,5 +24,7 @@ extension ReadingListItemDbDto {
 }
 
 extension ReadingListItemDbDto : Identifiable {
-
+  func toReadingListItem() -> ReadingListItem {
+    ReadingListItem(articleId: Int(articleId), title: title, link: link, savedAt: savedAt)
+  }
 }

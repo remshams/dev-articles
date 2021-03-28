@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 protocol AddReadingListItem {
-  func addFrom(article: Article) -> Void
+  func addFrom(article: Article) -> AnyPublisher<Bool, DbError>
 }
 
 protocol ListReadingListItem {
-  func list() -> [ReadlingListItem]
+  func list() -> AnyPublisher<[ReadingListItem], DbError>
+  func list(for articles: [ArticleId]) -> AnyPublisher<[ReadingListItem], DbError>
 }

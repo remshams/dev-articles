@@ -6,7 +6,8 @@ extension XCTestCase {
   func assertStreamEquals<Output: Equatable, Failure: Error>(
     cancellables: inout Set<AnyCancellable>,
     received$: AnyPublisher<Output, Failure>,
-    expected: [Output]
+    expected: [Output],
+    with assert: ([Output], [Output]) -> Void = { XCTAssertEqual($0, $1) }
   ) -> Void {
     let exp = expectation(description: #function)
     var result: [Output] = []
@@ -21,6 +22,6 @@ extension XCTestCase {
     
     waitForExpectations(timeout: 2)
     
-    XCTAssertEqual(result, expected)
+    assert(result, expected)
   }
 }
