@@ -1,7 +1,6 @@
 import Foundation
 import SwiftUI
 
-
 struct ArticlesView: View {
   @EnvironmentObject var articlesEnvironment: ArticlesEnvironment
   
@@ -31,7 +30,7 @@ struct ArticlesList: View {
       .padding(.trailing, 10)
       .pickerStyle(SegmentedPickerStyle())
       List(model.articles) { article in
-        ArticleView(article: article, bookmarkArticle: model.bookmarkArticle)
+        ArticleView(article: article, toggleBookmark: model.toggleBookmark)
       }.buttonStyle(PlainButtonStyle())
     }
     

@@ -1,30 +1,32 @@
 import Foundation
 import Combine
 
-typealias BookmarkArticle = PassthroughSubject<ArticleId, Never>
+typealias ToggleBookmark = (Article) -> Void
 
 class ArticlesViewModel: ObservableObject {
   private let listArticle: ListArticle
   private var cancellables: Set<AnyCancellable> = []
-  
   private let loadArticles$ = PassthroughSubject<Void, Never>()
-  
-  let bookmarkArticle = PassthroughSubject<ArticleId, Never>()
+  private let toggleBookmarkSubject = PassthroughSubject<Article, Never>()
+
+  let toggleBookmark: ToggleBookmark
   
   @Published private(set) var articles: [Article] = []
   @Published var selectedTimeCategory = TimeCategory.feed
   
   init(listArticle: ListArticle) {
     self.listArticle = listArticle
+    toggleBookmark = toggleBookmarkSubject.send
     
     setupLoadArticles()
-    setupBookmarkArticle()
+    setupToggleBookmark()
     loadArticles()
   }
   
   func loadArticles() -> Void {
     loadArticles$.send()
   }
+  
   
   private func setupLoadArticles() -> Void {
     $selectedTimeCategory.flatMap({ timeCategory in
@@ -36,11 +38,8 @@ class ArticlesViewModel: ObservableObject {
     .store(in: &cancellables)
   }
   
-  private func setupBookmarkArticle() -> Void {
-    bookmarkArticle
-      .compactMap({ bookmarkedArticleId in
-        self.articles.first(where: { $0.id == bookmarkedArticleId })
-      })
+  private func setupToggleBookmark() -> Void {
+    toggleBookmarkSubject
       .map { oldArticle -> Article in
         var newArticle = oldArticle
         newArticle.bookmarked = true
