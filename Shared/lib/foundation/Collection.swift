@@ -6,4 +6,5 @@ extension Collection where Element: Identifiable {
       result[element.id] = element
     }
   }
+  
 }

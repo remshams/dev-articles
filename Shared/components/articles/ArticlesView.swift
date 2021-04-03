@@ -31,8 +31,8 @@ struct ArticlesList: View {
       .padding(.trailing, 10)
       .pickerStyle(SegmentedPickerStyle())
       List(model.articles) { article in
-        ArticleView(article: article)
-      }
+        ArticleView(article: article, bookmarkArticle: model.bookmarkArticle)
+      }.buttonStyle(PlainButtonStyle())
     }
     
   }
