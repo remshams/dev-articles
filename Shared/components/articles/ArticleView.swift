@@ -40,7 +40,15 @@ struct Bookmark: View {
           .colorMultiply(article.bookmarked ? .purple : .black)
         Image(systemName: "circle")
           .font(.system(size: 25))
-          .colorMultiply(article.bookmarked ? .purple : .black).scaleEffect(article.bookmarked ? 1 : 0)
+          .colorMultiply(article.bookmarked ? .purple : .black)
+          .overlay(
+            Color.purple
+              .opacity(0.15)
+              .clipShape(Circle())
+              .padding(3.5)
+          )
+          .scaleEffect(article.bookmarked ? 1 : 0)
+        
       }.foregroundColor(.white)
     }
   }
