@@ -25,7 +25,7 @@ class ArticleViewModelTests: XCTestCase {
     let listError: RestError
   }
   
-  let articles = createArticlesListFixture()
+  let articles = createArticlesListFixture(min: 2)
   var listArticle: ListArticle!
   var listArticleStatic: ListArticleStatic!
   var listArticleFailing: ListArticleFailing!
@@ -49,7 +49,7 @@ class ArticleViewModelTests: XCTestCase {
     cancellables = []
   }
   
-  func testArticles_ShouldEmitFeedListOnInit() throws {
+  func testArticles_ShouldEmitFeedListOnInit() {
     assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [[], articles])
   }
   
@@ -61,9 +61,27 @@ class ArticleViewModelTests: XCTestCase {
   }
   
   
-  func testArticles_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() throws {
+  func testArticles_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() {
     prepareTest(shouldFail: true)
     assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [[]])
+  }
+  
+  func testToggleBookmark_ShouldToggleBookmarkforArticle() -> Void {
+    let oldArticle = articles[0]
+    var changedArticle = oldArticle
+    changedArticle.bookmarked.toggle()
+    
+    settleStream(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2)
+    presenter.toggleBookmark(oldArticle)
+    
+    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [[changedArticle] + articles[1..<articles.count]])
+  }
+  
+  func testToggleBookmark_ShouldDoNothingInCaseBookmarkedArticleCannotBeFound() -> Void {
+    settleStream(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2)
+    presenter.toggleBookmark(createArticleFixture(id: 99))
+    
+    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [articles])
   }
   
 }

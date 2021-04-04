@@ -24,4 +24,15 @@ extension XCTestCase {
     
     assert(result, expected)
   }
+  
+  func settleStream<Output, Failure: Error>(cancellables: inout Set<AnyCancellable>, received$: AnyPublisher<Output, Failure>, waitFor count: Int) -> Void {
+    let exp = expectation(description: #function)
+    
+    received$
+      .prefix(count)
+      .sink(receiveCompletion: { _ in exp.fulfill() }, receiveValue: {_ in})
+      .store(in: &cancellables)
+    
+    waitForExpectations(timeout: 2)
+  }
 }
