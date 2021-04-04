@@ -40,9 +40,9 @@ class ArticlesViewModel: ObservableObject {
   
   private func setupToggleBookmark() -> Void {
     toggleBookmarkSubject
-      .map { oldArticle -> Article in
+      .map { oldArticle in
         var newArticle = oldArticle
-        newArticle.bookmarked = true
+        newArticle.bookmarked.toggle()
         return newArticle
       }
       .map {
