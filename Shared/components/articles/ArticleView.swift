@@ -4,13 +4,12 @@ import SwiftUI
 
 struct ArticleView: View {
   let article: Article
-  let toggleBookmark: ToggleBookmark
   
   var body: some View {
     HStack {
       Text(article.title)
       Spacer()
-      Actions(article: article, toggleBookmark: toggleBookmark)
+      Actions(article: article)
       
     }.padding()
   }
@@ -18,11 +17,10 @@ struct ArticleView: View {
 
 struct Actions: View {
   let article: Article
-  let toggleBookmark: ToggleBookmark
   
   var body: some View {
     HStack {
-      Bookmark(toggleBookmark: toggleBookmark, article: article)
+      Bookmark(article: article)
       Link(destination: article.link) {
         Image(systemName: "safari").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
       }
@@ -31,14 +29,13 @@ struct Actions: View {
 }
 
 struct Bookmark: View {
-  let toggleBookmark: ToggleBookmark
   let article: Article
-  // @State var internalBookmarked = true
+  @EnvironmentObject var model: ArticlesViewModel
   
   var body: some View {
-    Button(action: { withAnimation(.spring(response: 0.45, dampingFraction: article.bookmarked ? 0.825 : 0.45)) { toggleBookmark(article) } }) {
+    Button(action: { withAnimation(.spring(response: 0.45, dampingFraction: article.bookmarked ? 0.825 : 0.45)) { model.toggleBookmark(article) } }) {
       ZStack {
-        Image(systemName: "bookmark")
+        Image(systemName: "bookmark.fill")
           .font(.system(size: 13))
           .colorMultiply(article.bookmarked ? .purple : .black)
         Image(systemName: "circle")
@@ -56,7 +53,7 @@ struct ArticleView_Previews: PreviewProvider {
                   title: "Short Title",
                   id: 0,
                   description: "Short title",
-                  link: URL(string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg")!, bookmarked: true), toggleBookmark: { article in }
+                  link: URL(string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg")!, bookmarked: true)
     )
   }
 }

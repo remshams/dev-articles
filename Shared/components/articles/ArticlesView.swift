@@ -30,9 +30,9 @@ struct ArticlesList: View {
       .padding(.trailing, 10)
       .pickerStyle(SegmentedPickerStyle())
       List(model.articles) { article in
-        ArticleView(article: article, toggleBookmark: model.toggleBookmark)
+        ArticleView(article: article)
       }.buttonStyle(PlainButtonStyle())
-    }
+    }.environmentObject(model)
     
   }
   
