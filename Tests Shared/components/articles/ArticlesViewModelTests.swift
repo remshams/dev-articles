@@ -50,20 +50,29 @@ class ArticleViewModelTests: XCTestCase {
   }
   
   func testArticles_ShouldEmitFeedListOnInit() {
-    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [[], articles])
+    collect(stream$: presenter.$articles.eraseToAnyPublisher(), collect: 2, cancellables: &cancellables)
+      .sink(receiveValue: { XCTAssertEqual([[], self.articles], $0) })
+      .store(in: &cancellables)
   }
   
   func testArticles_ShouldEmitReloadedArticlesWhenTimeCategoryChanges() -> Void {
+    waitFor(stream$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2, cancellables: &cancellables)
     let newArticles = [createArticleFixture(id: 99)]
     listArticleStatic.articles = newArticles
     presenter.selectedTimeCategory = .week
-    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [[], articles, newArticles])
+    
+    collect(stream$: presenter.$articles.eraseToAnyPublisher(), collect: 2, cancellables: &cancellables)
+      .sink(receiveValue: { XCTAssertEqual([self.articles, newArticles], $0) })
+      .store(in: &cancellables)
   }
   
   
   func testArticles_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() {
     prepareTest(shouldFail: true)
-    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [[]])
+    collect(stream$: presenter.$articles.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)
+      .sink(receiveValue: { XCTAssertEqual([[]], $0) })
+      .store(in: &cancellables)
+      
   }
   
   func testToggleBookmark_ShouldToggleBookmarkforArticle() -> Void {
@@ -71,17 +80,22 @@ class ArticleViewModelTests: XCTestCase {
     var changedArticle = oldArticle
     changedArticle.bookmarked.toggle()
     
-    settleStream(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2)
+    waitFor(stream$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2, cancellables: &cancellables)
     presenter.toggleBookmark(oldArticle)
     
-    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [[changedArticle] + articles[1..<articles.count]])
+    collect(stream$: presenter.$articles.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)
+      .sink(receiveValue: { XCTAssertEqual([[changedArticle] + self.articles[1..<self.articles.count]], $0) })
+      .store(in: &cancellables)
   }
   
   func testToggleBookmark_ShouldDoNothingInCaseBookmarkedArticleCannotBeFound() -> Void {
-    settleStream(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2)
+    waitFor(stream$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2, cancellables: &cancellables)
     presenter.toggleBookmark(createArticleFixture(id: 99))
     
-    assertStreamEquals(cancellables: &cancellables, received$: presenter.$articles.eraseToAnyPublisher(), expected: [articles])
+    
+    collect(stream$: presenter.$articles.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)
+      .sink(receiveValue: { XCTAssertEqual([self.articles], $0) })
+      .store(in: &cancellables)
   }
   
 }

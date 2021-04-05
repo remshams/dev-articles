@@ -25,10 +25,25 @@ extension XCTestCase {
     assert(result, expected)
   }
   
-  func settleStream<Output, Failure: Error>(cancellables: inout Set<AnyCancellable>, received$: AnyPublisher<Output, Failure>, waitFor count: Int) -> Void {
+  func collect<Output, Failure: Error>(stream$: AnyPublisher<Output, Failure>, collect count: Int, cancellables: inout Set<AnyCancellable>) -> AnyPublisher<Array<Output>, Failure> {
+    let exp = expectation(description: #function)
+    let result = CurrentValueSubject<Array<Output>, Failure>([])
+    
+    stream$
+      .prefix(count)
+      .collect(count)
+      .sink(receiveCompletion: {_ in exp.fulfill()}, receiveValue: result.send)
+      .store(in: &cancellables)
+    
+    waitForExpectations(timeout: 2)
+    
+    return result.eraseToAnyPublisher()
+  }
+  
+  func waitFor<Output, Failure: Error>(stream$: AnyPublisher<Output, Failure>, waitFor count: Int, cancellables: inout Set<AnyCancellable>) -> Void {
     let exp = expectation(description: #function)
     
-    received$
+    stream$
       .prefix(count)
       .sink(receiveCompletion: { _ in exp.fulfill() }, receiveValue: {_ in})
       .store(in: &cancellables)
