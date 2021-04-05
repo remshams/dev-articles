@@ -22,7 +22,7 @@ extension XCTestCase {
     
     waitForExpectations(timeout: 2)
     
-    assert(result, expected)
+    assert(expected, result)
   }
   
   func collect<Output, Failure: Error>(stream$: AnyPublisher<Output, Failure>, collect count: Int, cancellables: inout Set<AnyCancellable>) -> AnyPublisher<Array<Output>, Failure> {

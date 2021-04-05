@@ -17,16 +17,6 @@ class ReadingListRepositoryTests: XCTestCase {
   var readingListItem: ReadingListItem!
   var repository: ReadingListCoreDataRepository!
   var cancellables: Set<AnyCancellable>!
-  let assertReadlingListItem = { (result: [[ReadingListItem]], expected: [[ReadingListItem]]) in
-    XCTAssertEqual(result.count, expected.count)
-    (0..<result.count).forEach { indexResult in
-      (0...indexResult).forEach { index in
-        XCTAssertEqual(result[indexResult][index].articleId, expected[indexResult][index].articleId)
-        XCTAssertEqual(result[indexResult][index].link, expected[indexResult][index].link)
-        XCTAssertEqual(result[indexResult][index].title, expected[indexResult][index].title)
-      }
-    }
-  }
   
   override func setUp() {
     article = createArticleFixture()
@@ -40,8 +30,30 @@ class ReadingListRepositoryTests: XCTestCase {
   }
   
   func testsAddArticle_ShouldAddArticle() {
-    assertStreamEquals(cancellables: &cancellables, received$: repository.addFrom(article: article), expected: [true])
-    assertStreamEquals(cancellables: &cancellables, received$: repository.list(), expected: [[readingListItem]], with: assertReadlingListItem)
+    collect(stream$: repository.addFrom(article: article), collect: 1, cancellables: &cancellables)
+      .sink(receiveCompletion: { _ in }, receiveValue: { self.assertReadingListItem(expected: [self.readingListItem], result: $0) })
+      .store(in: &cancellables)
+    
+    collect(stream$: repository.list(), collect: 1, cancellables: &cancellables)
+      .sink(receiveCompletion: { _ in }, receiveValue: { self.assertReadingListItems(expected: [[self.readingListItem]], result: $0) })
+      .store(in: &cancellables)
+  }
+  
+  private func assertReadingListItems(expected: [[ReadingListItem]], result: [[ReadingListItem]]) -> Void {
+    XCTAssertEqual(result.count, expected.count)
+    (0..<result.count).forEach { indexResult in
+      assertReadingListItem(expected: expected[indexResult], result: result[indexResult])
+    }
+  }
+  
+  private func assertReadingListItem(expected: [ReadingListItem], result: [ReadingListItem]) -> Void {
+    XCTAssertEqual(result.count, expected.count)
+    (0..<result.count).forEach { index in
+      XCTAssertEqual(expected[index].articleId, result[index].articleId)
+      XCTAssertEqual(expected[index].link, result[index].link)
+      XCTAssertEqual(expected[index].title, result[index].title)
+    }
+    
   }
   
 }

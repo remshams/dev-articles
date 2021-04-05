@@ -17,7 +17,7 @@ class ReadingListCoreDataRepository: AddReadingListItem, ListReadingListItem  {
   }
   
   
-  func addFrom(article: Article) -> AnyPublisher<Bool, DbError> {
+  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, DbError> {
     return Just(article)
       .tryMap { article in
         let readingListItem = ReadingListItemDbDto(context: managedObjectContext)
@@ -26,7 +26,7 @@ class ReadingListCoreDataRepository: AddReadingListItem, ListReadingListItem  {
         readingListItem.link = article.link
         readingListItem.savedAt = Date()
         try managedObjectContext.save()
-        return true
+        return readingListItem.toReadingListItem()
       }
       .mapError { error in
         DbError.error

@@ -5,21 +5,25 @@ typealias ToggleBookmark = (Article) -> Void
 
 class ArticlesViewModel: ObservableObject {
   private let listArticle: ListArticle
+  private let addReadingListItem: AddReadingListItem
   private var cancellables: Set<AnyCancellable> = []
   private let loadArticles$ = PassthroughSubject<Void, Never>()
   private let toggleBookmarkSubject = PassthroughSubject<Article, Never>()
+  private let readingListItemAdded = PassthroughSubject<ReadingListItem, Never>()
 
   let toggleBookmark: ToggleBookmark
   
   @Published private(set) var articles: [Article] = []
   @Published var selectedTimeCategory = TimeCategory.feed
   
-  init(listArticle: ListArticle) {
+  init(listArticle: ListArticle, addReadingListItem: AddReadingListItem) {
     self.listArticle = listArticle
+    self.addReadingListItem = addReadingListItem
     toggleBookmark = toggleBookmarkSubject.send
     
     setupLoadArticles()
-    setupToggleBookmark()
+    setupAddReadingListItem()
+    setupBookmarkArticle()
     loadArticles()
   }
   
@@ -38,8 +42,19 @@ class ArticlesViewModel: ObservableObject {
     .store(in: &cancellables)
   }
   
-  private func setupToggleBookmark() -> Void {
+  private func setupAddReadingListItem() -> Void {
     toggleBookmarkSubject
+      .flatMap(addReadingListItem.addFrom)
+      .sink(receiveCompletion: { _ in }, receiveValue: readingListItemAdded.send)
+      .store(in: &cancellables)
+      
+  }
+  
+  private func setupBookmarkArticle() -> Void {
+    readingListItemAdded
+      .compactMap {readingListItem in
+        self.articles.first(where: { $0.id == readingListItem.articleId })
+      }
       .map { oldArticle in
         var newArticle = oldArticle
         newArticle.bookmarked.toggle()

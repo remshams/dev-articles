@@ -9,3 +9,12 @@ class ArticlesEnvironment: ObservableObject {
   }
 }
 
+class ReadingListEnvironment: ObservableObject {
+  let addReadingListItem: AddReadingListItem
+  
+  init(addReadingListItem: AddReadingListItem) {
+    self.addReadingListItem = addReadingListItem
+  }
+  
+}
+

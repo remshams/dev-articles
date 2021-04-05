@@ -3,9 +3,13 @@ import SwiftUI
 
 struct ArticlesView: View {
   @EnvironmentObject var articlesEnvironment: ArticlesEnvironment
+  @EnvironmentObject var readingListEnvironment: ReadingListEnvironment
   
   var body: some View {
-    ArticlesList(model: ArticlesViewModel(listArticle: articlesEnvironment.listArticle))
+    ArticlesList(
+      model: ArticlesViewModel(listArticle: articlesEnvironment.listArticle,
+                               addReadingListItem: readingListEnvironment.addReadingListItem
+      ))
   }
 }
 

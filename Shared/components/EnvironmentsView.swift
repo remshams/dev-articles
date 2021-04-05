@@ -26,15 +26,17 @@ struct EnvironmentsView: View {
   let persistenceController = PersistenceController.shared
   let restClient: RestHttpClient
   let articleEnvironment: ArticlesEnvironment
+  let readingListEnvironment: ReadingListEnvironment
   
   init() {
     restClient = RestHttpClient()
     articleEnvironment = ArticlesEnvironment(listArticle: ArticlesRestAdapter(httpGet: restClient))
+    readingListEnvironment = ReadingListEnvironment(addReadingListItem: ReadingListCoreDataRepository(managedObjectContext: persistenceController.container.viewContext))
   }
   
   var body: some View {
     ArticlesView()
-      .environment(\.managedObjectContext, persistenceController.container.viewContext)
       .environmentObject(articleEnvironment)
+      .environmentObject(readingListEnvironment)
   }
 }

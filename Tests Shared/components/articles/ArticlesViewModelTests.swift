@@ -25,19 +25,16 @@ class ArticleViewModelTests: XCTestCase {
     let listError: RestError
   }
   
+  struct AddReadingListItemSuccess: InMemoryAddReadlingListItem {}
+  struct AddReadingListItemFailing: FailingAddReadlingListItem {}
+  
   let articles = createArticlesListFixture(min: 2)
-  var listArticle: ListArticle!
-  var listArticleStatic: ListArticleStatic!
-  var listArticleFailing: ListArticleFailing!
   var presenter: ArticlesViewModel!
   var cancellables: Set<AnyCancellable>!
   
-  private func prepareTest(articles: [Article]? = nil, shouldFail: Bool = false) -> Void {
+  private func prepareTest(articles: [Article]? = nil, listArticle: ListArticle? = nil, addReadingListItem: AddReadingListItem? = nil) -> Void {
     let articlesForTest = articles ?? self.articles
-    listArticleStatic = ListArticleStatic(articles: articlesForTest)
-    listArticleFailing = ListArticleFailing(listError: RestError.serverError)
-    listArticle = shouldFail ? listArticleFailing : listArticleStatic
-    presenter = ArticlesViewModel(listArticle: listArticle)
+    presenter = ArticlesViewModel(listArticle: listArticle ?? ListArticleStatic(articles: articlesForTest), addReadingListItem: addReadingListItem ?? AddReadingListItemSuccess())
     cancellables = []
   }
   
@@ -56,6 +53,8 @@ class ArticleViewModelTests: XCTestCase {
   }
   
   func testArticles_ShouldEmitReloadedArticlesWhenTimeCategoryChanges() -> Void {
+    let listArticleStatic = ListArticleStatic(articles: articles)
+    prepareTest(listArticle: listArticleStatic)
     waitFor(stream$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2, cancellables: &cancellables)
     let newArticles = [createArticleFixture(id: 99)]
     listArticleStatic.articles = newArticles
@@ -68,11 +67,11 @@ class ArticleViewModelTests: XCTestCase {
   
   
   func testArticles_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() {
-    prepareTest(shouldFail: true)
+    let listArticle = ListArticleFailing(listError: RestError.serverError)
+    prepareTest(listArticle: listArticle)
     collect(stream$: presenter.$articles.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)
       .sink(receiveValue: { XCTAssertEqual([[]], $0) })
       .store(in: &cancellables)
-      
   }
   
   func testToggleBookmark_ShouldToggleBookmarkforArticle() -> Void {
@@ -91,6 +90,17 @@ class ArticleViewModelTests: XCTestCase {
   func testToggleBookmark_ShouldDoNothingInCaseBookmarkedArticleCannotBeFound() -> Void {
     waitFor(stream$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2, cancellables: &cancellables)
     presenter.toggleBookmark(createArticleFixture(id: 99))
+    
+    
+    collect(stream$: presenter.$articles.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)
+      .sink(receiveValue: { XCTAssertEqual([self.articles], $0) })
+      .store(in: &cancellables)
+  }
+  
+  func testToggleBookmark_ShouldDoNothingInCaseBookmarkedArticleCannotBeAddedToDatabase() -> Void {
+    prepareTest(addReadingListItem: AddReadingListItemFailing())
+    waitFor(stream$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2, cancellables: &cancellables)
+    presenter.toggleBookmark(articles[0])
     
     
     collect(stream$: presenter.$articles.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)

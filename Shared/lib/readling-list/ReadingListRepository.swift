@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol AddReadingListItem {
-  func addFrom(article: Article) -> AnyPublisher<Bool, DbError>
+  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, DbError>
 }
 
 protocol ListReadingListItem {
