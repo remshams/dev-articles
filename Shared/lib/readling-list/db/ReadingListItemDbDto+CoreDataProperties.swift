@@ -27,4 +27,12 @@ extension ReadingListItemDbDto : Identifiable {
   func toReadingListItem() -> ReadingListItem {
     ReadingListItem(articleId: Int(articleId), title: title, link: link, savedAt: savedAt)
   }
+  
+  convenience init(context: NSManagedObjectContext, articleId: Int16, title: String, link: URL, savedAt: Date) {
+    self.init(context: context);
+    self.title = title
+    self.articleId = articleId
+    self.link = link
+    self.savedAt = savedAt
+  }
 }
