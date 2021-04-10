@@ -8,20 +8,27 @@
 import Foundation
 import XCTest
 import Combine
+import CoreData
 @testable import dev_articles
 
 
 
 class ReadingListRepositoryTests: XCTestCase {
+  var articles: [Article]!
   var article: Article!
+  var readingListItems: [ReadingListItem]!
   var readingListItem: ReadingListItem!
   var repository: ReadingListCoreDataRepository!
   var cancellables: Set<AnyCancellable>!
+  var managedObjectContext: NSManagedObjectContext!
   
   override func setUp() {
-    article = createArticleFixture()
-    readingListItem = ReadingListItem(from: article, savedAt: Date())
-    repository = ReadingListCoreDataRepository(managedObjectContext: PersistenceController(inMemory: true).container.viewContext)
+    articles = createArticlesListFixture(min: 2)
+    article = articles[0]
+    readingListItems = articles.map { ReadingListItem(from: $0, savedAt: Date()) }
+    readingListItem = readingListItems[0]
+    managedObjectContext = PersistenceController(inMemory: true).container.viewContext
+    repository = ReadingListCoreDataRepository(managedObjectContext: managedObjectContext)
     cancellables = []
   }
   
@@ -29,13 +36,57 @@ class ReadingListRepositoryTests: XCTestCase {
     cancellables = []
   }
   
-  func testsAddArticle_ShouldAddArticle() {
+  func addReadingListItems(readingListItemsForTest: [ReadingListItem]? = nil) -> Void {
+    (readingListItemsForTest ?? readingListItems)!.forEach {
+      managedObjectContext.insert(ReadingListItemDbDto(context: managedObjectContext, readingListItem: $0))
+    }
+    do {
+      try managedObjectContext.save()
+    } catch {
+      fatalError()
+    }
+    
+  }
+  
+  func testsAddArticle_ShouldAddFromArticle() {
     collect(stream$: repository.addFrom(article: article), collect: 1, cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }, receiveValue: { self.assertReadingListItem(expected: [self.readingListItem], result: $0) })
       .store(in: &cancellables)
     
     collect(stream$: repository.list(), collect: 1, cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }, receiveValue: { self.assertReadingListItems(expected: [[self.readingListItem]], result: $0) })
+      .store(in: &cancellables)
+  }
+  
+  func testList_ShouldReturnReadingListItems() -> Void {
+    addReadingListItems()
+    
+    collect(stream$: repository.list(), collect: 1, cancellables: &cancellables)
+      .sink(receiveCompletion: { _ in }, receiveValue: { self.assertReadingListItems(expected: [self.readingListItems], result: $0) })
+      .store(in: &cancellables)
+  }
+  
+  func testList_ShouldReturnReadingListItemsFromArticleIds() -> Void {
+    addReadingListItems()
+    let articleIds = [article.id]
+    
+    collect(stream$: repository.list(for: articleIds), collect: 1, cancellables: &cancellables)
+      .sink(receiveCompletion: { _ in }, receiveValue: { self.assertReadingListItems(expected: [[self.readingListItem]], result: $0) })
+      .store(in: &cancellables)
+  }
+  
+  func testList_ShouldReturnEmptyListInCaseArticleIdsDoNotExist() -> Void {
+    addReadingListItems()
+    let articleIds = [99]
+    
+    collect(stream$: repository.list(for: articleIds), collect: 1, cancellables: &cancellables)
+      .sink(receiveCompletion: { _ in }, receiveValue: { self.assertReadingListItems(expected: [[]], result: $0) })
+      .store(in: &cancellables)
+  }
+  
+  func testList_ShouldReturnEmptyListInCaseThereAreNoReadingListItems() -> Void {
+    collect(stream$: repository.list(), collect: 1, cancellables: &cancellables)
+      .sink(receiveCompletion: { _ in }, receiveValue: { self.assertReadingListItems(expected: [[]], result: $0) })
       .store(in: &cancellables)
   }
   
@@ -47,11 +98,12 @@ class ReadingListRepositoryTests: XCTestCase {
   }
   
   private func assertReadingListItem(expected: [ReadingListItem], result: [ReadingListItem]) -> Void {
-    XCTAssertEqual(result.count, expected.count)
-    (0..<result.count).forEach { index in
-      XCTAssertEqual(expected[index].articleId, result[index].articleId)
-      XCTAssertEqual(expected[index].link, result[index].link)
-      XCTAssertEqual(expected[index].title, result[index].title)
+    let resultSortedById = result.sorted(by: { $0.articleId <= $1.articleId })
+    XCTAssertEqual(resultSortedById.count, expected.count)
+    (0..<resultSortedById.count).forEach { index in
+      XCTAssertEqual(expected[index].articleId, resultSortedById[index].articleId)
+      XCTAssertEqual(expected[index].link, resultSortedById[index].link)
+      XCTAssertEqual(expected[index].title, resultSortedById[index].title)
     }
     
   }

@@ -23,16 +23,33 @@ extension ReadingListItemDbDto {
 
 }
 
+extension ReadingListItemDbDto {
+  @nonobjc public class func fetchRequest(predicate: NSPredicate) -> NSFetchRequest<ReadingListItemDbDto> {
+    let fetchRequest = NSFetchRequest<ReadingListItemDbDto>(entityName: "ReadingListItem")
+    fetchRequest.predicate = predicate
+    return fetchRequest
+  }
+}
+
 extension ReadingListItemDbDto : Identifiable {
+  
   func toReadingListItem() -> ReadingListItem {
     ReadingListItem(articleId: Int(articleId), title: title, link: link, savedAt: savedAt)
   }
   
-  convenience init(context: NSManagedObjectContext, articleId: Int16, title: String, link: URL, savedAt: Date) {
+  convenience init(context: NSManagedObjectContext, article: Article, savedAt: Date) {
     self.init(context: context);
-    self.title = title
-    self.articleId = articleId
-    self.link = link
+    self.title = article.title
+    self.articleId = Int16(article.id)
+    self.link = article.link
     self.savedAt = savedAt
+  }
+  
+  convenience init(context: NSManagedObjectContext, readingListItem: ReadingListItem) {
+    self.init(context: context);
+    self.title = readingListItem.title
+    self.articleId = Int16(readingListItem.articleId)
+    self.link = readingListItem.link
+    self.savedAt = readingListItem.savedAt
   }
 }

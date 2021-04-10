@@ -22,9 +22,7 @@ class ReadingListCoreDataRepository: AddReadingListItem, ListReadingListItem  {
       .tryMap { article in
         let readingListItemDto = ReadingListItemDbDto(
           context: managedObjectContext,
-          articleId: Int16(article.id),
-          title: article.title,
-          link: article.link,
+          article: article,
           savedAt: Date()
         )
         try managedObjectContext.save()
@@ -37,7 +35,7 @@ class ReadingListCoreDataRepository: AddReadingListItem, ListReadingListItem  {
   }
   
   func list() -> AnyPublisher<[ReadingListItem], DbError> {
-    let fetchRequest = NSFetchRequest<ReadingListItemDbDto>(entityName: "ReadingListItem")
+    let fetchRequest: NSFetchRequest<ReadingListItemDbDto> = ReadingListItemDbDto.fetchRequest()
     return Just(fetchRequest)
       .tryMap { fetchRequest in
         try managedObjectContext.fetch(fetchRequest)
@@ -49,8 +47,16 @@ class ReadingListCoreDataRepository: AddReadingListItem, ListReadingListItem  {
       .eraseToAnyPublisher()
   }
   
-  func list(for articles: [ArticleId]) -> AnyPublisher<[ReadingListItem], DbError> {
-    fatalError("Not Implemented")
+  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], DbError> {
+    return Just(ReadingListItemDbDto.fetchRequest(predicate: NSPredicate(format: "articleId IN %@", articleIds.map { String($0) })))
+      .tryMap { fetchRequest in
+        try managedObjectContext.fetch(fetchRequest)
+      }
+      .map { readingListItemDbDtos in
+        readingListItemDbDtos.map { $0.toReadingListItem() }
+      }
+      .mapError { error in DbError.error }
+      .eraseToAnyPublisher()
   }
   
 }
