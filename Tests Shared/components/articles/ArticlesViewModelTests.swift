@@ -25,8 +25,8 @@ class ArticleViewModelTests: XCTestCase {
     let listError: RestError
   }
   
-  struct AddReadingListItemSuccess: InMemoryAddReadlingListItem {}
-  struct AddReadingListItemFailing: FailingAddReadlingListItem {}
+  struct AddReadingListItemSuccess: InMemoryAddReadingListItem {}
+  struct AddReadingListItemFailing: FailingAddReadingListItem {}
   
   let articles = createArticlesListFixture(min: 2)
   var presenter: ArticlesViewModel!

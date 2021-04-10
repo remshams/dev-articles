@@ -9,21 +9,21 @@ import Foundation
 import Combine
 @testable import dev_articles
 
-protocol InMemoryAddReadlingListItem: AddReadingListItem {
+protocol InMemoryAddReadingListItem: AddReadingListItem {
 }
 
-extension InMemoryAddReadlingListItem {
+extension InMemoryAddReadingListItem {
   func addFrom(article: Article) -> AnyPublisher<ReadingListItem, DbError> {
     return Just(ReadingListItem.init(from: article, savedAt: Date())).setFailureType(to: DbError.self).eraseToAnyPublisher()
   }
 }
 
 
-protocol FailingAddReadlingListItem: AddReadingListItem {
+protocol FailingAddReadingListItem: AddReadingListItem {
   
 }
 
-extension FailingAddReadlingListItem {
+extension FailingAddReadingListItem {
   func addFrom(article: Article) -> AnyPublisher<ReadingListItem, DbError> {
     return Fail<ReadingListItem, DbError>(error: DbError.error).eraseToAnyPublisher()
   }
