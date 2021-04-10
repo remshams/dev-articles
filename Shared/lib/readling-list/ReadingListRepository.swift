@@ -14,5 +14,5 @@ protocol AddReadingListItem {
 
 protocol ListReadingListItem {
   func list() -> AnyPublisher<[ReadingListItem], DbError>
-  func list(for articles: [ArticleId]) -> AnyPublisher<[ReadingListItem], DbError>
+  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], DbError>
 }
