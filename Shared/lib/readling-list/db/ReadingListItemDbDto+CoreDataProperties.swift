@@ -17,7 +17,7 @@ extension ReadingListItemDbDto {
     }
 
     @NSManaged public var title: String
-    @NSManaged public var articleId: Int16
+    @NSManaged public var articleId: Int64
     @NSManaged public var link: URL
     @NSManaged public var savedAt: Date
 
@@ -40,7 +40,7 @@ extension ReadingListItemDbDto : Identifiable {
   convenience init(context: NSManagedObjectContext, article: Article, savedAt: Date) {
     self.init(context: context);
     self.title = article.title
-    self.articleId = Int16(article.id)
+    self.articleId = Int64(article.id)
     self.link = article.link
     self.savedAt = savedAt
   }
@@ -48,7 +48,7 @@ extension ReadingListItemDbDto : Identifiable {
   convenience init(context: NSManagedObjectContext, readingListItem: ReadingListItem) {
     self.init(context: context);
     self.title = readingListItem.title
-    self.articleId = Int16(readingListItem.articleId)
+    self.articleId = Int64(readingListItem.articleId)
     self.link = readingListItem.link
     self.savedAt = readingListItem.savedAt
   }
