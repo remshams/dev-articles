@@ -35,8 +35,6 @@
 		4B6AD8172607C4ED009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7B426076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift */; };
 		4B72346125CF12E400766126 /* ArticlesRestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */; };
 		4B72346225CF12E400766126 /* ArticlesRestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */; };
-		4B72346825CF12FD00766126 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346725CF12FD00766126 /* ArticlesRepository.swift */; };
-		4B72346925CF12FD00766126 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346725CF12FD00766126 /* ArticlesRepository.swift */; };
 		4B72347025D030C600766126 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346F25D030C600766126 /* RestError.swift */; };
 		4B72347125D030C600766126 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346F25D030C600766126 /* RestError.swift */; };
 		4B7BACB525E180A3004A0C4B /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BACB425E180A3004A0C4B /* AppEnvironment.swift */; };
@@ -111,7 +109,6 @@
 		4B6AD7F126078ABD009EA5E7 /* ReadingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListItem.swift; sourceTree = "<group>"; };
 		4B6AD8042607B468009EA5E7 /* DbError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbError.swift; sourceTree = "<group>"; };
 		4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRestAdapter.swift; sourceTree = "<group>"; };
-		4B72346725CF12FD00766126 /* ArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRepository.swift; sourceTree = "<group>"; };
 		4B72346F25D030C600766126 /* RestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestError.swift; sourceTree = "<group>"; };
 		4B7BACB425E180A3004A0C4B /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		4B7BACC625E184E9004A0C4B /* EnvironmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentsView.swift; sourceTree = "<group>"; };
@@ -414,7 +411,6 @@
 			children = (
 				4BC96C1F25CF103C0081B8FF /* Article.swift */,
 				4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */,
-				4B72346725CF12FD00766126 /* ArticlesRepository.swift */,
 				4BE4FA4125D999CD006D355E /* InMemoryArticlesDb.swift */,
 				4B93DBC225F3C18400DBCFA2 /* ArticleDto.swift */,
 			);
@@ -646,7 +642,6 @@
 				4BC96C2025CF103C0081B8FF /* Article.swift in Sources */,
 				4B7BACB525E180A3004A0C4B /* AppEnvironment.swift in Sources */,
 				4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */,
-				4B72346825CF12FD00766126 /* ArticlesRepository.swift in Sources */,
 				4BE4FA4225D999CD006D355E /* InMemoryArticlesDb.swift in Sources */,
 				4B6AD7B626076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */,
 				4B24F8A425F3E2D20088EE1B /* HttpClient.swift in Sources */,
@@ -680,7 +675,6 @@
 				4BC96C2125CF103C0081B8FF /* Article.swift in Sources */,
 				4B7BACB625E180A3004A0C4B /* AppEnvironment.swift in Sources */,
 				4B3DB05F26065B0A003B5CD6 /* Persistence.swift in Sources */,
-				4B72346925CF12FD00766126 /* ArticlesRepository.swift in Sources */,
 				4B6AD7EB26078630009EA5E7 /* ReadingListRepository.swift in Sources */,
 				4BE4FA4325D999CD006D355E /* InMemoryArticlesDb.swift in Sources */,
 				4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */,
