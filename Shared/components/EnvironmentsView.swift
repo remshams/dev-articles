@@ -30,8 +30,9 @@ struct EnvironmentsView: View {
   
   init() {
     restClient = RestHttpClient()
+    let readingListRepository = ReadingListCoreDataRepository(managedObjectContext: persistenceController.container.viewContext)
+    readingListEnvironment = ReadingListEnvironment(addReadingListItem: readingListRepository, listReadingListItem: readingListRepository)
     articleEnvironment = ArticlesEnvironment(listArticle: ArticlesRestAdapter(httpGet: restClient))
-    readingListEnvironment = ReadingListEnvironment(addReadingListItem: ReadingListCoreDataRepository(managedObjectContext: persistenceController.container.viewContext))
   }
   
   var body: some View {

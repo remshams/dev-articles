@@ -11,9 +11,11 @@ class ArticlesEnvironment: ObservableObject {
 
 class ReadingListEnvironment: ObservableObject {
   let addReadingListItem: AddReadingListItem
+  let listReadingListItem: ListReadingListItem
   
-  init(addReadingListItem: AddReadingListItem) {
+  init(addReadingListItem: AddReadingListItem, listReadingListItem: ListReadingListItem) {
     self.addReadingListItem = addReadingListItem
+    self.listReadingListItem = listReadingListItem
   }
   
 }
