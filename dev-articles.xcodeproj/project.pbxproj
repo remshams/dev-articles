@@ -187,24 +187,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4B6AD7B326076A7C009EA5E7 /* readling-list */ = {
+		4B0AFC38262B213900BE94F8 /* articles */ = {
 			isa = PBXGroup;
 			children = (
-				4B6AD7C72607824D009EA5E7 /* db */,
-				4B6AD7C826078280009EA5E7 /* ReadingListCoreDataRepository.swift */,
-				4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */,
-				4B6AD7F126078ABD009EA5E7 /* ReadingListItem.swift */,
+				4B0AFC3C262B21A700BE94F8 /* domain */,
+				4B0AFC3B262B217200BE94F8 /* data-access */,
+				4B0AFC3A262B215900BE94F8 /* views */,
 			);
-			path = "readling-list";
+			path = articles;
 			sourceTree = "<group>";
 		};
-		4B6AD7C72607824D009EA5E7 /* db */ = {
+		4B0AFC39262B214300BE94F8 /* reading-list */ = {
+			isa = PBXGroup;
+			children = (
+				4B0AFC43262B223A00BE94F8 /* domain */,
+				4B0AFC42262B222500BE94F8 /* data-access */,
+			);
+			path = "reading-list";
+			sourceTree = "<group>";
+		};
+		4B0AFC3A262B215900BE94F8 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */,
+				4BC96C1125CF0F430081B8FF /* ArticlesViewModel.swift */,
+				4BA500AC25D97467005AD7D8 /* ArticlesView.swift */,
+				4BA81A52261A108000F0F1C1 /* BookmarkView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		4B0AFC3B262B217200BE94F8 /* data-access */ = {
+			isa = PBXGroup;
+			children = (
+				4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */,
+				4BE4FA4125D999CD006D355E /* InMemoryArticlesDb.swift */,
+				4B93DBC225F3C18400DBCFA2 /* ArticleDto.swift */,
+			);
+			path = "data-access";
+			sourceTree = "<group>";
+		};
+		4B0AFC3C262B21A700BE94F8 /* domain */ = {
+			isa = PBXGroup;
+			children = (
+				4BC96C1F25CF103C0081B8FF /* Article.swift */,
+			);
+			path = domain;
+			sourceTree = "<group>";
+		};
+		4B0AFC42262B222500BE94F8 /* data-access */ = {
 			isa = PBXGroup;
 			children = (
 				4B6AD7B426076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift */,
 				4B6AD7B526076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift */,
+				4B6AD7C826078280009EA5E7 /* ReadingListCoreDataRepository.swift */,
+				4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */,
 			);
-			path = db;
+			path = "data-access";
+			sourceTree = "<group>";
+		};
+		4B0AFC43262B223A00BE94F8 /* domain */ = {
+			isa = PBXGroup;
+			children = (
+				4B6AD7F126078ABD009EA5E7 /* ReadingListItem.swift */,
+			);
+			path = domain;
 			sourceTree = "<group>";
 		};
 		4B6AD8032607B45A009EA5E7 /* db */ = {
@@ -316,9 +363,11 @@
 		4BC96BCE25CF0EE80081B8FF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4B0AFC39262B214300BE94F8 /* reading-list */,
+				4B0AFC38262B213900BE94F8 /* articles */,
 				4B7BACB325E18088004A0C4B /* environments */,
-				4BC96C1D25CF10100081B8FF /* lib */,
-				4BC96C1C25CF0FF60081B8FF /* components */,
+				4BC96C1D25CF10100081B8FF /* shared */,
+				4B7BACC625E184E9004A0C4B /* EnvironmentsView.swift */,
 				4BC96BCF25CF0EE80081B8FF /* dev_articlesApp.swift */,
 				4BC96BD125CF0EE90081B8FF /* Assets.xcassets */,
 				4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */,
@@ -374,47 +423,14 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
-		4BC96C1025CF0F250081B8FF /* articles */ = {
-			isa = PBXGroup;
-			children = (
-				4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */,
-				4BC96C1125CF0F430081B8FF /* ArticlesViewModel.swift */,
-				4BA500AC25D97467005AD7D8 /* ArticlesView.swift */,
-				4BA81A52261A108000F0F1C1 /* BookmarkView.swift */,
-			);
-			path = articles;
-			sourceTree = "<group>";
-		};
-		4BC96C1C25CF0FF60081B8FF /* components */ = {
-			isa = PBXGroup;
-			children = (
-				4BC96C1025CF0F250081B8FF /* articles */,
-				4B7BACC625E184E9004A0C4B /* EnvironmentsView.swift */,
-			);
-			path = components;
-			sourceTree = "<group>";
-		};
-		4BC96C1D25CF10100081B8FF /* lib */ = {
+		4BC96C1D25CF10100081B8FF /* shared */ = {
 			isa = PBXGroup;
 			children = (
 				4B6AD8032607B45A009EA5E7 /* db */,
-				4B6AD7B326076A7C009EA5E7 /* readling-list */,
 				4BE4FA4925D99E16006D355E /* foundation */,
 				4B72346E25D030B400766126 /* http */,
-				4BC96C1E25CF10280081B8FF /* articles */,
 			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		4BC96C1E25CF10280081B8FF /* articles */ = {
-			isa = PBXGroup;
-			children = (
-				4BC96C1F25CF103C0081B8FF /* Article.swift */,
-				4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */,
-				4BE4FA4125D999CD006D355E /* InMemoryArticlesDb.swift */,
-				4B93DBC225F3C18400DBCFA2 /* ArticleDto.swift */,
-			);
-			path = articles;
+			path = shared;
 			sourceTree = "<group>";
 		};
 		4BE4FA4925D99E16006D355E /* foundation */ = {
