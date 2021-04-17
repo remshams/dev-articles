@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 struct ArticlesView: View {
-  @EnvironmentObject var articlesEnvironment: ArticlesEnvironment
+  @EnvironmentObject var articlesEnvironment: ArticlesContainer
   @EnvironmentObject var readingListEnvironment: ReadingListEnvironment
   
   var body: some View {
@@ -46,7 +46,7 @@ struct ArticlesList: View {
 struct ArticlesView_Previews: PreviewProvider {
   static var previews: some View {
     ArticlesView().environmentObject(
-      ArticlesEnvironment(
+      ArticlesContainer(
         listArticle: InMemoryArticlesDb(
           articles: [
             Article(

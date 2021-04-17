@@ -10,22 +10,22 @@ import SwiftUI
 @main
 struct dev_articlesApp: App {
   
+  let appContainer: AppContainer
   let persistenceController = PersistenceController.shared
   let restClient: RestHttpClient
-  let articleEnvironment: ArticlesEnvironment
   let readingListEnvironment: ReadingListEnvironment
   
   init() {
+    appContainer = AppContainer()
     restClient = RestHttpClient()
     let readingListRepository = ReadingListCoreDataRepository(managedObjectContext: persistenceController.container.viewContext)
     readingListEnvironment = ReadingListEnvironment(addReadingListItem: readingListRepository, listReadingListItem: readingListRepository)
-    articleEnvironment = ArticlesEnvironment(listArticle: ArticlesRestAdapter(httpGet: restClient))
   }
   
   var body: some Scene {
     WindowGroup {
       ArticlesView()
-        .environmentObject(articleEnvironment)
+        .environmentObject(appContainer.makeArticlesContainer())
         .environmentObject(readingListEnvironment)
     }
   }

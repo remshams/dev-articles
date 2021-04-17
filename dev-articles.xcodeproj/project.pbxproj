@@ -11,6 +11,8 @@
 		4B03E6D625FCEAFD000A6F7A /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */; };
 		4B24F8A425F3E2D20088EE1B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24F8A325F3E2D20088EE1B /* HttpClient.swift */; };
 		4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24F8A325F3E2D20088EE1B /* HttpClient.swift */; };
+		4B268809262B2431006C4C5B /* ArticlesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268808262B2431006C4C5B /* ArticlesContainer.swift */; };
+		4B26881A262B247A006C4C5B /* ReadingListContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268819262B247A006C4C5B /* ReadingListContainer.swift */; };
 		4B3DB051260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */; };
 		4B3DB052260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */; };
 		4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB05D26065B0A003B5CD6 /* Persistence.swift */; };
@@ -37,8 +39,8 @@
 		4B72346225CF12E400766126 /* ArticlesRestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */; };
 		4B72347025D030C600766126 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346F25D030C600766126 /* RestError.swift */; };
 		4B72347125D030C600766126 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346F25D030C600766126 /* RestError.swift */; };
-		4B7BACB525E180A3004A0C4B /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BACB425E180A3004A0C4B /* AppEnvironment.swift */; };
-		4B7BACB625E180A3004A0C4B /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BACB425E180A3004A0C4B /* AppEnvironment.swift */; };
+		4B7BACB525E180A3004A0C4B /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BACB425E180A3004A0C4B /* AppContainer.swift */; };
+		4B7BACB625E180A3004A0C4B /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BACB425E180A3004A0C4B /* AppContainer.swift */; };
 		4B93DBC325F3C18400DBCFA2 /* ArticleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B93DBC225F3C18400DBCFA2 /* ArticleDto.swift */; };
 		4B93DBC425F3C18400DBCFA2 /* ArticleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B93DBC225F3C18400DBCFA2 /* ArticleDto.swift */; };
 		4BA500AD25D97467005AD7D8 /* ArticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA500AC25D97467005AD7D8 /* ArticlesView.swift */; };
@@ -97,6 +99,8 @@
 /* Begin PBXFileReference section */
 		4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		4B24F8A325F3E2D20088EE1B /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		4B268808262B2431006C4C5B /* ArticlesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesContainer.swift; sourceTree = "<group>"; };
+		4B268819262B247A006C4C5B /* ReadingListContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListContainer.swift; sourceTree = "<group>"; };
 		4B3DB050260659FE003B5CD6 /* DevArticles.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DevArticles.xcdatamodel; sourceTree = "<group>"; };
 		4B3DB05D26065B0A003B5CD6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		4B5C889B25F3B39C00F375F2 /* Tests Shared.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests Shared.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +112,7 @@
 		4B6AD8042607B468009EA5E7 /* DbError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbError.swift; sourceTree = "<group>"; };
 		4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRestAdapter.swift; sourceTree = "<group>"; };
 		4B72346F25D030C600766126 /* RestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestError.swift; sourceTree = "<group>"; };
-		4B7BACB425E180A3004A0C4B /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		4B7BACB425E180A3004A0C4B /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		4B7BACD325E18809004A0C4B /* InMemoryArticlesDbTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryArticlesDbTests.swift; sourceTree = "<group>"; };
 		4B93DBC225F3C18400DBCFA2 /* ArticleDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDto.swift; sourceTree = "<group>"; };
 		4BA500AC25D97467005AD7D8 /* ArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesView.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		4B0AFC38262B213900BE94F8 /* articles */ = {
 			isa = PBXGroup;
 			children = (
+				4B268808262B2431006C4C5B /* ArticlesContainer.swift */,
 				4B0AFC3C262B21A700BE94F8 /* domain */,
 				4B0AFC3B262B217200BE94F8 /* data-access */,
 				4B0AFC3A262B215900BE94F8 /* views */,
@@ -197,6 +202,7 @@
 		4B0AFC39262B214300BE94F8 /* reading-list */ = {
 			isa = PBXGroup;
 			children = (
+				4B268819262B247A006C4C5B /* ReadingListContainer.swift */,
 				4B0AFC43262B223A00BE94F8 /* domain */,
 				4B0AFC42262B222500BE94F8 /* data-access */,
 			);
@@ -272,7 +278,6 @@
 		4B7BACB325E18088004A0C4B /* environments */ = {
 			isa = PBXGroup;
 			children = (
-				4B7BACB425E180A3004A0C4B /* AppEnvironment.swift */,
 			);
 			path = environments;
 			sourceTree = "<group>";
@@ -364,6 +369,7 @@
 				4B0AFC38262B213900BE94F8 /* articles */,
 				4B7BACB325E18088004A0C4B /* environments */,
 				4BC96C1D25CF10100081B8FF /* shared */,
+				4B7BACB425E180A3004A0C4B /* AppContainer.swift */,
 				4BC96BCF25CF0EE80081B8FF /* dev_articlesApp.swift */,
 				4BC96BD125CF0EE90081B8FF /* Assets.xcassets */,
 				4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */,
@@ -652,7 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC96C2025CF103C0081B8FF /* Article.swift in Sources */,
-				4B7BACB525E180A3004A0C4B /* AppEnvironment.swift in Sources */,
+				4B7BACB525E180A3004A0C4B /* AppContainer.swift in Sources */,
 				4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4BE4FA4225D999CD006D355E /* InMemoryArticlesDb.swift in Sources */,
 				4B6AD7B626076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */,
@@ -664,6 +670,7 @@
 				4BA500AD25D97467005AD7D8 /* ArticlesView.swift in Sources */,
 				4B6AD7F226078ABD009EA5E7 /* ReadingListItem.swift in Sources */,
 				4BE4FA4B25D99E36006D355E /* Collection.swift in Sources */,
+				4B26881A262B247A006C4C5B /* ReadingListContainer.swift in Sources */,
 				4B6AD7B726076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */,
 				4BC96BF825CF0EE90081B8FF /* dev_articlesApp.swift in Sources */,
 				4B6AD8052607B468009EA5E7 /* DbError.swift in Sources */,
@@ -671,6 +678,7 @@
 				4B72347025D030C600766126 /* RestError.swift in Sources */,
 				4B72346125CF12E400766126 /* ArticlesRestAdapter.swift in Sources */,
 				4BA81A53261A108000F0F1C1 /* BookmarkView.swift in Sources */,
+				4B268809262B2431006C4C5B /* ArticlesContainer.swift in Sources */,
 				4BA81A422617935100F0F1C1 /* Array.swift in Sources */,
 				4B6AD7C926078280009EA5E7 /* ReadingListCoreDataRepository.swift in Sources */,
 				E1A0EE431C9E745D859AC967 /* RestClient.swift in Sources */,
@@ -684,7 +692,7 @@
 				4B6AD7CA26078280009EA5E7 /* ReadingListCoreDataRepository.swift in Sources */,
 				4B6AD8172607C4ED009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */,
 				4BC96C2125CF103C0081B8FF /* Article.swift in Sources */,
-				4B7BACB625E180A3004A0C4B /* AppEnvironment.swift in Sources */,
+				4B7BACB625E180A3004A0C4B /* AppContainer.swift in Sources */,
 				4B3DB05F26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4B6AD7EB26078630009EA5E7 /* ReadingListRepository.swift in Sources */,
 				4BE4FA4325D999CD006D355E /* InMemoryArticlesDb.swift in Sources */,

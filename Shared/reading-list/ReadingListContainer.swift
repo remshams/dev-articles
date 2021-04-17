@@ -1,13 +1,11 @@
-import Foundation
-import Combine
+//
+//  ReadingListContainer.swift
+//  dev-articles (iOS)
+//
+//  Created by Mathias Remshardt on 17.04.21.
+//
 
-class ArticlesEnvironment: ObservableObject {
-  let listArticle: ListArticle
-  
-  init(listArticle: ListArticle) {
-    self.listArticle = listArticle
-  }
-}
+import Foundation
 
 class ReadingListEnvironment: ObservableObject {
   let addReadingListItem: AddReadingListItem
@@ -19,4 +17,3 @@ class ReadingListEnvironment: ObservableObject {
   }
   
 }
-
