@@ -13,6 +13,8 @@
 		4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24F8A325F3E2D20088EE1B /* HttpClient.swift */; };
 		4B268809262B2431006C4C5B /* ArticlesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268808262B2431006C4C5B /* ArticlesContainer.swift */; };
 		4B26881A262B247A006C4C5B /* ReadingListContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268819262B247A006C4C5B /* ReadingListContainer.swift */; };
+		4B26882A262B3A9D006C4C5B /* ReadingListContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268819262B247A006C4C5B /* ReadingListContainer.swift */; };
+		4B26882B262B3A9D006C4C5B /* ArticlesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268808262B2431006C4C5B /* ArticlesContainer.swift */; };
 		4B3DB051260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */; };
 		4B3DB052260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */; };
 		4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB05D26065B0A003B5CD6 /* Persistence.swift */; };
@@ -689,6 +691,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B26882A262B3A9D006C4C5B /* ReadingListContainer.swift in Sources */,
+				4B26882B262B3A9D006C4C5B /* ArticlesContainer.swift in Sources */,
 				4B6AD7CA26078280009EA5E7 /* ReadingListCoreDataRepository.swift in Sources */,
 				4B6AD8172607C4ED009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */,
 				4BC96C2125CF103C0081B8FF /* Article.swift in Sources */,
