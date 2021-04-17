@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ReadingListEnvironment: ObservableObject {
+class ReadingListContainer: ObservableObject {
   let addReadingListItem: AddReadingListItem
   let listReadingListItem: ListReadingListItem
   

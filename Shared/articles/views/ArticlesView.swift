@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ArticlesView: View {
   @EnvironmentObject var articlesEnvironment: ArticlesContainer
-  @EnvironmentObject var readingListEnvironment: ReadingListEnvironment
+  @EnvironmentObject var readingListEnvironment: ReadingListContainer
   
   var body: some View {
     ArticlesList(
