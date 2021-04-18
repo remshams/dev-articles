@@ -69,8 +69,8 @@
 		4BC96C1325CF0F430081B8FF /* ArticlesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC96C1125CF0F430081B8FF /* ArticlesViewModel.swift */; };
 		4BC96C2025CF103C0081B8FF /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC96C1F25CF103C0081B8FF /* Article.swift */; };
 		4BC96C2125CF103C0081B8FF /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC96C1F25CF103C0081B8FF /* Article.swift */; };
-		4BE4FA4225D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */; };
-		4BE4FA4325D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */; };
+		4BE4FA4225D999CD006D355E /* ArticlesInMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4125D999CD006D355E /* ArticlesInMemoryRepository.swift */; };
+		4BE4FA4325D999CD006D355E /* ArticlesInMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4125D999CD006D355E /* ArticlesInMemoryRepository.swift */; };
 		4BE4FA4B25D99E36006D355E /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4A25D99E36006D355E /* Collection.swift */; };
 		4BE4FA4C25D99E36006D355E /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4A25D99E36006D355E /* Collection.swift */; };
 		E1A0E1453A5D24B5FDE27B56 /* MockHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A0ECD52E3577D81145B8E2 /* MockHttpClient.swift */; };
@@ -151,7 +151,7 @@
 		4BC96BF725CF0EE90081B8FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BC96C1125CF0F430081B8FF /* ArticlesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewModel.swift; sourceTree = "<group>"; };
 		4BC96C1F25CF103C0081B8FF /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryArticlesRepository.swift; sourceTree = "<group>"; };
+		4BE4FA4125D999CD006D355E /* ArticlesInMemoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesInMemoryRepository.swift; sourceTree = "<group>"; };
 		4BE4FA4A25D99E36006D355E /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		4BFE153F25E2A23A00660C50 /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
 		E1A0EC975580C43B543CE57D /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */,
-				4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */,
+				4BE4FA4125D999CD006D355E /* ArticlesInMemoryRepository.swift */,
 				4B93DBC225F3C18400DBCFA2 /* ArticleDto.swift */,
 			);
 			path = "data-access";
@@ -665,7 +665,7 @@
 				4BC96C2025CF103C0081B8FF /* Article.swift in Sources */,
 				4B7BACB525E180A3004A0C4B /* AppContainer.swift in Sources */,
 				4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */,
-				4BE4FA4225D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */,
+				4BE4FA4225D999CD006D355E /* ArticlesInMemoryRepository.swift in Sources */,
 				4B6AD7B626076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */,
 				4B24F8A425F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B3DB051260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */,
@@ -704,7 +704,7 @@
 				4B7BACB625E180A3004A0C4B /* AppContainer.swift in Sources */,
 				4B3DB05F26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4B6AD7EB26078630009EA5E7 /* ReadingListRepository.swift in Sources */,
-				4BE4FA4325D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */,
+				4BE4FA4325D999CD006D355E /* ArticlesInMemoryRepository.swift in Sources */,
 				4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B6AD8112607C4EA009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */,
 				4B3DB052260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */,
