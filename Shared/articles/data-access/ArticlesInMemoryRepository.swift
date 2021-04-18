@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class ArticlesInMemoryRepository: InMemoryRepository<Article>, ListArticle {
+class ArticlesInMemoryRepository: InMemoryRepository<Article>, ArticlesRepository {
 
   init(articlesById: [Article.ID: Article] = [:]) {
     super.init(entitiesById: articlesById)

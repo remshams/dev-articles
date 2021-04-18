@@ -20,4 +20,5 @@ class ArticlesContainer: ObservableObject {
     ArticlesViewModel(listArticle: listArticle,
                       addReadingListItem: addReadingListItem)
   }
+  
 }
