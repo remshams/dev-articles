@@ -15,4 +15,8 @@ class InMemoryArticlesRepository: InMemoryRepository<Article>, ListArticle {
     super.list()
   }
   
+  func add(article: Article) -> AnyPublisher<Article, RepositoryError> {
+    super.add(entity: article)
+  }
+  
 }
