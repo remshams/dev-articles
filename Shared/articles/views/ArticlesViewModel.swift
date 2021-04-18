@@ -53,7 +53,7 @@ class ArticlesViewModel: ObservableObject {
   private func setupBookmarkArticle() -> Void {
     readingListItemAdded
       .compactMap {readingListItem in
-        self.articles.first(where: { $0.id == readingListItem.articleId })
+        self.articles.first(where: { $0.id == readingListItem.contentId })
       }
       .map { oldArticle in
         var newArticle = oldArticle

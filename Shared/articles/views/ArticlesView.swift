@@ -51,15 +51,16 @@ struct ArticlesView_Previews: PreviewProvider {
           articles: [
             Article(
               title: "Rolling (up) a multi module system (esm, cjs...) compatible npm library with TypeScript and Babel",
-              id: 0,
+              id: "0",
               description: "Rolling (up) a multi module system (esm, cjs...) compatible npm library with TypeScript and Babel",
               link: URL(string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg")!),
             Article(
               title: "Other Article",
-              id: 1,
+              id: "1",
               description: "Other Article",
               link: URL(string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg")!)
-          ])))
+          ]),
+        addReadingListItem: ReadingListInMemoryRepository(readingListItems: [])))
   }
 }
 #endif

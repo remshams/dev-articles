@@ -33,7 +33,7 @@ struct ArticleView_Previews: PreviewProvider {
   static var previews: some View {
     ArticleView(article: Article(
                   title: "Short Title",
-                  id: 0,
+                  id: "0",
                   description: "Short title",
                   link: URL(string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg")!, bookmarked: true)
     )

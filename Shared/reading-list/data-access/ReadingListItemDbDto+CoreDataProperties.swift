@@ -11,16 +11,16 @@ import CoreData
 
 
 extension ReadingListItemDbDto {
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ReadingListItemDbDto> {
-        return NSFetchRequest<ReadingListItemDbDto>(entityName: "ReadingListItem")
-    }
-
-    @NSManaged public var title: String
-    @NSManaged public var articleId: Int64
-    @NSManaged public var link: URL
-    @NSManaged public var savedAt: Date
-
+  
+  @nonobjc public class func fetchRequest() -> NSFetchRequest<ReadingListItemDbDto> {
+    return NSFetchRequest<ReadingListItemDbDto>(entityName: "ReadingListItem")
+  }
+  
+  @NSManaged public var title: String
+  @NSManaged public var contentId: String
+  @NSManaged public var link: URL
+  @NSManaged public var savedAt: Date
+  
 }
 
 extension ReadingListItemDbDto {
@@ -34,13 +34,13 @@ extension ReadingListItemDbDto {
 extension ReadingListItemDbDto : Identifiable {
   
   func toReadingListItem() -> ReadingListItem {
-    ReadingListItem(articleId: Int(articleId), title: title, link: link, savedAt: savedAt)
+    ReadingListItem(contentId: contentId, title: title, link: link, savedAt: savedAt)
   }
   
   convenience init(context: NSManagedObjectContext, article: Article, savedAt: Date) {
     self.init(context: context);
     self.title = article.title
-    self.articleId = Int64(article.id)
+    self.contentId = article.id
     self.link = article.link
     self.savedAt = savedAt
   }
@@ -48,7 +48,7 @@ extension ReadingListItemDbDto : Identifiable {
   convenience init(context: NSManagedObjectContext, readingListItem: ReadingListItem) {
     self.init(context: context);
     self.title = readingListItem.title
-    self.articleId = Int64(readingListItem.articleId)
+    self.contentId = readingListItem.contentId
     self.link = readingListItem.link
     self.savedAt = readingListItem.savedAt
   }

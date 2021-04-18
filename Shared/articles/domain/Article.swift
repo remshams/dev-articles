@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-typealias ArticleId = Int
+typealias ArticleId = String
 
 enum TimeCategory {
   case feed

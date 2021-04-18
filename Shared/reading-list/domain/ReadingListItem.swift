@@ -7,8 +7,14 @@
 
 import Foundation
 
-struct ReadingListItem: Equatable {
-  let articleId: Int
+struct ReadingListItem: Equatable, Identifiable {
+  var id: String {
+    get {
+      contentId
+    }
+  }
+  
+  let contentId: String
   let title: String
   let link: URL
   let savedAt: Date
@@ -16,6 +22,6 @@ struct ReadingListItem: Equatable {
 
 extension ReadingListItem {
   init(from article: Article, savedAt: Date) {
-    self.init(articleId: article.id, title: article.title, link: article.link, savedAt: savedAt)
+    self.init(contentId: article.id, title: article.title, link: article.link, savedAt: savedAt)
   }
 }

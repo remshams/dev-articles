@@ -1,23 +1,18 @@
 import Foundation
 import Combine
 
-class InMemoryArticlesDb: ListArticle {
-  private var articlesById: [Article.ID: Article]
-  
+class InMemoryArticlesDb: InMemoryRepository<Article>, ListArticle {
+
   init(articlesById: [Article.ID: Article] = [:]) {
-    self.articlesById = articlesById
+    super.init(entitiesById: articlesById)
   }
   
   convenience init(articles: [Article]) {
     self.init(articlesById: articles.toDictionaryById())
   }
-
-  func add(article: Article) -> Void {
-    articlesById[article.id] = article
-  }
   
   func list$(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RestError> {
-    Just(Array(articlesById.values)).setFailureType(to: RestError.self).eraseToAnyPublisher()
+    super.list()
   }
   
 }

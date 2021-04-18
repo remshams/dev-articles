@@ -9,8 +9,15 @@ import Foundation
 
 class ArticlesContainer: ObservableObject {
   let listArticle: ListArticle
+  let addReadingListItem: AddReadingListItem
   
-  init(listArticle: ListArticle) {
+  init(listArticle: ListArticle, addReadingListItem: AddReadingListItem) {
     self.listArticle = listArticle
+    self.addReadingListItem = addReadingListItem
+  }
+  
+  func makeArticlesViewModel() -> ArticlesViewModel {
+    ArticlesViewModel(listArticle: listArticle,
+                      addReadingListItem: addReadingListItem)
   }
 }

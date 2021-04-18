@@ -15,7 +15,7 @@ class ArticlesRestAdapter: ListArticle {
     httpGet.get(for: buildUrl(timeCategory: timeCategory))
       .decode(type: [ArticleDto].self, decoder: JSONDecoder())
       .map() { articles in
-        articles.map() { Article(title: $0.title, id: $0.id, description: $0.description, link: URL(string: $0.url)!) }
+        articles.map() { Article(title: $0.title, id: String($0.id), description: $0.description, link: URL(string: $0.url)!) }
       }
       .mapError() { error in RestError.serverError }
       .eraseToAnyPublisher()
