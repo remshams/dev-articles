@@ -18,11 +18,11 @@ class ReadingListInMemoryRepository: InMemoryRepository<ReadingListItem>, ListRe
     self.init(readingListItemsById: readingListItems.toDictionaryById())
   }
   
-  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], DbError> {
+  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], RepositoryError> {
     listBy(keyPath: \ReadingListItem.contentId, ids: articleIds)
   }
   
-  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, DbError> {
+  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, RepositoryError> {
     add(entity: ReadingListItem.init(from: article, savedAt: Date()))
   }
   

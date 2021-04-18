@@ -17,7 +17,7 @@ class ReadingListCoreDataRepository: AddReadingListItem, ListReadingListItem  {
   }
   
   
-  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, DbError> {
+  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, RepositoryError> {
     return Just(article)
       .tryMap { article in
         let readingListItemDto = ReadingListItemDbDto(
@@ -29,12 +29,12 @@ class ReadingListCoreDataRepository: AddReadingListItem, ListReadingListItem  {
         return readingListItemDto.toReadingListItem()
       }
       .mapError { error in
-        DbError.error
+        RepositoryError.error
       }
       .eraseToAnyPublisher()
   }
   
-  func list() -> AnyPublisher<[ReadingListItem], DbError> {
+  func list() -> AnyPublisher<[ReadingListItem], RepositoryError> {
     let fetchRequest: NSFetchRequest<ReadingListItemDbDto> = ReadingListItemDbDto.fetchRequest()
     return Just(fetchRequest)
       .tryMap { fetchRequest in
@@ -43,11 +43,11 @@ class ReadingListCoreDataRepository: AddReadingListItem, ListReadingListItem  {
       .map { readingListItemDtos in
         readingListItemDtos.map { $0.toReadingListItem() }
       }
-      .mapError { error in DbError.error }
+      .mapError { error in RepositoryError.error }
       .eraseToAnyPublisher()
   }
   
-  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], DbError> {
+  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], RepositoryError> {
     return Just(ReadingListItemDbDto.fetchRequest(predicate: NSPredicate(format: "articleId IN %@", articleIds.map { String($0) })))
       .tryMap { fetchRequest in
         try managedObjectContext.fetch(fetchRequest)
@@ -55,7 +55,7 @@ class ReadingListCoreDataRepository: AddReadingListItem, ListReadingListItem  {
       .map { readingListItemDbDtos in
         readingListItemDbDtos.map { $0.toReadingListItem() }
       }
-      .mapError { error in DbError.error }
+      .mapError { error in RepositoryError.error }
       .eraseToAnyPublisher()
   }
   

@@ -9,10 +9,10 @@ import Foundation
 import Combine
 
 protocol AddReadingListItem {
-  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, DbError>
+  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, RepositoryError>
 }
 
 protocol ListReadingListItem {
-  func list() -> AnyPublisher<[ReadingListItem], DbError>
-  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], DbError>
+  func list() -> AnyPublisher<[ReadingListItem], RepositoryError>
+  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], RepositoryError>
 }

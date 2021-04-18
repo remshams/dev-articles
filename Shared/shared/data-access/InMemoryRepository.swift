@@ -22,11 +22,11 @@ class InMemoryRepository<Entitiy: Identifiable> {
 
 extension InMemoryRepository {
   
-  func list() -> AnyPublisher<[Entitiy], DbError> {
-    Just(Array(entitiesById.values)).setFailureType(to: DbError.self).eraseToAnyPublisher()
+  func list() -> AnyPublisher<[Entitiy], RepositoryError> {
+    Just(Array(entitiesById.values)).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
   
-  func listBy<Value: Comparable>(keyPath: KeyPath<Entitiy, Value>, ids: [Value]) -> AnyPublisher<[Entitiy], DbError> {
+  func listBy<Value: Comparable>(keyPath: KeyPath<Entitiy, Value>, ids: [Value]) -> AnyPublisher<[Entitiy], RepositoryError> {
     list()
       .map { entities in
         entities.filter { entity in
@@ -40,8 +40,8 @@ extension InMemoryRepository {
 }
 
 extension InMemoryRepository {
-  func add(entity: Entitiy) -> AnyPublisher<Entitiy, DbError> {
+  func add(entity: Entitiy) -> AnyPublisher<Entitiy, RepositoryError> {
     entitiesById[entity.id] = entity
-    return Just(entity).setFailureType(to: DbError.self).eraseToAnyPublisher()
+    return Just(entity).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
 }
