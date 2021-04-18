@@ -12,15 +12,15 @@ extension Article: Comparable {
   
 }
 
-class InMemoryArticlesDbTests: XCTestCase {
+class InMemoryArticlesRepositoryTests: XCTestCase {
   
   let articles = createArticlesListFixture(min: 2)
   var result: [Article]!
   var cancellables: Set<AnyCancellable>!;
-  var db: InMemoryArticlesDb!
+  var db: InMemoryArticlesRepository!
   
   override func setUp() {
-    db = InMemoryArticlesDb()
+    db = InMemoryArticlesRepository()
     cancellables = [];
     result = []
   }
@@ -36,7 +36,7 @@ class InMemoryArticlesDbTests: XCTestCase {
   }
   
   func test_list_ShoudEmitArticlesWhenInitalizedWithList() -> Void {
-    db = InMemoryArticlesDb(articles: articles)
+    db = InMemoryArticlesRepository(articles: articles)
     
     assertStreamEquals(
       cancellables: &cancellables,
@@ -47,7 +47,7 @@ class InMemoryArticlesDbTests: XCTestCase {
   }
   
   func test_list_ShouldEmitArticlesWhenInitializedWithDictionary() -> Void {
-    db = InMemoryArticlesDb(articlesById: articles.toDictionaryById())
+    db = InMemoryArticlesRepository(articlesById: articles.toDictionaryById())
     
     assertStreamEquals(
       cancellables: &cancellables,
@@ -58,7 +58,7 @@ class InMemoryArticlesDbTests: XCTestCase {
   }
   
   func test_add_ShouldEmitNewlyAddedArticle() -> Void {
-    db = InMemoryArticlesDb();
+    db = InMemoryArticlesRepository();
     let addedArticle = articles.first!
     collect(stream$: db.add(entity: addedArticle), collect: 1, cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }, receiveValue: {
