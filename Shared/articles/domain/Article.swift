@@ -12,7 +12,7 @@ enum TimeCategory {
 }
 
 protocol ListArticle {
-  func list$(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError>
+  func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError>
 }
 
 struct Article: Identifiable, Equatable {

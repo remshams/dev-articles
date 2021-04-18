@@ -10,7 +10,7 @@ class ArticlesRestAdapter: ListArticle {
     self.httpGet = httpGet
   }
   
-  func list$(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
     
     httpGet.get(for: buildUrl(timeCategory: timeCategory))
       .decode(type: [ArticleDto].self, decoder: JSONDecoder())

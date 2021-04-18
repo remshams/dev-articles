@@ -11,7 +11,7 @@ class InMemoryArticlesDb: InMemoryRepository<Article>, ListArticle {
     self.init(articlesById: articles.toDictionaryById())
   }
   
-  func list$(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
     super.list()
   }
   

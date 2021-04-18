@@ -11,7 +11,7 @@ import Combine
 
 
 extension ListArticle {
-  func list$(for timeCategor: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for timeCategor: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
     Just([]).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
 }
@@ -21,7 +21,7 @@ protocol FailingListArticle: ListArticle {
 }
 
 extension FailingListArticle {
-  func list$(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
     Fail<[Article], RepositoryError>(error: listError).eraseToAnyPublisher()
   }
 }
@@ -31,7 +31,7 @@ protocol InMemoryListArticle: ListArticle {
 }
 
 extension InMemoryListArticle {
-  func list$(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
     Just(articles).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
 }

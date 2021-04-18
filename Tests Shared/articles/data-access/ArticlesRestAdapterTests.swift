@@ -28,8 +28,8 @@ class ArticlesRestAdapterTests: XCTestCase {
     cancellables = []
   }
   
-  func test_list$_ShouldEmitListOfArticlesForFeed() -> Void {
-    collect(stream$: adapter.list$(for: .feed), collect: 1, cancellables: &cancellables)
+  func test_list_ShouldEmitListOfArticlesForFeed() -> Void {
+    collect(stream$: adapter.list(for: .feed), collect: 1, cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }, receiveValue: { XCTAssertEqual($0, [self.articles]) })
       .store(in: &cancellables)
     
@@ -38,8 +38,8 @@ class ArticlesRestAdapterTests: XCTestCase {
       .store(in: &cancellables)
   }
 
-  func test_list$_ShouldEmitListOfArticlesForTimeCategory() -> Void {
-    collect(stream$: adapter.list$(for: .week), collect: 1, cancellables: &cancellables)
+  func test_list_ShouldEmitListOfArticlesForTimeCategory() -> Void {
+    collect(stream$: adapter.list(for: .week), collect: 1, cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }, receiveValue: { XCTAssertEqual($0, [self.articles]) })
       .store(in: &cancellables)
     

@@ -30,28 +30,28 @@ class InMemoryArticlesDbTests: XCTestCase {
     result = []
   }
   
-  func test_list$_ShouldEmitNothingWhenNoArticleHasBeenStored() -> Void {
-    assertStreamEquals(cancellables: &cancellables, received$: db.list$(for: .feed), expected: [[]])
+  func test_list_ShouldEmitNothingWhenNoArticleHasBeenStored() -> Void {
+    assertStreamEquals(cancellables: &cancellables, received$: db.list(for: .feed), expected: [[]])
     
   }
   
-  func test_list$_ShoudEmitArticlesWhenInitalizedWithList() -> Void {
+  func test_list_ShoudEmitArticlesWhenInitalizedWithList() -> Void {
     db = InMemoryArticlesDb(articles: articles)
     
     assertStreamEquals(
       cancellables: &cancellables,
-      received$: db.list$(for: .feed).map({$0.sorted()}).eraseToAnyPublisher(),
+      received$: db.list(for: .feed).map({$0.sorted()}).eraseToAnyPublisher(),
       expected: [articles]
     )
     
   }
   
-  func test_list$_ShouldEmitArticlesWhenInitializedWithDictionary() -> Void {
+  func test_list_ShouldEmitArticlesWhenInitializedWithDictionary() -> Void {
     db = InMemoryArticlesDb(articlesById: articles.toDictionaryById())
     
     assertStreamEquals(
       cancellables: &cancellables,
-      received$: db.list$(for: .feed).map({$0.sorted()}).eraseToAnyPublisher(),
+      received$: db.list(for: .feed).map({$0.sorted()}).eraseToAnyPublisher(),
       expected: [articles]
     )
     
@@ -66,7 +66,7 @@ class InMemoryArticlesDbTests: XCTestCase {
       })
       .store(in: &cancellables)
     
-    assertStreamEquals(cancellables: &cancellables, received$: db.list$(for: .feed), expected: [[articles.first!]])
+    assertStreamEquals(cancellables: &cancellables, received$: db.list(for: .feed), expected: [[articles.first!]])
   }
   
 }
