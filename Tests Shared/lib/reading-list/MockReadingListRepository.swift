@@ -13,8 +13,8 @@ protocol InMemoryAddReadingListItem: AddReadingListItem {
 }
 
 extension InMemoryAddReadingListItem {
-  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, DbError> {
-    Just(ReadingListItem.init(from: article, savedAt: Date())).setFailureType(to: DbError.self).eraseToAnyPublisher()
+  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, RepositoryError> {
+    Just(ReadingListItem.init(from: article, savedAt: Date())).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
 }
 
@@ -24,8 +24,8 @@ protocol FailingAddReadingListItem: AddReadingListItem {
 }
 
 extension FailingAddReadingListItem {
-  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, DbError> {
-    Fail<ReadingListItem, DbError>(error: DbError.error).eraseToAnyPublisher()
+  func addFrom(article: Article) -> AnyPublisher<ReadingListItem, RepositoryError> {
+    Fail<ReadingListItem, RepositoryError>(error: RepositoryError.error).eraseToAnyPublisher()
   }
 }
 
@@ -34,16 +34,16 @@ protocol InMemoryListReadingListItem: ListReadingListItem {
 }
 
 extension InMemoryListReadingListItem {
-  func list() -> AnyPublisher<[ReadingListItem], DbError> {
-    Just(readingListItems).setFailureType(to: DbError.self).eraseToAnyPublisher()
+  func list() -> AnyPublisher<[ReadingListItem], RepositoryError> {
+    Just(readingListItems).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
   
-  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], DbError> {
+  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], RepositoryError> {
     Just(readingListItems)
       .map { readingListItems in
-        readingListItems.filter { articleIds.contains($0.articleId) }
+        readingListItems.filter { articleIds.contains($0.contentId) }
       }
-      .setFailureType(to: DbError.self)
+      .setFailureType(to: RepositoryError.self)
       .eraseToAnyPublisher()
   }
   
@@ -52,11 +52,11 @@ extension InMemoryListReadingListItem {
 protocol FailingListReadingListItem: ListReadingListItem {}
 
 extension FailingAddReadingListItem {
-  func list() -> AnyPublisher<[ReadingListItem], DbError> {
-    Fail<[ReadingListItem], DbError>(error: DbError.error).eraseToAnyPublisher()
+  func list() -> AnyPublisher<[ReadingListItem], RepositoryError> {
+    Fail<[ReadingListItem], RepositoryError>(error: RepositoryError.error).eraseToAnyPublisher()
   }
   
-  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], DbError> {
-    Fail<[ReadingListItem], DbError>(error: DbError.error).eraseToAnyPublisher()
+  func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], RepositoryError> {
+    Fail<[ReadingListItem], RepositoryError>(error: RepositoryError.error).eraseToAnyPublisher()
   }
 }

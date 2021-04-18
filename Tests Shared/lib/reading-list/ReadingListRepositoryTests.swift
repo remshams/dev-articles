@@ -77,7 +77,7 @@ class ReadingListRepositoryTests: XCTestCase {
   
   func testList_ShouldReturnEmptyListInCaseArticleIdsDoNotExist() -> Void {
     addReadingListItems()
-    let articleIds = [99]
+    let articleIds = ["99"]
     
     collect(stream$: repository.list(for: articleIds), collect: 1, cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }, receiveValue: { self.assertReadingListItems(expected: [[]], result: $0) })
@@ -98,10 +98,10 @@ class ReadingListRepositoryTests: XCTestCase {
   }
   
   private func assertReadingListItem(expected: [ReadingListItem], result: [ReadingListItem]) -> Void {
-    let resultSortedById = result.sorted(by: { $0.articleId <= $1.articleId })
+    let resultSortedById = result.sorted(by: { $0.contentId <= $1.contentId })
     XCTAssertEqual(resultSortedById.count, expected.count)
     (0..<resultSortedById.count).forEach { index in
-      XCTAssertEqual(expected[index].articleId, resultSortedById[index].articleId)
+      XCTAssertEqual(expected[index].contentId, resultSortedById[index].contentId)
       XCTAssertEqual(expected[index].link, resultSortedById[index].link)
       XCTAssertEqual(expected[index].title, resultSortedById[index].title)
     }

@@ -13,11 +13,11 @@ protocol MockHttpGet: HttpGet {
 
 extension MockHttpGet {
   
-  func get(for url: URL) -> AnyPublisher<Data, RestError> {
+  func get(for url: URL) -> AnyPublisher<Data, HttpError> {
     urlCalledSubject.send(urlCalledSubject.value + [url])
     return Just(getResponse)
       .encode(encoder: JSONEncoder())
-      .mapError() { error in RestError.serverError }
+      .mapError() { error in HttpError.serverError }
       .eraseToAnyPublisher()
   }
 }

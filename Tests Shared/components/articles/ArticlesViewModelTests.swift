@@ -22,7 +22,7 @@ class ArticleViewModelTests: XCTestCase {
   }
   
   struct ListArticleFailing: FailingListArticle {
-    let listError: RestError
+    let listError: RepositoryError
   }
   
   struct AddReadingListItemSuccess: InMemoryAddReadingListItem {}
@@ -56,7 +56,7 @@ class ArticleViewModelTests: XCTestCase {
     let listArticleStatic = ListArticleStatic(articles: articles)
     prepareTest(listArticle: listArticleStatic)
     waitFor(stream$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2, cancellables: &cancellables)
-    let newArticles = [createArticleFixture(id: 99)]
+    let newArticles = [createArticleFixture(id: "99")]
     listArticleStatic.articles = newArticles
     presenter.selectedTimeCategory = .week
     
@@ -67,7 +67,7 @@ class ArticleViewModelTests: XCTestCase {
   
   
   func testArticles_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() {
-    let listArticle = ListArticleFailing(listError: RestError.serverError)
+    let listArticle = ListArticleFailing(listError: RepositoryError.error)
     prepareTest(listArticle: listArticle)
     collect(stream$: presenter.$articles.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)
       .sink(receiveValue: { XCTAssertEqual([[]], $0) })
@@ -89,7 +89,7 @@ class ArticleViewModelTests: XCTestCase {
   
   func testToggleBookmark_ShouldDoNothingInCaseBookmarkedArticleCannotBeFound() -> Void {
     waitFor(stream$: presenter.$articles.eraseToAnyPublisher(), waitFor: 2, cancellables: &cancellables)
-    presenter.toggleBookmark(createArticleFixture(id: 99))
+    presenter.toggleBookmark(createArticleFixture(id: "99"))
     
     
     collect(stream$: presenter.$articles.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)

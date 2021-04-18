@@ -59,7 +59,12 @@ class InMemoryArticlesDbTests: XCTestCase {
   
   func test_add_ShouldEmitNewlyAddedArticle() -> Void {
     db = InMemoryArticlesDb();
-    db.add(article: articles.first!)
+    let addedArticle = articles.first!
+    collect(stream$: db.add(entity: addedArticle), collect: 1, cancellables: &cancellables)
+      .sink(receiveCompletion: { _ in }, receiveValue: {
+              XCTAssertEqual($0, [addedArticle])
+      })
+      .store(in: &cancellables)
     
     assertStreamEquals(cancellables: &cancellables, received$: db.list$(for: .feed), expected: [[articles.first!]])
   }
