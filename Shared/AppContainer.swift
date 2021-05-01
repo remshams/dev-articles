@@ -26,7 +26,7 @@ struct AppContainer {
     case Configuration.test:
       return InMemoryArticlesRepository()
     default:
-      return AppArticlesRepository(articlesRestAdapter: AppArticlesRestAdapter(httpGet: httpGet))
+      return AppArticlesRepository(httpGet: httpGet)
     }
   }
   
