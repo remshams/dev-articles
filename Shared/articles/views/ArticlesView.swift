@@ -47,7 +47,7 @@ struct ArticlesView_Previews: PreviewProvider {
   static var previews: some View {
     ArticlesView().environmentObject(
       ArticlesContainer(
-        listArticle: ArticlesInMemoryRepository(
+        listArticle: InMemoryArticlesRepository(
           articles: [
             Article(
               title: "Rolling (up) a multi module system (esm, cjs...) compatible npm library with TypeScript and Babel",

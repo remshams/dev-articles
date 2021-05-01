@@ -3,12 +3,12 @@ import Combine
 @testable import dev_articles
 
 struct TestClient: MockHttpGet {
-  let getResponse: [ArticleDto]
+  let getResponse: [ArticleRestDto]
   let urlCalledSubject: CurrentValueSubject<[URL], Never>
 }
 
 class ArticlesRestAdapterTests: XCTestCase {
-  var articleDtos: [ArticleDto]!
+  var articleDtos: [ArticleRestDto]!
   var articles: [Article]!
   let urlCalled$ = CurrentValueSubject<[URL], Never>([])
   let articleUrl = devCommunityUrl + articlesPath

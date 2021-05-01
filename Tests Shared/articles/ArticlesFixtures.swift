@@ -9,10 +9,10 @@ func createArticlesListFixture(min: Int = 0, max: Int = 12) -> [Article] {
   (0...Int.random(in: min...max)).map({createArticleFixture(id: String($0))})
 }
 
-func createArticleDtoFixture(title: String = "title", description: String = "description", id: Int = 0, url: String = "https://www.apple.de") -> ArticleDto {
-  ArticleDto(id: id, title: title, description: description, url: url)
+func createArticleDtoFixture(title: String = "title", description: String = "description", id: Int = 0, url: String = "https://www.apple.de") -> ArticleRestDto {
+  ArticleRestDto(id: id, title: title, description: description, url: url)
 }
 
-func createArticleDtoListFixture(min: Int = 0, max: Int = 12) -> [ArticleDto] {
+func createArticleDtoListFixture(min: Int = 0, max: Int = 12) -> [ArticleRestDto] {
   (0...Int.random(in: min...max)).map {createArticleDtoFixture(id: $0)}
 }

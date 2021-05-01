@@ -3,7 +3,7 @@ import Combine
 
 let articlesPath = "/articles"
 
-class ArticlesRestAdapter: ArticlesRepository {
+class ArticlesRestAdapter: AppArticlesRepository {
   let httpGet: HttpGet
   
   init(httpGet: HttpGet) {
@@ -13,7 +13,7 @@ class ArticlesRestAdapter: ArticlesRepository {
   func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
     
     httpGet.get(for: buildUrl(timeCategory: timeCategory))
-      .decode(type: [ArticleDto].self, decoder: JSONDecoder())
+      .decode(type: [ArticleRestDto].self, decoder: JSONDecoder())
       .map() { articles in
         articles.map() { Article(title: $0.title, id: String($0.id), description: $0.description, link: URL(string: $0.url)!) }
       }
