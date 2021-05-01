@@ -60,7 +60,7 @@ struct ArticlesView_Previews: PreviewProvider {
               description: "Other Article",
               link: URL(string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg")!)
           ]),
-        addReadingListItem: ReadingListInMemoryRepository(readingListItems: [])))
+        addReadingListItem: InMemoryReadingListRepository(readingListItems: [])))
   }
 }
 #endif

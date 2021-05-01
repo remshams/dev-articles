@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class ReadingListInMemoryRepository: InMemoryRepository<ReadingListItem>, ListReadingListItem, AddReadingListItem {
+class InMemoryReadingListRepository: InMemoryRepository<ReadingListItem>, ListReadingListItem, AddReadingListItem {
   
   init(readingListItemsById : [ReadingListItem.ID: ReadingListItem]) {
     super.init(entitiesById: readingListItemsById)

@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import Combine
 
-class ReadingListCoreDataRepository: AddReadingListItem, ListReadingListItem  {
+class CoreDataReadingListRepository: AddReadingListItem, ListReadingListItem  {
   private let managedObjectContext: NSManagedObjectContext
   
   init(managedObjectContext: NSManagedObjectContext) {

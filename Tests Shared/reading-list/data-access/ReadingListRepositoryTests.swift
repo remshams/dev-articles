@@ -18,7 +18,7 @@ class ReadingListRepositoryTests: XCTestCase {
   var article: Article!
   var readingListItems: [ReadingListItem]!
   var readingListItem: ReadingListItem!
-  var repository: ReadingListCoreDataRepository!
+  var repository: CoreDataReadingListRepository!
   var cancellables: Set<AnyCancellable>!
   var managedObjectContext: NSManagedObjectContext!
   
@@ -28,7 +28,7 @@ class ReadingListRepositoryTests: XCTestCase {
     readingListItems = articles.map { ReadingListItem(from: $0, savedAt: Date()) }
     readingListItem = readingListItems[0]
     managedObjectContext = PersistenceController(inMemory: true).container.viewContext
-    repository = ReadingListCoreDataRepository(managedObjectContext: managedObjectContext)
+    repository = CoreDataReadingListRepository(managedObjectContext: managedObjectContext)
     cancellables = []
   }
   
