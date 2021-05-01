@@ -13,13 +13,13 @@ class ArticlesRestAdapterTests: XCTestCase {
   let urlCalled$ = CurrentValueSubject<[URL], Never>([])
   let articleUrl = devCommunityUrl + articlesPath
   var client: TestClient!
-  var adapter: ArticlesRestAdapter!
+  var adapter: AppArticlesRestAdapter!
   var cancellables: Set<AnyCancellable>!
   
   override func setUp() {
     articleDtos = createArticleDtoListFixture(min: 2)
     client = TestClient(getResponse: articleDtos, urlCalledSubject: urlCalled$)
-    adapter = ArticlesRestAdapter(httpGet: client)
+    adapter = AppArticlesRestAdapter(httpGet: client)
     articles = articleDtos.map(convertToArticle)
     cancellables = []
   }

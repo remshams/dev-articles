@@ -45,8 +45,8 @@
 		4B6AD7F326078ABD009EA5E7 /* ReadingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7F126078ABD009EA5E7 /* ReadingListItem.swift */; };
 		4B6AD8112607C4EA009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7B526076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift */; };
 		4B6AD8172607C4ED009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7B426076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift */; };
-		4B72346125CF12E400766126 /* ArticlesRestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */; };
-		4B72346225CF12E400766126 /* ArticlesRestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */; };
+		4B72346125CF12E400766126 /* AppArticlesRestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346025CF12E400766126 /* AppArticlesRestAdapter.swift */; };
+		4B72346225CF12E400766126 /* AppArticlesRestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346025CF12E400766126 /* AppArticlesRestAdapter.swift */; };
 		4B7BACB525E180A3004A0C4B /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BACB425E180A3004A0C4B /* AppContainer.swift */; };
 		4B7BACB625E180A3004A0C4B /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BACB425E180A3004A0C4B /* AppContainer.swift */; };
 		4B93DBC325F3C18400DBCFA2 /* ArticleRestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B93DBC225F3C18400DBCFA2 /* ArticleRestDto.swift */; };
@@ -61,6 +61,8 @@
 		4BAAA257260F91AC0061F30C /* ReadingListRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA256260F91AC0061F30C /* ReadingListRepositoryTests.swift */; };
 		4BAAA263260F98CD0061F30C /* ReadingListFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA262260F98CD0061F30C /* ReadingListFixture.swift */; };
 		4BAAA2772610DEA50061F30C /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA2762610DEA50061F30C /* ArrayTests.swift */; };
+		4BC357DA263DC37500B3B215 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */; };
+		4BC357DB263DC37500B3B215 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */; };
 		4BC96BEB25CF0EE90081B8FF /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC96BEA25CF0EE90081B8FF /* Tests_iOS.swift */; };
 		4BC96BF625CF0EE90081B8FF /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC96BF525CF0EE90081B8FF /* Tests_macOS.swift */; };
 		4BC96BF825CF0EE90081B8FF /* dev_articlesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC96BCF25CF0EE80081B8FF /* dev_articlesApp.swift */; };
@@ -124,7 +126,7 @@
 		4B6AD7C826078280009EA5E7 /* ReadingListCoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListCoreDataRepository.swift; sourceTree = "<group>"; };
 		4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListRepository.swift; sourceTree = "<group>"; };
 		4B6AD7F126078ABD009EA5E7 /* ReadingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListItem.swift; sourceTree = "<group>"; };
-		4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRestAdapter.swift; sourceTree = "<group>"; };
+		4B72346025CF12E400766126 /* AppArticlesRestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppArticlesRestAdapter.swift; sourceTree = "<group>"; };
 		4B7BACB425E180A3004A0C4B /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		4B93DBC225F3C18400DBCFA2 /* ArticleRestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRestDto.swift; sourceTree = "<group>"; };
 		4BA500AC25D97467005AD7D8 /* ArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		4BB876BD25D0698F00671A06 /* ArticlesRestAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRestAdapterTests.swift; sourceTree = "<group>"; };
 		4BB876BE25D0698F00671A06 /* MockArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArticlesRepository.swift; sourceTree = "<group>"; };
 		4BB876D325D069A700671A06 /* ArticlesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewModelTests.swift; sourceTree = "<group>"; };
+		4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRepository.swift; sourceTree = "<group>"; };
 		4BC96BCF25CF0EE80081B8FF /* dev_articlesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dev_articlesApp.swift; sourceTree = "<group>"; };
 		4BC96BD125CF0EE90081B8FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BC96BD625CF0EE90081B8FF /* dev-articles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dev-articles.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,9 +238,10 @@
 		4B0AFC3B262B217200BE94F8 /* data-access */ = {
 			isa = PBXGroup;
 			children = (
-				4B72346025CF12E400766126 /* ArticlesRestAdapter.swift */,
+				4B72346025CF12E400766126 /* AppArticlesRestAdapter.swift */,
 				4B93DBC225F3C18400DBCFA2 /* ArticleRestDto.swift */,
 				4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */,
+				4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */,
 			);
 			path = "data-access";
 			sourceTree = "<group>";
@@ -683,11 +687,12 @@
 				4B268839262B4925006C4C5B /* InMemoryRepository.swift in Sources */,
 				4B26881A262B247A006C4C5B /* ReadingListContainer.swift in Sources */,
 				4B6AD7B726076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */,
+				4BC357DA263DC37500B3B215 /* ArticlesRepository.swift in Sources */,
 				4BC96BF825CF0EE90081B8FF /* dev_articlesApp.swift in Sources */,
 				4B93DBC325F3C18400DBCFA2 /* ArticleRestDto.swift in Sources */,
 				4B268832262B48AF006C4C5B /* ReadingListInMemoryRepository.swift in Sources */,
 				4B262736262C3AF0006FD5C9 /* HttpError.swift in Sources */,
-				4B72346125CF12E400766126 /* ArticlesRestAdapter.swift in Sources */,
+				4B72346125CF12E400766126 /* AppArticlesRestAdapter.swift in Sources */,
 				4BA81A53261A108000F0F1C1 /* BookmarkView.swift in Sources */,
 				4B268809262B2431006C4C5B /* ArticlesContainer.swift in Sources */,
 				4BA81A422617935100F0F1C1 /* Array.swift in Sources */,
@@ -711,6 +716,7 @@
 				4B3DB05F26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4B6AD7EB26078630009EA5E7 /* ReadingListRepository.swift in Sources */,
 				4BE4FA4325D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */,
+				4BC357DB263DC37500B3B215 /* ArticlesRepository.swift in Sources */,
 				4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B6AD8112607C4EA009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */,
 				4B3DB052260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */,
@@ -723,7 +729,7 @@
 				4B93DBC425F3C18400DBCFA2 /* ArticleRestDto.swift in Sources */,
 				4BC96BF925CF0EE90081B8FF /* dev_articlesApp.swift in Sources */,
 				4B6AD7F326078ABD009EA5E7 /* ReadingListItem.swift in Sources */,
-				4B72346225CF12E400766126 /* ArticlesRestAdapter.swift in Sources */,
+				4B72346225CF12E400766126 /* AppArticlesRestAdapter.swift in Sources */,
 				4BA81A54261A108000F0F1C1 /* BookmarkView.swift in Sources */,
 				4BA81A3C2617935000F0F1C1 /* Array.swift in Sources */,
 				E1A0E3F70B5F627D3EBC0ADC /* RestClient.swift in Sources */,

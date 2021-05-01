@@ -1,4 +1,9 @@
 import Foundation
+import Combine
+
+protocol ArticlesRestAdapter {
+  func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError>
+}
 
 struct ArticleRestDto: Identifiable, Codable {
   let id: Int

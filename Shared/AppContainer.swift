@@ -1,14 +1,14 @@
 import Foundation
 import Combine
 
-protocol AppArticlesRepository: ListArticle {}
+protocol ArticlesRepository: ListArticle {}
 
 struct AppContainer {
   
   let httpGet: HttpGet
   let managedObjectContext = PersistenceController.shared.container.viewContext
   let readingListRepository: ReadingListCoreDataRepository
-  let articlesRepository: AppArticlesRepository
+  let articlesRepository: ArticlesRepository
   
   init() {
     httpGet = AppContainer.makeHttpGet()
@@ -21,12 +21,12 @@ struct AppContainer {
     return ArticlesContainer(listArticle: articlesRepository, addReadingListItem: readingListRepository)
   }
   
-  private static func makeArticlesRepository(httpGet: HttpGet) -> AppArticlesRepository {
+  private static func makeArticlesRepository(httpGet: HttpGet) -> ArticlesRepository {
     switch configuration {
     case Configuration.test:
       return InMemoryArticlesRepository()
     default:
-      return ArticlesRestAdapter(httpGet: makeHttpGet())
+      return AppArticlesRepository(articlesRestAdapter: AppArticlesRestAdapter(httpGet: httpGet))
     }
   }
   
@@ -40,4 +40,5 @@ struct AppContainer {
   
 }
 
-extension InMemoryArticlesRepository: AppArticlesRepository {}
+extension InMemoryArticlesRepository: ArticlesRepository {}
+extension AppArticlesRepository: ArticlesRepository {}

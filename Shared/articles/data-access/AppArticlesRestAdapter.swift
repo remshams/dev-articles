@@ -3,7 +3,7 @@ import Combine
 
 let articlesPath = "/articles"
 
-class ArticlesRestAdapter: AppArticlesRepository {
+class AppArticlesRestAdapter: ArticlesRestAdapter {
   let httpGet: HttpGet
   
   init(httpGet: HttpGet) {
