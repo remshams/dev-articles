@@ -13,7 +13,7 @@ import CoreData
 
 
 
-class ReadingListRepositoryTests: XCTestCase {
+class CoreDataReadingListRepositoryTests: XCTestCase {
   var articles: [Article]!
   var article: Article!
   var readingListItems: [ReadingListItem]!

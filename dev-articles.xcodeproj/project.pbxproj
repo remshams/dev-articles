@@ -58,7 +58,7 @@
 		4BA81A53261A108000F0F1C1 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA81A52261A108000F0F1C1 /* BookmarkView.swift */; };
 		4BA81A54261A108000F0F1C1 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA81A52261A108000F0F1C1 /* BookmarkView.swift */; };
 		4BA81A5B261B449F00F0F1C1 /* MockReadingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA81A5A261B449F00F0F1C1 /* MockReadingListRepository.swift */; };
-		4BAAA257260F91AC0061F30C /* ReadingListRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA256260F91AC0061F30C /* ReadingListRepositoryTests.swift */; };
+		4BAAA257260F91AC0061F30C /* CoreDataReadingListRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA256260F91AC0061F30C /* CoreDataReadingListRepositoryTests.swift */; };
 		4BAAA263260F98CD0061F30C /* ReadingListFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA262260F98CD0061F30C /* ReadingListFixture.swift */; };
 		4BAAA2772610DEA50061F30C /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA2762610DEA50061F30C /* ArrayTests.swift */; };
 		4BC357DA263DC37500B3B215 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */; };
@@ -132,7 +132,7 @@
 		4BA500AC25D97467005AD7D8 /* ArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesView.swift; sourceTree = "<group>"; };
 		4BA81A52261A108000F0F1C1 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		4BA81A5A261B449F00F0F1C1 /* MockReadingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReadingListRepository.swift; sourceTree = "<group>"; };
-		4BAAA256260F91AC0061F30C /* ReadingListRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListRepositoryTests.swift; sourceTree = "<group>"; };
+		4BAAA256260F91AC0061F30C /* CoreDataReadingListRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataReadingListRepositoryTests.swift; sourceTree = "<group>"; };
 		4BAAA262260F98CD0061F30C /* ReadingListFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListFixture.swift; sourceTree = "<group>"; };
 		4BAAA2762610DEA50061F30C /* ArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
 		4BAAA28C2610E7720061F30C /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -308,7 +308,7 @@
 		4B262740262C49D4006FD5C9 /* data-access */ = {
 			isa = PBXGroup;
 			children = (
-				4BAAA256260F91AC0061F30C /* ReadingListRepositoryTests.swift */,
+				4BAAA256260F91AC0061F30C /* CoreDataReadingListRepositoryTests.swift */,
 				4BA81A5A261B449F00F0F1C1 /* MockReadingListRepository.swift */,
 			);
 			path = "data-access";
@@ -651,7 +651,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BAAA257260F91AC0061F30C /* ReadingListRepositoryTests.swift in Sources */,
+				4BAAA257260F91AC0061F30C /* CoreDataReadingListRepositoryTests.swift in Sources */,
 				4BAAA2772610DEA50061F30C /* ArrayTests.swift in Sources */,
 				4B5C88AF25F3B3B900F375F2 /* ArticlesFixtures.swift in Sources */,
 				4B262767262C5075006FD5C9 /* InMemoryRepositoryTests.swift in Sources */,
