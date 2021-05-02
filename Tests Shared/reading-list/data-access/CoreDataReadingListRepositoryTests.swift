@@ -98,7 +98,7 @@ class CoreDataReadingListRepositoryTests: XCTestCase {
   }
   
   private func assertReadingListItem(expected: [ReadingListItem], result: [ReadingListItem]) -> Void {
-    let resultSortedById = result.sorted(by: { $0.contentId <= $1.contentId })
+    let resultSortedById = result.sorted(by: { Int($0.contentId)! <= Int($1.contentId)! })
     XCTAssertEqual(resultSortedById.count, expected.count)
     (0..<resultSortedById.count).forEach { index in
       XCTAssertEqual(expected[index].contentId, resultSortedById[index].contentId)

@@ -12,14 +12,6 @@ import Combine
 
 class LoadArticlesTests: XCTestCase {
   
-  struct ListArticleStatic: InMemoryListArticle {
-    var articles: [Article]
-  }
-  
-  struct ListArticleFailing: FailingListArticle {
-    let listError: RepositoryError
-  }
-  
   var cancellables: Set<AnyCancellable>!
   var useCase: LoadArticlesUseCase!
   var articles: [Article]!
@@ -28,7 +20,7 @@ class LoadArticlesTests: XCTestCase {
   override func setUp() {
     cancellables = []
     articles = createArticlesListFixture(min: 2)
-    useCase = LoadArticlesUseCase(listArticle: ListArticleStatic(articles: articles), timeCategory: .feed)
+    useCase = LoadArticlesUseCase(listArticle: InMemoryListArticle(articles: articles), timeCategory: .feed)
   }
   
   func test_ShouldEmitFeedList() {
@@ -41,7 +33,7 @@ class LoadArticlesTests: XCTestCase {
   
   
   func test_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() {
-    useCase = LoadArticlesUseCase(listArticle: ListArticleFailing(listError: RepositoryError.error), timeCategory: .feed)
+    useCase = LoadArticlesUseCase(listArticle: FailingListArticle(listError: RepositoryError.error), timeCategory: .feed)
     
     collect(stream$: useCase.start(), cancellables: &cancellables)
       .sink {

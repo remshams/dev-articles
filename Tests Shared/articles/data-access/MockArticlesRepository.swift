@@ -10,27 +10,19 @@ import Combine
 @testable import dev_articles
 
 
-extension ListArticle {
-  func list(for timeCategor: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
-    Just([]).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
-  }
-}
 
-protocol FailingListArticle: ListArticle {
-  var listError: RepositoryError { get }
-}
 
-extension FailingListArticle {
+struct FailingListArticle: ListArticle {
+  let listError: RepositoryError
+  
   func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
     Fail<[Article], RepositoryError>(error: listError).eraseToAnyPublisher()
   }
 }
 
-protocol InMemoryListArticle: ListArticle {
-  var articles: [Article] { get set }
-}
-
-extension InMemoryListArticle {
+struct InMemoryListArticle: ListArticle {
+  let articles: [Article]
+  
   func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
     Just(articles).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
