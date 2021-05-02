@@ -17,8 +17,13 @@ class ArticlesContainer: ObservableObject {
   }
   
   func makeArticlesViewModel() -> ArticlesViewModel {
-    ArticlesViewModel(listArticle: listArticle,
-                      addReadingListItem: addReadingListItem)
+    ArticlesViewModel(articlesUseCaseFactory: self, addReadingListItem: addReadingListItem)
   }
   
+}
+
+extension ArticlesContainer: ArticlesUseCaseFactory {
+  func makeLoadArticlesUseCase(timeCategory: TimeCategory) -> LoadArticlesUseCase {
+    LoadArticlesUseCase(listArticle: listArticle, timeCategory: timeCategory)
+  }
 }

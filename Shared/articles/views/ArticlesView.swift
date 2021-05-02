@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Combine
 
 struct ArticlesView: View {
   @EnvironmentObject var articlesContainer: ArticlesContainer
@@ -7,14 +8,18 @@ struct ArticlesView: View {
   
   var body: some View {
     ArticlesList(
-      model: ArticlesViewModel(listArticle: articlesContainer.listArticle,
-                               addReadingListItem: readingListContainer.addReadingListItem
-      ))
+      model: articlesContainer.makeArticlesViewModel()
+      )
   }
 }
 
 struct ArticlesList: View {
   @ObservedObject var model: ArticlesViewModel
+  @EnvironmentObject var articlesContainer: ArticlesContainer
+  @State var articles: [Article] = []
+  @State var timeCategory: TimeCategory = .feed
+  
+  var cancellables = Set<AnyCancellable>()
   
   init(model: ArticlesViewModel) {
     self.model = model
@@ -36,7 +41,8 @@ struct ArticlesList: View {
       List(model.articles) { article in
         ArticleView(article: article)
       }.buttonStyle(PlainButtonStyle())
-    }.environmentObject(model)
+    }
+    .environmentObject(model)
     
   }
   

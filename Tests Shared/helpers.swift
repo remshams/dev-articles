@@ -25,7 +25,7 @@ extension XCTestCase {
     assert(expected, result)
   }
   
-  func collect<Output, Failure: Error>(stream$: AnyPublisher<Output, Failure>, collect count: Int, cancellables: inout Set<AnyCancellable>) -> AnyPublisher<Array<Output>, Failure> {
+  func collect<Output, Failure: Error>(stream$: AnyPublisher<Output, Failure>, collect count: Int = 1, cancellables: inout Set<AnyCancellable>) -> AnyPublisher<Array<Output>, Failure> {
     let exp = expectation(description: #function)
     let result = CurrentValueSubject<Array<Output>, Failure>([])
     

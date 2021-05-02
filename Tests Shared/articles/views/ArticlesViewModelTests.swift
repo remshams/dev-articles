@@ -10,6 +10,7 @@ import XCTest
 import Combine
 @testable import dev_articles
 
+/**
 class ArticleViewModelTests: XCTestCase {
   
   class ListArticleStatic: InMemoryListArticle {
@@ -109,3 +110,4 @@ class ArticleViewModelTests: XCTestCase {
   }
   
 }
+*/

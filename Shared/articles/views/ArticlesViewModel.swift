@@ -4,7 +4,7 @@ import Combine
 typealias ToggleBookmark = (Article) -> Void
 
 class ArticlesViewModel: ObservableObject {
-  private let listArticle: ListArticle
+  private let articlesUseCaseFactory: ArticlesUseCaseFactory
   private let addReadingListItem: AddReadingListItem
   private var cancellables: Set<AnyCancellable> = []
   private let loadArticles$ = PassthroughSubject<Void, Never>()
@@ -16,8 +16,8 @@ class ArticlesViewModel: ObservableObject {
   @Published private(set) var articles: [Article] = []
   @Published var selectedTimeCategory = TimeCategory.feed
   
-  init(listArticle: ListArticle, addReadingListItem: AddReadingListItem) {
-    self.listArticle = listArticle
+  init(articlesUseCaseFactory: ArticlesUseCaseFactory, addReadingListItem: AddReadingListItem) {
+    self.articlesUseCaseFactory = articlesUseCaseFactory
     self.addReadingListItem = addReadingListItem
     toggleBookmark = toggleBookmarkSubject.send
     
@@ -34,10 +34,8 @@ class ArticlesViewModel: ObservableObject {
   
   private func setupLoadArticles() -> Void {
     $selectedTimeCategory.flatMap({ timeCategory in
-      self.listArticle.list(for: timeCategory)
+      self.articlesUseCaseFactory.makeLoadArticlesUseCase(timeCategory: timeCategory).start()
     })
-    .receive(on: DispatchQueue.main)
-    .replaceError(with: [])
     .assign(to: \.articles, on: self)
     .store(in: &cancellables)
   }
