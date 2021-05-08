@@ -42,6 +42,9 @@ struct ArticlesList: View {
         ArticleView(article: article)
       }.buttonStyle(PlainButtonStyle())
     }
+    .onAppear {
+      model.loadArticles()
+    }
     .environmentObject(model)
     
   }

@@ -7,7 +7,7 @@ class ArticlesViewModel: ObservableObject {
   private let articlesUseCaseFactory: ArticlesUseCaseFactory
   private let addReadingListItem: AddReadingListItem
   private var cancellables: Set<AnyCancellable> = []
-  private let loadArticles$ = PassthroughSubject<Void, Never>()
+  private let loadArticlesSubject = PassthroughSubject<Void, Never>()
   private let toggleBookmarkSubject = PassthroughSubject<Article, Never>()
   private let readingListItemAdded = PassthroughSubject<ReadingListItem, Never>()
 
@@ -24,11 +24,10 @@ class ArticlesViewModel: ObservableObject {
     setupLoadArticles()
     setupAddReadingListItem()
     setupBookmarkArticle()
-    loadArticles()
   }
   
   func loadArticles() -> Void {
-    loadArticles$.send()
+    loadArticlesSubject.send()
   }
   
   
