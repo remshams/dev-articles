@@ -10,10 +10,9 @@ import Foundation
 class ReadingListContainer: ObservableObject {
   let addReadingListItem: AddReadingListItem
   let listReadingListItem: ListReadingListItem
-  
+
   init(addReadingListItem: AddReadingListItem, listReadingListItem: ListReadingListItem) {
     self.addReadingListItem = addReadingListItem
     self.listReadingListItem = listReadingListItem
   }
-  
 }

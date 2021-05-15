@@ -8,14 +8,12 @@
 import Foundation
 
 extension Array where Element: Identifiable {
-  
   func replaceById(elementId: Element.ID, newElement: Element) -> [Element] {
     var newElements: [Element] = self
-    if let elementIndex = self.firstIndex(where: { $0.id == elementId }) {
+    if let elementIndex = firstIndex(where: { $0.id == elementId }) {
       newElements.remove(at: elementIndex)
       newElements.insert(newElement, at: elementIndex)
     }
     return newElements
   }
-  
 }

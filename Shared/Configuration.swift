@@ -14,9 +14,9 @@ enum Configuration {
 }
 
 #if TEST
-let configuration = Configuration.test
+  let configuration = Configuration.test
 #elseif DEBUG
-let configuration = Configuration.debug
+  let configuration = Configuration.debug
 #else
-let configuration = Configuration.release
+  let configuration = Configuration.release
 #endif

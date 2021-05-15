@@ -1,6 +1,6 @@
-import XCTest
 import Combine
 @testable import dev_articles
+import XCTest
 
 struct TestClient: MockHttpGet {
   let getResponse: [ArticleRestDto]
@@ -15,7 +15,7 @@ class ArticlesRestAdapterTests: XCTestCase {
   var client: TestClient!
   var adapter: AppArticlesRestAdapter!
   var cancellables: Set<AnyCancellable>!
-  
+
   override func setUp() {
     articleDtos = createArticleDtoListFixture(min: 2)
     client = TestClient(getResponse: articleDtos, urlCalledSubject: urlCalled$)
@@ -23,26 +23,26 @@ class ArticlesRestAdapterTests: XCTestCase {
     articles = articleDtos.map(convertToArticle)
     cancellables = []
   }
-  
+
   override func tearDown() {
     cancellables = []
   }
-  
-  func test_list_ShouldEmitListOfArticlesForFeed() -> Void {
+
+  func test_list_ShouldEmitListOfArticlesForFeed() {
     collect(stream$: adapter.list(for: .feed), collect: 1, cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }, receiveValue: { XCTAssertEqual($0, [self.articles]) })
       .store(in: &cancellables)
-    
+
     collect(stream$: client.urlCalledSubject.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)
       .sink(receiveValue: { XCTAssertEqual($0, [[URL(string: self.articleUrl)!]]) })
       .store(in: &cancellables)
   }
 
-  func test_list_ShouldEmitListOfArticlesForTimeCategory() -> Void {
+  func test_list_ShouldEmitListOfArticlesForTimeCategory() {
     collect(stream$: adapter.list(for: .week), collect: 1, cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }, receiveValue: { XCTAssertEqual($0, [self.articles]) })
       .store(in: &cancellables)
-    
+
     collect(stream$: client.urlCalledSubject.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)
       .sink(receiveValue: { XCTAssertEqual($0, [[URL(string: self.articleUrl + "?top=7")!]]) })
       .store(in: &cancellables)

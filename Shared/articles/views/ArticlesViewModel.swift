@@ -1,5 +1,5 @@
-import Foundation
 import Combine
+import Foundation
 
 typealias ToggleBookmark = (Article) -> Void
 
@@ -12,44 +12,42 @@ class ArticlesViewModel: ObservableObject {
   private let readingListItemAdded = PassthroughSubject<ReadingListItem, Never>()
 
   let toggleBookmark: ToggleBookmark
-  
+
   @Published private(set) var articles: [Article] = []
   @Published var selectedTimeCategory = TimeCategory.feed
-  
+
   init(articlesUseCaseFactory: ArticlesUseCaseFactory, addReadingListItem: AddReadingListItem) {
     self.articlesUseCaseFactory = articlesUseCaseFactory
     self.addReadingListItem = addReadingListItem
     toggleBookmark = toggleBookmarkSubject.send
-    
+
     setupLoadArticles()
     setupAddReadingListItem()
     setupBookmarkArticle()
   }
-  
-  func loadArticles() -> Void {
+
+  func loadArticles() {
     loadArticlesSubject.send()
   }
-  
-  
-  private func setupLoadArticles() -> Void {
-    $selectedTimeCategory.flatMap({ timeCategory in
+
+  private func setupLoadArticles() {
+    $selectedTimeCategory.flatMap { timeCategory in
       self.articlesUseCaseFactory.makeLoadArticlesUseCase(timeCategory: timeCategory).start()
-    })
+    }
     .assign(to: \.articles, on: self)
     .store(in: &cancellables)
   }
-  
-  private func setupAddReadingListItem() -> Void {
+
+  private func setupAddReadingListItem() {
     toggleBookmarkSubject
       .flatMap(addReadingListItem.addFrom)
       .sink(receiveCompletion: { _ in }, receiveValue: readingListItemAdded.send)
       .store(in: &cancellables)
-      
   }
-  
-  private func setupBookmarkArticle() -> Void {
+
+  private func setupBookmarkArticle() {
     readingListItemAdded
-      .compactMap {readingListItem in
+      .compactMap { readingListItem in
         self.articles.first(where: { $0.id == readingListItem.contentId })
       }
       .map { oldArticle in
@@ -63,5 +61,4 @@ class ArticlesViewModel: ObservableObject {
       .assign(to: \.articles, on: self)
       .store(in: &cancellables)
   }
-  
 }

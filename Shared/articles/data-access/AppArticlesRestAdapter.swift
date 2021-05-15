@@ -1,27 +1,29 @@
-import Foundation
 import Combine
+import Foundation
 
 let articlesPath = "/articles"
 
 class AppArticlesRestAdapter: ArticlesRestAdapter {
   let httpGet: HttpGet
-  
+
   init(httpGet: HttpGet) {
     self.httpGet = httpGet
   }
-  
+
   func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
-    
     httpGet.get(for: buildUrl(timeCategory: timeCategory))
       .decode(type: [ArticleRestDto].self, decoder: JSONDecoder())
-      .map() { articles in
-        articles.map() { Article(title: $0.title, id: String($0.id), description: $0.description, link: URL(string: $0.url)!) }
+      .map { articles in
+        articles
+          .map {
+            Article(title: $0.title, id: String($0.id), description: $0.description,
+                    link: URL(string: $0.url)!)
+          }
       }
-      .mapError() { error in RepositoryError.error }
+      .mapError { _ in RepositoryError.error }
       .eraseToAnyPublisher()
-  
   }
-  
+
   private func buildUrl(timeCategory: TimeCategory) -> URL {
     var topParamValue: Int?
     switch timeCategory {
@@ -42,6 +44,4 @@ class AppArticlesRestAdapter: ArticlesRestAdapter {
       return URL(string: devCommunityUrl + articlesPath)!
     }
   }
-  
-  
 }

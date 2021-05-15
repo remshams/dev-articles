@@ -6,10 +6,8 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc(ReadingListItemDbDto)
-public class ReadingListItemDbDto: NSManagedObject {
-
-}
+public class ReadingListItemDbDto: NSManagedObject {}

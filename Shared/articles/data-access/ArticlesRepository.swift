@@ -5,7 +5,7 @@
 //  Created by Mathias Remshardt on 01.05.21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 typealias AppArticlesRepository = AppArticlesRestAdapter

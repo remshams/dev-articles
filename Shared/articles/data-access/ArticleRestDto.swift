@@ -1,5 +1,5 @@
-import Foundation
 import Combine
+import Foundation
 
 protocol ArticlesRestAdapter {
   func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError>
@@ -13,5 +13,10 @@ struct ArticleRestDto: Identifiable, Codable {
 }
 
 func convertToArticle(articleDto: ArticleRestDto) -> Article {
-  Article(title: articleDto.title, id: String(articleDto.id), description: articleDto.description, link: URL(string: articleDto.url)!)
+  Article(
+    title: articleDto.title,
+    id: String(articleDto.id),
+    description: articleDto.description,
+    link: URL(string: articleDto.url)!
+  )
 }

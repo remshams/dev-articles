@@ -6,50 +6,46 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
-
-extension ReadingListItemDbDto {
-  
-  @nonobjc public class func fetchRequest() -> NSFetchRequest<ReadingListItemDbDto> {
+public extension ReadingListItemDbDto {
+  @nonobjc class func fetchRequest() -> NSFetchRequest<ReadingListItemDbDto> {
     return NSFetchRequest<ReadingListItemDbDto>(entityName: "ReadingListItem")
   }
-  
-  @NSManaged public var title: String
-  @NSManaged public var contentId: String
-  @NSManaged public var link: URL
-  @NSManaged public var savedAt: Date
-  
+
+  @NSManaged var title: String
+  @NSManaged var contentId: String
+  @NSManaged var link: URL
+  @NSManaged var savedAt: Date
 }
 
-extension ReadingListItemDbDto {
-  @nonobjc public class func fetchRequest(predicate: NSPredicate) -> NSFetchRequest<ReadingListItemDbDto> {
+public extension ReadingListItemDbDto {
+  @nonobjc class func fetchRequest(predicate: NSPredicate) -> NSFetchRequest<ReadingListItemDbDto> {
     let fetchRequest = NSFetchRequest<ReadingListItemDbDto>(entityName: "ReadingListItem")
     fetchRequest.predicate = predicate
     return fetchRequest
   }
 }
 
-extension ReadingListItemDbDto : Identifiable {
-  
+extension ReadingListItemDbDto: Identifiable {
   func toReadingListItem() -> ReadingListItem {
     ReadingListItem(contentId: contentId, title: title, link: link, savedAt: savedAt)
   }
-  
+
   convenience init(context: NSManagedObjectContext, article: Article, savedAt: Date) {
-    self.init(context: context);
-    self.title = article.title
-    self.contentId = article.id
-    self.link = article.link
+    self.init(context: context)
+    title = article.title
+    contentId = article.id
+    link = article.link
     self.savedAt = savedAt
   }
-  
+
   convenience init(context: NSManagedObjectContext, readingListItem: ReadingListItem) {
-    self.init(context: context);
-    self.title = readingListItem.title
-    self.contentId = readingListItem.contentId
-    self.link = readingListItem.link
-    self.savedAt = readingListItem.savedAt
+    self.init(context: context)
+    title = readingListItem.title
+    contentId = readingListItem.contentId
+    link = readingListItem.link
+    savedAt = readingListItem.savedAt
   }
 }

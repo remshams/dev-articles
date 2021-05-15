@@ -9,11 +9,9 @@ import Foundation
 
 struct ReadingListItem: Equatable, Identifiable {
   var id: String {
-    get {
-      contentId
-    }
+    contentId
   }
-  
+
   let contentId: String
   let title: String
   let link: URL

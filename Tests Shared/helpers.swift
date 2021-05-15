@@ -1,6 +1,6 @@
+import Combine
 import Foundation
 import XCTest
-import Combine
 
 extension XCTestCase {
   func assertStreamEquals<Output: Equatable, Failure: Error>(
@@ -11,43 +11,51 @@ extension XCTestCase {
   ) -> Void {
     let exp = expectation(description: #function)
     var result: [Output] = []
-    
-    received$.sink(receiveCompletion: { _ in  }, receiveValue: { received in
+
+    received$.sink(receiveCompletion: { _ in }, receiveValue: { received in
       result += [received]
-      
-      if (result.count == expected.count) {
+
+      if result.count == expected.count {
         exp.fulfill()
       }
     }).store(in: &cancellables)
-    
+
     waitForExpectations(timeout: 2)
-    
+
     assert(expected, result)
   }
-  
-  func collect<Output, Failure: Error>(stream$: AnyPublisher<Output, Failure>, collect count: Int = 1, cancellables: inout Set<AnyCancellable>) -> AnyPublisher<Array<Output>, Failure> {
+
+  func collect<Output, Failure: Error>(
+    stream$: AnyPublisher<Output, Failure>,
+    collect count: Int = 1,
+    cancellables: inout Set<AnyCancellable>
+  ) -> AnyPublisher<[Output], Failure> {
     let exp = expectation(description: #function)
-    let result = CurrentValueSubject<Array<Output>, Failure>([])
-    
+    let result = CurrentValueSubject<[Output], Failure>([])
+
     stream$
       .prefix(count)
       .collect(count)
-      .sink(receiveCompletion: {_ in exp.fulfill()}, receiveValue: result.send)
+      .sink(receiveCompletion: { _ in exp.fulfill() }, receiveValue: result.send)
       .store(in: &cancellables)
-    
+
     waitForExpectations(timeout: 2)
-    
+
     return result.eraseToAnyPublisher()
   }
-  
-  func waitFor<Output, Failure: Error>(stream$: AnyPublisher<Output, Failure>, waitFor count: Int, cancellables: inout Set<AnyCancellable>) -> Void {
+
+  func waitFor<Output, Failure: Error>(
+    stream$: AnyPublisher<Output, Failure>,
+    waitFor count: Int,
+    cancellables: inout Set<AnyCancellable>
+  ) -> Void {
     let exp = expectation(description: #function)
-    
+
     stream$
       .prefix(count)
-      .sink(receiveCompletion: { _ in exp.fulfill() }, receiveValue: {_ in})
+      .sink(receiveCompletion: { _ in exp.fulfill() }, receiveValue: { _ in })
       .store(in: &cancellables)
-    
+
     waitForExpectations(timeout: 2)
   }
 }

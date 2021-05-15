@@ -7,7 +7,7 @@ extension RestHttpClient {
   func get(for url: URL) -> AnyPublisher<Data, HttpError> {
     URLSession.shared.dataTaskPublisher(for: url)
       .map(\.data)
-      .mapError() { error in
+      .mapError { _ in
         HttpError.serverError
       }
       .eraseToAnyPublisher()

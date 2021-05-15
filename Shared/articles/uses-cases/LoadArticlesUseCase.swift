@@ -5,8 +5,8 @@
 //  Created by Mathias Remshardt on 02.05.21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 struct LoadArticlesUseCase {
   let listArticle: ListArticle
@@ -16,7 +16,7 @@ struct LoadArticlesUseCase {
 extension LoadArticlesUseCase: UseCase {
   typealias Success = [Article]
   typealias Failure = Never
-  
+
   func start() -> AnyPublisher<Success, Failure> {
     return listArticle.list(for: timeCategory)
       .receive(on: DispatchQueue.main)
