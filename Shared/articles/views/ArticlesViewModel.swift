@@ -5,7 +5,6 @@ typealias ToggleBookmark = (Article) -> Void
 
 class ArticlesViewModel: ObservableObject {
   private let articlesUseCaseFactory: ArticlesUseCaseFactory
-  private let addReadingListItem: AddReadingListItem
   private var cancellables: Set<AnyCancellable> = []
   private let loadArticlesSubject = PassthroughSubject<Void, Never>()
   private let toggleBookmarkSubject = PassthroughSubject<Article, Never>()
@@ -18,7 +17,6 @@ class ArticlesViewModel: ObservableObject {
 
   init(articlesUseCaseFactory: ArticlesUseCaseFactory, addReadingListItem: AddReadingListItem) {
     self.articlesUseCaseFactory = articlesUseCaseFactory
-    self.addReadingListItem = addReadingListItem
     toggleBookmark = toggleBookmarkSubject.send
 
     setupLoadArticles()
@@ -40,7 +38,9 @@ class ArticlesViewModel: ObservableObject {
 
   private func setupAddReadingListItem() {
     toggleBookmarkSubject
-      .flatMap(addReadingListItem.addFrom)
+      .flatMap {
+        self.articlesUseCaseFactory.makeAddReadlingListItemFromArticle(article: $0).start()
+      }
       .sink(receiveCompletion: { _ in }, receiveValue: readingListItemAdded.send)
       .store(in: &cancellables)
   }

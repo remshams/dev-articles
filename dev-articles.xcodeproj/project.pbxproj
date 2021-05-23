@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4B03E6D525FCEAFD000A6F7A /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */; };
 		4B03E6D625FCEAFD000A6F7A /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */; };
+		4B1F3891265A8B7000D96B71 /* AddReadingListItemFromArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F3890265A8B7000D96B71 /* AddReadingListItemFromArticleUseCase.swift */; };
+		4B1F3895265A8D8100D96B71 /* AddReadingListItemFromArticleUserCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F3894265A8D8100D96B71 /* AddReadingListItemFromArticleUserCase.swift */; };
 		4B24F8A425F3E2D20088EE1B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24F8A325F3E2D20088EE1B /* HttpClient.swift */; };
 		4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24F8A325F3E2D20088EE1B /* HttpClient.swift */; };
 		4B262736262C3AF0006FD5C9 /* HttpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B262735262C3AF0006FD5C9 /* HttpError.swift */; };
@@ -115,6 +117,8 @@
 
 /* Begin PBXFileReference section */
 		4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
+		4B1F3890265A8B7000D96B71 /* AddReadingListItemFromArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReadingListItemFromArticleUseCase.swift; sourceTree = "<group>"; };
+		4B1F3894265A8D8100D96B71 /* AddReadingListItemFromArticleUserCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReadingListItemFromArticleUserCase.swift; sourceTree = "<group>"; };
 		4B24F8A325F3E2D20088EE1B /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		4B262735262C3AF0006FD5C9 /* HttpError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpError.swift; sourceTree = "<group>"; };
 		4B262766262C5075006FD5C9 /* InMemoryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryRepositoryTests.swift; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 		4B0AFC39262B214300BE94F8 /* reading-list */ = {
 			isa = PBXGroup;
 			children = (
+				4B1F388F265A8B4400D96B71 /* uses-cases */,
 				4B268819262B247A006C4C5B /* ReadingListContainer.swift */,
 				4B0AFC43262B223A00BE94F8 /* domain */,
 				4B0AFC42262B222500BE94F8 /* data-access */,
@@ -286,9 +291,26 @@
 			path = domain;
 			sourceTree = "<group>";
 		};
+		4B1F388F265A8B4400D96B71 /* uses-cases */ = {
+			isa = PBXGroup;
+			children = (
+				4B1F3890265A8B7000D96B71 /* AddReadingListItemFromArticleUseCase.swift */,
+			);
+			path = "uses-cases";
+			sourceTree = "<group>";
+		};
+		4B1F3893265A8D5000D96B71 /* uses-cases */ = {
+			isa = PBXGroup;
+			children = (
+				4B1F3894265A8D8100D96B71 /* AddReadingListItemFromArticleUserCase.swift */,
+			);
+			path = "uses-cases";
+			sourceTree = "<group>";
+		};
 		4B26273D262C499D006FD5C9 /* reading-list */ = {
 			isa = PBXGroup;
 			children = (
+				4B1F3893265A8D5000D96B71 /* uses-cases */,
 				E1A0ECD52E3577D81145B8E2 /* MockHttpClient.swift */,
 				4BAAA262260F98CD0061F30C /* ReadingListFixture.swift */,
 				4B262740262C49D4006FD5C9 /* data-access */,
@@ -531,6 +553,7 @@
 				4BC96BD225CF0EE90081B8FF /* Sources */,
 				4BC96BD325CF0EE90081B8FF /* Frameworks */,
 				4BC96BD425CF0EE90081B8FF /* Resources */,
+				4B1F3896265A922700D96B71 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -685,6 +708,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4B1F3896265A922700D96B71 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# if which /opt/homebrew/bin/swiftlint >/dev/null; then\n  # /opt/homebrew/bin/swiftlint\n# else\n  # echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n# fi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4B5C889725F3B39C00F375F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -701,6 +744,7 @@
 				4BAAA263260F98CD0061F30C /* ReadingListFixture.swift in Sources */,
 				4B5C88B425F3B3B900F375F2 /* helpers.swift in Sources */,
 				4BA81A5B261B449F00F0F1C1 /* MockReadingListRepository.swift in Sources */,
+				4B1F3895265A8D8100D96B71 /* AddReadingListItemFromArticleUserCase.swift in Sources */,
 				4B26276E262C50F7006FD5C9 /* DataAccessFixture.swift in Sources */,
 				E1A0E1453A5D24B5FDE27B56 /* MockHttpClient.swift in Sources */,
 			);
@@ -734,6 +778,7 @@
 				4BC96BF825CF0EE90081B8FF /* dev_articlesApp.swift in Sources */,
 				4B93DBC325F3C18400DBCFA2 /* ArticleRestDto.swift in Sources */,
 				4B268832262B48AF006C4C5B /* InMemoryReadingListRepository.swift in Sources */,
+				4B1F3891265A8B7000D96B71 /* AddReadingListItemFromArticleUseCase.swift in Sources */,
 				4B262736262C3AF0006FD5C9 /* HttpError.swift in Sources */,
 				4B72346125CF12E400766126 /* AppArticlesRestAdapter.swift in Sources */,
 				4BA81A53261A108000F0F1C1 /* BookmarkView.swift in Sources */,

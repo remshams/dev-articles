@@ -9,20 +9,25 @@ import Combine
 @testable import dev_articles
 import Foundation
 
-protocol InMemoryAddReadingListItem: AddReadingListItem {}
+struct InMemoryAddReadingListItem: AddReadingListItem {
+  let date: Date
 
-extension InMemoryAddReadingListItem {
+  init(date: Date = Date()) {
+    self.date = date
+  }
+
   func addFrom(article: Article) -> AnyPublisher<ReadingListItem, RepositoryError> {
-    Just(ReadingListItem(from: article, savedAt: Date())).setFailureType(to: RepositoryError.self)
+    Just(ReadingListItem(from: article, savedAt: date)).setFailureType(to: RepositoryError.self)
       .eraseToAnyPublisher()
   }
 }
 
-protocol FailingAddReadingListItem: AddReadingListItem {}
+class FailingAddReadingListItem: AddReadingListItem {
+  var called: Bool = false
 
-extension FailingAddReadingListItem {
   func addFrom(article _: Article) -> AnyPublisher<ReadingListItem, RepositoryError> {
-    Fail<ReadingListItem, RepositoryError>(error: RepositoryError.error).eraseToAnyPublisher()
+    called = true
+    return Fail<ReadingListItem, RepositoryError>(error: RepositoryError.error).eraseToAnyPublisher()
   }
 }
 

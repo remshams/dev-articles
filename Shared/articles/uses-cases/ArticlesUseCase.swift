@@ -9,4 +9,5 @@ import Foundation
 
 protocol ArticlesUseCaseFactory {
   func makeLoadArticlesUseCase(timeCategory: TimeCategory) -> LoadArticlesUseCase
+  func makeAddReadlingListItemFromArticle(article: Article) -> AddReadingListItemFromArticleUseCase
 }
