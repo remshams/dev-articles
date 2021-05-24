@@ -39,7 +39,7 @@ class ArticlesViewModel: ObservableObject {
   private func setupAddReadingListItem() {
     toggleBookmarkSubject
       .flatMap {
-        self.articlesUseCaseFactory.makeAddReadlingListItemFromArticle(article: $0).start()
+        self.articlesUseCaseFactory.makeAddReadlingListItemFromArticleUseCase(article: $0).start()
       }
       .sink(receiveCompletion: { _ in }, receiveValue: readingListItemAdded.send)
       .store(in: &cancellables)
