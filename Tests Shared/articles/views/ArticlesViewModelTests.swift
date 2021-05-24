@@ -25,15 +25,12 @@ class ArticleViewModelTests: XCTestCase {
       addReadingListItemFromArticleUseCase: MockAddReadingListItemFromArticleUseCase(readingListItem: readingListItem)
     )
     viewModel = ArticlesViewModel(articlesUseCaseFactory: useCaseFactory)
-    
+
     cancellables = []
   }
 
-
   func testArticles_ShouldEmitOnInit() {
-    collect(stream$: viewModel.$articles.eraseToAnyPublisher(), cancellables: &cancellables)
-      .sink(receiveValue: { XCTAssertEqual($0, [self.articles]) })
-      .store(in: &cancellables)
+    XCTAssertEqual(viewModel.articles, articles)
   }
 
   func testToggleBookmark_ShouldToggleBookmarkBasedOnReadingListItem() {
@@ -41,8 +38,6 @@ class ArticleViewModelTests: XCTestCase {
 
     viewModel.toggleBookmark(oldArticle)
 
-    collect(stream$: viewModel.$articles.eraseToAnyPublisher(), cancellables: &cancellables)
-      .sink(receiveValue: { XCTAssertNotEqual($0, [self.articles]) })
-      .store(in: &cancellables)
+    XCTAssertNotEqual(viewModel.articles, articles)
   }
 }

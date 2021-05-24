@@ -22,9 +22,9 @@ class AppLoadArticlesTests: XCTestCase {
   }
 
   func test_ShouldEmitFeedList() {
-    collect(stream$: useCase.start(), cancellables: &cancellables)
+    useCase.start()
       .sink {
-        XCTAssertEqual($0, [self.articles])
+        XCTAssertEqual($0, self.articles)
       }
       .store(in: &cancellables)
   }
@@ -35,9 +35,9 @@ class AppLoadArticlesTests: XCTestCase {
       timeCategory: .feed
     )
 
-    collect(stream$: useCase.start(), cancellables: &cancellables)
+    useCase.start()
       .sink {
-        XCTAssertEqual($0, [[]])
+        XCTAssertEqual($0, [])
       }
       .store(in: &cancellables)
   }

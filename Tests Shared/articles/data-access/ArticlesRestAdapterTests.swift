@@ -2,23 +2,19 @@ import Combine
 @testable import dev_articles
 import XCTest
 
-struct TestClient: MockHttpGet {
-  let getResponse: [ArticleRestDto]
-  let urlCalledSubject: CurrentValueSubject<[URL], Never>
-}
 
 class ArticlesRestAdapterTests: XCTestCase {
   var articleDtos: [ArticleRestDto]!
   var articles: [Article]!
   let urlCalled$ = CurrentValueSubject<[URL], Never>([])
   let articleUrl = devCommunityUrl + articlesPath
-  var client: TestClient!
+  var client: MockHttpGet<[ArticleRestDto]>!
   var adapter: AppArticlesRestAdapter!
   var cancellables: Set<AnyCancellable>!
 
   override func setUp() {
     articleDtos = createArticleDtoListFixture(min: 2)
-    client = TestClient(getResponse: articleDtos, urlCalledSubject: urlCalled$)
+    client = MockHttpGet(getResponse: articleDtos, urlCalledSubject: urlCalled$)
     adapter = AppArticlesRestAdapter(httpGet: client)
     articles = articleDtos.map(convertToArticle)
     cancellables = []

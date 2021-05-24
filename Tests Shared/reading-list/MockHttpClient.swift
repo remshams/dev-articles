@@ -2,15 +2,13 @@ import Combine
 @testable import dev_articles
 import Foundation
 
-protocol MockHttpGet: HttpGet {
-  associatedtype Dto: Codable
-
-  var getResponse: Dto { get }
-  var urlCalledSubject: CurrentValueSubject<[URL], Never> { get }
+struct MockHttpGet<Dto: Codable> {
+  let getResponse: Dto
+  let urlCalledSubject: CurrentValueSubject<[URL], Never>
 }
 
-extension MockHttpGet {
-  func get(for url: URL) -> AnyPublisher<Data, HttpError> {
+extension MockHttpGet: HttpGet {
+  func get(for url: URL, receiveOn _: DispatchQueue) -> AnyPublisher<Data, HttpError> {
     urlCalledSubject.send(urlCalledSubject.value + [url])
     return Just(getResponse)
       .encode(encoder: JSONEncoder())

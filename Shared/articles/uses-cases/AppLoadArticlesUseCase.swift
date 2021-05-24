@@ -19,7 +19,6 @@ extension AppLoadArticlesUseCase: LoadArticlesUseCase {
 
   func start() -> AnyPublisher<Success, Failure> {
     return listArticle.list(for: timeCategory)
-      .receive(on: DispatchQueue.main)
       .replaceError(with: [])
       .eraseToAnyPublisher()
   }
