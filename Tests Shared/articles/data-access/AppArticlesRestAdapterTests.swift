@@ -2,8 +2,7 @@ import Combine
 @testable import dev_articles
 import XCTest
 
-
-class ArticlesRestAdapterTests: XCTestCase {
+class AppArticlesRestAdapterTests: XCTestCase {
   var articleDtos: [ArticleRestDto]!
   var articles: [Article]!
   let urlCalled$ = CurrentValueSubject<[URL], Never>([])
@@ -25,22 +24,30 @@ class ArticlesRestAdapterTests: XCTestCase {
   }
 
   func test_list_ShouldEmitListOfArticlesForFeed() {
-    collect(stream$: adapter.list(for: .feed), collect: 1, cancellables: &cancellables)
-      .sink(receiveCompletion: { _ in }, receiveValue: { XCTAssertEqual($0, [self.articles]) })
+    collect(stream$: adapter.list(for: .feed), cancellables: &cancellables)
+      .sink(receiveCompletion: { _ in }) {
+        XCTAssertEqual($0, [self.articles])
+      }
       .store(in: &cancellables)
 
-    collect(stream$: client.urlCalledSubject.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)
-      .sink(receiveValue: { XCTAssertEqual($0, [[URL(string: self.articleUrl)!]]) })
+    client.urlCalledSubject
+      .sink(receiveCompletion: { _ in }) {
+        XCTAssertEqual($0, [URL(string: self.articleUrl)!])
+      }
       .store(in: &cancellables)
   }
 
   func test_list_ShouldEmitListOfArticlesForTimeCategory() {
-    collect(stream$: adapter.list(for: .week), collect: 1, cancellables: &cancellables)
-      .sink(receiveCompletion: { _ in }, receiveValue: { XCTAssertEqual($0, [self.articles]) })
+    collect(stream$: adapter.list(for: .week), cancellables: &cancellables)
+      .sink(receiveCompletion: { _ in }) {
+        XCTAssertEqual($0, [self.articles])
+      }
       .store(in: &cancellables)
 
-    collect(stream$: client.urlCalledSubject.eraseToAnyPublisher(), collect: 1, cancellables: &cancellables)
-      .sink(receiveValue: { XCTAssertEqual($0, [[URL(string: self.articleUrl + "?top=7")!]]) })
+    client.urlCalledSubject
+      .sink(receiveCompletion: { _ in }) {
+        XCTAssertEqual($0, [URL(string: self.articleUrl + "?top=7")!])
+      }
       .store(in: &cancellables)
   }
 }
