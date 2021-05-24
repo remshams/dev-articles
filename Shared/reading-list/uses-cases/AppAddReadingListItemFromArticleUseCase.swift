@@ -8,12 +8,12 @@
 import Foundation
 import Combine
 
-struct AddReadingListItemFromArticleUseCase {
+struct AppAddReadingListItemFromArticleUseCase {
   let addReadingListItem: AddReadingListItem
   let article: Article
 }
 
-extension AddReadingListItemFromArticleUseCase: UseCase {
+extension AppAddReadingListItemFromArticleUseCase: AddReadingListItemFromArticleUseCase {
   typealias Success = ReadingListItem
   typealias Failure = RepositoryError
   

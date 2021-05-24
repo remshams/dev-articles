@@ -17,16 +17,16 @@ class ArticlesContainer: ObservableObject {
   }
 
   func makeArticlesViewModel() -> ArticlesViewModel {
-    ArticlesViewModel(articlesUseCaseFactory: self, addReadingListItem: addReadingListItem)
+    ArticlesViewModel(articlesUseCaseFactory: self)
   }
 }
 
 extension ArticlesContainer: ArticlesUseCaseFactory {
   func makeLoadArticlesUseCase(timeCategory: TimeCategory) -> LoadArticlesUseCase {
-    LoadArticlesUseCase(listArticle: listArticle, timeCategory: timeCategory)
+    AppLoadArticlesUseCase(listArticle: listArticle, timeCategory: timeCategory)
   }
   
   func makeAddReadlingListItemFromArticle(article: Article) -> AddReadingListItemFromArticleUseCase {
-    AddReadingListItemFromArticleUseCase(addReadingListItem: addReadingListItem, article: article)
+    AppAddReadingListItemFromArticleUseCase(addReadingListItem: addReadingListItem, article: article)
   }
 }

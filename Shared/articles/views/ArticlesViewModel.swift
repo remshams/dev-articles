@@ -15,7 +15,7 @@ class ArticlesViewModel: ObservableObject {
   @Published private(set) var articles: [Article] = []
   @Published var selectedTimeCategory = TimeCategory.feed
 
-  init(articlesUseCaseFactory: ArticlesUseCaseFactory, addReadingListItem: AddReadingListItem) {
+  init(articlesUseCaseFactory: ArticlesUseCaseFactory) {
     self.articlesUseCaseFactory = articlesUseCaseFactory
     toggleBookmark = toggleBookmarkSubject.send
 

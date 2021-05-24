@@ -12,13 +12,13 @@ import XCTest
 
 class LoadArticlesTests: XCTestCase {
   var cancellables: Set<AnyCancellable>!
-  var useCase: LoadArticlesUseCase!
+  var useCase: AppLoadArticlesUseCase!
   var articles: [Article]!
 
   override func setUp() {
     cancellables = []
     articles = createArticlesListFixture(min: 2)
-    useCase = LoadArticlesUseCase(listArticle: InMemoryListArticle(articles: articles), timeCategory: .feed)
+    useCase = AppLoadArticlesUseCase(listArticle: InMemoryListArticle(articles: articles), timeCategory: .feed)
   }
 
   func test_ShouldEmitFeedList() {
@@ -30,7 +30,7 @@ class LoadArticlesTests: XCTestCase {
   }
 
   func test_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() {
-    useCase = LoadArticlesUseCase(
+    useCase = AppLoadArticlesUseCase(
       listArticle: FailingListArticle(listError: RepositoryError.error),
       timeCategory: .feed
     )

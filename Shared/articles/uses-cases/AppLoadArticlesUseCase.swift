@@ -8,12 +8,12 @@
 import Combine
 import Foundation
 
-struct LoadArticlesUseCase {
+struct AppLoadArticlesUseCase {
   let listArticle: ListArticle
   let timeCategory: TimeCategory
 }
 
-extension LoadArticlesUseCase: UseCase {
+extension AppLoadArticlesUseCase: LoadArticlesUseCase {
   typealias Success = [Article]
   typealias Failure = Never
 

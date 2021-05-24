@@ -6,6 +6,11 @@
 //
 
 import Foundation
+import Combine
+
+protocol LoadArticlesUseCase {
+  func start() -> AnyPublisher<[Article], Never>
+}
 
 protocol ArticlesUseCaseFactory {
   func makeLoadArticlesUseCase(timeCategory: TimeCategory) -> LoadArticlesUseCase

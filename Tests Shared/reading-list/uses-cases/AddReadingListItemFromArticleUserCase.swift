@@ -11,7 +11,7 @@ import XCTest
 
 class AddReadingListItemFromArticleUserCaseTests: XCTestCase {
   var addReadingListItem: AddReadingListItem!
-  var useCase: AddReadingListItemFromArticleUseCase!
+  var useCase: AppAddReadingListItemFromArticleUseCase!
   var article: Article!
   var date: Date!
   var cancellables: Set<AnyCancellable>!
@@ -20,7 +20,7 @@ class AddReadingListItemFromArticleUserCaseTests: XCTestCase {
     article = createArticleFixture()
     date = Date()
     addReadingListItem = InMemoryAddReadingListItem(date: date)
-    useCase = AddReadingListItemFromArticleUseCase(addReadingListItem: addReadingListItem, article: article)
+    useCase = AppAddReadingListItemFromArticleUseCase(addReadingListItem: addReadingListItem, article: article)
 
     cancellables = []
   }
@@ -35,7 +35,7 @@ class AddReadingListItemFromArticleUserCaseTests: XCTestCase {
 
   func tests_ShouldReturnErrorInCaseAddingOfReadlingListItemFails() {
     let failingAddReadingListItem = FailingAddReadingListItem()
-    useCase = AddReadingListItemFromArticleUseCase(addReadingListItem: failingAddReadingListItem, article: article)
+    useCase = AppAddReadingListItemFromArticleUseCase(addReadingListItem: failingAddReadingListItem, article: article)
 
     collect(stream$: useCase.start(), cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }) {
