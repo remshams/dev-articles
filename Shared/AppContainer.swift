@@ -17,7 +17,7 @@ struct AppContainer {
   }
 
   func makeArticlesContainer() -> ArticlesContainer {
-    return ArticlesContainer(listArticle: articlesRepository, addReadingListItem: readingListRepository)
+    ArticlesContainer(listArticle: articlesRepository, addReadingListItem: readingListRepository)
   }
 
   private static func makeArticlesRepository(httpGet: HttpGet) -> ArticlesRepository {
@@ -30,14 +30,14 @@ struct AppContainer {
   }
 
   func makeReadingListContainer() -> ReadingListContainer {
-    return ReadingListContainer(
+    ReadingListContainer(
       addReadingListItem: readingListRepository,
       listReadingListItem: readingListRepository
     )
   }
 
   private static func makeHttpGet() -> HttpGet {
-    return RestHttpClient()
+    RestHttpClient()
   }
 }
 

@@ -57,11 +57,13 @@ struct ArticlesList: View {
           listArticle: InMemoryArticlesRepository(
             articles: [
               Article(
+                // swiftlint:disable:next line_length
                 title: "Rolling (up) a multi module system (esm, cjs...) compatible npm library with TypeScript and Babel",
                 id: "0",
+                // swiftlint:disable:next line_length
                 description: "Rolling (up) a multi module system (esm, cjs...) compatible npm library with TypeScript and Babel",
                 link: URL(
-                  string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg"
+                  string: "https://www.google.de"
                 )!
               ),
               Article(
@@ -69,9 +71,9 @@ struct ArticlesList: View {
                 id: "1",
                 description: "Other Article",
                 link: URL(
-                  string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg"
+                  string: "https://www.google.de"
                 )!
-              ),
+              )
             ]
           ),
           addReadingListItem: InMemoryReadingListRepository(readingListItems: [])

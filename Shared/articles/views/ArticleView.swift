@@ -1,4 +1,3 @@
-
 import Foundation
 import SwiftUI
 
@@ -36,7 +35,7 @@ struct Actions: View {
         id: "0",
         description: "Short title",
         link: URL(
-          string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg"
+          string: "https://www.google.de"
         )!,
         bookmarked: true
       ))

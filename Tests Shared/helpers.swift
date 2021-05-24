@@ -8,7 +8,7 @@ extension XCTestCase {
     received: AnyPublisher<Output, Failure>,
     expected: [Output],
     with assert: ([Output], [Output]) -> Void = { XCTAssertEqual($0, $1) }
-  ) -> Void {
+  ) {
     let exp = expectation(description: #function)
     var result: [Output] = []
 
@@ -48,7 +48,7 @@ extension XCTestCase {
     stream: AnyPublisher<Output, Failure>,
     waitFor count: Int,
     cancellables: inout Set<AnyCancellable>
-  ) -> Void {
+  ) {
     let exp = expectation(description: #function)
 
     stream

@@ -26,8 +26,7 @@ extension InMemoryRepository {
   }
 
   func listBy<Value: Comparable>(keyPath: KeyPath<Entitiy, Value>,
-                                 ids: [Value]) -> AnyPublisher<[Entitiy], RepositoryError>
-  {
+                                 ids: [Value]) -> AnyPublisher<[Entitiy], RepositoryError> {
     list()
       .map { entities in
         entities.filter { entity in

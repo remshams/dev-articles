@@ -18,7 +18,7 @@ extension AppLoadArticlesUseCase: LoadArticlesUseCase {
   typealias Failure = Never
 
   func start() -> AnyPublisher<Success, Failure> {
-    return listArticle.list(for: timeCategory)
+    listArticle.list(for: timeCategory)
       .replaceError(with: [])
       .eraseToAnyPublisher()
   }

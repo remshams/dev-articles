@@ -13,11 +13,11 @@ struct BookmarkView: View {
   @EnvironmentObject var model: ArticlesViewModel
 
   var body: some View {
-    Button(action: {
+    Button {
       withAnimation(.spring(response: 0.45, dampingFraction: article.bookmarked ? 0.825 : 0.45)) {
         model.toggleBookmark(article)
       }
-    }) {
+    } label: {
       ZStack {
         Bookmark(bookmarked: article.bookmarked, size: size)
         BCircle(bookmarked: article.bookmarked)
@@ -65,7 +65,7 @@ struct BCircle: View {
             id: "1",
             description: "Other Article",
             link: URL(
-              string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg"
+              string: "https://www.google.de"
             )!
           )
         )
@@ -76,7 +76,7 @@ struct BCircle: View {
             id: "1",
             description: "Other Article",
             link: URL(
-              string: "https://dev.to/remshams/rolling-up-a-multi-module-system-esm-cjs-compatible-npm-library-with-typescript-and-babel-3gjg"
+              string: "https://www.google.de"
             )!,
             bookmarked: true
           )

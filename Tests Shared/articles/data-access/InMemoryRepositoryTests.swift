@@ -23,7 +23,7 @@ class InMemoryRepositoryTests: XCTestCase {
 
   func test_list_ShouldEmitEntities() {
     collect(stream: repository.list(), collect: 1, cancellables: &cancellables)
-      .sink(receiveCompletion: { _ in }) {
+      .sink { _ in } receiveValue: {
         XCTAssertEqual($0[0].sorted(), self.entities)
       }
       .store(in: &cancellables)
@@ -42,7 +42,7 @@ class InMemoryRepositoryTests: XCTestCase {
       collect: 1,
       cancellables: &cancellables
     )
-    .sink(receiveCompletion: { _ in }) {
+    .sink { _ in } receiveValue: {
       XCTAssertEqual($0[0].sorted(), entitiesWithOtherIds)
     }
     .store(in: &cancellables)

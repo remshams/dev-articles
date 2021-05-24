@@ -27,9 +27,10 @@ class AppAddReadingListItemFromArticleUserCaseTests: XCTestCase {
 
   func tests_ShouldAddArticleAsReadingListItem() {
     collect(stream: useCase.start(), cancellables: &cancellables)
-      .sink(receiveCompletion: { _ in }) {
-        XCTAssertEqual($0, [ReadingListItem(from: self.article, savedAt: self.date)])
-      }
+      .sink(
+        receiveCompletion: { _ in },
+        receiveValue: { XCTAssertEqual($0, [ReadingListItem(from: self.article, savedAt: self.date)]) }
+      )
       .store(in: &cancellables)
   }
 
@@ -38,7 +39,7 @@ class AppAddReadingListItemFromArticleUserCaseTests: XCTestCase {
     useCase = AppAddReadingListItemFromArticleUseCase(addReadingListItem: failingAddReadingListItem, article: article)
 
     collect(stream: useCase.start(), cancellables: &cancellables)
-      .sink(receiveCompletion: { _ in }) {
+      .sink { _ in } receiveValue: {
         XCTAssertEqual($0, [])
         XCTAssertTrue(failingAddReadingListItem.called)
       }

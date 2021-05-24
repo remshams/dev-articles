@@ -25,13 +25,11 @@ class AppArticlesRestAdapterTests: XCTestCase {
 
   func test_list_ShouldEmitListOfArticlesForFeed() {
     collect(stream: adapter.list(for: .feed), cancellables: &cancellables)
-      .sink(receiveCompletion: { _ in }) {
-        XCTAssertEqual($0, [self.articles])
-      }
+      .sink { _ in } receiveValue: { XCTAssertEqual($0, [self.articles]) }
       .store(in: &cancellables)
 
     client.urlCalledSubject
-      .sink(receiveCompletion: { _ in }) {
+      .sink { _ in } receiveValue: {
         XCTAssertEqual($0, [URL(string: self.articleUrl)!])
       }
       .store(in: &cancellables)
@@ -39,13 +37,13 @@ class AppArticlesRestAdapterTests: XCTestCase {
 
   func test_list_ShouldEmitListOfArticlesForTimeCategory() {
     collect(stream: adapter.list(for: .week), cancellables: &cancellables)
-      .sink(receiveCompletion: { _ in }) {
+      .sink { _ in } receiveValue: {
         XCTAssertEqual($0, [self.articles])
       }
       .store(in: &cancellables)
 
     client.urlCalledSubject
-      .sink(receiveCompletion: { _ in }) {
+      .sink { _ in } receiveValue: {
         XCTAssertEqual($0, [URL(string: self.articleUrl + "?top=7")!])
       }
       .store(in: &cancellables)

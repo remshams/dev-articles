@@ -5,8 +5,8 @@
 //  Created by Mathias Remshardt on 23.05.21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 struct AppAddReadingListItemFromArticleUseCase {
   let addReadingListItem: AddReadingListItem
@@ -16,7 +16,7 @@ struct AppAddReadingListItemFromArticleUseCase {
 extension AppAddReadingListItemFromArticleUseCase: AddReadingListItemFromArticleUseCase {
   typealias Success = ReadingListItem
   typealias Failure = RepositoryError
-  
+
   func start() -> AnyPublisher<Success, Failure> {
     addReadingListItem.addFrom(article: article)
   }

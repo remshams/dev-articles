@@ -5,8 +5,8 @@
 //  Created by Mathias Remshardt on 02.05.21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol LoadArticlesUseCase {
   func start() -> AnyPublisher<[Article], Never>

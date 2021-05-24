@@ -25,7 +25,7 @@ extension ArticlesContainer: ArticlesUseCaseFactory {
   func makeLoadArticlesUseCase(timeCategory: TimeCategory) -> LoadArticlesUseCase {
     AppLoadArticlesUseCase(listArticle: listArticle, timeCategory: timeCategory)
   }
-  
+
   func makeAddReadlingListItemFromArticleUseCase(article: Article) -> AddReadingListItemFromArticleUseCase {
     AppAddReadingListItemFromArticleUseCase(addReadingListItem: addReadingListItem, article: article)
   }

@@ -17,7 +17,7 @@ class CoreDataReadingListRepository: AddReadingListItem, ListReadingListItem {
   }
 
   func addFrom(article: Article) -> AnyPublisher<ReadingListItem, RepositoryError> {
-    return Just(article)
+    Just(article)
       .tryMap { article in
         let readingListItemDto = ReadingListItemDbDto(
           context: managedObjectContext,
@@ -47,7 +47,7 @@ class CoreDataReadingListRepository: AddReadingListItem, ListReadingListItem {
   }
 
   func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], RepositoryError> {
-    return Just(ReadingListItemDbDto
+    Just(ReadingListItemDbDto
       .fetchRequest(predicate: NSPredicate(format: "contentId IN %@", articleIds.map { String($0) })))
       .tryMap { fetchRequest in
         try managedObjectContext.fetch(fetchRequest)

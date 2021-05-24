@@ -1,0 +1,6 @@
+line_length: 
+  ignores_comments: true
+identifier_name:
+  min_length: 2
+type_name:
+  max_length: 80

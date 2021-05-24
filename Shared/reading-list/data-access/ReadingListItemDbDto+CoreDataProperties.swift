@@ -11,7 +11,7 @@ import Foundation
 
 public extension ReadingListItemDbDto {
   @nonobjc class func fetchRequest() -> NSFetchRequest<ReadingListItemDbDto> {
-    return NSFetchRequest<ReadingListItemDbDto>(entityName: "ReadingListItem")
+    NSFetchRequest<ReadingListItemDbDto>(entityName: "ReadingListItem")
   }
 
   @NSManaged var title: String
