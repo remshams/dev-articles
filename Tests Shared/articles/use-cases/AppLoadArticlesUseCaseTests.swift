@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import XCTest
 
-class LoadArticlesTests: XCTestCase {
+class AppLoadArticlesTests: XCTestCase {
   var cancellables: Set<AnyCancellable>!
   var useCase: AppLoadArticlesUseCase!
   var articles: [Article]!

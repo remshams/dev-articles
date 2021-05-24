@@ -9,7 +9,7 @@ import Combine
 @testable import dev_articles
 import XCTest
 
-class AddReadingListItemFromArticleUserCaseTests: XCTestCase {
+class AppAddReadingListItemFromArticleUserCaseTests: XCTestCase {
   var addReadingListItem: AddReadingListItem!
   var useCase: AppAddReadingListItemFromArticleUseCase!
   var article: Article!

@@ -36,16 +36,13 @@ class ArticleViewModelTests: XCTestCase {
       .store(in: &cancellables)
   }
 
-  func testToggleBookmark_ShouldToggleBookmarkforArticle() {
+  func testToggleBookmark_ShouldToggleBookmarkBasedOnReadingListItem() {
     let oldArticle = articles[0]
-    var changedArticle = oldArticle
-    changedArticle.bookmarked.toggle()
 
-    waitFor(stream$: viewModel.$articles.eraseToAnyPublisher(), waitFor: 1, cancellables: &cancellables)
     viewModel.toggleBookmark(oldArticle)
 
     collect(stream$: viewModel.$articles.eraseToAnyPublisher(), cancellables: &cancellables)
-      .sink(receiveValue: { XCTAssertEqual($0, [[changedArticle] + self.articles[1 ..< self.articles.count]]) })
+      .sink(receiveValue: { XCTAssertNotEqual($0, [self.articles]) })
       .store(in: &cancellables)
   }
 }

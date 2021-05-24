@@ -22,3 +22,15 @@ struct Article: Identifiable, Equatable {
   let link: URL
   var bookmarked: Bool = false
 }
+
+extension Collection where Element == Article {
+  func bookmark(articles: [Article]) -> [Article] {
+    map { oldArticle in
+      var newArticle = oldArticle
+      if articles.contains(oldArticle) {
+        newArticle.bookmarked.toggle()
+      }
+      return newArticle
+    }
+  }
+}

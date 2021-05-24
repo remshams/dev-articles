@@ -50,13 +50,8 @@ class ArticlesViewModel: ObservableObject {
       .compactMap { readingListItem in
         self.articles.first(where: { $0.id == readingListItem.contentId })
       }
-      .map { oldArticle in
-        var newArticle = oldArticle
-        newArticle.bookmarked.toggle()
-        return newArticle
-      }
       .map {
-        self.articles.replaceById(elementId: $0.id, newElement: $0)
+        self.articles.bookmark(articles: [$0])
       }
       .assign(to: \.articles, on: self)
       .store(in: &cancellables)
