@@ -5,7 +5,7 @@ import XCTest
 class AppArticlesRestAdapterTests: XCTestCase {
   var articleDtos: [ArticleRestDto]!
   var articles: [Article]!
-  let urlCalled$ = CurrentValueSubject<[URL], Never>([])
+  let urlCalled = CurrentValueSubject<[URL], Never>([])
   let articleUrl = devCommunityUrl + articlesPath
   var client: MockHttpGet<[ArticleRestDto]>!
   var adapter: AppArticlesRestAdapter!
@@ -13,7 +13,7 @@ class AppArticlesRestAdapterTests: XCTestCase {
 
   override func setUp() {
     articleDtos = createArticleDtoListFixture(min: 2)
-    client = MockHttpGet(getResponse: articleDtos, urlCalledSubject: urlCalled$)
+    client = MockHttpGet(getResponse: articleDtos, urlCalledSubject: urlCalled)
     adapter = AppArticlesRestAdapter(httpGet: client)
     articles = articleDtos.map(convertToArticle)
     cancellables = []
@@ -24,7 +24,7 @@ class AppArticlesRestAdapterTests: XCTestCase {
   }
 
   func test_list_ShouldEmitListOfArticlesForFeed() {
-    collect(stream$: adapter.list(for: .feed), cancellables: &cancellables)
+    collect(stream: adapter.list(for: .feed), cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }) {
         XCTAssertEqual($0, [self.articles])
       }
@@ -38,7 +38,7 @@ class AppArticlesRestAdapterTests: XCTestCase {
   }
 
   func test_list_ShouldEmitListOfArticlesForTimeCategory() {
-    collect(stream$: adapter.list(for: .week), cancellables: &cancellables)
+    collect(stream: adapter.list(for: .week), cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }) {
         XCTAssertEqual($0, [self.articles])
       }

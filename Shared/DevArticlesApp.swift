@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct dev_articlesApp: App {
+struct DevArticlesApp: App {
   let appContainer: AppContainer
 
   init() {

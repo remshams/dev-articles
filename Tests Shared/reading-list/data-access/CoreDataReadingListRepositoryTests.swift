@@ -46,14 +46,14 @@ class CoreDataReadingListRepositoryTests: XCTestCase {
   }
 
   func testsAddArticle_ShouldAddFromArticle() {
-    collect(stream$: repository.addFrom(article: article), collect: 1, cancellables: &cancellables)
+    collect(stream: repository.addFrom(article: article), collect: 1, cancellables: &cancellables)
       .sink(
         receiveCompletion: { _ in },
         receiveValue: { self.assertReadingListItem(expected: [self.readingListItem], result: $0) }
       )
       .store(in: &cancellables)
 
-    collect(stream$: repository.list(), collect: 1, cancellables: &cancellables)
+    collect(stream: repository.list(), collect: 1, cancellables: &cancellables)
       .sink(
         receiveCompletion: { _ in },
         receiveValue: { self.assertReadingListItems(expected: [[self.readingListItem]], result: $0) }
@@ -64,7 +64,7 @@ class CoreDataReadingListRepositoryTests: XCTestCase {
   func testList_ShouldReturnReadingListItems() {
     addReadingListItems()
 
-    collect(stream$: repository.list(), collect: 1, cancellables: &cancellables)
+    collect(stream: repository.list(), collect: 1, cancellables: &cancellables)
       .sink(
         receiveCompletion: { _ in },
         receiveValue: { self.assertReadingListItems(expected: [self.readingListItems], result: $0) }
@@ -76,7 +76,7 @@ class CoreDataReadingListRepositoryTests: XCTestCase {
     addReadingListItems()
     let articleIds = [article.id]
 
-    collect(stream$: repository.list(for: articleIds), collect: 1, cancellables: &cancellables)
+    collect(stream: repository.list(for: articleIds), collect: 1, cancellables: &cancellables)
       .sink(
         receiveCompletion: { _ in },
         receiveValue: { self.assertReadingListItems(expected: [[self.readingListItem]], result: $0) }
@@ -88,7 +88,7 @@ class CoreDataReadingListRepositoryTests: XCTestCase {
     addReadingListItems()
     let articleIds = ["99"]
 
-    collect(stream$: repository.list(for: articleIds), collect: 1, cancellables: &cancellables)
+    collect(stream: repository.list(for: articleIds), collect: 1, cancellables: &cancellables)
       .sink(
         receiveCompletion: { _ in },
         receiveValue: { self.assertReadingListItems(expected: [[]], result: $0) }
@@ -97,7 +97,7 @@ class CoreDataReadingListRepositoryTests: XCTestCase {
   }
 
   func testList_ShouldReturnEmptyListInCaseThereAreNoReadingListItems() {
-    collect(stream$: repository.list(), collect: 1, cancellables: &cancellables)
+    collect(stream: repository.list(), collect: 1, cancellables: &cancellables)
       .sink(
         receiveCompletion: { _ in },
         receiveValue: { self.assertReadingListItems(expected: [[]], result: $0) }

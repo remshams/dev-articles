@@ -22,7 +22,7 @@ class InMemoryRepositoryTests: XCTestCase {
   }
 
   func test_list_ShouldEmitEntities() {
-    collect(stream$: repository.list(), collect: 1, cancellables: &cancellables)
+    collect(stream: repository.list(), collect: 1, cancellables: &cancellables)
       .sink(receiveCompletion: { _ in }) {
         XCTAssertEqual($0[0].sorted(), self.entities)
       }
@@ -38,7 +38,7 @@ class InMemoryRepositoryTests: XCTestCase {
     repository = InMemoryRepository(entities: allEntities)
 
     collect(
-      stream$: repository.listBy(keyPath: \DataAccessEntity.otherId, ids: byIds),
+      stream: repository.listBy(keyPath: \DataAccessEntity.otherId, ids: byIds),
       collect: 1,
       cancellables: &cancellables
     )
