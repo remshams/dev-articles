@@ -66,7 +66,8 @@ struct BCircle: View {
             description: "Other Article",
             link: URL(
               string: "https://www.google.de"
-            )!
+            )!,
+            coverImage: URL(string: "https://www.google.de")!
           )
         )
 
@@ -78,6 +79,7 @@ struct BCircle: View {
             link: URL(
               string: "https://www.google.de"
             )!,
+            coverImage: URL(string: "https://www.google.de")!,
             bookmarked: true
           )
         )

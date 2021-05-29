@@ -5,9 +5,10 @@ func createArticleFixture(
   title: String = "title",
   description: String = "description",
   id: String = "0",
-  link: URL = URL(string: "https://www.apple.de")!
+  link: URL = URL(string: "https://www.apple.de")!,
+  coverImage: URL = URL(string: "https://www.apple.de")!
 ) -> Article {
-  Article(title: title, id: id, description: description, link: link)
+  Article(title: title, id: id, description: description, link: link, coverImage: coverImage)
 }
 
 func createArticlesListFixture(min: Int = 0, max: Int = 12) -> [Article] {
@@ -18,9 +19,10 @@ func createArticleDtoFixture(
   title: String = "title",
   description: String = "description",
   id: Int = 0,
-  url: String = "https://www.apple.de"
+  url: String = "https://www.apple.de",
+  coverImage: String = "https://www.apple.de"
 ) -> ArticleRestDto {
-  ArticleRestDto(id: id, title: title, description: description, url: url)
+  ArticleRestDto(id: id, title: title, description: description, url: url, cover_image: coverImage)
 }
 
 func createArticleDtoListFixture(min: Int = 0, max: Int = 12) -> [ArticleRestDto] {

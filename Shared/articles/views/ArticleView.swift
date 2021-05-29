@@ -37,6 +37,7 @@ struct Actions: View {
         link: URL(
           string: "https://www.google.de"
         )!,
+        coverImage: URL(string: "https://www.google.de")!,
         bookmarked: true
       ))
     }

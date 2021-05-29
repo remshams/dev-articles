@@ -75,6 +75,7 @@
 		4BAAA257260F91AC0061F30C /* CoreDataReadingListRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA256260F91AC0061F30C /* CoreDataReadingListRepositoryTests.swift */; };
 		4BAAA263260F98CD0061F30C /* ReadingListFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA262260F98CD0061F30C /* ReadingListFixture.swift */; };
 		4BAAA2772610DEA50061F30C /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA2762610DEA50061F30C /* ArrayTests.swift */; };
+		4BBBD3C826624EAA0035F2CA /* Tests iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD3C726624EAA0035F2CA /* Tests iOS.swift */; };
 		4BC357DA263DC37500B3B215 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */; };
 		4BC357DB263DC37500B3B215 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */; };
 		4BC96BF825CF0EE90081B8FF /* DevArticlesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC96BCF25CF0EE80081B8FF /* DevArticlesApp.swift */; };
@@ -163,6 +164,7 @@
 		4BB876BD25D0698F00671A06 /* AppArticlesRestAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppArticlesRestAdapterTests.swift; sourceTree = "<group>"; };
 		4BB876BE25D0698F00671A06 /* MockArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArticlesRepository.swift; sourceTree = "<group>"; };
 		4BB876D325D069A700671A06 /* ArticlesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewModelTests.swift; sourceTree = "<group>"; };
+		4BBBD3C726624EAA0035F2CA /* Tests iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tests iOS.swift"; sourceTree = "<group>"; };
 		4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRepository.swift; sourceTree = "<group>"; };
 		4BC96BCF25CF0EE80081B8FF /* DevArticlesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevArticlesApp.swift; sourceTree = "<group>"; };
 		4BC96BD125CF0EE90081B8FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				4BC96BEC25CF0EE90081B8FF /* Info.plist */,
+				4BBBD3C726624EAA0035F2CA /* Tests iOS.swift */,
 			);
 			path = "Tests iOS";
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 					};
 					4BC96BE525CF0EE90081B8FF = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1250;
 						TestTargetID = 4BC96BD525CF0EE90081B8FF;
 					};
 					4BC96BF025CF0EE90081B8FF = {
@@ -852,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BBBD3C826624EAA0035F2CA /* Tests iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -994,6 +999,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SQ7R2QP39;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
@@ -1006,6 +1012,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.remshams.Tests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "dev-articles (iOS)";
@@ -1325,6 +1332,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SQ7R2QP39;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
@@ -1337,6 +1345,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.remshams.Tests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "dev-articles (iOS)";
@@ -1347,6 +1356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SQ7R2QP39;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";

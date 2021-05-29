@@ -20,6 +20,7 @@ struct Article: Identifiable, Equatable {
   let id: ArticleId
   let description: String
   let link: URL
+  let coverImage: URL
   var bookmarked: Bool = false
 }
 

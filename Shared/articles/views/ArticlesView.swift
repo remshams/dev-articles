@@ -64,7 +64,8 @@ struct ArticlesList: View {
                 description: "Rolling (up) a multi module system (esm, cjs...) compatible npm library with TypeScript and Babel",
                 link: URL(
                   string: "https://www.google.de"
-                )!
+                )!,
+                coverImage: URL(string: "https://www.google.de")!
               ),
               Article(
                 title: "Other Article",
@@ -72,7 +73,8 @@ struct ArticlesList: View {
                 description: "Other Article",
                 link: URL(
                   string: "https://www.google.de"
-                )!
+                )!,
+                coverImage: URL(string: "https://www.google.de")!
               )
             ]
           ),

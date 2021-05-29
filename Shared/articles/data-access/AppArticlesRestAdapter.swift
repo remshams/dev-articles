@@ -17,7 +17,7 @@ class AppArticlesRestAdapter: ArticlesRestAdapter {
         articles
           .map {
             Article(title: $0.title, id: String($0.id), description: $0.description,
-                    link: URL(string: $0.url)!)
+                    link: URL(string: $0.url)!, coverImage: URL(string: $0.cover_image)!)
           }
       }
       .mapError { _ in RepositoryError.error }
