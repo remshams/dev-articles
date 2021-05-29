@@ -76,6 +76,14 @@
 		4BAAA263260F98CD0061F30C /* ReadingListFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA262260F98CD0061F30C /* ReadingListFixture.swift */; };
 		4BAAA2772610DEA50061F30C /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAAA2762610DEA50061F30C /* ArrayTests.swift */; };
 		4BBBD3C826624EAA0035F2CA /* Tests iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD3C726624EAA0035F2CA /* Tests iOS.swift */; };
+		4BBBD3CA266250B60035F2CA /* ArticleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD3C9266250B60035F2CA /* ArticleDetailsView.swift */; };
+		4BBBD3CB266250B60035F2CA /* ArticleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD3C9266250B60035F2CA /* ArticleDetailsView.swift */; };
+		4BBBD3D6266253DB0035F2CA /* AsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD3D5266253DB0035F2CA /* AsyncView.swift */; };
+		4BBBD3D7266253DB0035F2CA /* AsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD3D5266253DB0035F2CA /* AsyncView.swift */; };
+		4BBBD3D9266254020035F2CA /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD3D8266254020035F2CA /* LoadingState.swift */; };
+		4BBBD3DA266254020035F2CA /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD3D8266254020035F2CA /* LoadingState.swift */; };
+		4BBBD3DC2662570A0035F2CA /* AsyncViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD3DB2662570A0035F2CA /* AsyncViewModel.swift */; };
+		4BBBD3DD2662570A0035F2CA /* AsyncViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD3DB2662570A0035F2CA /* AsyncViewModel.swift */; };
 		4BC357DA263DC37500B3B215 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */; };
 		4BC357DB263DC37500B3B215 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */; };
 		4BC96BF825CF0EE90081B8FF /* DevArticlesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC96BCF25CF0EE80081B8FF /* DevArticlesApp.swift */; };
@@ -165,6 +173,10 @@
 		4BB876BE25D0698F00671A06 /* MockArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArticlesRepository.swift; sourceTree = "<group>"; };
 		4BB876D325D069A700671A06 /* ArticlesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewModelTests.swift; sourceTree = "<group>"; };
 		4BBBD3C726624EAA0035F2CA /* Tests iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tests iOS.swift"; sourceTree = "<group>"; };
+		4BBBD3C9266250B60035F2CA /* ArticleDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsView.swift; sourceTree = "<group>"; };
+		4BBBD3D5266253DB0035F2CA /* AsyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncView.swift; sourceTree = "<group>"; };
+		4BBBD3D8266254020035F2CA /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		4BBBD3DB2662570A0035F2CA /* AsyncViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewModel.swift; sourceTree = "<group>"; };
 		4BC357D9263DC37500B3B215 /* ArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRepository.swift; sourceTree = "<group>"; };
 		4BC96BCF25CF0EE80081B8FF /* DevArticlesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevArticlesApp.swift; sourceTree = "<group>"; };
 		4BC96BD125CF0EE90081B8FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -255,6 +267,7 @@
 				4BC96C1125CF0F430081B8FF /* ArticlesViewModel.swift */,
 				4BA500AC25D97467005AD7D8 /* ArticlesView.swift */,
 				4BA81A52261A108000F0F1C1 /* BookmarkView.swift */,
+				4BBBD3C9266250B60035F2CA /* ArticleDetailsView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -448,6 +461,24 @@
 			path = "Tests Shared";
 			sourceTree = "<group>";
 		};
+		4BBBD3CC266251730035F2CA /* views */ = {
+			isa = PBXGroup;
+			children = (
+				4BBBD3D4266253C50035F2CA /* AsyncView */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		4BBBD3D4266253C50035F2CA /* AsyncView */ = {
+			isa = PBXGroup;
+			children = (
+				4BBBD3D5266253DB0035F2CA /* AsyncView.swift */,
+				4BBBD3D8266254020035F2CA /* LoadingState.swift */,
+				4BBBD3DB2662570A0035F2CA /* AsyncViewModel.swift */,
+			);
+			path = AsyncView;
+			sourceTree = "<group>";
+		};
 		4BC96BC925CF0EE80081B8FF = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +495,7 @@
 		4BC96BCE25CF0EE80081B8FF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4BBBD3CC266251730035F2CA /* views */,
 				4B0AFC39262B214300BE94F8 /* reading-list */,
 				4B0AFC38262B213900BE94F8 /* articles */,
 				4BC96C1D25CF10100081B8FF /* shared */,
@@ -784,15 +816,19 @@
 				4B24F8A425F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B3DB051260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */,
 				4BC96C1225CF0F430081B8FF /* ArticlesViewModel.swift in Sources */,
+				4BBBD3DC2662570A0035F2CA /* AsyncViewModel.swift in Sources */,
 				4B463767263EEB1500A41C33 /* UseCase.swift in Sources */,
 				4B03E6D525FCEAFD000A6F7A /* ArticleView.swift in Sources */,
 				4B6AD7EA26078630009EA5E7 /* ReadingListRepository.swift in Sources */,
 				4B2627B9262C925B006FD5C9 /* Configuration.swift in Sources */,
+				4BBBD3CA266250B60035F2CA /* ArticleDetailsView.swift in Sources */,
 				4BA500AD25D97467005AD7D8 /* ArticlesView.swift in Sources */,
 				4B6AD7F226078ABD009EA5E7 /* ReadingListItem.swift in Sources */,
 				4BE4FA4B25D99E36006D355E /* Collection.swift in Sources */,
 				4B268839262B4925006C4C5B /* InMemoryRepository.swift in Sources */,
+				4BBBD3D9266254020035F2CA /* LoadingState.swift in Sources */,
 				4B46376A263EF5F300A41C33 /* ArticlesUseCase.swift in Sources */,
+				4BBBD3D6266253DB0035F2CA /* AsyncView.swift in Sources */,
 				4B26881A262B247A006C4C5B /* ReadingListContainer.swift in Sources */,
 				4B6AD7B726076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */,
 				4BC357DA263DC37500B3B215 /* ArticlesRepository.swift in Sources */,
@@ -818,6 +854,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B46376B263EF5F300A41C33 /* ArticlesUseCase.swift in Sources */,
+				4BBBD3DD2662570A0035F2CA /* AsyncViewModel.swift in Sources */,
 				4B26882A262B3A9D006C4C5B /* ReadingListContainer.swift in Sources */,
 				4B26882B262B3A9D006C4C5B /* ArticlesContainer.swift in Sources */,
 				4B2627BA262C925C006FD5C9 /* Configuration.swift in Sources */,
@@ -837,14 +874,17 @@
 				4BC96C1325CF0F430081B8FF /* ArticlesViewModel.swift in Sources */,
 				4B26884E262C377A006C4C5B /* RepositoryError.swift in Sources */,
 				4B03E6D625FCEAFD000A6F7A /* ArticleView.swift in Sources */,
+				4BBBD3CB266250B60035F2CA /* ArticleDetailsView.swift in Sources */,
 				4BA500AE25D97467005AD7D8 /* ArticlesView.swift in Sources */,
 				4B262737262C3AF0006FD5C9 /* HttpError.swift in Sources */,
 				4BE4FA4C25D99E36006D355E /* Collection.swift in Sources */,
+				4BBBD3DA266254020035F2CA /* LoadingState.swift in Sources */,
 				4B93DBC425F3C18400DBCFA2 /* ArticleRestDto.swift in Sources */,
 				4BC96BF925CF0EE90081B8FF /* DevArticlesApp.swift in Sources */,
 				4B6AD7F326078ABD009EA5E7 /* ReadingListItem.swift in Sources */,
 				4B72346225CF12E400766126 /* AppArticlesRestAdapter.swift in Sources */,
 				4BA81A54261A108000F0F1C1 /* BookmarkView.swift in Sources */,
+				4BBBD3D7266253DB0035F2CA /* AsyncView.swift in Sources */,
 				4BA81A3C2617935000F0F1C1 /* Array.swift in Sources */,
 				E1A0E3F70B5F627D3EBC0ADC /* RestClient.swift in Sources */,
 				4B26883A262B4925006C4C5B /* InMemoryRepository.swift in Sources */,
