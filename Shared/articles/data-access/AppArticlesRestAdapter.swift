@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import OSLog
 
 let articlesPath = "/articles"
 
@@ -14,7 +15,10 @@ class AppArticlesRestAdapter: ArticlesRestAdapter {
     httpGet.get(for: buildUrl(timeCategory: timeCategory))
       .decode()
       .toArticles()
-      .mapError { _ in RepositoryError.error }
+      .mapError { error in
+        Logger().debug("Requesting article list failed with: \(error.localizedDescription)")
+        return RepositoryError.error
+       }
       .eraseToAnyPublisher()
   }
 

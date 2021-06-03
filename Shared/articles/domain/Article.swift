@@ -28,7 +28,7 @@ struct Article: Identifiable, Equatable {
 
 struct MetaData: Equatable {
   let link: URL
-  let coverImageUrl: URL
+  let coverImageUrl: URL?
   let publishedAt: Date?
   let readingTime: Int
 }

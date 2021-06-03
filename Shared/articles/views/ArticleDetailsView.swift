@@ -12,6 +12,8 @@ struct ArticleDetailsView: View {
   let article: Article
 
   var body: some View {
-    EmptyView()
+    HStack {
+      Text(article.title)
+    }
   }
 }

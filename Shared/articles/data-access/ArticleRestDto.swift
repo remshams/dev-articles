@@ -15,8 +15,8 @@ struct ArticleRestDto: Identifiable, Codable {
   let description: String
   let url: String
   // swiftlint:disable identifier_name
-  let cover_image: String
-  let published_timestamp: String
+  let cover_image: String?
+  let published_at: String
   let reading_time_minutes: Int
   let comments_count: Int
   let positive_reactions_count: Int
@@ -34,8 +34,8 @@ extension ArticleRestDto {
       description: description,
       metaData: MetaData(
         link: URL(string: url)!,
-        coverImageUrl: URL(string: cover_image)!,
-        publishedAt: published_timestamp.toIso8601Date(),
+        coverImageUrl: cover_image != nil ? URL(string: cover_image!)! : nil,
+        publishedAt: published_at.toIso8601Date(),
         readingTime: reading_time_minutes
       ),
       communityData: CommunityData(

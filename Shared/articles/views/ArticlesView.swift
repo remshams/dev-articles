@@ -27,7 +27,6 @@ struct ArticlesList: View {
 
   var body: some View {
     VStack {
-      Text("Posts").font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/)
       Picker("Select a time category", selection: $model.selectedTimeCategory) {
         Text("Feed").tag(TimeCategory.feed)
         Text("Day").tag(TimeCategory.day)
@@ -38,9 +37,15 @@ struct ArticlesList: View {
       .padding(.leading, 10)
       .padding(.trailing, 10)
       .pickerStyle(SegmentedPickerStyle())
-      List(model.articles) { article in
-        ArticleView(article: article)
-      }.buttonStyle(PlainButtonStyle())
+      NavigationView {
+        List(model.articles) { article in
+          NavigationLink(destination: ArticleDetailsView(article: article)) {
+            ArticleView(article: article)
+          }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .navigationTitle("Posts")
+      }
     }
     .onAppear {
       model.loadArticles()
