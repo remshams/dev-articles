@@ -20,6 +20,6 @@ struct ReadingListItem: Equatable, Identifiable {
 
 extension ReadingListItem {
   init(from article: Article, savedAt: Date) {
-    self.init(contentId: article.id, title: article.title, link: article.link, savedAt: savedAt)
+    self.init(contentId: article.id, title: article.title, link: article.metaData.link, savedAt: savedAt)
   }
 }

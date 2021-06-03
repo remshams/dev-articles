@@ -20,7 +20,7 @@ struct Actions: View {
   var body: some View {
     HStack {
       BookmarkView(article: article)
-      Link(destination: article.link) {
+      Link(destination: article.metaData.link) {
         Image(systemName: "safari").foregroundColor(/*@START_MENU_TOKEN@*/ .blue/*@END_MENU_TOKEN@*/)
       }.font(.system(size: 25))
     }
@@ -30,16 +30,7 @@ struct Actions: View {
 #if DEBUG
   struct ArticleView_Previews: PreviewProvider {
     static var previews: some View {
-      ArticleView(article: Article(
-        title: "Short Title",
-        id: "0",
-        description: "Short title",
-        link: URL(
-          string: "https://www.google.de"
-        )!,
-        coverImage: URL(string: "https://www.google.de")!,
-        bookmarked: true
-      ))
+      ArticleView(article: articleForPreview)
     }
   }
 #endif

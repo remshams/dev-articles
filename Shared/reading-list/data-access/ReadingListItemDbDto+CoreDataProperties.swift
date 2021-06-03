@@ -37,7 +37,7 @@ extension ReadingListItemDbDto: Identifiable {
     self.init(context: context)
     title = article.title
     contentId = article.id
-    link = article.link
+    link = article.metaData.link
     self.savedAt = savedAt
   }
 

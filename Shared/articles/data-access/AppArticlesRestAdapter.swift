@@ -13,13 +13,7 @@ class AppArticlesRestAdapter: ArticlesRestAdapter {
   func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
     httpGet.get(for: buildUrl(timeCategory: timeCategory))
       .decode(type: [ArticleRestDto].self, decoder: JSONDecoder())
-      .map { articles in
-        articles
-          .map {
-            Article(title: $0.title, id: String($0.id), description: $0.description,
-                    link: URL(string: $0.url)!, coverImage: URL(string: $0.cover_image)!)
-          }
-      }
+      .toArticles()
       .mapError { _ in RepositoryError.error }
       .eraseToAnyPublisher()
   }

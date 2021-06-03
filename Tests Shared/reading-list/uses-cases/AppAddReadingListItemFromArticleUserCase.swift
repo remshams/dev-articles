@@ -17,7 +17,7 @@ class AppAddReadingListItemFromArticleUserCaseTests: XCTestCase {
   var cancellables: Set<AnyCancellable>!
 
   override func setUp() {
-    article = createArticleFixture()
+    article = Article.createFixture()
     date = Date()
     addReadingListItem = InMemoryAddReadingListItem(date: date)
     useCase = AppAddReadingListItemFromArticleUseCase(addReadingListItem: addReadingListItem, article: article)

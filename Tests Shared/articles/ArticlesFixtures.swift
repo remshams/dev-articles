@@ -1,30 +1,50 @@
 @testable import dev_articles
 import Foundation
 
-func createArticleFixture(
-  title: String = "title",
-  description: String = "description",
-  id: String = "0",
-  link: URL = URL(string: "https://www.apple.de")!,
-  coverImage: URL = URL(string: "https://www.apple.de")!
-) -> Article {
-  Article(title: title, id: id, description: description, link: link, coverImage: coverImage)
+extension MetaData {
+  static func createFixture(
+    link: URL = URL(string: "https://www.dev.to")!,
+    coverImage: URL = URL(string: "https://www.dev.to")!,
+    publishedTimeStamp: Date = Date(), readingTimeMinutes: Int = 12
+  ) -> MetaData {
+    MetaData(link: link, coverImageUrl: coverImage, publishedAt: publishedTimeStamp, readingTime: readingTimeMinutes)
+  }
 }
 
-func createArticlesListFixture(min: Int = 0, max: Int = 12) -> [Article] {
-  (0 ... Int.random(in: min ... max)).map { createArticleFixture(id: String($0)) }
+extension CommunityData {
+  static func createFixture(
+    commentsCount: Int = 12,
+    positiveReactionsCount: Int = 12,
+    publicReactionsCount: Int = 12
+  ) -> CommunityData {
+    CommunityData(
+      commentsCount: commentsCount,
+      positiveReactionsCount: positiveReactionsCount,
+      publicReactionsCount: publicReactionsCount
+    )
+  }
 }
 
-func createArticleDtoFixture(
-  title: String = "title",
-  description: String = "description",
-  id: Int = 0,
-  url: String = "https://www.apple.de",
-  coverImage: String = "https://www.apple.de"
-) -> ArticleRestDto {
-  ArticleRestDto(id: id, title: title, description: description, url: url, cover_image: coverImage)
-}
+extension Article {
+  static func createFixture(
+    id: String = "0",
+    title: String = "title",
+    description: String = "description",
+    metaData: MetaData = MetaData.createFixture(),
+    communityData: CommunityData = CommunityData.createFixture(),
+    bookmarked _: Bool = false
+  ) -> Article {
+    Article(
+      title: title,
+      id: id,
+      description: description,
+      metaData: metaData,
+      communityData: communityData,
+      bookmarked: false
+    )
+  }
 
-func createArticleDtoListFixture(min: Int = 0, max: Int = 12) -> [ArticleRestDto] {
-  (0 ... Int.random(in: min ... max)).map { createArticleDtoFixture(id: $0) }
+  static func createListFixture(min: Int = 0, max: Int = 12) -> [Article] {
+    (0 ... Int.random(in: min ... max)).map { Article.createFixture(id: String($0)) }
+  }
 }

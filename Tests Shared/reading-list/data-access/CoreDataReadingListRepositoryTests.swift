@@ -21,7 +21,7 @@ class CoreDataReadingListRepositoryTests: XCTestCase {
   var managedObjectContext: NSManagedObjectContext!
 
   override func setUp() {
-    articles = createArticlesListFixture(min: 2)
+    articles = Article.createListFixture(min: 2)
     article = articles[0]
     readingListItems = articles.map { ReadingListItem(from: $0, savedAt: Date()) }
     readingListItem = readingListItems[0]

@@ -56,26 +56,8 @@ struct ArticlesList: View {
         ArticlesContainer(
           listArticle: InMemoryArticlesRepository(
             articles: [
-              Article(
-                // swiftlint:disable:next line_length
-                title: "Rolling (up) a multi module system (esm, cjs...) compatible npm library with TypeScript and Babel",
-                id: "0",
-                // swiftlint:disable:next line_length
-                description: "Rolling (up) a multi module system (esm, cjs...) compatible npm library with TypeScript and Babel",
-                link: URL(
-                  string: "https://www.google.de"
-                )!,
-                coverImage: URL(string: "https://www.google.de")!
-              ),
-              Article(
-                title: "Other Article",
-                id: "1",
-                description: "Other Article",
-                link: URL(
-                  string: "https://www.google.de"
-                )!,
-                coverImage: URL(string: "https://www.google.de")!
-              )
+              articleForPreview,
+              articleForPreview
             ]
           ),
           addReadingListItem: InMemoryReadingListRepository(readingListItems: [])

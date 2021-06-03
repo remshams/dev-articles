@@ -12,7 +12,7 @@ import Foundation
 struct MockLoadArticlesUseCase: LoadArticlesUseCase {
   let articles: [Article]
 
-  init(articles: [Article] = createArticlesListFixture()) {
+  init(articles: [Article] = Article.createListFixture()) {
     self.articles = articles
   }
 

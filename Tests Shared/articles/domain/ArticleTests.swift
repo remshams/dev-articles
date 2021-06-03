@@ -12,7 +12,7 @@ class ArticleTests: XCTestCase {
   var articles: [Article]!
 
   override func setUp() {
-    articles = createArticlesListFixture(min: 2)
+    articles = Article.createListFixture(min: 2)
   }
 
   func testBookmark_ShouldBookmarkArticles() {
@@ -24,6 +24,6 @@ class ArticleTests: XCTestCase {
   }
 
   func testBookmark_ShouldSkipArticleThatCannotBeFound() {
-    XCTAssertEqual(articles.bookmark(articles: [createArticleFixture(title: "other")]), articles)
+    XCTAssertEqual(articles.bookmark(articles: [Article.createFixture(title: "other")]), articles)
   }
 }

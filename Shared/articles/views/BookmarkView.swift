@@ -60,28 +60,9 @@ struct BCircle: View {
     static var previews: some View {
       Group {
         BookmarkView(
-          article: Article(
-            title: "Other Article",
-            id: "1",
-            description: "Other Article",
-            link: URL(
-              string: "https://www.google.de"
-            )!,
-            coverImage: URL(string: "https://www.google.de")!
-          )
-        )
-
+          article: articleForPreview)
         BookmarkView(
-          article: Article(
-            title: "Other Article",
-            id: "1",
-            description: "Other Article",
-            link: URL(
-              string: "https://www.google.de"
-            )!,
-            coverImage: URL(string: "https://www.google.de")!,
-            bookmarked: true
-          )
+          article: articleForPreview
         )
       }.previewLayout(.sizeThatFits)
     }

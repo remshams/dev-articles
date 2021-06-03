@@ -18,7 +18,7 @@ class ArticleViewModelTests: XCTestCase {
   var cancellables: Set<AnyCancellable>!
 
   override func setUp() {
-    articles = createArticlesListFixture(min: 2)
+    articles = Article.createListFixture(min: 2)
     readingListItem = ReadingListItem(from: articles[0], savedAt: Date())
     useCaseFactory = MockArticleUseCaseFactory(
       loadArticlesUseCase: MockLoadArticlesUseCase(articles: articles),

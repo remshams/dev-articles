@@ -12,7 +12,7 @@ import Foundation
 struct MockAddReadingListItemFromArticleUseCase: AddReadingListItemFromArticleUseCase {
   let readingListItem: ReadingListItem
 
-  init(readingListItem: ReadingListItem = ReadingListItem(from: createArticleFixture(), savedAt: Date())) {
+  init(readingListItem: ReadingListItem = ReadingListItem(from: Article.createFixture(), savedAt: Date())) {
     self.readingListItem = readingListItem
   }
 
