@@ -19,6 +19,8 @@
 		4B243D9A2669045100E5E7EB /* ArticleRestDtoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B243D992669045100E5E7EB /* ArticleRestDtoFixture.swift */; };
 		4B243D9E2669071300E5E7EB /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B243D9B2669070900E5E7EB /* Date.swift */; };
 		4B243D9F2669071400E5E7EB /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B243D9B2669070900E5E7EB /* Date.swift */; };
+		4B243DA426690F2000E5E7EB /* operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B243DA326690F2000E5E7EB /* operators.swift */; };
+		4B243DA526690F2000E5E7EB /* operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B243DA326690F2000E5E7EB /* operators.swift */; };
 		4B24F8A425F3E2D20088EE1B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24F8A325F3E2D20088EE1B /* HttpClient.swift */; };
 		4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24F8A325F3E2D20088EE1B /* HttpClient.swift */; };
 		4B262736262C3AF0006FD5C9 /* HttpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B262735262C3AF0006FD5C9 /* HttpError.swift */; };
@@ -140,6 +142,7 @@
 		4B1F38A3265BD49300D96B71 /* ArticleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTests.swift; sourceTree = "<group>"; };
 		4B243D992669045100E5E7EB /* ArticleRestDtoFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRestDtoFixture.swift; sourceTree = "<group>"; };
 		4B243D9B2669070900E5E7EB /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		4B243DA326690F2000E5E7EB /* operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = operators.swift; sourceTree = "<group>"; };
 		4B24F8A325F3E2D20088EE1B /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		4B262735262C3AF0006FD5C9 /* HttpError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpError.swift; sourceTree = "<group>"; };
 		4B262766262C5075006FD5C9 /* InMemoryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryRepositoryTests.swift; sourceTree = "<group>"; };
@@ -340,6 +343,14 @@
 				4B1F38A3265BD49300D96B71 /* ArticleTests.swift */,
 			);
 			path = domain;
+			sourceTree = "<group>";
+		};
+		4B243DA226690EE900E5E7EB /* combine */ = {
+			isa = PBXGroup;
+			children = (
+				4B243DA326690F2000E5E7EB /* operators.swift */,
+			);
+			path = combine;
 			sourceTree = "<group>";
 		};
 		4B26273D262C499D006FD5C9 /* reading-list */ = {
@@ -564,6 +575,7 @@
 		4BC96C1D25CF10100081B8FF /* shared */ = {
 			isa = PBXGroup;
 			children = (
+				4B243DA226690EE900E5E7EB /* combine */,
 				4B463765263EEAF500A41C33 /* uses-cases */,
 				4B6AD8032607B45A009EA5E7 /* data-access */,
 				4BE4FA4925D99E16006D355E /* foundation */,
@@ -840,6 +852,7 @@
 				4B26881A262B247A006C4C5B /* ReadingListContainer.swift in Sources */,
 				4B6AD7B726076C13009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */,
 				4BC357DA263DC37500B3B215 /* ArticlesRepository.swift in Sources */,
+				4B243DA426690F2000E5E7EB /* operators.swift in Sources */,
 				4B463763263EEAE900A41C33 /* AppLoadArticlesUseCase.swift in Sources */,
 				4BC96BF825CF0EE90081B8FF /* DevArticlesApp.swift in Sources */,
 				4B93DBC325F3C18400DBCFA2 /* ArticleRestDto.swift in Sources */,
@@ -878,6 +891,7 @@
 				4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B463764263EEAE900A41C33 /* AppLoadArticlesUseCase.swift in Sources */,
 				4B6AD8112607C4EA009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */,
+				4B243DA526690F2000E5E7EB /* operators.swift in Sources */,
 				4B3DB052260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */,
 				4B463768263EEB1500A41C33 /* UseCase.swift in Sources */,
 				4BC96C1325CF0F430081B8FF /* ArticlesViewModel.swift in Sources */,

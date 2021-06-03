@@ -47,6 +47,8 @@ extension ArticleRestDto {
   }
 }
 
+// MARK: Operators
+
 extension Publisher where Output == [ArticleRestDto] {
   func toArticles() -> Publishers.Map<Self, [Article]> {
     map { articles in articles.map { $0.toArticle() } }
