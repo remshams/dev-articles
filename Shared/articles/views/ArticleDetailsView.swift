@@ -25,22 +25,20 @@ struct ArticleDetailsView: View {
 private struct CoverImage: View {
   var body: some View {
     ZStack(alignment: .bottom) {
-      Rectangle().foregroundColor(.blue)
+      Rectangle().foregroundColor(.purple)
       ProfileImage()
         .frame(width: 140, height: 140)
         .offset(CGSize(width: 0, height: 35))
     }
-    
   }
 }
 
 private struct ProfileImage: View {
   var body: some View {
-    Circle()
-      .padding(4)
-      .foregroundColor(.gray)
-      .background(Color.white)
-      .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+    Image("UserImage")
+      .resizable()
+      .clipShape(Circle())
+      .overlay(Circle().stroke(lineWidth: 4).foregroundColor(.white))
   }
 }
 
