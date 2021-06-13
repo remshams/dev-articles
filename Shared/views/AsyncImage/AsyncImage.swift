@@ -22,3 +22,13 @@ struct AsyncImage: View {
     }
   }
 }
+
+#if os(macOS)
+typealias UIImage = NSImage
+
+extension Image {
+  init(uiImage: UIImage) {
+    self.init(nsImage: uiImage)
+  }
+}
+#endif

@@ -17,11 +17,9 @@ struct ArticleDetailsView: View {
         Text(article.title).font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/)
         CoverImage(url: article.metaData.coverImageUrl).zIndex(1)
           .frame(height: gp.size.height * 1 / 3)
-        HStack {
-          Author()
-          ReadingDetails(article: article)
-        }.padding(.leading, 8).padding(.trailing, 8)
+        Author().padding(.leading, 8).padding(.trailing, 8)
         Tags(tags: ["SwiftUI", "Swift", "JavaScript", "Rust"])
+        Stats(article: article)
       }
     }
   }
@@ -46,7 +44,6 @@ private struct Author: View {
     HStack {
       AuthorImage().frame(width: 40, height: 40)
       AuthorDetails()
-      Spacer()
     }
   }
 }
@@ -68,11 +65,50 @@ private struct AuthorDetails: View {
   }
 }
 
-private struct ReadingDetails: View {
+private struct Stats: View {
   let article: Article
 
   var body: some View {
-    Text("\(article.metaData.readingTime) min read").font(.subheadline).foregroundColor(.cardSecondaryColor)
+    HStack {
+      ContentDivider(
+        color: .gray,
+        dividerContent: Image(systemName: "chart.bar.fill").foregroundColor(.purple).font(.system(size: 25))
+      )
+    }.padding(.leading, 4).padding(.trailing, 4)
+    LazyHGrid(rows: Array(repeating: .init(.flexible()), count: 2), spacing: 32) {
+      StatsElement(iconName: "timer", value: "\(article.metaData.readingTime)", color: .gray)
+        .frame(maxWidth: .infinity, alignment: .leading)
+      StatsElement(iconName: "icloud.and.arrow.up", value: article.metaData.publishedAt ?? Date(), color: .gray)
+      StatsElement(iconName: "suit.heart.fill", value: "\(article.communityData.positiveReactionsCount)", color: .red)
+      StatsElement(iconName: "text.bubble", value: "\(article.communityData.commentsCount)", color: .gray)
+    }
+  }
+}
+
+private struct StatsElement: View {
+  let iconName: String
+  let value: Text
+  let color: Color
+
+  init(iconName: String, value: Text, color: Color) {
+    self.iconName = iconName
+    self.value = value
+    self.color = color
+  }
+
+  init(iconName: String, value: String, color: Color) {
+    self.init(iconName: iconName, value: Text(value), color: color)
+  }
+
+  init(iconName: String, value: Date, color: Color) {
+    self.init(iconName: iconName, value: Text(value, style: .date), color: color)
+  }
+
+  var body: some View {
+    HStack {
+      Image(systemName: iconName).foregroundColor(color)
+      value
+    }
   }
 }
 
@@ -82,9 +118,7 @@ private struct Tags: View {
   var body: some View {
     HStack {
       ForEach(tags, id: \.self) {
-        Spacer()
         Tag(tag: $0)
-        Spacer()
       }
     }
   }
@@ -92,12 +126,14 @@ private struct Tags: View {
 
 private struct Tag: View {
   let tag: String
+  let textColor: Color = [Color.orange, Color.red, Color.purple, Color.blue].randomElement()!
 
   var body: some View {
     Text("#\(tag)")
+      .foregroundColor(textColor)
       .padding(4)
       .scaledToFit()
-      .background(Color(red: .random(in: 0 ... 1), green: .random(in: 0 ... 1), blue: .random(in: 0 ... 1)))
+      .background(textColor.colorInvert())
       .cornerRadius(5)
   }
 }
@@ -105,7 +141,10 @@ private struct Tag: View {
 #if DEBUG
   struct ArticleDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-      ArticleDetailsView(article: articleForPreview)
+      Group {
+        ArticleDetailsView(article: articleForPreview)
+        ArticleDetailsView(article: articleForPreview).previewLayout(.fixed(width: 1024, height: 768))
+      }
     }
   }
 #endif

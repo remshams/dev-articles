@@ -49,6 +49,10 @@
 		4B46376A263EF5F300A41C33 /* ArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B463769263EF5F300A41C33 /* ArticlesUseCase.swift */; };
 		4B46376B263EF5F300A41C33 /* ArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B463769263EF5F300A41C33 /* ArticlesUseCase.swift */; };
 		4B46376E263F130F00A41C33 /* AppLoadArticlesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B46376D263F130F00A41C33 /* AppLoadArticlesUseCaseTests.swift */; };
+		4B58FB56267625BC008B2A7C /* AppAddReadingListItemFromArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F3890265A8B7000D96B71 /* AppAddReadingListItemFromArticleUseCase.swift */; };
+		4B58FB5726762716008B2A7C /* InMemoryReadingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268831262B48AF006C4C5B /* InMemoryReadingListRepository.swift */; };
+		4B58FB592676421C008B2A7C /* ContentDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58FB582676421C008B2A7C /* ContentDivider.swift */; };
+		4B58FB5A2676421C008B2A7C /* ContentDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58FB582676421C008B2A7C /* ContentDivider.swift */; };
 		4B5C873E266D0C2A004C94A7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5C873D266D0C2A004C94A7 /* Color.swift */; };
 		4B5C873F266D0C2A004C94A7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5C873D266D0C2A004C94A7 /* Color.swift */; };
 		4B5C88AF25F3B3B900F375F2 /* ArticlesFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB876BC25D0698F00671A06 /* ArticlesFixtures.swift */; };
@@ -163,6 +167,7 @@
 		4B463766263EEB1500A41C33 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		4B463769263EF5F300A41C33 /* ArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesUseCase.swift; sourceTree = "<group>"; };
 		4B46376D263F130F00A41C33 /* AppLoadArticlesUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLoadArticlesUseCaseTests.swift; sourceTree = "<group>"; };
+		4B58FB582676421C008B2A7C /* ContentDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDivider.swift; sourceTree = "<group>"; };
 		4B5C873D266D0C2A004C94A7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4B5C889B25F3B39C00F375F2 /* Tests Shared.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests Shared.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B6AD7B426076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReadingListItemDbDto+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -497,6 +502,7 @@
 			children = (
 				4BFB0A8D266CEEC800D97EBE /* AsyncImage */,
 				4BBBD3D4266253C50035F2CA /* AsyncView */,
+				4B58FB582676421C008B2A7C /* ContentDivider.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -857,6 +863,7 @@
 				4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4BE4FA4225D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */,
 				4B6AD7B626076C13009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */,
+				4B58FB592676421C008B2A7C /* ContentDivider.swift in Sources */,
 				4BFB0A8F266CEEDE00D97EBE /* AsyncImage.swift in Sources */,
 				4B24F8A425F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B3DB051260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */,
@@ -906,15 +913,18 @@
 				4B26882A262B3A9D006C4C5B /* ReadingListContainer.swift in Sources */,
 				4B26882B262B3A9D006C4C5B /* ArticlesContainer.swift in Sources */,
 				4B2627BA262C925C006FD5C9 /* Configuration.swift in Sources */,
+				4B58FB5A2676421C008B2A7C /* ContentDivider.swift in Sources */,
 				4B6AD7CA26078280009EA5E7 /* CoreDataReadingListRepository.swift in Sources */,
 				4B6AD8172607C4ED009EA5E7 /* ReadingListItemDbDto+CoreDataClass.swift in Sources */,
 				4BC96C2125CF103C0081B8FF /* Article.swift in Sources */,
+				4B58FB5726762716008B2A7C /* InMemoryReadingListRepository.swift in Sources */,
 				4B7BACB625E180A3004A0C4B /* AppContainer.swift in Sources */,
 				4B3DB05F26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4B6AD7EB26078630009EA5E7 /* ReadingListRepository.swift in Sources */,
 				4BE4FA4325D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */,
 				4BC357DB263DC37500B3B215 /* ArticlesRepository.swift in Sources */,
 				4B5C873F266D0C2A004C94A7 /* Color.swift in Sources */,
+				4B58FB56267625BC008B2A7C /* AppAddReadingListItemFromArticleUseCase.swift in Sources */,
 				4B24F8A525F3E2D20088EE1B /* HttpClient.swift in Sources */,
 				4B463764263EEAE900A41C33 /* AppLoadArticlesUseCase.swift in Sources */,
 				4B6AD8112607C4EA009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */,
