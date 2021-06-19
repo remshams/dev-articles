@@ -14,8 +14,19 @@ struct ContentDivider<Content: View>: View {
   var body: some View {
     HStack {
       Rectangle().fill(color).frame(height: 2)
-      dividerContent
+      dividerContent.layoutPriority(1)
       Rectangle().fill(color).frame(height: 2)
     }
   }
 }
+
+#if DEBUG
+  struct ContentDivider_Previews: PreviewProvider {
+    static var previews: some View {
+      VStack {
+        ContentDivider(color: .gray, dividerContent: Image(systemName: "person.fill"))
+        ContentDivider(color: .gray, dividerContent: Text("Long sdfdsfdsfdsfsdfdsfdsfdssdfsdfdsafsdfdsfdsf"))
+      }
+    }
+  }
+#endif

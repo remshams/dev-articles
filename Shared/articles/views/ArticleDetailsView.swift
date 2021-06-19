@@ -17,9 +17,9 @@ struct ArticleDetailsView: View {
         Text(article.title).font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/)
         CoverImage(url: article.metaData.coverImageUrl).zIndex(1)
           .frame(height: gp.size.height * 1 / 3)
-        Author().padding(.leading, 8).padding(.trailing, 8)
         Tags(tags: ["SwiftUI", "Swift", "JavaScript", "Rust"])
         Stats(article: article)
+        Author()
       }
     }
   }
@@ -41,6 +41,10 @@ private struct CoverImage: View {
 
 private struct Author: View {
   var body: some View {
+    ContentDivider(
+      color: .gray,
+      dividerContent: Image(systemName: "person.fill").foregroundColor(.purple).font(.system(size: 25))
+    ).padding(.leading, 4).padding(.trailing, 4)
     HStack {
       AuthorImage().frame(width: 40, height: 40)
       AuthorDetails()
@@ -58,10 +62,26 @@ private struct AuthorImage: View {
 
 private struct AuthorDetails: View {
   var body: some View {
-    VStack(alignment: .leading) {
-      Text("Mathias Remshardt").fontWeight(.bold)
-      Text("1 Juli (5 days ago)")
-    }.font(.subheadline).foregroundColor(.cardSecondaryColor)
+    HStack(spacing: 32) {
+      VStack(alignment: .leading) {
+        Text("Mathias Remshardt").fontWeight(.bold)
+        Link("www.apple.de", destination: URL(string: "www.apple.de")!)
+      }.font(.subheadline).foregroundColor(.cardSecondaryColor)
+      AuthorSocialMedia()
+    }
+  }
+}
+
+private struct AuthorSocialMedia: View {
+  var body: some View {
+    HStack {
+      Link(destination: URL(string: "https://www.github.de")!) {
+        Image("github").resizable().frame(width: 40, height: 40).aspectRatio(contentMode: .fill).scaledToFit()
+      }
+      Link(destination: URL(string: "https://www.twitter.de")!) {
+        Image("twitter").resizable().frame(width: 40, height: 40).aspectRatio(contentMode: .fill).scaledToFit()
+      }
+    }
   }
 }
 
