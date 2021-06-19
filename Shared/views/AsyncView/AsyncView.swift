@@ -75,8 +75,7 @@ struct DefaultFailedView<Failure>: View {
 extension AsyncView where
   IdleView == DefaultIdleView,
   LoadingView == DefaultLoadingView,
-  FailedView == DefaultFailedView<Source.Failure>
-{
+  FailedView == DefaultFailedView<Source.Failure> {
   init(
     source: Source,
     @ViewBuilder contentView: @escaping (Source.Output) -> ContentView

@@ -20,9 +20,26 @@ struct Actions: View {
   var body: some View {
     HStack {
       BookmarkView(article: article)
+      ArticleDetailsIcon(article: article)
       Link(destination: article.metaData.link) {
-        Image(systemName: "safari").foregroundColor(/*@START_MENU_TOKEN@*/ .blue/*@END_MENU_TOKEN@*/)
+        Image(systemName: "safari").foregroundColor(.blue)
       }.font(.system(size: 25))
+    }
+  }
+}
+
+private struct ArticleDetailsIcon: View {
+  let article: Article
+  @State var showDetails = false
+
+  var body: some View {
+    Button { showDetails.toggle() }
+    label: {
+      Image(systemName: "info.circle")
+        .font(.system(size: 25))
+        .foregroundColor(.blue)
+    }.sheet(isPresented: $showDetails) {
+      ArticleDetailsView(article: article)
     }
   }
 }

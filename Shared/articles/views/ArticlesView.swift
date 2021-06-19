@@ -39,7 +39,7 @@ struct ArticlesList: View {
       .pickerStyle(SegmentedPickerStyle())
       NavigationView {
         List(model.articles) { article in
-          NavigationLink(destination: ArticleDetailsView(article: article)) {
+          NavigationLink(destination: ArticleContentView()) {
             ArticleView(article: article)
           }
         }
