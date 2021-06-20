@@ -663,6 +663,8 @@
 			dependencies = (
 			);
 			name = "dev-articles (iOS)";
+			packageProductDependencies = (
+			);
 			productName = "dev-articles (iOS)";
 			productReference = 4BC96BD625CF0EE90081B8FF /* dev-articles.app */;
 			productType = "com.apple.product-type.application";
@@ -759,6 +761,8 @@
 				Base,
 			);
 			mainGroup = 4BC96BC925CF0EE80081B8FF;
+			packageReferences = (
+			);
 			productRefGroup = 4BC96BD725CF0EE90081B8FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
