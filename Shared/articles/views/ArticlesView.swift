@@ -26,26 +26,29 @@ struct ArticlesList: View {
   }
 
   var body: some View {
-    VStack {
-      Picker("Select a time category", selection: $model.selectedTimeCategory) {
-        Text("Feed").tag(TimeCategory.feed)
-        Text("Day").tag(TimeCategory.day)
-        Text("Week").tag(TimeCategory.week)
-        Text("Month").tag(TimeCategory.month)
-        Text("Year").tag(TimeCategory.year)
-      }
-      .padding(.leading, 10)
-      .padding(.trailing, 10)
-      .pickerStyle(SegmentedPickerStyle())
-      NavigationView {
+    NavigationView {
+      VStack {
+        Picker("Select a time category", selection: $model.selectedTimeCategory) {
+          Text("Feed").tag(TimeCategory.feed)
+          Text("Day").tag(TimeCategory.day)
+          Text("Week").tag(TimeCategory.week)
+          Text("Month").tag(TimeCategory.month)
+          Text("Year").tag(TimeCategory.year)
+        }
+        .padding(.leading, 10)
+        .padding(.trailing, 10)
+        .pickerStyle(SegmentedPickerStyle())
         List(model.articles) { article in
           NavigationLink(destination: ArticleContentView()) {
             ArticleView(article: article)
           }
         }
-        .buttonStyle(PlainButtonStyle())
-        .navigationTitle("Posts")
+        .buttonStyle(BorderlessButtonStyle())
+        .listStyle(InsetListStyle())
       }
+      .padding(.top, 8)
+      .navigationTitle("Posts")
+      .navigationBarTitleDisplayMode(.automatic)
     }
     .onAppear {
       model.loadArticles()

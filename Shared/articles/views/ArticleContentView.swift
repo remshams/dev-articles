@@ -10,18 +10,13 @@ import Foundation
 import SwiftUI
 import WebKit
 
-struct Details: Codable {
-  // swiftlint:disable:next all
-  let body_html: String
-}
-
 struct ArticleContentView: View {
   var body: some View {
-    Text("Text")
+    WebView(text: "<h1>ArticleContent</h1>")
   }
 }
 
-private struct WebView: UIViewRepresentable {
+private struct WebView: ViewRepresentable {
   let text: String
 
   func makeUIView(context _: Context) -> WKWebView {
@@ -31,4 +26,15 @@ private struct WebView: UIViewRepresentable {
   func updateUIView(_ uiView: WKWebView, context _: Context) {
     uiView.loadHTMLString(text, baseURL: nil)
   }
+
+  func makeNSView(context _: Context) -> WKWebView { WKWebView() }
+  func updateNSView(_ nsView: WKWebView, context _: Context) {
+    nsView.loadHTMLString(text, baseURL: nil)
+  }
 }
+
+#if os(macOS)
+  public typealias ViewRepresentable = NSViewRepresentable
+#elseif os(iOS)
+  public typealias ViewRepresentable = UIViewRepresentable
+#endif
