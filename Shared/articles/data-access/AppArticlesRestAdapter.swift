@@ -4,7 +4,7 @@ import OSLog
 
 let articlesPath = "/articles"
 
-class AppArticlesRestAdapter: ArticlesRestAdapter {
+struct AppArticlesRestAdapter: ArticlesRestAdapter {
   let httpGet: HttpGet
 
   init(httpGet: HttpGet) {

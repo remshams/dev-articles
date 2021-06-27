@@ -39,7 +39,7 @@ struct ArticlesList: View {
         .padding(.trailing, 10)
         .pickerStyle(SegmentedPickerStyle())
         List(model.articles) { article in
-          NavigationLink(destination: ArticleContentView()) {
+          NavigationLink(destination: ArticleContentView(article: article)) {
             ArticleView(article: article)
           }
         }
@@ -48,7 +48,6 @@ struct ArticlesList: View {
       }
       .padding(.top, 8)
       .navigationTitle("Posts")
-      .navigationBarTitleDisplayMode(.automatic)
     }
     .onAppear {
       model.loadArticles()
