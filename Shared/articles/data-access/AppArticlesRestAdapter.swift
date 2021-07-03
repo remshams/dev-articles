@@ -18,7 +18,18 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
       .mapError { error in
         Logger().debug("Requesting article list failed with: \(error.localizedDescription)")
         return RepositoryError.error
-       }
+      }
+      .eraseToAnyPublisher()
+  }
+
+  func content(for id: ArticleId) -> AnyPublisher<ArticleContent, RepositoryError> {
+    httpGet.get(for: URL(string: "\(devCommunityUrl)\(articlesPath)/\(id)")!)
+      .decode()
+      .toArticleContent()
+      .mapError { error in
+        Logger().debug("Requesting article content failed with: \(error.localizedDescription)")
+        return RepositoryError.error
+      }
       .eraseToAnyPublisher()
   }
 
