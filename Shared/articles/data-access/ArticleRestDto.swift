@@ -32,13 +32,13 @@ extension ArticleRestDto {
       title: title,
       id: String(id),
       description: description,
-      metaData: MetaData(
+      metaData: ArticleMetaData(
         link: URL(string: url)!,
         coverImageUrl: cover_image != nil ? URL(string: cover_image!)! : nil,
         publishedAt: published_at.toIso8601Date(),
         readingTime: reading_time_minutes
       ),
-      communityData: CommunityData(
+      communityData: ArticleCommunityData(
         commentsCount: comments_count,
         positiveReactionsCount: positive_reactions_count,
         publicReactionsCount: public_reactions_count

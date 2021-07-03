@@ -1,23 +1,28 @@
 @testable import dev_articles
 import Foundation
 
-extension MetaData {
+extension ArticleMetaData {
   static func createFixture(
     link: URL = URL(string: "https://www.dev.to")!,
     coverImage: URL = URL(string: "https://www.dev.to")!,
     publishedTimeStamp: Date = Date(), readingTimeMinutes: Int = 12
-  ) -> MetaData {
-    MetaData(link: link, coverImageUrl: coverImage, publishedAt: publishedTimeStamp, readingTime: readingTimeMinutes)
+  ) -> ArticleMetaData {
+    ArticleMetaData(
+      link: link,
+      coverImageUrl: coverImage,
+      publishedAt: publishedTimeStamp,
+      readingTime: readingTimeMinutes
+    )
   }
 }
 
-extension CommunityData {
+extension ArticleCommunityData {
   static func createFixture(
     commentsCount: Int = 12,
     positiveReactionsCount: Int = 12,
     publicReactionsCount: Int = 12
-  ) -> CommunityData {
-    CommunityData(
+  ) -> ArticleCommunityData {
+    ArticleCommunityData(
       commentsCount: commentsCount,
       positiveReactionsCount: positiveReactionsCount,
       publicReactionsCount: publicReactionsCount
@@ -30,8 +35,8 @@ extension Article {
     id: String = "0",
     title: String = "title",
     description: String = "description",
-    metaData: MetaData = MetaData.createFixture(),
-    communityData: CommunityData = CommunityData.createFixture(),
+    metaData: ArticleMetaData = ArticleMetaData.createFixture(),
+    communityData: ArticleCommunityData = ArticleCommunityData.createFixture(),
     bookmarked _: Bool = false
   ) -> Article {
     Article(

@@ -21,19 +21,19 @@ struct Article: Identifiable, Equatable {
   let title: String
   let id: ArticleId
   let description: String
-  let metaData: MetaData
-  let communityData: CommunityData
+  let metaData: ArticleMetaData
+  let communityData: ArticleCommunityData
   var bookmarked: Bool = false
 }
 
-struct MetaData: Equatable {
+struct ArticleMetaData: Equatable {
   let link: URL
   let coverImageUrl: URL?
   let publishedAt: Date?
   let readingTime: Int
 }
 
-struct CommunityData: Equatable {
+struct ArticleCommunityData: Equatable {
   let commentsCount: Int
   let positiveReactionsCount: Int
   let publicReactionsCount: Int
@@ -59,12 +59,12 @@ extension Collection where Element == Article {
     title: "Article for Preview",
     id: "0",
     description: "Article for Preview",
-    metaData: MetaData(
+    metaData: ArticleMetaData(
       link: URL(string: "https://www.dev.to")!,
       coverImageUrl: nil,
       publishedAt: Date(),
       readingTime: 12
     ),
-    communityData: CommunityData(commentsCount: 12, positiveReactionsCount: 18, publicReactionsCount: 18)
+    communityData: ArticleCommunityData(commentsCount: 12, positiveReactionsCount: 18, publicReactionsCount: 18)
   )
 #endif
