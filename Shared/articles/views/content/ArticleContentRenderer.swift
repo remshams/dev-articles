@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import WebKit
 
-struct ArticleContent: View {
+struct ArticleContentWebView: View {
   let content: String
   @Binding var webViewHeight: CGFloat
 

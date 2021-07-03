@@ -16,7 +16,7 @@ struct ArticleContentView: View {
   var body: some View {
     ScrollView {
       Header(article: article)
-      ArticleContent(content: exampleContent, webViewHeight: $articleContentHeight).frame(
+      ArticleContentWebView(content: exampleContent, webViewHeight: $articleContentHeight).frame(
         height: articleContentHeight
       )
     }
