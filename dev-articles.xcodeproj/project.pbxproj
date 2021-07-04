@@ -329,14 +329,11 @@
 		4B0AFC3B262B217200BE94F8 /* data-access */ = {
 			isa = PBXGroup;
 			children = (
+				4B47CA7026921A9E009BDDEB /* content */,
 				4B72346025CF12E400766126 /* AppArticlesRestAdapter.swift */,
 				4B93DBC225F3C18400DBCFA2 /* ArticleRestDto.swift */,
 				4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */,
 				4BC357D9263DC37500B3B215 /* AppArticlesRepository.swift */,
-				4B47CA4C26909A2E009BDDEB /* ArticleContentRestDto.swift */,
-				4B47CA582690A5B7009BDDEB /* InMemoryArticleContentRepository.swift */,
-				4B47CA5E2690DC1D009BDDEB /* AppArticleContentRepository.swift */,
-				4B47CA612691FEAA009BDDEB /* AppArticleContentRestAdapter.swift */,
 			);
 			path = "data-access";
 			sourceTree = "<group>";
@@ -430,14 +427,10 @@
 		4B26273F262C49BB006FD5C9 /* data-access */ = {
 			isa = PBXGroup;
 			children = (
+				4B47CA7126921ABC009BDDEB /* content */,
 				4BB876BE25D0698F00671A06 /* MockArticlesRepository.swift */,
 				4BB876BD25D0698F00671A06 /* AppArticlesRestAdapterTests.swift */,
-				4B262766262C5075006FD5C9 /* InMemoryRepositoryTests.swift */,
-				4B26276D262C50F7006FD5C9 /* DataAccessFixture.swift */,
 				4B243D992669045100E5E7EB /* ArticleRestDtoFixture.swift */,
-				4B47CA64269200EE009BDDEB /* AppArticleContentRestAdapterTest.swift */,
-				4B47CA6C269211A6009BDDEB /* ArticleContentRestDtoFixture.swift */,
-				4B47CA6E26921285009BDDEB /* MockArticleContentRepository.swift */,
 			);
 			path = "data-access";
 			sourceTree = "<group>";
@@ -454,6 +447,7 @@
 		4B262741262C4A03006FD5C9 /* shared */ = {
 			isa = PBXGroup;
 			children = (
+				4B47CA7226921AF2009BDDEB /* data-access */,
 				4B47CA682692028A009BDDEB /* http */,
 				4BAAA2752610DE9A0061F30C /* foundation */,
 			);
@@ -519,6 +513,36 @@
 				4B47CA6A26921124009BDDEB /* ArticleContentViewModelTest.swift */,
 			);
 			path = content;
+			sourceTree = "<group>";
+		};
+		4B47CA7026921A9E009BDDEB /* content */ = {
+			isa = PBXGroup;
+			children = (
+				4B47CA4C26909A2E009BDDEB /* ArticleContentRestDto.swift */,
+				4B47CA582690A5B7009BDDEB /* InMemoryArticleContentRepository.swift */,
+				4B47CA5E2690DC1D009BDDEB /* AppArticleContentRepository.swift */,
+				4B47CA612691FEAA009BDDEB /* AppArticleContentRestAdapter.swift */,
+			);
+			path = content;
+			sourceTree = "<group>";
+		};
+		4B47CA7126921ABC009BDDEB /* content */ = {
+			isa = PBXGroup;
+			children = (
+				4B47CA64269200EE009BDDEB /* AppArticleContentRestAdapterTest.swift */,
+				4B47CA6C269211A6009BDDEB /* ArticleContentRestDtoFixture.swift */,
+				4B47CA6E26921285009BDDEB /* MockArticleContentRepository.swift */,
+			);
+			path = content;
+			sourceTree = "<group>";
+		};
+		4B47CA7226921AF2009BDDEB /* data-access */ = {
+			isa = PBXGroup;
+			children = (
+				4B26276D262C50F7006FD5C9 /* DataAccessFixture.swift */,
+				4B262766262C5075006FD5C9 /* InMemoryRepositoryTests.swift */,
+			);
+			path = "data-access";
 			sourceTree = "<group>";
 		};
 		4B5C873C266D0C1E004C94A7 /* views */ = {

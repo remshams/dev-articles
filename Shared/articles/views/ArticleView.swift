@@ -22,7 +22,7 @@ struct Actions: View {
       BookmarkView(article: article)
       ArticleDetailsIcon(article: article)
       Link(destination: article.metaData.link) {
-        Image(systemName: "safari").foregroundColor(.blue)
+        Image(systemName: "safari")
       }.font(.system(size: 25))
     }
   }
@@ -37,7 +37,6 @@ private struct ArticleDetailsIcon: View {
     label: {
       Image(systemName: "info.circle")
         .font(.system(size: 25))
-        .foregroundColor(.blue)
     }.sheet(isPresented: $showDetails) {
       ArticleDetailsView(article: article)
     }
