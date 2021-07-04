@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import Combine
+
+class InMemoryArticleContentRepository: ListArticleContent {
+  func content(for id: ArticleId) -> AnyPublisher<ArticleContent, RepositoryError> {
+    Just(exampleArticleContent).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+  }
+}

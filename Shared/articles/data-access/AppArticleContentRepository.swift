@@ -7,4 +7,4 @@
 
 import Foundation
 
-typealias AppArticleContentRepository = AppArticlesRestAdapter
+typealias AppArticleContentRepository = AppArticleContentRestAdapter

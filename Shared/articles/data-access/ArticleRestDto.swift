@@ -5,7 +5,6 @@ import Foundation
 
 protocol ArticlesRestAdapter {
   func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError>
-  func content(for id: ArticleId) -> AnyPublisher<ArticleContent, RepositoryError>
 }
 
 // MARK: Models

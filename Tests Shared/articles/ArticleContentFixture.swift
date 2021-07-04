@@ -5,13 +5,11 @@
 //  Created by Mathias Remshardt on 04.07.21.
 //
 
-import Foundation
 @testable import dev_articles
+import Foundation
 
-extension ArticleContentRestDto {
-  
-  static func createFixture(html: String = exampleArticleContent.html) -> ArticleContentRestDto {
-    ArticleContentRestDto(body_html: html)
+extension ArticleContent {
+  static func createFixture(html: String = exampleArticleContent.html) -> ArticleContent {
+    ArticleContent(html: html)
   }
-  
 }

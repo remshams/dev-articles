@@ -15,6 +15,10 @@ protocol ListArticle {
   func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError>
 }
 
+protocol ListArticleContent {
+  func content(for id: ArticleId) -> AnyPublisher<ArticleContent, RepositoryError>
+}
+
 // MARK: Models
 
 struct Article: Identifiable, Equatable {

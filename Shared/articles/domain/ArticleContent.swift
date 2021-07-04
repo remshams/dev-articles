@@ -11,6 +11,13 @@ struct ArticleContent: Equatable {
   let html: String
 }
 
+extension ArticleContent {
+  static func createEmpty() -> ArticleContent {
+    ArticleContent(html: "")
+  }
+  
+}
+
 #if DEBUG
 
   // swiftlint:disable all
