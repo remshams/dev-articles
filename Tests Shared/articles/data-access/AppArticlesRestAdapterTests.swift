@@ -48,4 +48,6 @@ class AppArticlesRestAdapterTests: XCTestCase {
       }
       .store(in: &cancellables)
   }
+
+  func test_content() {}
 }

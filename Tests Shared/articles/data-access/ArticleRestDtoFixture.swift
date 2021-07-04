@@ -28,7 +28,7 @@ extension ArticleRestDto {
       description: description,
       url: url,
       cover_image: coverImage,
-      published_timestamp: publishedTimeStamp,
+      published_at: publishedTimeStamp,
       reading_time_minutes: readingTimeMinutes,
       comments_count: commentsCount,
       positive_reactions_count: positiveReactionsCount,

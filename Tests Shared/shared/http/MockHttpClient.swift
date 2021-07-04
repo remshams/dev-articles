@@ -5,6 +5,11 @@ import Foundation
 struct MockHttpGet<Dto: Codable> {
   let getResponse: Dto
   let urlCalledSubject: CurrentValueSubject<[URL], Never>
+
+  init(getResponse: Dto, urlCalledSubject: CurrentValueSubject<[URL], Never> = CurrentValueSubject([])) {
+    self.getResponse = getResponse
+    self.urlCalledSubject = urlCalledSubject
+  }
 }
 
 extension MockHttpGet: HttpGet {
