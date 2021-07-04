@@ -25,7 +25,10 @@ class AppArticleContentRestAdapterTest: XCTestCase {
 
   func test_content_shouldReturnConvertedArticleContent() {
     restAdapter.content(for: "0")
-      .sink(receiveCompletion: { _ in }, receiveValue: { XCTAssertEqual($0, self.articleContentDto.toArticleContent()) })
+      .sink(
+        receiveCompletion: { _ in },
+        receiveValue: { XCTAssertEqual($0, self.articleContentDto.toArticleContent()) }
+      )
       .store(in: &cancellables)
   }
 }

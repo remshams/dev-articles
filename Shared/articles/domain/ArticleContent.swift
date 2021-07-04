@@ -15,7 +15,10 @@ extension ArticleContent {
   static func createEmpty() -> ArticleContent {
     ArticleContent(html: "")
   }
-  
+
+  var isEmpty: Bool {
+    html.isEmpty
+  }
 }
 
 #if DEBUG

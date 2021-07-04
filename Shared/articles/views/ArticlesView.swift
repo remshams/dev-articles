@@ -67,6 +67,7 @@ struct ArticlesList: View {
               articleForPreview
             ]
           ),
+          listArticleContent: InMemoryArticleContentRepository(),
           addReadingListItem: InMemoryReadingListRepository(readingListItems: [])
         )
       )

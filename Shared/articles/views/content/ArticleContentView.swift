@@ -11,14 +11,30 @@ import SwiftUI
 import WebKit
 
 struct ArticleContentView: View {
-  @State var articleContentHeight: CGFloat = .zero
+  @EnvironmentObject var articlesContainer: ArticlesContainer
   let article: Article
+
+  var body: some View {
+    Container(model: articlesContainer.makeArticleContentViewModel(article: article))
+  }
+}
+
+private struct Container: View {
+  @ObservedObject var model: ArticleContentViewModel
+  @State var articleContentHeight: CGFloat = .zero
+
+  init(model: ArticleContentViewModel) {
+    self.model = model
+  }
+
   var body: some View {
     ScrollView {
-      Header(article: article)
-      ArticleContentWebView(content: exampleContent, webViewHeight: $articleContentHeight).frame(
+      Header(article: model.article)
+      ArticleContentWebView(content: model.content, webViewHeight: $articleContentHeight).frame(
         height: articleContentHeight
       )
+    }.onAppear {
+      model.loadContent()
     }
   }
 }
