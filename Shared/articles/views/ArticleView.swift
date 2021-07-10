@@ -7,8 +7,6 @@ struct ArticleView: View {
   var body: some View {
     HStack {
       Text(article.title)
-      Spacer()
-      Actions(article: article)
 
     }.padding()
   }

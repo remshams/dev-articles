@@ -18,7 +18,7 @@ class AppLoadArticlesTests: XCTestCase {
   override func setUp() {
     cancellables = []
     articles = Article.createListFixture(min: 2)
-    useCase = AppLoadArticlesUseCase(listArticle: InMemoryListArticle(articles: articles), timeCategory: .feed)
+    useCase = AppLoadArticlesUseCase(listArticle: InMemoryListArticle(articles: articles), timeCategory: .day)
   }
 
   func test_ShouldEmitFeedList() {
@@ -32,7 +32,7 @@ class AppLoadArticlesTests: XCTestCase {
   func test_ShouldEmitEmpyArrayWhenLoadingOfArticlesFails() {
     useCase = AppLoadArticlesUseCase(
       listArticle: FailingListArticle(listError: RepositoryError.error),
-      timeCategory: .feed
+      timeCategory: .day
     )
 
     useCase.start()

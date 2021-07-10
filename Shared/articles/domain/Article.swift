@@ -4,7 +4,6 @@ import Foundation
 typealias ArticleId = String
 
 enum TimeCategory {
-  case feed
   case day
   case week
   case month

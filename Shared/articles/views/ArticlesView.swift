@@ -17,7 +17,7 @@ struct ArticlesList: View {
   @ObservedObject var model: ArticlesViewModel
   @EnvironmentObject var articlesContainer: ArticlesContainer
   @State var articles: [Article] = []
-  @State var timeCategory: TimeCategory = .feed
+  @State var timeCategory: TimeCategory = .day
 
   var cancellables = Set<AnyCancellable>()
 
@@ -29,7 +29,6 @@ struct ArticlesList: View {
     NavigationView {
       VStack {
         Picker("Select a time category", selection: $model.selectedTimeCategory) {
-          Text("Feed").tag(TimeCategory.feed)
           Text("Day").tag(TimeCategory.day)
           Text("Week").tag(TimeCategory.week)
           Text("Month").tag(TimeCategory.month)

@@ -13,7 +13,7 @@ class ArticlesViewModel: ObservableObject {
   let toggleBookmark: ToggleBookmark
 
   @Published private(set) var articles: [Article] = []
-  @Published var selectedTimeCategory = TimeCategory.feed
+  @Published var selectedTimeCategory = TimeCategory.day
 
   init(articlesUseCaseFactory: ArticlesUseCaseFactory) {
     self.articlesUseCaseFactory = articlesUseCaseFactory

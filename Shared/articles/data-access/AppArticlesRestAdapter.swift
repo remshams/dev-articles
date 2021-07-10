@@ -25,8 +25,6 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
   private func buildUrl(timeCategory: TimeCategory) -> URL {
     var topParamValue: Int?
     switch timeCategory {
-    case .feed:
-      topParamValue = nil
     case .day:
       topParamValue = 1
     case .week:

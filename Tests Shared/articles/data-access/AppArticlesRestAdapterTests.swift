@@ -23,18 +23,6 @@ class AppArticlesRestAdapterTests: XCTestCase {
     cancellables = []
   }
 
-  func test_list_ShouldEmitListOfArticlesForFeed() {
-    adapter.list(for: .feed)
-      .sink(receiveCompletion: { _ in }, receiveValue: { XCTAssertEqual($0, self.articles) })
-      .store(in: &cancellables)
-
-    client.urlCalledSubject
-      .sink { _ in } receiveValue: {
-        XCTAssertEqual($0, [URL(string: self.articleUrl)!])
-      }
-      .store(in: &cancellables)
-  }
-
   func test_list_ShouldEmitListOfArticlesForTimeCategory() {
     adapter.list(for: .week)
       .sink { _ in } receiveValue: {
