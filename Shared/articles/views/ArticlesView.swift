@@ -47,11 +47,18 @@ struct ArticlesList: View {
       }
       .padding(.top, 8)
       .navigationTitle("Posts")
+      NoAritcles()
     }
     .onAppear {
       model.loadArticles()
     }
     .environmentObject(model)
+  }
+}
+
+private struct NoAritcles: View {
+  var body: some View {
+    Text("Select an article")
   }
 }
 
