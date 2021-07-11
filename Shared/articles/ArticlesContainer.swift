@@ -36,3 +36,16 @@ extension ArticlesContainer: ArticlesUseCaseFactory {
     AppAddReadingListItemFromArticleUseCase(addReadingListItem: addReadingListItem, article: article)
   }
 }
+
+#if DEBUG
+let articleContainerForPreview = ArticlesContainer(
+  listArticle: InMemoryArticlesRepository(
+    articles: [
+      articleForPreview,
+      articleForPreview
+    ]
+  ),
+  listArticleContent: InMemoryArticleContentRepository(),
+  addReadingListItem: InMemoryReadingListRepository(readingListItems: [])
+)
+#endif
