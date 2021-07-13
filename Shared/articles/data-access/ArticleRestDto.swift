@@ -35,7 +35,7 @@ extension ArticleRestDto {
       metaData: ArticleMetaData(
         link: URL(string: url)!,
         coverImageUrl: cover_image != nil ? URL(string: cover_image!)! : nil,
-        publishedAt: published_at.toIso8601Date(),
+        publishedAt: published_at.iso8601Date,
         readingTime: reading_time_minutes
       ),
       communityData: ArticleCommunityData(
