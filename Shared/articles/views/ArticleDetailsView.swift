@@ -19,7 +19,7 @@ struct ArticleDetailsView: View {
           .frame(height: gp.size.height * 1 / 3)
         Tags(tags: ["SwiftUI", "Swift", "JavaScript", "Rust"])
         Stats(article: article)
-        Author()
+        AuthorView()
       }
     }
   }
@@ -39,7 +39,7 @@ private struct CoverImage: View {
   }
 }
 
-private struct Author: View {
+private struct AuthorView: View {
   var body: some View {
     ContentDivider(
       color: .gray,

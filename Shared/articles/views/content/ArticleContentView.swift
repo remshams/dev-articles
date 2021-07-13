@@ -15,11 +15,11 @@ struct ArticleContentView: View {
   let article: Article
 
   var body: some View {
-    Container(model: articlesContainer.makeArticleContentViewModel(article: article))
+    ContainerView(model: articlesContainer.makeArticleContentViewModel(article: article))
   }
 }
 
-private struct Container: View {
+private struct ContainerView: View {
   @ObservedObject var model: ArticleContentViewModel
   @State var articleContentHeight: CGFloat = .zero
 
@@ -29,7 +29,7 @@ private struct Container: View {
 
   var body: some View {
     ScrollView {
-      Header(article: model.article)
+      HeaderView(article: model.article)
       ArticleContentWebView(content: model.content, webViewHeight: $articleContentHeight).frame(
         height: articleContentHeight
       )
@@ -39,7 +39,7 @@ private struct Container: View {
   }
 }
 
-private struct Header: View {
+private struct HeaderView: View {
   let article: Article
 
   var body: some View {
@@ -49,19 +49,18 @@ private struct Header: View {
         Text(article.title).font(.largeTitle).foregroundColor(.black)
         VStack(alignment: .leading, spacing: 16) {
           HStack(spacing: 32) {
-            Author()
-            Metadata(metadata: article.metaData)
-            CommunityData(communityData: article.communityData)
+            AuthorView(author: article.author)
+            MetadataView(metadata: article.metaData)
+            CommunityDataView(communityData: article.communityData)
           }
-          Tags(tags: ["SwiftUI", "Swift", "JavaScript", "Rust"])
+          TagsView(tags: ["SwiftUI", "Swift", "JavaScript", "Rust"])
         }
       }.padding(.leading, 16)
     }
-    
   }
 }
 
-private struct Metadata: View {
+private struct MetadataView: View {
   let metadata: ArticleMetaData
 
   var body: some View {
@@ -72,7 +71,7 @@ private struct Metadata: View {
   }
 }
 
-private struct CommunityData: View {
+private struct CommunityDataView: View {
   let communityData: ArticleCommunityData
 
   var body: some View {
@@ -83,32 +82,32 @@ private struct CommunityData: View {
   }
 }
 
-private struct Author: View {
+private struct AuthorView: View {
+  let author: Author
   var body: some View {
     HStack {
-      Image("UserImage")
-        .resizable()
+      AsyncImage(url: author.image)
         .frame(width: 40, height: 40)
         .aspectRatio(contentMode: .fit)
         .clipShape(Circle())
-      Text("remshams").fontWeight(.bold).font(.subheadline)
+      Text(author.username).fontWeight(.bold).font(.subheadline)
     }
   }
 }
 
-private struct Tags: View {
+private struct TagsView: View {
   let tags: [String]
 
   var body: some View {
     HStack {
       ForEach(tags, id: \.self) {
-        Tag(tag: $0)
+        TagView(tag: $0)
       }
     }
   }
 }
 
-private struct Tag: View {
+private struct TagView: View {
   let tag: String
   let textColor: Color = [Color.orange, Color.red, Color.purple, Color.blue].randomElement()!
 
