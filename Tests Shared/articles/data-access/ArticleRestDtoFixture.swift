@@ -32,7 +32,9 @@ extension ArticleRestDto {
       reading_time_minutes: readingTimeMinutes,
       comments_count: commentsCount,
       positive_reactions_count: positiveReactionsCount,
-      public_reactions_count: publicReactionsCount
+      public_reactions_count: publicReactionsCount,
+      user: AuthorRestDto.createFixture(),
+      tag_list: ["Swift", "SwiftUI"]
     )
   }
 

@@ -27,6 +27,7 @@ struct Article: Identifiable, Equatable {
   let metaData: ArticleMetaData
   let communityData: ArticleCommunityData
   let author: Author
+  let tags: [String]
   var bookmarked: Bool = false
 }
 
@@ -70,6 +71,7 @@ extension Collection where Element == Article {
       readingTime: 12
     ),
     communityData: ArticleCommunityData(commentsCount: 12, positiveReactionsCount: 18, publicReactionsCount: 18),
-    author: authorForPreview
+    author: authorForPreview,
+    tags: ["Swift", "SwiftUI"]
   )
 #endif

@@ -45,6 +45,8 @@ extension Article {
       description: description,
       metaData: metaData,
       communityData: communityData,
+      author: Author.createFixture(),
+      tags: ["Siwft", "SwiftUI"],
       bookmarked: false
     )
   }

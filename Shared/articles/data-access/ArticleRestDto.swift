@@ -22,6 +22,7 @@ struct ArticleRestDto: Identifiable, Codable {
   let positive_reactions_count: Int
   let public_reactions_count: Int
   let user: AuthorRestDto
+  let tag_list: [String]
   // swiftlint:enable identifier_name
 }
 
@@ -44,7 +45,8 @@ extension ArticleRestDto {
         positiveReactionsCount: positive_reactions_count,
         publicReactionsCount: public_reactions_count
       ),
-      author: user.toAuthor()
+      author: user.toAuthor(),
+      tags: tag_list
     )
   }
 }
