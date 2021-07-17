@@ -53,9 +53,9 @@ private struct HeaderView: View {
             MetadataView(metadata: article.metaData)
             CommunityDataView(communityData: article.communityData)
           }
-          TagsView(tags: ["SwiftUI", "Swift", "JavaScript", "Rust"])
+          TagsView(tags: article.tags)
         }
-      }.padding(.leading, 16)
+      }.padding(.leading, 16).padding(.trailing, 16)
     }
   }
 }
@@ -64,9 +64,15 @@ private struct MetadataView: View {
   let metadata: ArticleMetaData
 
   var body: some View {
-    VStack(alignment: .leading, spacing: 8) {
-      ArticleStatsElement(iconName: "timer", value: "\(metadata.readingTime)", color: .gray)
-      ArticleStatsElement(iconName: "icloud.and.arrow.up", value: metadata.publishedAt ?? Date(), color: .gray)
+    HStack {
+      VStack(spacing: 8) {
+        Image(systemName: "timer").foregroundColor(.gray)
+        Image(systemName: "icloud.and.arrow.up").foregroundColor(.gray)
+      }
+      VStack(alignment: .leading, spacing: 6) {
+        Text("\(metadata.readingTime)")
+        Text(metadata.publishedAt ?? Date(), formatter: DateFormatter.simpleDateFormatter)
+      }
     }
   }
 }
@@ -75,9 +81,15 @@ private struct CommunityDataView: View {
   let communityData: ArticleCommunityData
 
   var body: some View {
-    VStack(spacing: 8) {
-      ArticleStatsElement(iconName: "suit.heart.fill", value: "\(communityData.positiveReactionsCount)", color: .red)
-      ArticleStatsElement(iconName: "text.bubble", value: "\(communityData.commentsCount)", color: .gray)
+    HStack {
+      VStack(spacing: 8) {
+        Image(systemName: "suit.heart.fill").foregroundColor(.red)
+        Image(systemName: "text.bubble").foregroundColor(.gray)
+      }
+      VStack(alignment: .trailing, spacing: 6) {
+        Text("\(communityData.positiveReactionsCount)")
+        Text("\(communityData.commentsCount)")
+      }
     }
   }
 }
@@ -109,13 +121,13 @@ private struct TagsView: View {
 
 private struct TagView: View {
   let tag: String
-  let textColor: Color = [Color.orange, Color.red, Color.purple, Color.blue].randomElement()!
+  let textColor: Color = Color.black.opacity(0.7)
 
   var body: some View {
-    Text("#\(tag)")
-      .foregroundColor(textColor)
+    Text(tag)
       .padding(4)
-      .background(textColor.colorInvert())
+      .foregroundColor(Color.black.opacity(0.5))
+      .background(Color.gray.brightness(0.3))
       .cornerRadius(5)
   }
 }

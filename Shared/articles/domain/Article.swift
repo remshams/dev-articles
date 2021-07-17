@@ -70,7 +70,7 @@ extension Collection where Element == Article {
       publishedAt: Date(),
       readingTime: 12
     ),
-    communityData: ArticleCommunityData(commentsCount: 12, positiveReactionsCount: 18, publicReactionsCount: 18),
+    communityData: ArticleCommunityData(commentsCount: 4, positiveReactionsCount: 18, publicReactionsCount: 18),
     author: authorForPreview,
     tags: ["Swift", "SwiftUI"]
   )

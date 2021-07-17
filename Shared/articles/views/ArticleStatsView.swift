@@ -30,7 +30,20 @@ struct ArticleStatsElement: View {
   var body: some View {
     HStack {
       Image(systemName: iconName).foregroundColor(color)
+      Spacer()
       value
     }
   }
 }
+
+
+#if DEBUG
+struct ArticleStatsElement_Previews: PreviewProvider {
+  static var previews: some View {
+    VStack(alignment: .leading) {
+      ArticleStatsElement(iconName: "suit.heart.fill", value: Text("12"), color: .red)
+      ArticleStatsElement(iconName: "text.bubble", value: Text("4"), color: .gray)
+    }
+  }
+}
+#endif
