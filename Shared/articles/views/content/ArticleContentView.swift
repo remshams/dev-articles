@@ -33,7 +33,9 @@ private struct ContainerView: View {
       ArticleContentWebView(content: model.content, webViewHeight: $articleContentHeight).frame(
         height: articleContentHeight
       )
-    }.onAppear {
+    }
+    .background(Color.white)
+    .onAppear {
       model.loadContent()
     }
   }

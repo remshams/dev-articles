@@ -25,8 +25,19 @@ struct ArticleContentWebView: View {
 }
 
 public class NoScrollWKWebView: WKWebView {
-  public override func scrollWheel(with theEvent: NSEvent) {
-    nextResponder?.scrollWheel(with: theEvent)
+  #if os(macOS)
+    override public func scrollWheel(with theEvent: NSEvent) {
+      nextResponder?.scrollWheel(with: theEvent)
+    }
+
+    func disableScrolling() {}
+
+  #endif
+
+  func disableScrolling() {
+    #if os(iOS)
+      scrollView.isScrollEnabled = false
+    #endif
   }
 }
 
@@ -35,7 +46,7 @@ public class NoScrollWKWebView: WKWebView {
 private struct WebView {
   @Binding var height: CGFloat
   let content: String
-  let wkWebView: WKWebView
+  let wkWebView: NoScrollWKWebView
 
   init(height: Binding<CGFloat>, content: String) {
     _height = height
@@ -93,6 +104,7 @@ extension WebView: ViewRepresentable {
 
   private func makeView(context: Context) -> WKWebView {
     wkWebView.navigationDelegate = context.coordinator
+    wkWebView.disableScrolling()
     addJs(with: MessageHandler(onMessage: determineHeight))
     addHtml()
     return wkWebView
