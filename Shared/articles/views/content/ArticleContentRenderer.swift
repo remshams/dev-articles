@@ -24,6 +24,12 @@ struct ArticleContentWebView: View {
   }
 }
 
+public class NoScrollWKWebView: WKWebView {
+  public override func scrollWheel(with theEvent: NSEvent) {
+    nextResponder?.scrollWheel(with: theEvent)
+  }
+}
+
 // MARK: WebView
 
 private struct WebView {
@@ -34,7 +40,7 @@ private struct WebView {
   init(height: Binding<CGFloat>, content: String) {
     _height = height
     self.content = content
-    wkWebView = WKWebView()
+    wkWebView = NoScrollWKWebView()
   }
 
   func determineHeight() {
