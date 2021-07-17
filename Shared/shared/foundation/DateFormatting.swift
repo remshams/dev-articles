@@ -21,6 +21,15 @@ extension Formatter {
                                                                   .withTimeZone])
 }
 
+extension DateFormatter {
+  static var simpleDateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    dateFormatter.timeStyle = .none
+    return dateFormatter
+  }()
+}
+
 extension String {
   var iso8601Date: Date? {
     Formatter.iso8601withFractionalSeconds.date(from: self)
