@@ -121,7 +121,7 @@ private struct TagsView: View {
 
 private struct TagView: View {
   let tag: String
-  let textColor: Color = Color.black.opacity(0.7)
+  let textColor = Color.black.opacity(0.7)
 
   var body: some View {
     Text(tag)
@@ -142,17 +142,11 @@ private struct CoverImage: View {
   var body: some View {
     Group {
       if let url = url {
-        AsyncImage(url: url)
+        AsyncImage(url: url).aspectRatio(contentMode: .fit)
       } else {
-        NoCoverImage()
+        EmptyView()
       }
     }
-  }
-}
-
-private struct NoCoverImage: View {
-  var body: some View {
-    Rectangle().foregroundColor(.gray)
   }
 }
 

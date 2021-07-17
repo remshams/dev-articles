@@ -61,7 +61,7 @@ extension Collection where Element == Article {
 #if DEBUG
 
   let articleForPreview = Article(
-    title: "Article for Preview",
+    title: "Article for Preview with some long text",
     id: "0",
     description: "Article for Preview",
     metaData: ArticleMetaData(
