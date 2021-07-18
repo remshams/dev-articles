@@ -34,7 +34,11 @@ struct MockArticleUseCaseFactory: ArticlesUseCaseFactory {
     self.addReadingListItemFromArticleUseCase = addReadingListItemFromArticleUseCase
   }
 
-  func makeLoadArticlesUseCase(timeCategory _: TimeCategory) -> LoadArticlesUseCase {
+  func makeLoadArticlesUseCase(timeCategory _: TimeCategory, page: Int, pageSize: Int) -> LoadArticlesUseCase {
+    loadArticlesUseCase
+  }
+  
+  func makeLoadArticlesUseCase(timeCategory _: TimeCategory, page: Int) -> LoadArticlesUseCase {
     loadArticlesUseCase
   }
 

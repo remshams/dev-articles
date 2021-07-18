@@ -11,7 +11,7 @@ enum TimeCategory {
 }
 
 protocol ListArticle {
-  func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError>
+  func list(for timeCategory: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError>
 }
 
 protocol ListArticleContent {

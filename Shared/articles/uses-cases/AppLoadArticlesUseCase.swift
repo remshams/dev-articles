@@ -11,6 +11,8 @@ import Foundation
 struct AppLoadArticlesUseCase {
   let listArticle: ListArticle
   let timeCategory: TimeCategory
+  let page: Int
+  let pageSize: Int
 }
 
 extension AppLoadArticlesUseCase: LoadArticlesUseCase {
@@ -18,7 +20,7 @@ extension AppLoadArticlesUseCase: LoadArticlesUseCase {
   typealias Failure = Never
 
   func start() -> AnyPublisher<Success, Failure> {
-    listArticle.list(for: timeCategory)
+    listArticle.list(for: timeCategory, page: page, pageSize: pageSize)
       .replaceError(with: [])
       .eraseToAnyPublisher()
   }

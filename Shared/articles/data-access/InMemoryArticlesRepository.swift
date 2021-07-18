@@ -10,7 +10,7 @@ class InMemoryArticlesRepository: InMemoryRepository<Article>, ListArticle {
     self.init(articlesById: articles.toDictionaryById())
   }
 
-  func list(for _: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for _: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
     super.list()
   }
 

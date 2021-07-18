@@ -13,6 +13,7 @@ protocol LoadArticlesUseCase {
 }
 
 protocol ArticlesUseCaseFactory {
-  func makeLoadArticlesUseCase(timeCategory: TimeCategory) -> LoadArticlesUseCase
+  func makeLoadArticlesUseCase(timeCategory: TimeCategory, page: Int, pageSize: Int) -> LoadArticlesUseCase
+  func makeLoadArticlesUseCase(timeCategory: TimeCategory, page: Int) -> LoadArticlesUseCase
   func makeAddReadlingListItemFromArticleUseCase(article: Article) -> AddReadingListItemFromArticleUseCase
 }
