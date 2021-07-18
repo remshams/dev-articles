@@ -28,8 +28,11 @@ class ArticlesContainer: ObservableObject {
 }
 
 extension ArticlesContainer: ArticlesUseCaseFactory {
-  func makeLoadArticlesUseCase(timeCategory: TimeCategory) -> LoadArticlesUseCase {
-    AppLoadArticlesUseCase(listArticle: listArticle, timeCategory: timeCategory)
+  func makeLoadArticlesUseCase(timeCategory: TimeCategory, page: Int, pageSize: Int) -> LoadArticlesUseCase {
+    AppLoadArticlesUseCase(listArticle: listArticle, timeCategory: timeCategory, page: page, pageSize: pageSize)
+  }
+  func makeLoadArticlesUseCase(timeCategory: TimeCategory, page: Int) -> LoadArticlesUseCase {
+    makeLoadArticlesUseCase(timeCategory: timeCategory, page: page, pageSize: 10)
   }
 
   func makeAddReadlingListItemFromArticleUseCase(article: Article) -> AddReadingListItemFromArticleUseCase {

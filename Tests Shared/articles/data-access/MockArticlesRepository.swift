@@ -12,7 +12,7 @@ import Foundation
 struct FailingListArticle: ListArticle {
   let listError: RepositoryError
 
-  func list(for _: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for _: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
     Fail<[Article], RepositoryError>(error: listError).eraseToAnyPublisher()
   }
 }
@@ -20,7 +20,7 @@ struct FailingListArticle: ListArticle {
 struct InMemoryListArticle: ListArticle {
   let articles: [Article]
 
-  func list(for _: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for _: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
     Just(articles).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
 }

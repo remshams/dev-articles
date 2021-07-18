@@ -4,7 +4,7 @@ import Foundation
 // MARK: Protocols
 
 protocol ArticlesRestAdapter {
-  func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError>
+  func list(for timeCategory: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError>
 }
 
 // MARK: Models

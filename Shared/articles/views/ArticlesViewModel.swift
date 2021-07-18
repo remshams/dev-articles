@@ -30,7 +30,7 @@ class ArticlesViewModel: ObservableObject {
 
   private func setupLoadArticles() {
     $selectedTimeCategory.flatMap { timeCategory in
-      self.articlesUseCaseFactory.makeLoadArticlesUseCase(timeCategory: timeCategory).start()
+      self.articlesUseCaseFactory.makeLoadArticlesUseCase(timeCategory: timeCategory, page: 1).start()
     }
     .assign(to: \.articles, on: self)
     .store(in: &cancellables)

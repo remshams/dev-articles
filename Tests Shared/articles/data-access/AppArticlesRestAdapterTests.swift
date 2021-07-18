@@ -24,7 +24,7 @@ class AppArticlesRestAdapterTests: XCTestCase {
   }
 
   func test_list_ShouldEmitListOfArticlesForTimeCategory() {
-    adapter.list(for: .week)
+    adapter.list(for: .week, page: 1, pageSize: 10)
       .sink { _ in } receiveValue: {
         XCTAssertEqual($0, self.articles)
       }

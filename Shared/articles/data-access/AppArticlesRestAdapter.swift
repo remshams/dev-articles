@@ -11,7 +11,7 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
     self.httpGet = httpGet
   }
 
-  func list(for timeCategory: TimeCategory) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for timeCategory: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
     httpGet.get(for: buildUrl(timeCategory: timeCategory))
       .decode()
       .toArticles()
