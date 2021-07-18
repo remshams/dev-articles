@@ -24,7 +24,7 @@ extension Formatter {
 extension DateFormatter {
   static var simpleDateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = .medium
+    dateFormatter.dateStyle = .short
     dateFormatter.timeStyle = .none
     return dateFormatter
   }()
