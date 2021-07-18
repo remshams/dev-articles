@@ -30,7 +30,6 @@ public class NoScrollWKWebView: WKWebView {
       nextResponder?.scrollWheel(with: theEvent)
     }
 
-    func disableScrolling() {}
 
   #endif
 
@@ -45,6 +44,7 @@ public class NoScrollWKWebView: WKWebView {
 
 private struct WebView {
   @Binding var height: CGFloat
+  @Environment(\.colorScheme) var colorScheme
   let content: String
   let wkWebView: NoScrollWKWebView
 
@@ -111,6 +111,8 @@ extension WebView: ViewRepresentable {
   }
 
   private func addHtml() {
+    let backgroundColor = colorScheme == .dark ? "black" : "white"
+    let textColor = colorScheme == .dark ? "white" : "black"
     // swiftlint:disable line_length
     let htmlStart = """
       <HTML>
@@ -120,7 +122,7 @@ extension WebView: ViewRepresentable {
           <link rel="stylesheet" media="all" href="https://dev.to/assets/minimal-0b841ab3a60bd0e9f320c9b504d43494a1fd43a65a9cf0bf275d5d01bf35d465.css" id="secondary-minimal-stylesheet">
           <link rel="stylesheet" media="all" href="https://dev.to/assets/views-f79722b9dc450af7606743a3b1940be97bf007ce4b05ff81a51b35c25a74ab9f.css" id="secondary-views-stylesheet">
           <link rel="stylesheet" media="all" href="https://dev.to/assets/crayons-107b6803f42f9ecded114635c0f6941a825991e390716185c6764717f2e3dcb8.css" id="secondary-crayons-stylesheet">
-          <div class="crayons-article__main" style="background-color: white">
+          <div class="crayons-article__main" style="background-color: \(backgroundColor); color: \(textColor)">
             <div class="crayons-article__body text-styles spec__body">
     """
     let htmlEnd = """

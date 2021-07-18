@@ -34,7 +34,6 @@ private struct ContainerView: View {
         height: articleContentHeight
       )
     }
-    .background(Color.white)
     .onAppear {
       model.loadContent()
     }
@@ -48,7 +47,7 @@ private struct HeaderView: View {
     VStack(alignment: .leading) {
       CoverImage(url: article.metaData.coverImageUrl)
       VStack(alignment: .leading) {
-        Text(article.title).font(.largeTitle).foregroundColor(.black)
+        Text(article.title).font(.largeTitle)
         VStack(alignment: .leading, spacing: 16) {
           HStack(spacing: 32) {
             AuthorView(author: article.author)
@@ -122,22 +121,19 @@ private struct TagsView: View {
 }
 
 private struct TagView: View {
+  @Environment(\.colorScheme) var colorScheme
   let tag: String
   let textColor = Color.black.opacity(0.7)
 
   var body: some View {
     Text(tag)
       .padding(4)
-      .foregroundColor(Color.black.opacity(0.5))
-      .background(Color.gray.brightness(0.3))
+      .foregroundColor(colorScheme == .light ? Color.black.opacity(0.5) : Color.white.opacity(0.5))
+      .background(colorScheme == .light ? Color.gray.brightness(0.3) : Color.black.brightness(0.5))
       .cornerRadius(5)
   }
 }
 
-/*
- * TODO Placeholder will image is loading
- * Image ScaleToFit
- */
 private struct CoverImage: View {
   let url: URL?
 
@@ -157,7 +153,7 @@ private struct CoverImage: View {
     static var previews: some View {
       ArticleContentView(article: articleForPreview).environmentObject(
         articleContainerForPreview
-      )
+      ).preferredColorScheme(.dark)
     }
   }
 #endif
