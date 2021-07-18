@@ -47,7 +47,6 @@ private struct HeaderView: View {
     VStack(alignment: .leading) {
       CoverImage(url: article.metaData.coverImageUrl)
       VStack(alignment: .leading) {
-        Text(article.title).font(.largeTitle)
         VStack(alignment: .leading, spacing: 16) {
           HStack(spacing: 32) {
             AuthorView(author: article.author)
