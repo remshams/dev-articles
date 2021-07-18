@@ -29,7 +29,6 @@ public class NoScrollWKWebView: WKWebView {
     override public func scrollWheel(with theEvent: NSEvent) {
       nextResponder?.scrollWheel(with: theEvent)
     }
-
   #endif
 
   func disableScrolling() {
@@ -60,7 +59,7 @@ public class NavigationHandler: NSObject, WKNavigationDelegate {
       return
     }
 
-    UIApplication.shared.open(url)
+    Application.openLink(url: url)
     decisionHandler(.cancel)
   }
 }
@@ -205,9 +204,3 @@ private class MessageHandler: NSObject, WKScriptMessageHandler {
     }
   }
 }
-
-#if os(macOS)
-  public typealias ViewRepresentable = NSViewRepresentable
-#elseif os(iOS)
-  public typealias ViewRepresentable = UIViewRepresentable
-#endif
