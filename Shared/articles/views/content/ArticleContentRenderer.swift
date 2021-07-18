@@ -30,13 +30,38 @@ public class NoScrollWKWebView: WKWebView {
       nextResponder?.scrollWheel(with: theEvent)
     }
 
-
   #endif
 
   func disableScrolling() {
     #if os(iOS)
       scrollView.isScrollEnabled = false
     #endif
+  }
+}
+
+/**
+ Handles navigations to embedded links
+ Cannot be implemented on Coordinator as it is an internal class.
+ The callback is not called in that case.
+ */
+public class NavigationHandler: NSObject, WKNavigationDelegate {
+  public func webView(
+    _: WKWebView,
+    decidePolicyFor navigationAction: WKNavigationAction,
+    decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+  ) {
+    guard navigationAction.navigationType == .linkActivated,
+          let url = navigationAction.request.url,
+          let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+          let scheme = components.scheme,
+          scheme == "http" || scheme == "https"
+    else {
+      decisionHandler(.allow)
+      return
+    }
+
+    UIApplication.shared.open(url)
+    decisionHandler(.cancel)
   }
 }
 
@@ -47,6 +72,11 @@ private struct WebView {
   @Environment(\.colorScheme) var colorScheme
   let content: String
   let wkWebView: NoScrollWKWebView
+  /**
+   NavigationHandler is a defined as class property since the navigationHandlerDelegate is weak in WkWebView.
+   This would lead to the handler being immediately disposed.
+   */
+  let navigationHandler = NavigationHandler()
 
   init(height: Binding<CGFloat>, content: String) {
     _height = height
@@ -68,7 +98,7 @@ private struct WebView {
 // MARK: Coordinator
 
 extension WebView {
-  class Coordinator: NSObject, WKNavigationDelegate {
+  class Coordinator: NSObject {
     var parent: WebView
 
     init(_ parent: WebView) {
@@ -102,8 +132,8 @@ extension WebView: ViewRepresentable {
 
   func updateNSView(_: WKWebView, context _: Context) {}
 
-  private func makeView(context: Context) -> WKWebView {
-    wkWebView.navigationDelegate = context.coordinator
+  private func makeView(context _: Context) -> WKWebView {
+    wkWebView.navigationDelegate = navigationHandler
     wkWebView.disableScrolling()
     addJs(with: MessageHandler(onMessage: determineHeight))
     addHtml()
