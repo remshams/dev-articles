@@ -33,10 +33,8 @@ private struct ContainerView: View {
       ArticleContentWebView(content: model.content, webViewHeight: $articleContentHeight).frame(
         height: articleContentHeight
       )
-      /**
-       Next the making the content stand out, the leading padding enables
-       dragging the scrollbar on the right on macOS.
-       */
+      // Next the making the content stand out, the leading padding enables
+      // dragging the scrollbar on the right on macOS.
       .padding(.trailing, 8)
       .padding(.leading, 8)
     }
@@ -50,19 +48,16 @@ private struct HeaderView: View {
   let article: Article
 
   var body: some View {
-    VStack(alignment: .leading) {
-      CoverImage(url: article.metaData.coverImageUrl)
-      VStack(alignment: .leading) {
-        VStack(alignment: .leading, spacing: 16) {
-          HStack(spacing: 32) {
-            AuthorView(author: article.author)
-            MetadataView(metadata: article.metaData)
-            CommunityDataView(communityData: article.communityData)
-          }
-          TagsView(tags: article.tags)
-        }
-      }.padding(.leading, 16).padding(.trailing, 16)
-    }
+    CoverImage(url: article.metaData.coverImageUrl)
+    VStack(alignment: .leading, spacing: 16) {
+      HStack(spacing: 32) {
+        AuthorView(author: article.author)
+        MetadataView(metadata: article.metaData)
+        CommunityDataView(communityData: article.communityData)
+        Spacer()
+      }
+      TagsView(tags: article.tags)
+    }.padding(.leading, 16)
   }
 }
 
@@ -143,12 +138,12 @@ private struct CoverImage: View {
   let url: URL?
 
   var body: some View {
-    Group {
-      if let url = url {
-        AsyncImage(url: url).aspectRatio(contentMode: .fit)
-      } else {
-        EmptyView()
-      }
+    if let url = url {
+      AsyncImage(url: url).aspectRatio(contentMode: .fit)
+    } else {
+      // Empty rectangle for having the same paddings as when an
+      // image is returned.
+      Rectangle().frame(width: 0, height: 0)
     }
   }
 }
