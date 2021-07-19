@@ -38,32 +38,6 @@ public class NoScrollWKWebView: WKWebView {
   }
 }
 
-/**
- Handles navigations to embedded links
- Cannot be implemented on Coordinator as it is an internal class.
- The callback is not called in that case.
- */
-public class NavigationHandler: NSObject, WKNavigationDelegate {
-  public func webView(
-    _: WKWebView,
-    decidePolicyFor navigationAction: WKNavigationAction,
-    decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
-  ) {
-    guard navigationAction.navigationType == .linkActivated,
-          let url = navigationAction.request.url,
-          let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-          let scheme = components.scheme,
-          scheme == "http" || scheme == "https"
-    else {
-      decisionHandler(.allow)
-      return
-    }
-
-    Application.openLink(url: url)
-    decisionHandler(.cancel)
-  }
-}
-
 // MARK: WebView
 
 private struct WebView {
@@ -71,11 +45,6 @@ private struct WebView {
   @Environment(\.colorScheme) var colorScheme
   let content: String
   let wkWebView: NoScrollWKWebView
-  /**
-   NavigationHandler is a defined as class property since the navigationHandlerDelegate is weak in WkWebView.
-   This would lead to the handler being immediately disposed.
-   */
-  let navigationHandler = NavigationHandler()
 
   init(height: Binding<CGFloat>, content: String) {
     _height = height
@@ -97,20 +66,44 @@ private struct WebView {
 // MARK: Coordinator
 
 extension WebView {
-  class Coordinator: NSObject {
-    var parent: WebView
+  /**
+   The navigationHandler is a weak property on WKWebView. Creating and assigning the Delegate when the WKWebView
+   is created would immediately dispose it. The internal class avoids having to store the Delegate
+   as a property on WebView.
+   */
+  class Coordinator: NSObject, WKNavigationDelegate {
+    let onHeightChange: () -> Void
 
-    init(_ parent: WebView) {
-      self.parent = parent
+    init(onHeightChange: @escaping () -> Void) {
+      self.onHeightChange = onHeightChange
     }
 
     func webView(_: WKWebView, didFinish _: WKNavigation!) {
-      parent.determineHeight()
+      onHeightChange()
+    }
+
+    public func webView(
+      _: WKWebView,
+      decidePolicyFor navigationAction: WKNavigationAction,
+      decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+    ) {
+      guard navigationAction.navigationType == .linkActivated,
+            let url = navigationAction.request.url,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+            let scheme = components.scheme,
+            scheme == "http" || scheme == "https"
+      else {
+        decisionHandler(.allow)
+        return
+      }
+
+      Application.openLink(url: url)
+      decisionHandler(.cancel)
     }
   }
 
   func makeCoordinator() -> Coordinator {
-    Coordinator(self)
+    Coordinator(onHeightChange: determineHeight)
   }
 }
 
@@ -131,8 +124,8 @@ extension WebView: ViewRepresentable {
 
   func updateNSView(_: WKWebView, context _: Context) {}
 
-  private func makeView(context _: Context) -> WKWebView {
-    wkWebView.navigationDelegate = navigationHandler
+  private func makeView(context: Context) -> WKWebView {
+    wkWebView.navigationDelegate = context.coordinator
     wkWebView.disableScrolling()
     addJs(with: MessageHandler(onMessage: determineHeight))
     addHtml()
@@ -170,7 +163,7 @@ extension WebView: ViewRepresentable {
           const handler = setInterval(() => {
             if (
               Array.from(document.querySelectorAll('img')).every(
-                (img) => img.width !== 0 && img.height !== 0
+                (img) => img.width !== undefined && img.height !== undefined && img.width > 0 && img.height > 0
               )
             ) {
               webkit.messageHandlers.\(WebView.hasLoadedScriptName).postMessage(true);
