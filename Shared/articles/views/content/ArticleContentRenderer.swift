@@ -29,6 +29,7 @@ public class NoScrollWKWebView: WKWebView {
     override public func scrollWheel(with theEvent: NSEvent) {
       nextResponder?.scrollWheel(with: theEvent)
     }
+
   #endif
 
   func disableScrolling() {

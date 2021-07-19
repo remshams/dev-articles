@@ -33,6 +33,12 @@ private struct ContainerView: View {
       ArticleContentWebView(content: model.content, webViewHeight: $articleContentHeight).frame(
         height: articleContentHeight
       )
+      /**
+       Next the making the content stand out, the leading padding enables
+       dragging the scrollbar on the right on macOS.
+       */
+      .padding(.trailing, 8)
+      .padding(.leading, 8)
     }
     .onAppear {
       model.loadContent()
