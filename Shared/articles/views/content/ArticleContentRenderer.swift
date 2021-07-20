@@ -12,14 +12,22 @@ import WebKit
 struct ArticleContentWebView: View {
   let content: ArticleContent
   @Binding var webViewHeight: CGFloat
+  @Environment(\.colorScheme) var colorScheme
 
   var body: some View {
-    Group {
-      if !content.isEmpty {
-        WebView(height: $webViewHeight, content: content.html)
+    if !content.isEmpty {
+      /**
+       Currently a workaround to trigger a reload of the html content when the color scheme changes.
+       That ways to rendered html aligns with the selected color scheme on change
+       */
+      if colorScheme == .light {
+        WebView(height: $webViewHeight, content: content.html, colorScheme: .light)
       } else {
-        Text("No Content")
+        WebView(height: $webViewHeight, content: content.html, colorScheme: .dark)
       }
+
+    } else {
+      Text("No Content")
     }
   }
 }
@@ -43,13 +51,14 @@ public class NoScrollWKWebView: WKWebView {
 
 private struct WebView {
   @Binding var height: CGFloat
-  @Environment(\.colorScheme) var colorScheme
+  let colorScheme: ColorScheme
   let content: String
   let wkWebView: NoScrollWKWebView
 
-  init(height: Binding<CGFloat>, content: String) {
+  init(height: Binding<CGFloat>, content: String, colorScheme: ColorScheme) {
     _height = height
     self.content = content
+    self.colorScheme = colorScheme
     wkWebView = NoScrollWKWebView()
   }
 
