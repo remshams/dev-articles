@@ -35,8 +35,8 @@ private struct ContainerView: View {
       )
       // Next the making the content stand out, the leading padding enables
       // dragging the scrollbar on the right on macOS.
-      .padding(.trailing, 8)
-      .padding(.leading, 8)
+      .padding(.trailing, .small)
+      .padding(.leading, .small)
     }
     .onAppear {
       model.loadContent()
@@ -49,15 +49,15 @@ private struct HeaderView: View {
 
   var body: some View {
     CoverImage(url: article.metaData.coverImageUrl)
-    VStack(alignment: .leading, spacing: 16) {
-      HStack(spacing: 32) {
+    VStack(alignment: .leading, spacing: .medium) {
+      HStack(spacing: .large) {
         AuthorView(author: article.author)
         MetadataView(metadata: article.metaData)
         CommunityDataView(communityData: article.communityData)
         Spacer()
       }
       TagsView(tags: article.tags)
-    }.padding(.leading, 16)
+    }.padding(.leading, .medium)
   }
 }
 
@@ -66,11 +66,11 @@ private struct MetadataView: View {
 
   var body: some View {
     HStack {
-      VStack(spacing: 8) {
+      VStack(spacing: .small) {
         Image(systemName: "timer").foregroundColor(.gray)
         Image(systemName: "icloud.and.arrow.up").foregroundColor(.gray)
       }
-      VStack(alignment: .leading, spacing: 6) {
+      VStack(alignment: .leading, spacing: .extraSmall) {
         Text("\(metadata.readingTime)")
         Text(metadata.publishedAt ?? Date(), formatter: DateFormatter.simpleDateFormatter)
       }
@@ -83,11 +83,11 @@ private struct CommunityDataView: View {
 
   var body: some View {
     HStack {
-      VStack(spacing: 8) {
+      VStack(spacing: .small) {
         Image(systemName: "suit.heart.fill").foregroundColor(.red)
         Image(systemName: "text.bubble").foregroundColor(.gray)
       }
-      VStack(alignment: .trailing, spacing: 6) {
+      VStack(alignment: .trailing, spacing: .extraSmall) {
         Text("\(communityData.positiveReactionsCount)")
         Text("\(communityData.commentsCount)")
       }
