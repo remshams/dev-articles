@@ -11,6 +11,7 @@
 		4B03E6D625FCEAFD000A6F7A /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */; };
 		4B0E03AA26A73E34005C7D4E /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E03A926A73E34005C7D4E /* Spacing.swift */; };
 		4B0E03AB26A73E34005C7D4E /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E03A926A73E34005C7D4E /* Spacing.swift */; };
+		4B0E03AE26A89822005C7D4E /* Tests macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E03AD26A89822005C7D4E /* Tests macOS.swift */; };
 		4B1F3891265A8B7000D96B71 /* AppAddReadingListItemFromArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F3890265A8B7000D96B71 /* AppAddReadingListItemFromArticleUseCase.swift */; };
 		4B1F3895265A8D8100D96B71 /* AppAddReadingListItemFromArticleUserCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F3894265A8D8100D96B71 /* AppAddReadingListItemFromArticleUserCase.swift */; };
 		4B1F389C265ABA2C00D96B71 /* ReadingListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F389B265ABA2C00D96B71 /* ReadingListUseCase.swift */; };
@@ -177,6 +178,7 @@
 /* Begin PBXFileReference section */
 		4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		4B0E03A926A73E34005C7D4E /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		4B0E03AD26A89822005C7D4E /* Tests macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tests macOS.swift"; sourceTree = "<group>"; };
 		4B1F3890265A8B7000D96B71 /* AppAddReadingListItemFromArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAddReadingListItemFromArticleUseCase.swift; sourceTree = "<group>"; };
 		4B1F3894265A8D8100D96B71 /* AppAddReadingListItemFromArticleUserCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAddReadingListItemFromArticleUserCase.swift; sourceTree = "<group>"; };
 		4B1F389B265ABA2C00D96B71 /* ReadingListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListUseCase.swift; sourceTree = "<group>"; };
@@ -760,6 +762,7 @@
 			isa = PBXGroup;
 			children = (
 				4BC96BF725CF0EE90081B8FF /* Info.plist */,
+				4B0E03AD26A89822005C7D4E /* Tests macOS.swift */,
 			);
 			path = "Tests macOS";
 			sourceTree = "<group>";
@@ -916,6 +919,7 @@
 					};
 					4BC96BF025CF0EE90081B8FF = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1250;
 						TestTargetID = 4BC96BDD25CF0EE90081B8FF;
 					};
 				};
@@ -1176,6 +1180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0E03AE26A89822005C7D4E /* Tests macOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1335,6 +1340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6SQ7R2QP39;
@@ -1348,6 +1354,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.remshams.Tests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "dev-articles (macOS)";
 			};
@@ -1692,6 +1699,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6SQ7R2QP39;
@@ -1705,6 +1713,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.remshams.Tests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "dev-articles (macOS)";
 			};
@@ -1714,6 +1723,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6SQ7R2QP39;

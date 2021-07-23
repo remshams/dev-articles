@@ -3,6 +3,11 @@ import Foundation
 import OSLog
 
 let articlesPath = "/articles"
+enum ArticleQueryParam: String {
+  case timeCategory = "top"
+  case page = "page"
+  case pageSize = "per_page"
+}
 
 struct AppArticlesRestAdapter: ArticlesRestAdapter {
   let httpGet: HttpGet
@@ -12,7 +17,7 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
   }
 
   func list(for timeCategory: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
-    httpGet.get(for: buildUrl(timeCategory: timeCategory))
+    httpGet.get(for: buildUrl(timeCategory: timeCategory, page: page, pageSize: pageSize))
       .decode()
       .toArticles()
       .mapError { error in
@@ -22,22 +27,13 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
       .eraseToAnyPublisher()
   }
 
-  private func buildUrl(timeCategory: TimeCategory) -> URL {
-    var topParamValue: Int?
-    switch timeCategory {
-    case .day:
-      topParamValue = 1
-    case .week:
-      topParamValue = 7
-    case .month:
-      topParamValue = 30
-    case .year:
-      topParamValue = 356
-    }
-    if let topParamValue = topParamValue {
-      return URL(string: devCommunityUrl + articlesPath + "?top=\(topParamValue)")!
-    } else {
-      return URL(string: devCommunityUrl + articlesPath)!
-    }
+  private func buildUrl(timeCategory: TimeCategory, page: Int, pageSize: Int) -> URL {
+    var articlesUrlComponents = URLComponents(string: devCommunityUrl + articlesPath)!
+    articlesUrlComponents.queryItems = [
+      URLQueryItem(name: ArticleQueryParam.timeCategory.rawValue, value: String(TimeCategory.week.rawValue)),
+      URLQueryItem(name: ArticleQueryParam.page.rawValue, value: String(page)),
+      URLQueryItem(name: ArticleQueryParam.pageSize.rawValue, value: String(pageSize))
+    ]
+    return articlesUrlComponents.url!
   }
 }

@@ -7,6 +7,8 @@ class AppArticlesRestAdapterTests: XCTestCase {
   var articles: [Article]!
   let urlCalled = CurrentValueSubject<[URL], Never>([])
   let articleUrl = devCommunityUrl + articlesPath
+  let page = 1
+  let pageSize = 10
   var client: MockHttpGet<[ArticleRestDto]>!
   var adapter: AppArticlesRestAdapter!
   var cancellables: Set<AnyCancellable>!
@@ -24,6 +26,13 @@ class AppArticlesRestAdapterTests: XCTestCase {
   }
 
   func test_list_ShouldEmitListOfArticlesForTimeCategory() {
+    var articlesUrlComponents = URLComponents(string: articleUrl)!
+    articlesUrlComponents.queryItems = [
+      URLQueryItem(name: ArticleQueryParam.timeCategory.rawValue, value: String(TimeCategory.week.rawValue)),
+      URLQueryItem(name: ArticleQueryParam.page.rawValue, value: String(page)),
+      URLQueryItem(name: ArticleQueryParam.pageSize.rawValue, value: String(pageSize))
+    ]
+
     adapter.list(for: .week, page: 1, pageSize: 10)
       .sink { _ in } receiveValue: {
         XCTAssertEqual($0, self.articles)
@@ -32,7 +41,12 @@ class AppArticlesRestAdapterTests: XCTestCase {
 
     client.urlCalledSubject
       .sink { _ in } receiveValue: {
-        XCTAssertEqual($0, [URL(string: self.articleUrl + "?top=7")!])
+        XCTAssertEqual(
+          $0,
+          [
+            articlesUrlComponents.url!
+          ]
+        )
       }
       .store(in: &cancellables)
   }
