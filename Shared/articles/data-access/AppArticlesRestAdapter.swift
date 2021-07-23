@@ -30,7 +30,7 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
   private func buildUrl(timeCategory: TimeCategory, page: Int, pageSize: Int) -> URL {
     var articlesUrlComponents = URLComponents(string: devCommunityUrl + articlesPath)!
     articlesUrlComponents.queryItems = [
-      URLQueryItem(name: ArticleQueryParam.timeCategory.rawValue, value: String(TimeCategory.week.rawValue)),
+      URLQueryItem(name: ArticleQueryParam.timeCategory.rawValue, value: String(timeCategory.rawValue)),
       URLQueryItem(name: ArticleQueryParam.page.rawValue, value: String(page)),
       URLQueryItem(name: ArticleQueryParam.pageSize.rawValue, value: String(pageSize))
     ]

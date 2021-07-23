@@ -35,6 +35,9 @@ struct ArticlesList: View {
         }
         .buttonStyle(BorderlessButtonStyle())
         .listStyle(InsetListStyle())
+        Button {
+          model.loadArticles()
+        } label: { Text("Load more articles") }
       }
       .padding(.top, 8)
       .toolbar {
