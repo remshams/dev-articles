@@ -3,11 +3,11 @@ import Foundation
 
 typealias ArticleId = String
 
-enum TimeCategory {
-  case day
-  case week
-  case month
-  case year
+enum TimeCategory: Int {
+  case day = 1
+  case week = 7
+  case month = 30
+  case year = 356
 }
 
 protocol ListArticle {

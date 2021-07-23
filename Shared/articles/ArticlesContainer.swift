@@ -32,7 +32,7 @@ extension ArticlesContainer: ArticlesUseCaseFactory {
     AppLoadArticlesUseCase(listArticle: listArticle, timeCategory: timeCategory, page: page, pageSize: pageSize)
   }
   func makeLoadArticlesUseCase(timeCategory: TimeCategory, page: Int) -> LoadArticlesUseCase {
-    makeLoadArticlesUseCase(timeCategory: timeCategory, page: page, pageSize: 10)
+    makeLoadArticlesUseCase(timeCategory: timeCategory, page: page, pageSize: 20)
   }
 
   func makeAddReadlingListItemFromArticleUseCase(article: Article) -> AddReadingListItemFromArticleUseCase {
