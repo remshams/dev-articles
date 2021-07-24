@@ -36,7 +36,7 @@ struct ArticlesList: View {
         .buttonStyle(BorderlessButtonStyle())
         .listStyle(InsetListStyle())
         Button {
-          model.loadArticles()
+          model.nextArticles()
         } label: { Text("Load more articles") }
       }
       .padding(.top, 8)
@@ -55,7 +55,7 @@ struct ArticlesList: View {
       NoAritcles()
     }
     .onAppear {
-      model.loadArticles()
+      model.nextArticles()
     }
     .environmentObject(model)
   }

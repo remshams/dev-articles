@@ -6,7 +6,7 @@ typealias ToggleBookmark = (Article) -> Void
 class ArticlesViewModel: ObservableObject {
   private let articlesUseCaseFactory: ArticlesUseCaseFactory
   private var cancellables: Set<AnyCancellable> = []
-  private let loadArticlesSubject = PassthroughSubject<Int, Never>()
+  private let loadArticlesSubject = PassthroughSubject<(TimeCategory, Int), Never>()
   private let toggleBookmarkSubject = PassthroughSubject<Article, Never>()
   private let readingListItemAdded = PassthroughSubject<ReadingListItem, Never>()
 
@@ -18,7 +18,8 @@ class ArticlesViewModel: ObservableObject {
     didSet {
       currentPage = 1
       articles = []
-      loadArticlesSubject.send(currentPage)
+      loadArticlesSubject.send((selectedTimeCategory, currentPage))
+      currentPage += 1
     }
   }
 
@@ -31,13 +32,13 @@ class ArticlesViewModel: ObservableObject {
     setupBookmarkArticle()
   }
 
-  func loadArticles() {
-    loadArticlesSubject.send(currentPage)
+  func nextArticles() {
+    loadArticlesSubject.send((selectedTimeCategory, currentPage))
     currentPage += 1
   }
 
   private func setupLoadArticles() {
-    loadArticlesSubject.combineLatest($selectedTimeCategory).flatMap { currentPage, timeCategory in
+    loadArticlesSubject.flatMap { (timeCategory, currentPage) in
       self.articlesUseCaseFactory.makeLoadArticlesUseCase(timeCategory: timeCategory, page: currentPage)
         .start()
     }
