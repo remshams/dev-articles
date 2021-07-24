@@ -43,6 +43,8 @@
 		4B26884E262C377A006C4C5B /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B26884C262C377A006C4C5B /* RepositoryError.swift */; };
 		4B27123426AC768F007BC48C /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27123326AC7689007BC48C /* AppView.swift */; };
 		4B27123926AC77F8007BC48C /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27123826AC77F8007BC48C /* AppView.swift */; };
+		4B27123D26AC7D89007BC48C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B27124026AC7D89007BC48C /* Localizable.strings */; };
+		4B27123E26AC7D89007BC48C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B27124026AC7D89007BC48C /* Localizable.strings */; };
 		4B3DB051260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */; };
 		4B3DB052260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */; };
 		4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB05D26065B0A003B5CD6 /* Persistence.swift */; };
@@ -200,6 +202,8 @@
 		4B26884C262C377A006C4C5B /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 		4B27123326AC7689007BC48C /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		4B27123826AC77F8007BC48C /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		4B27123F26AC7D89007BC48C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B27124126AC7D8E007BC48C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4B3DB050260659FE003B5CD6 /* DevArticles.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DevArticles.xcdatamodel; sourceTree = "<group>"; };
 		4B3DB05D26065B0A003B5CD6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		4B403F08267E355400B8DDF9 /* ArticleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContentView.swift; sourceTree = "<group>"; };
@@ -693,6 +697,7 @@
 		4BC96BC925CF0EE80081B8FF = {
 			isa = PBXGroup;
 			children = (
+				4B27124026AC7D89007BC48C /* Localizable.strings */,
 				4BC96BCE25CF0EE80081B8FF /* Shared */,
 				4BC96BD825CF0EE90081B8FF /* iOS */,
 				4BC96BDF25CF0EE90081B8FF /* macOS */,
@@ -933,6 +938,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 4BC96BC925CF0EE80081B8FF;
 			packageReferences = (
@@ -963,6 +969,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC96BFC25CF0EE90081B8FF /* Assets.xcassets in Resources */,
+				4B27123D26AC7D89007BC48C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,6 +978,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC96BFD25CF0EE90081B8FF /* Assets.xcassets in Resources */,
+				4B27123E26AC7D89007BC48C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1205,6 +1213,18 @@
 			targetProxy = 4BC96BF225CF0EE90081B8FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4B27124026AC7D89007BC48C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B27123F26AC7D89007BC48C /* en */,
+				4B27124126AC7D8E007BC48C /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4B2627CE262CA27E006FD5C9 /* Test */ = {
