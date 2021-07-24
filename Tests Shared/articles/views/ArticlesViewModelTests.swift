@@ -29,7 +29,28 @@ class ArticleViewModelTests: XCTestCase {
     cancellables = []
   }
 
-  func testArticles_ShouldEmitOnInit() {
+  func testArticles_ShouldEmitEmptyListOnInit() {
+    XCTAssertEqual(viewModel.articles, [])
+  }
+
+  func test_Articles_ShouldLoadInitialPage() {
+    viewModel.nextArticles()
+
+    XCTAssertEqual(viewModel.articles, articles)
+  }
+
+  func test_Articles_ShouldLoadNextPage() {
+    viewModel.nextArticles()
+    viewModel.nextArticles()
+
+    XCTAssertEqual(viewModel.articles, articles + articles)
+  }
+
+  func test_Articles_ShouldLoadInitialPageWhenTimeCategoryChanges() {
+    viewModel.nextArticles()
+    viewModel.nextArticles()
+    viewModel.selectedTimeCategory = .year
+
     XCTAssertEqual(viewModel.articles, articles)
   }
 
