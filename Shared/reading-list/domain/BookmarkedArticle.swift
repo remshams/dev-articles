@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+struct BookmarkedArticle: Identifiable, Equatable {
+  let savedAt: Date
+  let article: Article
+  var id: String {
+    article.id
+  }
+}
+
+#if DEBUG
+
+  let bookmarkedArticleForPreview = BookmarkedArticle(savedAt: Date(), article: articleForPreview)
+#endif

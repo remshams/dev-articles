@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import SwiftUI
+
+class ReadingListViewModel: ObservableObject {
+  @Published var bookmarkedArticles: [BookmarkedArticle] = [bookmarkedArticleForPreview]
+}

@@ -45,6 +45,12 @@
 		4B27123926AC77F8007BC48C /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27123826AC77F8007BC48C /* AppView.swift */; };
 		4B27123D26AC7D89007BC48C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B27124026AC7D89007BC48C /* Localizable.strings */; };
 		4B27123E26AC7D89007BC48C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B27124026AC7D89007BC48C /* Localizable.strings */; };
+		4B27124426AC82F6007BC48C /* ReadingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27124326AC82F6007BC48C /* ReadingListView.swift */; };
+		4B27124526AC82F7007BC48C /* ReadingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27124326AC82F6007BC48C /* ReadingListView.swift */; };
+		4B27124726AC83B8007BC48C /* ReadingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27124626AC83B8007BC48C /* ReadingListViewModel.swift */; };
+		4B27124826AC83B8007BC48C /* ReadingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27124626AC83B8007BC48C /* ReadingListViewModel.swift */; };
+		4B27124A26AC84CF007BC48C /* BookmarkedArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27124926AC84CF007BC48C /* BookmarkedArticle.swift */; };
+		4B27124B26AC84CF007BC48C /* BookmarkedArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27124926AC84CF007BC48C /* BookmarkedArticle.swift */; };
 		4B3DB051260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */; };
 		4B3DB052260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB04F260659FE003B5CD6 /* DevArticles.xcdatamodeld */; };
 		4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3DB05D26065B0A003B5CD6 /* Persistence.swift */; };
@@ -204,6 +210,9 @@
 		4B27123826AC77F8007BC48C /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		4B27123F26AC7D89007BC48C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4B27124126AC7D8E007BC48C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B27124326AC82F6007BC48C /* ReadingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListView.swift; sourceTree = "<group>"; };
+		4B27124626AC83B8007BC48C /* ReadingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListViewModel.swift; sourceTree = "<group>"; };
+		4B27124926AC84CF007BC48C /* BookmarkedArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedArticle.swift; sourceTree = "<group>"; };
 		4B3DB050260659FE003B5CD6 /* DevArticles.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DevArticles.xcdatamodel; sourceTree = "<group>"; };
 		4B3DB05D26065B0A003B5CD6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		4B403F08267E355400B8DDF9 /* ArticleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContentView.swift; sourceTree = "<group>"; };
@@ -333,6 +342,7 @@
 		4B0AFC39262B214300BE94F8 /* reading-list */ = {
 			isa = PBXGroup;
 			children = (
+				4B27124226AC8226007BC48C /* view */,
 				4B1F388F265A8B4400D96B71 /* uses-cases */,
 				4B268819262B247A006C4C5B /* ReadingListContainer.swift */,
 				4B0AFC43262B223A00BE94F8 /* domain */,
@@ -392,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				4B6AD7F126078ABD009EA5E7 /* ReadingListItem.swift */,
+				4B27124926AC84CF007BC48C /* BookmarkedArticle.swift */,
 			);
 			path = domain;
 			sourceTree = "<group>";
@@ -490,6 +501,15 @@
 				4BB876D325D069A700671A06 /* ArticlesViewModelTests.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		4B27124226AC8226007BC48C /* view */ = {
+			isa = PBXGroup;
+			children = (
+				4B27124326AC82F6007BC48C /* ReadingListView.swift */,
+				4B27124626AC83B8007BC48C /* ReadingListViewModel.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		4B403F14267F9A6800B8DDF9 /* content */ = {
@@ -1058,6 +1078,7 @@
 			files = (
 				4BC96C2025CF103C0081B8FF /* Article.swift in Sources */,
 				4B7BACB525E180A3004A0C4B /* AppContainer.swift in Sources */,
+				4B27124A26AC84CF007BC48C /* BookmarkedArticle.swift in Sources */,
 				4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4B47CA74269B4E41009BDDEB /* ArticleStatsView.swift in Sources */,
 				4BE4FA4225D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */,
@@ -1069,6 +1090,7 @@
 				4B47CA5F2690DC1D009BDDEB /* AppArticleContentRepository.swift in Sources */,
 				4B47CA592690A5B7009BDDEB /* InMemoryArticleContentRepository.swift in Sources */,
 				4BC96C1225CF0F430081B8FF /* ArticlesViewModel.swift in Sources */,
+				4B27124726AC83B8007BC48C /* ReadingListViewModel.swift in Sources */,
 				4B47CA622691FEAA009BDDEB /* AppArticleContentRestAdapter.swift in Sources */,
 				4BBBD3DC2662570A0035F2CA /* AsyncViewModel.swift in Sources */,
 				4B463767263EEB1500A41C33 /* UseCase.swift in Sources */,
@@ -1111,6 +1133,7 @@
 				4B243D9F2669071400E5E7EB /* DateFormatting.swift in Sources */,
 				4B47CA81269E080D009BDDEB /* AuthorRestDto.swift in Sources */,
 				4B27123426AC768F007BC48C /* AppView.swift in Sources */,
+				4B27124426AC82F6007BC48C /* ReadingListView.swift in Sources */,
 				E1A0EE431C9E745D859AC967 /* RestClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1121,6 +1144,7 @@
 			files = (
 				4B46376B263EF5F300A41C33 /* ArticlesUseCase.swift in Sources */,
 				4BBBD3DD2662570A0035F2CA /* AsyncViewModel.swift in Sources */,
+				4B27124B26AC84CF007BC48C /* BookmarkedArticle.swift in Sources */,
 				4B26882A262B3A9D006C4C5B /* ReadingListContainer.swift in Sources */,
 				4B47CA75269B4E41009BDDEB /* ArticleStatsView.swift in Sources */,
 				4B26882B262B3A9D006C4C5B /* ArticlesContainer.swift in Sources */,
@@ -1132,6 +1156,7 @@
 				4B47CA602690DC1D009BDDEB /* AppArticleContentRepository.swift in Sources */,
 				4B47CA5A2690A5B7009BDDEB /* InMemoryArticleContentRepository.swift in Sources */,
 				4B58FB5726762716008B2A7C /* InMemoryReadingListRepository.swift in Sources */,
+				4B27124826AC83B8007BC48C /* ReadingListViewModel.swift in Sources */,
 				4B47CA632691FEAA009BDDEB /* AppArticleContentRestAdapter.swift in Sources */,
 				4B7BACB625E180A3004A0C4B /* AppContainer.swift in Sources */,
 				4B3DB05F26065B0A003B5CD6 /* Persistence.swift in Sources */,
@@ -1174,6 +1199,7 @@
 				4B27123926AC77F8007BC48C /* AppView.swift in Sources */,
 				4BFB0A90266CEEDE00D97EBE /* AsyncImage.swift in Sources */,
 				4B47CA82269E080D009BDDEB /* AuthorRestDto.swift in Sources */,
+				4B27124526AC82F7007BC48C /* ReadingListView.swift in Sources */,
 				4B1F389D265ABA3000D96B71 /* ReadingListUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
