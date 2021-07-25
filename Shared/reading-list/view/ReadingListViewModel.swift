@@ -9,5 +9,9 @@ import Foundation
 import SwiftUI
 
 class ReadingListViewModel: ObservableObject {
-  @Published var bookmarkedArticles: [BookmarkedArticle] = [bookmarkedArticleForPreview]
+  @Published var bookmarkedArticles: [BookmarkedArticle] = []
+
+  func add(article: Article) {
+    bookmarkedArticles.append(BookmarkedArticle.from(article: article))
+  }
 }
