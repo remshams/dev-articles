@@ -152,6 +152,13 @@
 		4BE4FA4325D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */; };
 		4BE4FA4B25D99E36006D355E /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4A25D99E36006D355E /* Collection.swift */; };
 		4BE4FA4C25D99E36006D355E /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4A25D99E36006D355E /* Collection.swift */; };
+		4BF53C3F26AD7B4900BFAF83 /* AddArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C3E26AD7B4900BFAF83 /* AddArticleView.swift */; };
+		4BF53C4026AD7B4900BFAF83 /* AddArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C3E26AD7B4900BFAF83 /* AddArticleView.swift */; };
+		4BF53C4526AD813900BFAF83 /* AddArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C4426AD813900BFAF83 /* AddArticleViewModel.swift */; };
+		4BF53C4626AD813900BFAF83 /* AddArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C4426AD813900BFAF83 /* AddArticleViewModel.swift */; };
+		4BF53C4826ADA27800BFAF83 /* ArticleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C4726ADA27800BFAF83 /* ArticleCardView.swift */; };
+		4BF53C4926ADA27800BFAF83 /* ArticleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C4726ADA27800BFAF83 /* ArticleCardView.swift */; };
+		4BF53C4C26ADAD4800BFAF83 /* AddArticleViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C4B26ADAD4800BFAF83 /* AddArticleViewModelTests.swift */; };
 		4BFB0A8F266CEEDE00D97EBE /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB0A8E266CEEDE00D97EBE /* AsyncImage.swift */; };
 		4BFB0A90266CEEDE00D97EBE /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB0A8E266CEEDE00D97EBE /* AsyncImage.swift */; };
 		E1A0E1453A5D24B5FDE27B56 /* MockHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A0ECD52E3577D81145B8E2 /* MockHttpClient.swift */; };
@@ -282,6 +289,10 @@
 		4BC96C1F25CF103C0081B8FF /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryArticlesRepository.swift; sourceTree = "<group>"; };
 		4BE4FA4A25D99E36006D355E /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		4BF53C3E26AD7B4900BFAF83 /* AddArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleView.swift; sourceTree = "<group>"; };
+		4BF53C4426AD813900BFAF83 /* AddArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleViewModel.swift; sourceTree = "<group>"; };
+		4BF53C4726ADA27800BFAF83 /* ArticleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCardView.swift; sourceTree = "<group>"; };
+		4BF53C4B26ADAD4800BFAF83 /* AddArticleViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleViewModelTests.swift; sourceTree = "<group>"; };
 		4BFB0A8E266CEEDE00D97EBE /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		4BFE153F25E2A23A00660C50 /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
 		E1A0EC975580C43B543CE57D /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
@@ -445,6 +456,7 @@
 		4B26273D262C499D006FD5C9 /* reading-list */ = {
 			isa = PBXGroup;
 			children = (
+				4BF53C4A26ADAD2D00BFAF83 /* views */,
 				4B1F3893265A8D5000D96B71 /* uses-cases */,
 				4BAAA262260F98CD0061F30C /* ReadingListFixture.swift */,
 				4B262740262C49D4006FD5C9 /* data-access */,
@@ -506,6 +518,7 @@
 		4B27124226AC8226007BC48C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				4BF53C3D26AD7B1700BFAF83 /* add-article */,
 				4B27124326AC82F6007BC48C /* ReadingListView.swift */,
 				4B27124626AC83B8007BC48C /* ReadingListViewModel.swift */,
 			);
@@ -818,6 +831,24 @@
 			path = foundation;
 			sourceTree = "<group>";
 		};
+		4BF53C3D26AD7B1700BFAF83 /* add-article */ = {
+			isa = PBXGroup;
+			children = (
+				4BF53C3E26AD7B4900BFAF83 /* AddArticleView.swift */,
+				4BF53C4426AD813900BFAF83 /* AddArticleViewModel.swift */,
+				4BF53C4726ADA27800BFAF83 /* ArticleCardView.swift */,
+			);
+			path = "add-article";
+			sourceTree = "<group>";
+		};
+		4BF53C4A26ADAD2D00BFAF83 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				4BF53C4B26ADAD4800BFAF83 /* AddArticleViewModelTests.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		4BFB0A8D266CEEC800D97EBE /* AsyncImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1056,6 +1087,7 @@
 				4B47CA8A26A0AC84009BDDEB /* AuthorRestDtoFixture.swift in Sources */,
 				4B5C88AF25F3B3B900F375F2 /* ArticlesFixtures.swift in Sources */,
 				4B47CA672692016A009BDDEB /* ArticleContentFixture.swift in Sources */,
+				4BF53C4C26ADAD4800BFAF83 /* AddArticleViewModelTests.swift in Sources */,
 				4B262767262C5075006FD5C9 /* InMemoryRepositoryTests.swift in Sources */,
 				4B5C88B025F3B3B900F375F2 /* MockArticlesRepository.swift in Sources */,
 				4B5C88B125F3B3B900F375F2 /* AppArticlesRestAdapterTests.swift in Sources */,
@@ -1103,8 +1135,10 @@
 				4BE4FA4B25D99E36006D355E /* Collection.swift in Sources */,
 				4B268839262B4925006C4C5B /* InMemoryRepository.swift in Sources */,
 				4BBBD3D9266254020035F2CA /* LoadingState.swift in Sources */,
+				4BF53C3F26AD7B4900BFAF83 /* AddArticleView.swift in Sources */,
 				4B403F16267F9A9A00B8DDF9 /* ArticleContentRenderer.swift in Sources */,
 				4B403F09267E355400B8DDF9 /* ArticleContentView.swift in Sources */,
+				4BF53C4526AD813900BFAF83 /* AddArticleViewModel.swift in Sources */,
 				4B46376A263EF5F300A41C33 /* ArticlesUseCase.swift in Sources */,
 				4BBBD3D6266253DB0035F2CA /* AsyncView.swift in Sources */,
 				4B26881A262B247A006C4C5B /* ReadingListContainer.swift in Sources */,
@@ -1132,6 +1166,7 @@
 				4B26884D262C377A006C4C5B /* RepositoryError.swift in Sources */,
 				4B243D9F2669071400E5E7EB /* DateFormatting.swift in Sources */,
 				4B47CA81269E080D009BDDEB /* AuthorRestDto.swift in Sources */,
+				4BF53C4826ADA27800BFAF83 /* ArticleCardView.swift in Sources */,
 				4B27123426AC768F007BC48C /* AppView.swift in Sources */,
 				4B27124426AC82F6007BC48C /* ReadingListView.swift in Sources */,
 				E1A0EE431C9E745D859AC967 /* RestClient.swift in Sources */,
@@ -1169,8 +1204,10 @@
 				4B463764263EEAE900A41C33 /* AppLoadArticlesUseCase.swift in Sources */,
 				4B6AD8112607C4EA009EA5E7 /* ReadingListItemDbDto+CoreDataProperties.swift in Sources */,
 				4B243DA526690F2000E5E7EB /* operators.swift in Sources */,
+				4BF53C4026AD7B4900BFAF83 /* AddArticleView.swift in Sources */,
 				4B403F17267F9A9A00B8DDF9 /* ArticleContentRenderer.swift in Sources */,
 				4B403F0A267E355400B8DDF9 /* ArticleContentView.swift in Sources */,
+				4BF53C4626AD813900BFAF83 /* AddArticleViewModel.swift in Sources */,
 				4B3DB052260659FE003B5CD6 /* DevArticles.xcdatamodeld in Sources */,
 				4B463768263EEB1500A41C33 /* UseCase.swift in Sources */,
 				4BC96C1325CF0F430081B8FF /* ArticlesViewModel.swift in Sources */,
@@ -1198,6 +1235,7 @@
 				4B26883A262B4925006C4C5B /* InMemoryRepository.swift in Sources */,
 				4B27123926AC77F8007BC48C /* AppView.swift in Sources */,
 				4BFB0A90266CEEDE00D97EBE /* AsyncImage.swift in Sources */,
+				4BF53C4926ADA27800BFAF83 /* ArticleCardView.swift in Sources */,
 				4B47CA82269E080D009BDDEB /* AuthorRestDto.swift in Sources */,
 				4B27124526AC82F7007BC48C /* ReadingListView.swift in Sources */,
 				4B1F389D265ABA3000D96B71 /* ReadingListUseCase.swift in Sources */,

@@ -18,7 +18,11 @@ class AppLoadArticlesTests: XCTestCase {
   override func setUp() {
     cancellables = []
     articles = Article.createListFixture(min: 2)
-    useCase = AppLoadArticlesUseCase(listArticle: InMemoryListArticle(articles: articles), timeCategory: .day, page: 1, pageSize: 10)
+    useCase = AppLoadArticlesUseCase(
+      listArticle: InMemoryListArticle(articles: articles),
+      timeCategory: .day,
+      page: 1, pageSize: 10
+    )
   }
 
   func test_ShouldEmitFeedList() {
