@@ -15,6 +15,12 @@ struct BookmarkedArticle: Identifiable, Equatable {
   }
 }
 
+extension BookmarkedArticle {
+  static func from(article: Article, savedAt: Date = Date()) -> BookmarkedArticle {
+    BookmarkedArticle(savedAt: savedAt, article: article)
+  }
+}
+
 #if DEBUG
 
   let bookmarkedArticleForPreview = BookmarkedArticle(savedAt: Date(), article: articleForPreview)

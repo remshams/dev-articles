@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ReadingListView.swift
 //  dev-articles
 //
 //  Created by Mathias Remshardt on 24.07.21.
@@ -15,19 +15,35 @@ struct ReadingListView: View {
 }
 
 private struct ContainerView: View {
-  let model: ReadingListViewModel
-  @State var articleLink: String = ""
+  @ObservedObject var model: ReadingListViewModel
+  @State var showAddArticle = false
 
   var body: some View {
     NavigationView {
-      List(model.bookmarkedArticles) { article in
-        Text(article.article.title)
+      List(model.bookmarkedArticles) { bookmarkedArticle in
+        NavigationLink(
+          destination:
+          ArticleContentView(article: bookmarkedArticle.article)
+            .navigationTitle(bookmarkedArticle.article.title)
+        ) {
+          ArticleView(article: bookmarkedArticle.article)
+        }
       }
       .navigationTitle("Readinglist")
       .toolbar {
         ToolbarItem {
-          Image(systemName: "plus")
+          Button {
+            showAddArticle = true
+          } label: {
+            Image(systemName: "plus")
+          }
         }
+      }
+      .sheet(isPresented: $showAddArticle) {
+        AddArticleView { article in
+          model.add(article: article)
+          showAddArticle = false
+        } cancelAddArticle: { showAddArticle = false }
       }
     }
   }

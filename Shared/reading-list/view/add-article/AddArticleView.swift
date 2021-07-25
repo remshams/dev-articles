@@ -19,7 +19,7 @@ struct AddArticleView: View {
 
 private struct ContainerView: View {
   @ObservedObject var model: AddArticleViewModel
-  @State var link: String = ""
+  @State var path: String = ""
 
   var body: some View {
     NavigationView {
@@ -33,7 +33,7 @@ private struct ContainerView: View {
         ToolbarItem(placement: .confirmationAction) {
           Button {
             model.add()
-          } label: { Text("Save") }.disabled(model.article == nil)
+          } label: { Text("Add") }.disabled(model.article == nil)
         }
         ToolbarItem(placement: .cancellationAction) {
           Button { model.cancel() } label: { Text("Cancel") }
@@ -45,11 +45,11 @@ private struct ContainerView: View {
 
 private struct ArticleLinkView: View {
   let model: AddArticleViewModel
-  @State var link: String = ""
+  @State var path: String = ""
   var body: some View {
     VStack {
-      TextField("Article Link", text: $link, onCommit: {
-        model.loadArticle(for: link)
+      TextField("Article Link", text: $path, onCommit: {
+        model.loadArticle(for: path)
       })
         .disableAutocorrection(true)
         .textFieldStyle(RoundedBorderTextFieldStyle())

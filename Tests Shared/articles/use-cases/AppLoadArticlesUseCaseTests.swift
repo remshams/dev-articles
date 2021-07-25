@@ -25,7 +25,7 @@ class AppLoadArticlesTests: XCTestCase {
     )
   }
 
-  func test_ShouldEmitFeedList() {
+  func test_ShouldEmitArticlesList() {
     useCase.start()
       .sink {
         XCTAssertEqual($0, self.articles)
