@@ -24,7 +24,7 @@ struct AppView: App {
             Image(systemName: "book")
             Text("Articles")
           }
-        Text("ReadingList")
+        ReadingListView()
           .tabItem {
             Image(systemName: "bookmark")
             Text("Readinglist")
