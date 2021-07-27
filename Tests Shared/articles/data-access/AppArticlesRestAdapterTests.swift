@@ -51,5 +51,53 @@ class AppArticlesRestAdapterTests: XCTestCase {
       .store(in: &cancellables)
   }
 
-  func test_content() {}
+  func test_getBy_returnsArticle() {
+    let path = "first/second"
+    let clientSingleReturn = MockHttpGet(getResponse: articleDtos.first!, urlCalledSubject: urlCalled)
+    adapter = AppArticlesRestAdapter(httpGet: clientSingleReturn)
+    let articleCompoenents = URLComponents(string: articleUrl + path)!
+
+    adapter.getBy(path: path)
+      .sink { _ in } receiveValue: {
+        XCTAssertEqual($0, self.articles.first!)
+      }
+      .store(in: &cancellables)
+
+    clientSingleReturn.urlCalledSubject
+      .sink { _ in } receiveValue: {
+        XCTAssertEqual($0, [articleCompoenents.url!])
+      }
+      .store(in: &cancellables)
+  }
+
+  func test_getBy_returnsNilInCaseArticleCannotBeFound() {
+    let path = "first/second"
+    let clientNilReturn = MockHttpGet<ArticleRestDto?>(getResponse: nil, urlCalledSubject: urlCalled)
+    adapter = AppArticlesRestAdapter(httpGet: clientNilReturn)
+
+    adapter.getBy(path: path)
+      .sink { _ in } receiveValue: {
+        XCTAssertNil($0)
+      }
+      .store(in: &cancellables)
+  }
+
+  func test_getBy_ignoresSlashAtTheBeginning() {
+    let path = "/first/second"
+    let clientSingleReturn = MockHttpGet(getResponse: articleDtos.first!, urlCalledSubject: urlCalled)
+    adapter = AppArticlesRestAdapter(httpGet: clientSingleReturn)
+    let articleCompoenents = URLComponents(string: articleUrl + path)!
+
+    adapter.getBy(path: path)
+      .sink { _ in } receiveValue: {
+        XCTAssertEqual($0, self.articles.first!)
+      }
+      .store(in: &cancellables)
+
+    clientSingleReturn.urlCalledSubject
+      .sink { _ in } receiveValue: {
+        XCTAssertEqual($0, [articleCompoenents.url!])
+      }
+      .store(in: &cancellables)
+  }
 }

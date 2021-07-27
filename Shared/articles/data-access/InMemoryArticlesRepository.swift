@@ -10,11 +10,15 @@ class InMemoryArticlesRepository: InMemoryRepository<Article>, ListArticle {
     self.init(articlesById: articles.toDictionaryById())
   }
 
-  func list(for _: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for _: TimeCategory, page _: Int, pageSize _: Int) -> AnyPublisher<[Article], RepositoryError> {
     super.list()
   }
 
   func add(article: Article) -> AnyPublisher<Article, RepositoryError> {
     super.add(entity: article)
+  }
+
+  func getBy(path: String) -> AnyPublisher<Article?, RepositoryError> {
+    Just(articleForPreview).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
 }

@@ -5,7 +5,7 @@ import OSLog
 let articlesPath = "/articles"
 enum ArticleQueryParam: String {
   case timeCategory = "top"
-  case page = "page"
+  case page
   case pageSize = "per_page"
 }
 
@@ -22,6 +22,18 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
       .toArticles()
       .mapError { error in
         Logger().debug("Requesting article list failed with: \(error.localizedDescription)")
+        return RepositoryError.error
+      }
+      .eraseToAnyPublisher()
+  }
+
+  func getBy(path: String) -> AnyPublisher<Article?, RepositoryError> {
+    let components = URLComponents(string: devCommunityUrl + articlesPath + "\(path)")!
+    return httpGet.get(for: components.url!)
+      .decode()
+      .toArticle()
+      .mapError { error in
+        Logger().debug("Requesting article for path \(path) failed with: \(error.localizedDescription)")
         return RepositoryError.error
       }
       .eraseToAnyPublisher()
