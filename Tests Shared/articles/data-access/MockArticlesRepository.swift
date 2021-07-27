@@ -15,6 +15,10 @@ struct FailingListArticle: ListArticle {
   func list(for _: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
     Fail<[Article], RepositoryError>(error: listError).eraseToAnyPublisher()
   }
+  
+  func getBy(path: String) -> AnyPublisher<Article?, RepositoryError> {
+    Fail<Article?, RepositoryError>(error: listError).eraseToAnyPublisher()
+  }
 }
 
 struct InMemoryListArticle: ListArticle {
@@ -22,5 +26,9 @@ struct InMemoryListArticle: ListArticle {
 
   func list(for _: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
     Just(articles).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+  }
+  
+  func getBy(path: String) -> AnyPublisher<Article?, RepositoryError> {
+    Just(articles.first ?? Article.createFixture()).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
 }

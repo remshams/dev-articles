@@ -3,9 +3,7 @@ import Foundation
 
 // MARK: Protocols
 
-protocol ArticlesRestAdapter {
-  func list(for timeCategory: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError>
-}
+protocol ArticlesRestAdapter: ListArticle {}
 
 // MARK: Models
 
@@ -56,5 +54,11 @@ extension ArticleRestDto {
 extension Publisher where Output == [ArticleRestDto] {
   func toArticles() -> Publishers.Map<Self, [Article]> {
     map { articles in articles.map { $0.toArticle() } }
+  }
+}
+
+extension Publisher where Output == ArticleRestDto? {
+  func toArticle() -> Publishers.Map<Self, Article?> {
+    map { $0?.toArticle() }
   }
 }
