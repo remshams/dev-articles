@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 
-protocol ArticlesRepository: ListArticle {}
+protocol ArticlesRepository: ListArticle, GetArticle {}
 protocol ArticleContentRepository: ListArticleContent {}
 
 struct AppContainer {

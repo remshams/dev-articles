@@ -13,7 +13,7 @@ struct AppArticleContentRestAdapter {
   let httpGet: HttpGet
 
   func content(for id: ArticleId) -> AnyPublisher<ArticleContent, RepositoryError> {
-    httpGet.get(for: URL(string: "\(devCommunityUrl)\(articlesPath)/\(id)")!)
+    httpGet.get(for: URL(string: "\(devCommunityUrl)\(articlesUrl)/\(id)")!)
       .decode()
       .toArticleContent()
       .mapError { error in

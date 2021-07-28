@@ -3,7 +3,7 @@ import Foundation
 
 // MARK: Protocols
 
-protocol ArticlesRestAdapter: ListArticle {}
+protocol ArticlesRestAdapter: ListArticle, GetArticle {}
 
 // MARK: Models
 

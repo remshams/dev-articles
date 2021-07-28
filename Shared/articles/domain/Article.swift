@@ -12,6 +12,9 @@ enum TimeCategory: Int {
 
 protocol ListArticle {
   func list(for timeCategory: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError>
+}
+
+protocol GetArticle {
   func getBy(path: String) -> AnyPublisher<Article?, RepositoryError>
 }
 
