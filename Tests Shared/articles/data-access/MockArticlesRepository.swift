@@ -12,11 +12,11 @@ import Foundation
 struct FailingListArticle: ListArticle {
   let listError: RepositoryError
 
-  func list(for _: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for _: TimeCategory, page _: Int, pageSize _: Int) -> AnyPublisher<[Article], RepositoryError> {
     Fail<[Article], RepositoryError>(error: listError).eraseToAnyPublisher()
   }
-  
-  func getBy(path: String) -> AnyPublisher<Article?, RepositoryError> {
+
+  func getBy(path _: String) -> AnyPublisher<Article?, RepositoryError> {
     Fail<Article?, RepositoryError>(error: listError).eraseToAnyPublisher()
   }
 }
@@ -24,11 +24,23 @@ struct FailingListArticle: ListArticle {
 struct InMemoryListArticle: ListArticle {
   let articles: [Article]
 
-  func list(for _: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
+  func list(for _: TimeCategory, page _: Int, pageSize _: Int) -> AnyPublisher<[Article], RepositoryError> {
     Just(articles).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
-  
-  func getBy(path: String) -> AnyPublisher<Article?, RepositoryError> {
-    Just(articles.first ?? Article.createFixture()).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+}
+
+struct InMemoryGetArticle: GetArticle {
+  let article: Article?
+
+  func getBy(path _: String) -> AnyPublisher<Article?, RepositoryError> {
+    Just(article).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+  }
+}
+
+struct FailingGetArticle: GetArticle {
+  let getError: RepositoryError
+
+  func getBy(path _: String) -> AnyPublisher<Article?, RepositoryError> {
+    Fail<Article?, RepositoryError>(error: RepositoryError.error).eraseToAnyPublisher()
   }
 }

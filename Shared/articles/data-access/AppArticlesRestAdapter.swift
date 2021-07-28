@@ -2,7 +2,7 @@ import Combine
 import Foundation
 import OSLog
 
-let articlesPath = "/articles"
+let articlesUrl = "\(devCommunityUrl)/articles"
 enum ArticleQueryParam: String {
   case timeCategory = "top"
   case page
@@ -28,7 +28,8 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
   }
 
   func getBy(path: String) -> AnyPublisher<Article?, RepositoryError> {
-    let components = URLComponents(string: devCommunityUrl + articlesPath + "\(path)")!
+    let components = URLComponents(string: articlesUrl + "\(path)")!
+    // TODO Implement case when 404 is returned by api in httpGet
     return httpGet.get(for: components.url!)
       .decode()
       .toArticle()
@@ -40,7 +41,7 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
   }
 
   private func buildUrl(timeCategory: TimeCategory, page: Int, pageSize: Int) -> URL {
-    var articlesUrlComponents = URLComponents(string: devCommunityUrl + articlesPath)!
+    var articlesUrlComponents = URLComponents(string: articlesUrl)!
     articlesUrlComponents.queryItems = [
       URLQueryItem(name: ArticleQueryParam.timeCategory.rawValue, value: String(timeCategory.rawValue)),
       URLQueryItem(name: ArticleQueryParam.page.rawValue, value: String(page)),
