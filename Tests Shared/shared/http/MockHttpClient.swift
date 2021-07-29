@@ -21,3 +21,11 @@ extension MockHttpGet: HttpGet {
       .eraseToAnyPublisher()
   }
 }
+
+struct FailingHttpGet: HttpGet {
+  let error: HttpError
+
+  func get(for _: URL, receiveOn _: DispatchQueue) -> AnyPublisher<Data, HttpError> {
+    Fail(error: error).eraseToAnyPublisher()
+  }
+}

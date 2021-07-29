@@ -9,4 +9,5 @@ import Foundation
 
 enum HttpError: Error {
   case serverError
+  case notFound
 }
