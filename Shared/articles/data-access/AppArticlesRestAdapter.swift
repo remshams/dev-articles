@@ -18,6 +18,7 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
 
   func list(for timeCategory: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
     httpGet.get(for: buildUrl(timeCategory: timeCategory, page: page, pageSize: pageSize))
+
       .decode()
       .toArticles()
       .mapError { error in
@@ -29,10 +30,10 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
 
   func getBy(path: String) -> AnyPublisher<Article?, RepositoryError> {
     let components = URLComponents(string: articlesUrl + "\(path)")!
-    // TODO Implement case when 404 is returned by api in httpGet
     return httpGet.get(for: components.url!)
       .decode()
       .toArticle()
+      .nilWhen(error: .notFound)
       .mapError { error in
         Logger().debug("Requesting article for path \(path) failed with: \(error.localizedDescription)")
         return RepositoryError.error
