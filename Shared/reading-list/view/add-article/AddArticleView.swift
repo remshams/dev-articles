@@ -9,11 +9,13 @@ import Foundation
 import SwiftUI
 
 struct AddArticleView: View {
+  @EnvironmentObject var readingListContainer: ReadingListContainer
   let addArticle: AddArticle
   let cancelAddArticle: CancelAddArticle
 
   var body: some View {
-    ContainerView(model: AddArticleViewModel(addArticle: addArticle, cancelAddArticle: cancelAddArticle))
+    ContainerView(model: readingListContainer
+      .makeAddArticleViewModel(addArticle: addArticle, cancelAddArticle: cancelAddArticle))
   }
 }
 
