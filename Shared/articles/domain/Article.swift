@@ -10,18 +10,6 @@ enum TimeCategory: Int {
   case year = 356
 }
 
-protocol ListArticle {
-  func list(for timeCategory: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError>
-}
-
-protocol GetArticle {
-  func getBy(path: String) -> AnyPublisher<Article?, RepositoryError>
-}
-
-protocol ListArticleContent {
-  func content(for id: ArticleId) -> AnyPublisher<ArticleContent, RepositoryError>
-}
-
 // MARK: Models
 
 struct Article: Identifiable, Equatable {

@@ -162,6 +162,8 @@
 		4BF53C4F26ADD83000BFAF83 /* ReadingListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C4E26ADD83000BFAF83 /* ReadingListViewModelTests.swift */; };
 		4BF53C5126B07D3F00BFAF83 /* AppArticlesRestAdapterGetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C5026B07D3F00BFAF83 /* AppArticlesRestAdapterGetTests.swift */; };
 		4BF53C5326B3201500BFAF83 /* ArticlePathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C5226B3201500BFAF83 /* ArticlePathTests.swift */; };
+		4BF53C5526B571C700BFAF83 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C5426B571C600BFAF83 /* ArticlesRepository.swift */; };
+		4BF53C5626B571C700BFAF83 /* ArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C5426B571C600BFAF83 /* ArticlesRepository.swift */; };
 		4BFB0A8F266CEEDE00D97EBE /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB0A8E266CEEDE00D97EBE /* AsyncImage.swift */; };
 		4BFB0A90266CEEDE00D97EBE /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB0A8E266CEEDE00D97EBE /* AsyncImage.swift */; };
 		E1A0E1453A5D24B5FDE27B56 /* MockHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A0ECD52E3577D81145B8E2 /* MockHttpClient.swift */; };
@@ -299,6 +301,7 @@
 		4BF53C4E26ADD83000BFAF83 /* ReadingListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListViewModelTests.swift; sourceTree = "<group>"; };
 		4BF53C5026B07D3F00BFAF83 /* AppArticlesRestAdapterGetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppArticlesRestAdapterGetTests.swift; sourceTree = "<group>"; };
 		4BF53C5226B3201500BFAF83 /* ArticlePathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePathTests.swift; sourceTree = "<group>"; };
+		4BF53C5426B571C600BFAF83 /* ArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRepository.swift; sourceTree = "<group>"; };
 		4BFB0A8E266CEEDE00D97EBE /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		4BFE153F25E2A23A00660C50 /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
 		E1A0EC975580C43B543CE57D /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
@@ -390,6 +393,7 @@
 				4B93DBC225F3C18400DBCFA2 /* ArticleRestDto.swift */,
 				4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */,
 				4BC357D9263DC37500B3B215 /* AppArticlesRepository.swift */,
+				4BF53C5426B571C600BFAF83 /* ArticlesRepository.swift */,
 			);
 			path = "data-access";
 			sourceTree = "<group>";
@@ -1131,6 +1135,7 @@
 				4BC96C2025CF103C0081B8FF /* Article.swift in Sources */,
 				4B7BACB525E180A3004A0C4B /* AppContainer.swift in Sources */,
 				4B27124A26AC84CF007BC48C /* BookmarkedArticle.swift in Sources */,
+				4BF53C5526B571C700BFAF83 /* ArticlesRepository.swift in Sources */,
 				4B3DB05E26065B0A003B5CD6 /* Persistence.swift in Sources */,
 				4B47CA74269B4E41009BDDEB /* ArticleStatsView.swift in Sources */,
 				4BE4FA4225D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */,
@@ -1200,6 +1205,7 @@
 				4B46376B263EF5F300A41C33 /* ArticlesUseCase.swift in Sources */,
 				4BBBD3DD2662570A0035F2CA /* AsyncViewModel.swift in Sources */,
 				4B27124B26AC84CF007BC48C /* BookmarkedArticle.swift in Sources */,
+				4BF53C5626B571C700BFAF83 /* ArticlesRepository.swift in Sources */,
 				4B26882A262B3A9D006C4C5B /* ReadingListContainer.swift in Sources */,
 				4B47CA75269B4E41009BDDEB /* ArticleStatsView.swift in Sources */,
 				4B26882B262B3A9D006C4C5B /* ArticlesContainer.swift in Sources */,

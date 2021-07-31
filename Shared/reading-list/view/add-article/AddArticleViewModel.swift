@@ -31,7 +31,7 @@ class AddArticleViewModel: ObservableObject {
   }
 
   func loadArticle(for url: String) {
-    getArticle.getBy(path: url)
+    getArticle.getBy(url: url)
       .replaceError(with: nil)
       .assign(to: \.article, on: self)
       .store(in: &cancellables)
