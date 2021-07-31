@@ -19,10 +19,10 @@ class ArticleUrlTests: XCTestCase {
   }
 
   func tests_init_shouldInitFromValidUrl() {
-    XCTAssertEqual(ArticleUrl(url: validUrlString)?.path, path)
+    XCTAssertEqual(ArticleUrl(url: validUrlString).path, path)
   }
 
   func tests_init_shoudNotInitFromInvalidUrl() {
-    XCTAssertNil(ArticleUrl(url: invalidUrlString))
+    XCTAssertNil(ArticleUrl(url: invalidUrlString).path)
   }
 }
