@@ -49,7 +49,7 @@ struct ArticleCommunityData: Equatable {
 }
 
 struct ArticlePath {
-  private static let pathRegexString = #"^(http(s)?:\/\/)?dev.to\/([a-zA-z]*\/[a-zA-Z\-1]*)$"#
+  private static let pathRegexString = #"^(http(s)?:\/\/)?dev.to\/(?<path>[a-zA-z]*\/[a-zA-Z\-1]*)$"#
 
   let path: String
 
@@ -62,27 +62,13 @@ struct ArticlePath {
   }
 
   private static func matchPath(url: String) -> String? {
-    do {
-      let pathRegex = try NSRegularExpression(pattern: pathRegexString)
-      let matches = pathRegex.matches(in: url, range: NSRange(url.startIndex ..< url.endIndex, in: url))
-      guard let match = matches.first else {
-        return nil
-      }
-
-      var substrings: [String] = []
-      for rangeIndex in 0 ..< match.numberOfRanges {
-        if let substring = Range(match.range(at: rangeIndex), in: url) {
-          substrings.append(String(url[substring]))
-        }
-      }
-      if substrings.count == 4 {
-        return substrings[3]
-      } else {
-        return nil
-      }
-    } catch {
+    guard let regex = try? NSRegularExpression(pattern: pathRegexString),
+          let match = regex.firstMatch(in: url, range: NSRange(location: 0, length: url.count)),
+          let pathIndex = Range(match.range(withName: "path"), in: url)
+    else {
       return nil
     }
+    return String(url[pathIndex])
   }
 }
 
