@@ -5,8 +5,8 @@
 //  Created by Mathias Remshardt on 31.07.21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol ListArticle {
   func list(for timeCategory: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError>
