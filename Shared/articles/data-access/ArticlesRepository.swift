@@ -13,7 +13,7 @@ protocol ListArticle {
 }
 
 protocol GetArticle {
-  func getBy(url: String) -> AnyPublisher<Article?, RepositoryError>
+  func getBy(url: ArticleUrl) -> AnyPublisher<Article?, RepositoryError>
 }
 
 protocol ListArticleContent {

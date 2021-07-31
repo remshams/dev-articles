@@ -1,6 +1,8 @@
 @testable import dev_articles
 import Foundation
 
+let validDevUrl = "https://dev.to/samuelfaure/is-dev-to-victim-of-its-own-success-1ioj"
+
 extension ArticleMetaData {
   static func createFixture(
     link: URL = URL(string: "https://www.dev.to")!,

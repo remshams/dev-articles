@@ -17,6 +17,7 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
   var adapter: AppArticlesRestAdapter!
   var urlCalled: CurrentValueSubject<[URL], Never>!
   var cancellables: Set<AnyCancellable>!
+  let validArticleUrl = ArticleUrl(url: validDevUrl)
 
   override func setUp() {
     cancellables = []
@@ -28,10 +29,9 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
   }
 
   func test_getBy_returnsArticle() {
-    let path = "first/second"
-    let articleCompoenents = URLComponents(string: articlesUrl + path)!
+    let articleCompoenents = URLComponents(string: articlesUrl + validArticleUrl.path!)!
 
-    adapter.getBy(url: path)
+    adapter.getBy(url: validArticleUrl)
       .sink { _ in } receiveValue: {
         XCTAssertEqual($0, self.article)
       }
@@ -44,30 +44,24 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
       .store(in: &cancellables)
   }
 
-  func test_getBy_ignoresSlashAtTheBeginning() {
-    let path = "/first/second"
-    let articleCompoenents = URLComponents(string: articlesUrl + path)!
+  func test_getBy_returnsNilInCaseArticleUrlIsNotValid() {
+    let invalidArticleUrl = ArticleUrl(url: "/invalid")
+    let exp = expectation(description: #function)
+    adapter.getBy(url: invalidArticleUrl).sink { _ in } receiveValue: {
+      XCTAssertNil($0)
+      exp.fulfill()
+    }
+    .store(in: &cancellables)
 
-    adapter.getBy(url: path)
-      .sink { _ in } receiveValue: {
-        XCTAssertEqual($0, self.article)
-      }
-      .store(in: &cancellables)
-
-    client.urlCalledSubject
-      .sink { _ in } receiveValue: {
-        XCTAssertEqual($0, [articleCompoenents.url!])
-      }
-      .store(in: &cancellables)
+    waitForExpectations(timeout: 2)
   }
 
   func test_getBy_returnsNilInCaseArticleCannotBeFound() {
-    let path = "first/second"
     let clientFailing = FailingHttpGet(error: .notFound)
     adapter = AppArticlesRestAdapter(httpGet: clientFailing)
     let exp = expectation(description: #function)
 
-    adapter.getBy(url: path)
+    adapter.getBy(url: validArticleUrl)
       .sink { completion in
         switch completion {
         case let .failure(error): XCTFail("Failed with: \(error)")
