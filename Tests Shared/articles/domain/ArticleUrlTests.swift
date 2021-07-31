@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-class ArticlePathTests: XCTestCase {
+class ArticleUrlTests: XCTestCase {
   let path = "samuelfaure/is-dev-to-victim-of-its-own-success-1ioj"
   let invalidUrlString = "top/week"
   var validUrlString: String!
@@ -19,10 +19,10 @@ class ArticlePathTests: XCTestCase {
   }
 
   func tests_init_shouldInitFromValidUrl() {
-    XCTAssertEqual(ArticlePath(url: validUrlString)?.path, path)
+    XCTAssertEqual(ArticleUrl(url: validUrlString)?.path, path)
   }
 
   func tests_init_shoudNotInitFromInvalidUrl() {
-    XCTAssertNil(ArticlePath(url: invalidUrlString))
+    XCTAssertNil(ArticleUrl(url: invalidUrlString))
   }
 }
