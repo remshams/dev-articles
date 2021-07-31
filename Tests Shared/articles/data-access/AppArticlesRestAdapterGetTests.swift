@@ -31,7 +31,7 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
     let path = "first/second"
     let articleCompoenents = URLComponents(string: articlesUrl + path)!
 
-    adapter.getBy(path: path)
+    adapter.getBy(url: path)
       .sink { _ in } receiveValue: {
         XCTAssertEqual($0, self.article)
       }
@@ -48,7 +48,7 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
     let path = "/first/second"
     let articleCompoenents = URLComponents(string: articlesUrl + path)!
 
-    adapter.getBy(path: path)
+    adapter.getBy(url: path)
       .sink { _ in } receiveValue: {
         XCTAssertEqual($0, self.article)
       }
@@ -67,7 +67,7 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
     adapter = AppArticlesRestAdapter(httpGet: clientFailing)
     let exp = expectation(description: #function)
 
-    adapter.getBy(path: path)
+    adapter.getBy(url: path)
       .sink { completion in
         switch completion {
         case let .failure(error): XCTFail("Failed with: \(error)")

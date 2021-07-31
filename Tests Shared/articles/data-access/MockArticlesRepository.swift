@@ -32,7 +32,7 @@ struct InMemoryListArticle: ListArticle {
 struct InMemoryGetArticle: GetArticle {
   let article: Article?
 
-  func getBy(path _: String) -> AnyPublisher<Article?, RepositoryError> {
+  func getBy(url _: String) -> AnyPublisher<Article?, RepositoryError> {
     Just(article).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
 }
@@ -40,7 +40,7 @@ struct InMemoryGetArticle: GetArticle {
 struct FailingGetArticle: GetArticle {
   let getError: RepositoryError
 
-  func getBy(path _: String) -> AnyPublisher<Article?, RepositoryError> {
+  func getBy(url _: String) -> AnyPublisher<Article?, RepositoryError> {
     Fail<Article?, RepositoryError>(error: RepositoryError.error).eraseToAnyPublisher()
   }
 }

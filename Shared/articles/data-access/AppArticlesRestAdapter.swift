@@ -28,14 +28,14 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
       .eraseToAnyPublisher()
   }
 
-  func getBy(path: String) -> AnyPublisher<Article?, RepositoryError> {
-    let components = URLComponents(string: articlesUrl + "\(path)")!
+  func getBy(url: String) -> AnyPublisher<Article?, RepositoryError> {
+    let components = URLComponents(string: articlesUrl + "\(url)")!
     return httpGet.get(for: components.url!)
       .decode()
       .toArticle()
       .nilWhen(error: .notFound)
       .mapError { error in
-        Logger().debug("Requesting article for path \(path) failed with: \(error.localizedDescription)")
+        Logger().debug("Requesting article for path \(url) failed with: \(error.localizedDescription)")
         return RepositoryError.error
       }
       .eraseToAnyPublisher()
