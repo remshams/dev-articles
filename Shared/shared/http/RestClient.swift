@@ -1,6 +1,8 @@
 import Combine
 import Foundation
 
+let devCommunityUrl = "https://dev.to/api"
+
 struct RestHttpClient: HttpGet {}
 
 extension RestHttpClient {

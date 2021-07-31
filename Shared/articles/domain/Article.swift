@@ -48,6 +48,44 @@ struct ArticleCommunityData: Equatable {
   let publicReactionsCount: Int
 }
 
+struct ArticlePath {
+  private static let pathRegexString = #"^(http(s)?:\/\/)?dev.to\/([a-zA-z]*\/[a-zA-Z\-1]*)$"#
+
+  let path: String
+
+  init?(url: String) {
+    if let path = ArticlePath.matchPath(url: url) {
+      self.path = path
+    } else {
+      return nil
+    }
+  }
+
+  private static func matchPath(url: String) -> String? {
+    do {
+      let pathRegex = try NSRegularExpression(pattern: pathRegexString)
+      let matches = pathRegex.matches(in: url, range: NSRange(url.startIndex ..< url.endIndex, in: url))
+      guard let match = matches.first else {
+        return nil
+      }
+
+      var substrings: [String] = []
+      for rangeIndex in 0 ..< match.numberOfRanges {
+        if let substring = Range(match.range(at: rangeIndex), in: url) {
+          substrings.append(String(url[substring]))
+        }
+      }
+      if substrings.count == 4 {
+        return substrings[3]
+      } else {
+        return nil
+      }
+    } catch {
+      return nil
+    }
+  }
+}
+
 extension Collection where Element == Article {
   func bookmark(articles: [Article]) -> [Article] {
     map { oldArticle in

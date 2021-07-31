@@ -161,6 +161,7 @@
 		4BF53C4C26ADAD4800BFAF83 /* AddArticleViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C4B26ADAD4800BFAF83 /* AddArticleViewModelTests.swift */; };
 		4BF53C4F26ADD83000BFAF83 /* ReadingListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C4E26ADD83000BFAF83 /* ReadingListViewModelTests.swift */; };
 		4BF53C5126B07D3F00BFAF83 /* AppArticlesRestAdapterGetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C5026B07D3F00BFAF83 /* AppArticlesRestAdapterGetTests.swift */; };
+		4BF53C5326B3201500BFAF83 /* ArticlePathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF53C5226B3201500BFAF83 /* ArticlePathTests.swift */; };
 		4BFB0A8F266CEEDE00D97EBE /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB0A8E266CEEDE00D97EBE /* AsyncImage.swift */; };
 		4BFB0A90266CEEDE00D97EBE /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB0A8E266CEEDE00D97EBE /* AsyncImage.swift */; };
 		E1A0E1453A5D24B5FDE27B56 /* MockHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A0ECD52E3577D81145B8E2 /* MockHttpClient.swift */; };
@@ -297,6 +298,7 @@
 		4BF53C4B26ADAD4800BFAF83 /* AddArticleViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleViewModelTests.swift; sourceTree = "<group>"; };
 		4BF53C4E26ADD83000BFAF83 /* ReadingListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListViewModelTests.swift; sourceTree = "<group>"; };
 		4BF53C5026B07D3F00BFAF83 /* AppArticlesRestAdapterGetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppArticlesRestAdapterGetTests.swift; sourceTree = "<group>"; };
+		4BF53C5226B3201500BFAF83 /* ArticlePathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePathTests.swift; sourceTree = "<group>"; };
 		4BFB0A8E266CEEDE00D97EBE /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		4BFE153F25E2A23A00660C50 /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
 		E1A0EC975580C43B543CE57D /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 			children = (
 				4BB876BC25D0698F00671A06 /* ArticlesFixtures.swift */,
 				4B1F38A3265BD49300D96B71 /* ArticleTests.swift */,
+				4BF53C5226B3201500BFAF83 /* ArticlePathTests.swift */,
 			);
 			path = domain;
 			sourceTree = "<group>";
@@ -1091,6 +1094,7 @@
 				4B47CA8526A0AB20009BDDEB /* AuthorFixture.swift in Sources */,
 				4B47CA6B26921124009BDDEB /* ArticleContentViewModelTest.swift in Sources */,
 				4B1F389F265ABBEE00D96B71 /* ArticlesUseCaseFixture.swift in Sources */,
+				4BF53C5326B3201500BFAF83 /* ArticlePathTests.swift in Sources */,
 				4B1F38A4265BD49300D96B71 /* ArticleTests.swift in Sources */,
 				4BAAA257260F91AC0061F30C /* CoreDataReadingListRepositoryTests.swift in Sources */,
 				4B47CA6D269211A6009BDDEB /* ArticleContentRestDtoFixture.swift in Sources */,
