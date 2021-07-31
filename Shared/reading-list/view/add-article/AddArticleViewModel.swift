@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 typealias AddArticle = (Article) -> Void
 typealias CancelAddArticle = () -> Void
@@ -14,15 +15,26 @@ typealias CancelAddArticle = () -> Void
 class AddArticleViewModel: ObservableObject {
   let addArticle: AddArticle
   let cancelAddArticle: () -> Void
+  let getArticle: GetArticle
+  var cancellables: Set<AnyCancellable>
   @Published var article: Article?
 
-  init(addArticle: @escaping AddArticle, cancelAddArticle: @escaping CancelAddArticle) {
+  init(
+    addArticle: @escaping AddArticle,
+    cancelAddArticle: @escaping CancelAddArticle,
+    getArticle: GetArticle
+  ) {
+    self.cancellables = []
     self.addArticle = addArticle
     self.cancelAddArticle = cancelAddArticle
+    self.getArticle = getArticle
   }
 
-  func loadArticle(for _: String) {
-    article = articleForPreview
+  func loadArticle(for url: String) {
+    getArticle.getBy(path: url)
+      .replaceError(with: nil)
+      .assign(to: \.article, on: self)
+      .store(in: &cancellables)
   }
 
   func add() {

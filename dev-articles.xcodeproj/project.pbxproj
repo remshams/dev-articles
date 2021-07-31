@@ -359,9 +359,9 @@
 		4B0AFC39262B214300BE94F8 /* reading-list */ = {
 			isa = PBXGroup;
 			children = (
+				4B268819262B247A006C4C5B /* ReadingListContainer.swift */,
 				4B27124226AC8226007BC48C /* view */,
 				4B1F388F265A8B4400D96B71 /* uses-cases */,
-				4B268819262B247A006C4C5B /* ReadingListContainer.swift */,
 				4B0AFC43262B223A00BE94F8 /* domain */,
 				4B0AFC42262B222500BE94F8 /* data-access */,
 			);

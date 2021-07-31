@@ -48,7 +48,8 @@ struct AppContainer {
   func makeReadingListContainer() -> ReadingListContainer {
     ReadingListContainer(
       addReadingListItem: readingListRepository,
-      listReadingListItem: readingListRepository
+      listReadingListItem: readingListRepository,
+      getArticle: articlesRepository
     )
   }
 
