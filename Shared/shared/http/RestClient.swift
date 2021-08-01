@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import OSLog
 
 let devCommunityUrl = "https://dev.to/api"
 
@@ -16,6 +17,7 @@ extension RestHttpClient {
         guard (200 ... 299).contains(response.statusCode) else {
           throw errorFromStatusCode(statusCode: response.statusCode)
         }
+
         return element.data
       }
       .mapError { _ in
@@ -35,11 +37,11 @@ extension RestHttpClient {
   }
 }
 
-extension Publisher {
-  func nilWhen<Data>(error handleError: HttpError) -> Publishers.TryCatch<Self, AnyPublisher<Data?, HttpError>> {
+extension Publisher where Failure: Error {
+  func nilWhen<TData>(error handleError: HttpError) -> Publishers.TryCatch<Self, AnyPublisher<TData?, HttpError>> {
     tryCatch { error in
       guard let error = error as? HttpError else {
-        return Fail<Data?, HttpError>(error: HttpError.serverError).eraseToAnyPublisher()
+        return Fail<TData?, HttpError>(error: HttpError.serverError).eraseToAnyPublisher()
       }
 
       if error == handleError {
@@ -49,4 +51,5 @@ extension Publisher {
       }
     }
   }
+
 }

@@ -18,7 +18,6 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
 
   func list(for timeCategory: TimeCategory, page: Int, pageSize: Int) -> AnyPublisher<[Article], RepositoryError> {
     httpGet.get(for: buildUrl(timeCategory: timeCategory, page: page, pageSize: pageSize))
-
       .decode()
       .toArticles()
       .mapError { error in
@@ -30,7 +29,7 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
 
   func getBy(url: ArticleUrl) -> AnyPublisher<Article?, RepositoryError> {
     guard let path = url.path else { return Just(nil).setFailureType(to: RepositoryError.self).eraseToAnyPublisher() }
-    let components = URLComponents(string: articlesUrl + "\(path)")!
+    let components = URLComponents(string: articlesUrl + "/\(path)")!
     return httpGet.get(for: components.url!)
       .decode()
       .toArticle()
