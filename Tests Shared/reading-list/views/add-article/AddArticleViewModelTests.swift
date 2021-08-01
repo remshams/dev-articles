@@ -19,7 +19,7 @@ class AddArticleViewModelTests: XCTestCase {
 
   override func setUp() {
     article = Article.createFixture()
-    getArticle = InMemoryGetArticle(article: article)
+    getArticle = MockGetArticle(article: article)
     model = AddArticleViewModel(
       addArticle: addArticleDefault,
       cancelAddArticle: cancelAddArticeDefault,

@@ -29,7 +29,7 @@ struct InMemoryListArticle: ListArticle {
   }
 }
 
-struct InMemoryGetArticle: GetArticle {
+struct MockGetArticle: GetArticle {
   let article: Article?
 
   func getBy(url _: ArticleUrl) -> AnyPublisher<Article?, RepositoryError> {
