@@ -21,7 +21,7 @@ struct FailingListArticle: ListArticle {
   }
 }
 
-struct InMemoryListArticle: ListArticle {
+struct MockListArticle: ListArticle {
   let articles: [Article]
 
   func list(for _: TimeCategory, page _: Int, pageSize _: Int) -> AnyPublisher<[Article], RepositoryError> {

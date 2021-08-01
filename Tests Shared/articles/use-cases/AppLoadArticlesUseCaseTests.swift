@@ -19,7 +19,7 @@ class AppLoadArticlesTests: XCTestCase {
     cancellables = []
     articles = Article.createListFixture(min: 2)
     useCase = AppLoadArticlesUseCase(
-      listArticle: InMemoryListArticle(articles: articles),
+      listArticle: MockListArticle(articles: articles),
       timeCategory: .day,
       page: 1, pageSize: 10
     )
