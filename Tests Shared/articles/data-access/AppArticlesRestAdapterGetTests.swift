@@ -29,7 +29,7 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
   }
 
   func test_getBy_returnsArticle() {
-    let articleCompoenents = URLComponents(string: articlesUrl + validArticleUrl.path!)!
+    let articleCompoenents = URLComponents(string: "\(articlesUrl)/\(validArticleUrl.path!)")!
 
     adapter.getBy(url: validArticleUrl)
       .sink { _ in } receiveValue: {
@@ -64,7 +64,9 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
     adapter.getBy(url: validArticleUrl)
       .sink { completion in
         switch completion {
-        case let .failure(error): XCTFail("Failed with: \(error)")
+        case let .failure(error):
+          XCTFail("Failed with: \(error)")
+          exp.fulfill()
         case .finished: return
         }
       } receiveValue: {
