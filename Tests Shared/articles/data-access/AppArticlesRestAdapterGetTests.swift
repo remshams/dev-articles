@@ -15,16 +15,14 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
   var article: Article!
   var client: MockHttpGet<ArticleRestDto?>!
   var adapter: AppArticlesRestAdapter!
-  var urlCalled: CurrentValueSubject<[URL], Never>!
   var cancellables: Set<AnyCancellable>!
   let validArticleUrl = ArticleUrl(url: validDevUrl)
 
   override func setUp() {
     cancellables = []
-    urlCalled = CurrentValueSubject<[URL], Never>([])
     articleDto = ArticleRestDto.createFixture()
     article = articleDto.toArticle()
-    client = MockHttpGet(getResponse: articleDto, urlCalledSubject: urlCalled)
+    client = MockHttpGet(getResponse: articleDto)
     adapter = AppArticlesRestAdapter(httpGet: client)
   }
 
