@@ -57,8 +57,8 @@ extension Publisher where Output == [ArticleRestDto] {
   }
 }
 
-extension Publisher where Output == ArticleRestDto? {
+extension Publisher where Output == ArticleRestDto {
   func toArticle() -> Publishers.Map<Self, Article?> {
-    map { $0?.toArticle() }
+    map { $0.toArticle() }
   }
 }
