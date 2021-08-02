@@ -146,7 +146,6 @@
 		4BC96C2125CF103C0081B8FF /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC96C1F25CF103C0081B8FF /* Article.swift */; };
 		4BDB359026B8659500131C71 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB358F26B8659500131C71 /* HttpClient.swift */; };
 		4BDB359126B8659E00131C71 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB358F26B8659500131C71 /* HttpClient.swift */; };
-		4BDB359326B8660700131C71 /* HttpClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB359226B8660700131C71 /* HttpClientTests.swift */; };
 		4BE4FA4225D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */; };
 		4BE4FA4325D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */; };
 		4BE4FA4B25D99E36006D355E /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4FA4A25D99E36006D355E /* Collection.swift */; };
@@ -292,7 +291,6 @@
 		4BC96C1125CF0F430081B8FF /* ArticlesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewModel.swift; sourceTree = "<group>"; };
 		4BC96C1F25CF103C0081B8FF /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		4BDB358F26B8659500131C71 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
-		4BDB359226B8660700131C71 /* HttpClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClientTests.swift; sourceTree = "<group>"; };
 		4BE4FA4125D999CD006D355E /* InMemoryArticlesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryArticlesRepository.swift; sourceTree = "<group>"; };
 		4BE4FA4A25D99E36006D355E /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		4BF53C3E26AD7B4900BFAF83 /* AddArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleView.swift; sourceTree = "<group>"; };
@@ -579,7 +577,6 @@
 			isa = PBXGroup;
 			children = (
 				E1A0ECD52E3577D81145B8E2 /* MockHttpClient.swift */,
-				4BDB359226B8660700131C71 /* HttpClientTests.swift */,
 			);
 			path = http;
 			sourceTree = "<group>";
@@ -1100,7 +1097,6 @@
 			files = (
 				4B47CA8526A0AB20009BDDEB /* AuthorFixture.swift in Sources */,
 				4B47CA6B26921124009BDDEB /* ArticleContentViewModelTest.swift in Sources */,
-				4BDB359326B8660700131C71 /* HttpClientTests.swift in Sources */,
 				4B1F389F265ABBEE00D96B71 /* ArticlesUseCaseFixture.swift in Sources */,
 				4BF53C5326B3201500BFAF83 /* ArticleUrlTests.swift in Sources */,
 				4B1F38A4265BD49300D96B71 /* ArticleTests.swift in Sources */,
