@@ -17,6 +17,7 @@ struct ReadingListView: View {
 private struct ContainerView: View {
   @ObservedObject var model: ReadingListViewModel
   @State var showAddArticle = false
+  @State var selectedArticle: ArticleId?
 
   var body: some View {
     NavigationView {
@@ -24,7 +25,9 @@ private struct ContainerView: View {
         NavigationLink(
           destination:
           ArticleContentView(article: bookmarkedArticle.article)
-            .navigationTitle(bookmarkedArticle.article.title)
+            .navigationTitle(bookmarkedArticle.article.title),
+          tag: bookmarkedArticle.id,
+          selection: $selectedArticle
         ) {
           ArticleView(article: bookmarkedArticle.article)
         }
@@ -43,6 +46,7 @@ private struct ContainerView: View {
         AddArticleView { article in
           model.add(article: article)
           showAddArticle = false
+          selectedArticle = article.id
         } cancelAddArticle: { showAddArticle = false }
       }
     }

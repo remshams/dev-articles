@@ -457,13 +457,6 @@
 			path = domain;
 			sourceTree = "<group>";
 		};
-		4B243DA226690EE900E5E7EB /* combine */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = combine;
-			sourceTree = "<group>";
-		};
 		4B26273D262C499D006FD5C9 /* reading-list */ = {
 			isa = PBXGroup;
 			children = (
@@ -823,7 +816,6 @@
 			isa = PBXGroup;
 			children = (
 				4B5C873C266D0C1E004C94A7 /* views */,
-				4B243DA226690EE900E5E7EB /* combine */,
 				4B463765263EEAF500A41C33 /* uses-cases */,
 				4B6AD8032607B45A009EA5E7 /* data-access */,
 				4BE4FA4925D99E16006D355E /* foundation */,

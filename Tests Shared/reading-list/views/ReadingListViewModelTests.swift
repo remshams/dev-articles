@@ -24,4 +24,14 @@ class ReadingListViewModelTests: XCTestCase {
     XCTAssertEqual(model.bookmarkedArticles.count, 1)
     XCTAssertEqual(model.bookmarkedArticles[0].article, BookmarkedArticle.from(article: article).article)
   }
+
+  func test_add_shouldIgnoreArticleIfAlreadyInList() {
+    let otherArticle = Article.createFixture(id: "otherId")
+    model.add(article: article)
+    model.add(article: otherArticle)
+    model.add(article: article)
+    model.add(article: otherArticle)
+
+    XCTAssertEqual(model.bookmarkedArticles.count, 2)
+  }
 }
