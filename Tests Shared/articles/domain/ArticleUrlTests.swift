@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 
 class ArticleUrlTests: XCTestCase {
-  let path = "samuelfaure/is-dev-to-victim-of-its-own-success-1ioj"
+  let path = "samuelfaure123/is-dev-to-victim-of-its-own-success-1ioj"
   let invalidUrlString = "top/week"
   var validUrlString: String!
 

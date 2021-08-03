@@ -12,6 +12,8 @@ class ReadingListViewModel: ObservableObject {
   @Published var bookmarkedArticles: [BookmarkedArticle] = []
 
   func add(article: Article) {
-    bookmarkedArticles.append(BookmarkedArticle.from(article: article))
+    if bookmarkedArticles.firstIndex(where: { $0.id == article.id }) == nil {
+      bookmarkedArticles.append(BookmarkedArticle.from(article: article))
+    }
   }
 }
