@@ -41,6 +41,13 @@ private struct ContainerView: View {
     .onAppear {
       model.loadContent()
     }
+    .toolbar {
+      ToolbarItem {
+        Button { Application.openLink(url: model.article.metaData.link) } label: {
+          Image(systemName: "safari").foregroundColor(Color.accentColor)
+        }
+      }
+    }
   }
 }
 
