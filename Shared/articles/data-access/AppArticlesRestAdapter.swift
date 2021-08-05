@@ -41,6 +41,19 @@ struct AppArticlesRestAdapter: ArticlesRestAdapter {
       .eraseToAnyPublisher()
   }
 
+  func getBy(id: ArticleId) -> AnyPublisher<Article?, RepositoryError> {
+    let components = URLComponents(string: "\(articlesUrl)/\(id)")!
+    return httpGet.get(for: components.url!)
+      .decode()
+      .toArticle()
+      .nilWhen(error: .notFound)
+      .mapError { error in
+        Logger().debug("Requesting article for id \(id) failed with: \(error.localizedDescription)")
+        return RepositoryError.error
+      }
+      .eraseToAnyPublisher()
+  }
+
   private func buildUrl(timeCategory: TimeCategory, page: Int, pageSize: Int) -> URL {
     var articlesUrlComponents = URLComponents(string: articlesUrl)!
     articlesUrlComponents.queryItems = [

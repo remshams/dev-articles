@@ -18,7 +18,11 @@ class InMemoryArticlesRepository: InMemoryRepository<Article>, ListArticle {
     super.add(entity: article)
   }
 
-  func getBy(url: ArticleUrl) -> AnyPublisher<Article?, RepositoryError> {
+  func getBy(url _: ArticleUrl) -> AnyPublisher<Article?, RepositoryError> {
+    Just(articleForPreview).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+  }
+
+  func getBy(id _: ArticleId) -> AnyPublisher<Article?, RepositoryError> {
     Just(articleForPreview).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
 }
