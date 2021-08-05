@@ -8,7 +8,7 @@
 import Foundation
 
 struct ArticleUrl {
-  private static let pathRegexString = #"^(http(s)?:\/\/)?dev.to\/(?<path>[a-zA-z\d]*\/[a-zA-Z\-\d]*)$"#
+  private static let pathRegexString = #"^(http(s)?:\/\/)?dev.to\/(?<path>[a-zA-z\d-]*\/[a-zA-Z\-\d]*)$"#
 
   let url: String
   let path: String?
