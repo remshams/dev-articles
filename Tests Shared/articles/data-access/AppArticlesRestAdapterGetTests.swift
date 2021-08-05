@@ -26,7 +26,26 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
     adapter = AppArticlesRestAdapter(httpGet: client)
   }
 
-  func test_getBy_returnsArticle() {
+  func test_getById_returnsArticle() {
+    collect(stream: adapter.getBy(id: article.id), cancellables: &cancellables)
+      .sink { _ in } receiveValue: { XCTAssertEqual($0, [self.article]) }
+      .store(in: &cancellables)
+
+    client.urlCalledSubject
+      .sink { _ in } receiveValue: { XCTAssertEqual($0, [URL(string: "\(articlesUrl)/\(self.article.id)")!]) }
+      .store(in: &cancellables)
+  }
+
+  func test_getById_returnsNilInCaseArticleCannotBeFound() {
+    let clientFailing = FailingHttpGet(error: .notFound)
+    adapter = AppArticlesRestAdapter(httpGet: clientFailing)
+    
+    collect(stream: adapter.getBy(id: article.id), cancellables: &cancellables)
+      .sink { _ in } receiveValue: { XCTAssertEqual($0, [nil]) }
+      .store(in: &cancellables)
+  }
+
+  func test_getByUrl_returnsArticle() {
     let articleCompoenents = URLComponents(string: "\(articlesUrl)/\(validArticleUrl.path!)")!
 
     adapter.getBy(url: validArticleUrl)
@@ -42,7 +61,7 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
       .store(in: &cancellables)
   }
 
-  func test_getBy_returnsNilInCaseArticleUrlIsNotValid() {
+  func test_getByUrl_returnsNilInCaseArticleUrlIsNotValid() {
     let invalidArticleUrl = ArticleUrl(url: "/invalid")
     let exp = expectation(description: #function)
     adapter.getBy(url: invalidArticleUrl).sink { _ in } receiveValue: {
@@ -54,7 +73,7 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
     waitForExpectations(timeout: 2)
   }
 
-  func test_getBy_returnsNilInCaseArticleCannotBeFound() {
+  func test_getByUrl_returnsNilInCaseArticleCannotBeFound() {
     let clientFailing = FailingHttpGet(error: .notFound)
     adapter = AppArticlesRestAdapter(httpGet: clientFailing)
     let exp = expectation(description: #function)

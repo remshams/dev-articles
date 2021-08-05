@@ -14,6 +14,7 @@ protocol ListArticle {
 
 protocol GetArticle {
   func getBy(url: ArticleUrl) -> AnyPublisher<Article?, RepositoryError>
+  func getBy(id: ArticleId) -> AnyPublisher<Article?, RepositoryError>
 }
 
 protocol ListArticleContent {

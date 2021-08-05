@@ -35,12 +35,20 @@ struct MockGetArticle: GetArticle {
   func getBy(url _: ArticleUrl) -> AnyPublisher<Article?, RepositoryError> {
     Just(article).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }
+
+  func getBy(id _: ArticleId) -> AnyPublisher<Article?, RepositoryError> {
+    Just(article).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+  }
 }
 
 struct FailingGetArticle: GetArticle {
   let getError: RepositoryError
 
   func getBy(url _: ArticleUrl) -> AnyPublisher<Article?, RepositoryError> {
+    Fail<Article?, RepositoryError>(error: RepositoryError.error).eraseToAnyPublisher()
+  }
+
+  func getBy(id _: ArticleId) -> AnyPublisher<Article?, RepositoryError> {
     Fail<Article?, RepositoryError>(error: RepositoryError.error).eraseToAnyPublisher()
   }
 }
