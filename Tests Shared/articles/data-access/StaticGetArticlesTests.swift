@@ -46,7 +46,7 @@ class StaticGetArticlesTest: XCTestCase {
 
   func tests_getByUrl_shouldReturnNilIncaseArticleUrlDoesNotMatch() {
     collect(
-      stream: staticGetArticle.getBy(url: ArticleUrl(url: "other")),
+      stream: staticGetArticle.getBy(url: ArticleUrl(url: URL(string: "other")!)),
       cancellables: &cancellables
     )
     .sink { _ in } receiveValue: {

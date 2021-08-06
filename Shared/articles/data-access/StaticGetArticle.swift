@@ -14,7 +14,7 @@ struct StaticGetArticle: GetArticle {
   func getBy(url: ArticleUrl) -> AnyPublisher<Article?, RepositoryError> {
     Just(article)
       .map {
-        $0.metaData.link.absoluteString == url.url ? article : nil
+        $0.metaData.link == url.url ? article : nil
       }
       .setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
   }

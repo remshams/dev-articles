@@ -10,20 +10,17 @@ import Foundation
 struct ArticleUrl {
   private static let pathRegexString = #"^(http(s)?:\/\/)?dev.to\/(?<path>[a-zA-z\d-]*\/[a-zA-Z\-\d]*)$"#
 
-  let url: String
+  let url: URL
   let path: String?
 
-  init(url: String) {
+
+  init(url: URL) {
     self.url = url
-    if let path = ArticleUrl.matchPath(url: url) {
+    if let path = ArticleUrl.matchPath(url: url.absoluteString) {
       self.path = path
     } else {
       path = nil
     }
-  }
-
-  init(url: URL) {
-    self.init(url: url.absoluteString)
   }
 
   private static func matchPath(url: String) -> String? {
