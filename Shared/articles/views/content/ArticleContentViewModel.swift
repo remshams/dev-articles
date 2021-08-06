@@ -8,13 +8,19 @@
 import Combine
 import Foundation
 
+
 class ArticleContentViewModel: ObservableObject {
   @Published var content = ArticleContent.createEmpty()
+  let getArticle: GetArticle
   let listArticleContent: ListArticleContent
+  // TODO Implement a static version returning article from id
+  // The static version is used from the posts list whereas
+  // the loading version is used from the reading list
   let article: Article
   var cancellables: Set<AnyCancellable> = []
 
-  init(listArticleContent: ListArticleContent, article: Article) {
+  init(getArticle: GetArticle, listArticleContent: ListArticleContent, article: Article) {
+    self.getArticle = getArticle
     self.listArticleContent = listArticleContent
     self.article = article
   }

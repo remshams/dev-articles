@@ -39,7 +39,7 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
   func test_getById_returnsNilInCaseArticleCannotBeFound() {
     let clientFailing = FailingHttpGet(error: .notFound)
     adapter = AppArticlesRestAdapter(httpGet: clientFailing)
-    
+
     collect(stream: adapter.getBy(id: article.id), cancellables: &cancellables)
       .sink { _ in } receiveValue: { XCTAssertEqual($0, [nil]) }
       .store(in: &cancellables)
