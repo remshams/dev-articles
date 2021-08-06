@@ -5,7 +5,7 @@ let validDevUrl = "https://dev.to/samuelfaure/is-dev-to-victim-of-its-own-succes
 
 extension ArticleMetaData {
   static func createFixture(
-    link: URL = URL(string: "https://www.dev.to")!,
+    link: URL = URL(string: "https://dev.to/samuelfaure/is-dev-to-victim-of-its-own-success-1ioj")!,
     coverImage: URL = URL(string: "https://www.dev.to")!,
     publishedTimeStamp: Date = Date(), readingTimeMinutes: Int = 12
   ) -> ArticleMetaData {

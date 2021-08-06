@@ -18,8 +18,12 @@ struct ArticleUrl {
     if let path = ArticleUrl.matchPath(url: url) {
       self.path = path
     } else {
-      self.path = nil
+      path = nil
     }
+  }
+
+  init(url: URL) {
+    self.init(url: url.absoluteString)
   }
 
   private static func matchPath(url: String) -> String? {
