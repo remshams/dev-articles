@@ -8,11 +8,18 @@
 import Foundation
 
 class ArticlesContainer: ObservableObject {
+  let getArticle: GetArticle
   let listArticle: ListArticle
   let listArticleContent: ListArticleContent
   let addReadingListItem: AddReadingListItem
 
-  init(listArticle: ListArticle, listArticleContent: ListArticleContent, addReadingListItem: AddReadingListItem) {
+  init(
+    listArticle: ListArticle,
+    getArticle: GetArticle,
+    listArticleContent: ListArticleContent,
+    addReadingListItem: AddReadingListItem
+  ) {
+    self.getArticle = getArticle
     self.listArticle = listArticle
     self.listArticleContent = listArticleContent
     self.addReadingListItem = addReadingListItem
@@ -23,7 +30,7 @@ class ArticlesContainer: ObservableObject {
   }
 
   func makeArticleContentViewModel(article: Article) -> ArticleContentViewModel {
-    ArticleContentViewModel(listArticleContent: listArticleContent, article: article)
+    ArticleContentViewModel(getArticle: getArticle, listArticleContent: listArticleContent, article: article)
   }
 }
 
@@ -31,6 +38,7 @@ extension ArticlesContainer: ArticlesUseCaseFactory {
   func makeLoadArticlesUseCase(timeCategory: TimeCategory, page: Int, pageSize: Int) -> LoadArticlesUseCase {
     AppLoadArticlesUseCase(listArticle: listArticle, timeCategory: timeCategory, page: page, pageSize: pageSize)
   }
+
   func makeLoadArticlesUseCase(timeCategory: TimeCategory, page: Int) -> LoadArticlesUseCase {
     makeLoadArticlesUseCase(timeCategory: timeCategory, page: page, pageSize: 20)
   }
@@ -41,14 +49,16 @@ extension ArticlesContainer: ArticlesUseCaseFactory {
 }
 
 #if DEBUG
-let articleContainerForPreview = ArticlesContainer(
-  listArticle: InMemoryArticlesRepository(
+  let articlesRepository = InMemoryArticlesRepository(
     articles: [
       articleForPreview,
       articleForPreview
     ]
-  ),
-  listArticleContent: InMemoryArticleContentRepository(),
-  addReadingListItem: InMemoryReadingListRepository(readingListItems: [])
-)
+  )
+  let articleContainerForPreview = ArticlesContainer(
+    listArticle: articlesRepository,
+    getArticle: articlesRepository,
+    listArticleContent: InMemoryArticleContentRepository(),
+    addReadingListItem: InMemoryReadingListRepository(readingListItems: [])
+  )
 #endif

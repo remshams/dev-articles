@@ -22,6 +22,7 @@ struct AppContainer {
   func makeArticlesContainer() -> ArticlesContainer {
     ArticlesContainer(
       listArticle: articlesRepository,
+      getArticle: articlesRepository,
       listArticleContent: articleContentRepository,
       addReadingListItem: readingListRepository
     )

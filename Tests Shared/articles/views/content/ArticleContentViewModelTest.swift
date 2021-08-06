@@ -14,14 +14,16 @@ class ArticleContentViewModelTest: XCTestCase {
   var article: Article!
   var articleContent: ArticleContent!
   var listArticleContent: ListArticleContent!
+  var getArticle: GetArticle!
   var model: ArticleContentViewModel!
   var cancellables: Set<AnyCancellable>!
 
   override func setUp() {
     article = Article.createFixture()
     articleContent = ArticleContent.createFixture()
+    getArticle = MockGetArticle(article: article)
     listArticleContent = MockListArticleContent(content: articleContent)
-    model = ArticleContentViewModel(listArticleContent: listArticleContent, article: article)
+    model = ArticleContentViewModel(getArticle: getArticle, listArticleContent: listArticleContent, article: article)
     cancellables = []
   }
 
@@ -37,7 +39,7 @@ class ArticleContentViewModelTest: XCTestCase {
 
   func test_content_ShouldEmitEmptyArticleContentOnLoadError() {
     listArticleContent = FailingListArticleContent()
-    model = ArticleContentViewModel(listArticleContent: listArticleContent, article: article)
+    model = ArticleContentViewModel(getArticle: getArticle, listArticleContent: listArticleContent, article: article)
 
     XCTAssertEqual(model.content, ArticleContent.createEmpty())
   }
