@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import XCTest
 
-class StaticGetArticlesTest: XCTestCase {
+class StaticGetArticleTest: XCTestCase {
   let article = Article.createFixture()
   var staticGetArticle: StaticGetArticle!
   var cancellables: Set<AnyCancellable>!
