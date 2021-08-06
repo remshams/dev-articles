@@ -13,6 +13,7 @@ protocol ListArticle {
 }
 
 protocol GetArticle {
+  // TODO Throw RepositoryError in case not found
   func getBy(url: ArticleUrl) -> AnyPublisher<Article?, RepositoryError>
   func getBy(id: ArticleId) -> AnyPublisher<Article?, RepositoryError>
 }
