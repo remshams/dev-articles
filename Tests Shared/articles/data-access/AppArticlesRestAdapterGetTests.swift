@@ -16,7 +16,7 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
   var client: MockHttpGet<ArticleRestDto?>!
   var adapter: AppArticlesRestAdapter!
   var cancellables: Set<AnyCancellable>!
-  let validArticleUrl = ArticleUrl(url: validDevUrl)
+  let validArticleUrl = ArticleUrl(url: URL(string: validDevUrl)!)
 
   override func setUp() {
     cancellables = []
@@ -62,7 +62,7 @@ class AppArticlesRestAdapterGetTests: XCTestCase {
   }
 
   func test_getByUrl_returnsNilInCaseArticleUrlIsNotValid() {
-    let invalidArticleUrl = ArticleUrl(url: "/invalid")
+    let invalidArticleUrl = ArticleUrl(url: URL(string: "/invalid")!)
     let exp = expectation(description: #function)
     adapter.getBy(url: invalidArticleUrl).sink { _ in } receiveValue: {
       XCTAssertNil($0)
