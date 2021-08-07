@@ -20,6 +20,10 @@ class ReadingListContainer: ObservableObject {
 
   func makeAddArticleViewModel(addArticle: @escaping AddArticle,
                                cancelAddArticle: @escaping CancelAddArticle) -> AddArticleViewModel {
-    AddArticleViewModel(addArticle: addArticle, cancelAddArticle: cancelAddArticle, getArticle: getArticle )
+    AddArticleViewModel(addArticle: addArticle, cancelAddArticle: cancelAddArticle, getArticle: getArticle)
+  }
+
+  func makeArticleContentView(articleId: ArticleId) -> ArticleContentView {
+    ArticleContentView(articleLoader: GetArticleArticleLoader(getArticle: getArticle, articleId: articleId))
   }
 }
