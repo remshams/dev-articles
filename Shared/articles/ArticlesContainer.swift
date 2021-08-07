@@ -29,8 +29,8 @@ class ArticlesContainer: ObservableObject {
     ArticlesViewModel(articlesUseCaseFactory: self)
   }
 
-  func makeArticleContentViewModel(article: Article) -> ArticleContentViewModel {
-    ArticleContentViewModel(getArticle: getArticle, listArticleContent: listArticleContent, article: article)
+  func makeArticleContentViewModel(articleId: ArticleId) -> ArticleContentViewModel {
+    ArticleContentViewModel(getArticle: getArticle, listArticleContent: listArticleContent, articleId: articleId)
   }
 }
 

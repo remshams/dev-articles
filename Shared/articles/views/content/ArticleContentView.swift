@@ -12,25 +12,46 @@ import WebKit
 
 struct ArticleContentView: View {
   @EnvironmentObject var articlesContainer: ArticlesContainer
-  let article: Article
+  let articleId: ArticleId
 
   var body: some View {
-    ContainerView(model: articlesContainer.makeArticleContentViewModel(article: article))
+    ContainerView(model: articlesContainer.makeArticleContentViewModel(articleId: articleId))
   }
 }
 
 private struct ContainerView: View {
   @ObservedObject var model: ArticleContentViewModel
-  @State var articleContentHeight: CGFloat = .zero
 
   init(model: ArticleContentViewModel) {
     self.model = model
   }
 
   var body: some View {
+    Group {
+      switch model.state {
+      case let .loaded(article, content):
+        ArticleContentLoadedView(article: article, content: content)
+      case .loading:
+        ArticleContentLoadingView()
+      case .error:
+        ErrorArticleContentView()
+      }
+    }
+    .onAppear {
+      model.loadContent()
+    }
+  }
+}
+
+private struct ArticleContentLoadedView: View {
+  @State var articleContentHeight: CGFloat = .zero
+  let article: Article
+  let content: ArticleContent
+
+  var body: some View {
     ScrollView {
-      HeaderView(article: model.article)
-      ArticleContentWebView(content: model.content, webViewHeight: $articleContentHeight).frame(
+      HeaderView(article: article)
+      ArticleContentWebView(content: content, webViewHeight: $articleContentHeight).frame(
         height: articleContentHeight
       )
       // Next the making the content stand out, the leading padding enables
@@ -38,16 +59,25 @@ private struct ContainerView: View {
       .padding(.trailing, .small)
       .padding(.leading, .small)
     }
-    .onAppear {
-      model.loadContent()
-    }
     .toolbar {
       ToolbarItem {
-        Button { Application.openLink(url: model.article.metaData.link) } label: {
+        Button { Application.openLink(url: article.metaData.link) } label: {
           Image(systemName: "safari").foregroundColor(Color.accentColor)
         }
       }
     }
+  }
+}
+
+private struct ArticleContentLoadingView: View {
+  var body: some View {
+    ProgressView()
+  }
+}
+
+private struct ErrorArticleContentView: View {
+  var body: some View {
+    Text("Article could not be loaded")
   }
 }
 
@@ -158,7 +188,7 @@ private struct CoverImage: View {
 #if DEBUG
   struct ArticleContent_Previews: PreviewProvider {
     static var previews: some View {
-      ArticleContentView(article: articleForPreview).environmentObject(
+      ArticleContentView(articleId: articleForPreview.id).environmentObject(
         articleContainerForPreview
       ).preferredColorScheme(.dark)
     }

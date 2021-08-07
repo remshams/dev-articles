@@ -8,27 +8,39 @@
 import Combine
 import Foundation
 
+enum ArticleContentViewState: Equatable {
+  case loading
+  case loaded(Article, ArticleContent)
+  case error
+}
 
 class ArticleContentViewModel: ObservableObject {
-  @Published var content = ArticleContent.createEmpty()
-  let getArticle: GetArticle
-  let listArticleContent: ListArticleContent
-  // TODO Implement a static version returning article from id
-  // The static version is used from the posts list whereas
-  // the loading version is used from the reading list
-  let article: Article
-  var cancellables: Set<AnyCancellable> = []
+  @Published var state: ArticleContentViewState
 
-  init(getArticle: GetArticle, listArticleContent: ListArticleContent, article: Article) {
+  private let getArticle: GetArticle
+  private let listArticleContent: ListArticleContent
+  private let articleId: ArticleId
+  private var cancellables: Set<AnyCancellable> = []
+
+  init(getArticle: GetArticle, listArticleContent: ListArticleContent, articleId: ArticleId) {
     self.getArticle = getArticle
     self.listArticleContent = listArticleContent
-    self.article = article
+    self.articleId = articleId
+    state = .loading
   }
 
   func loadContent() {
-    listArticleContent.content(for: article.id)
-      .replaceError(with: ArticleContent.createEmpty())
-      .assign(to: \.content, on: self)
+    getArticle.getBy(id: articleId)
+      .combineLatest(listArticleContent.content(for: articleId))
+      .map { article, content in
+        if let article = article {
+          return .loaded(article, content)
+        } else {
+          return .error
+        }
+      }
+      .replaceError(with: ArticleContentViewState.error)
+      .assign(to: \.state, on: self)
       .store(in: &cancellables)
   }
 }

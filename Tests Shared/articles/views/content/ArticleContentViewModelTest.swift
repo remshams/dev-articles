@@ -23,24 +23,57 @@ class ArticleContentViewModelTest: XCTestCase {
     articleContent = ArticleContent.createFixture()
     getArticle = MockGetArticle(article: article)
     listArticleContent = MockListArticleContent(content: articleContent)
-    model = ArticleContentViewModel(getArticle: getArticle, listArticleContent: listArticleContent, article: article)
+    model = ArticleContentViewModel(
+      getArticle: getArticle,
+      listArticleContent: listArticleContent,
+      articleId: article.id
+    )
     cancellables = []
   }
 
-  func test_content_ShouldEmitEmptyArticleContentWhenNothingHasBeenLoaded() {
-    XCTAssertEqual(model.content, ArticleContent.createEmpty())
+  func test_state_shouldEmitLoadingOnInit() {
+    XCTAssertEqual(model.state, .loading)
   }
 
-  func test_content_ShouldEmitLoadedArticleContent() {
+  func test_state_shouldEmitLoadedIfArticleAndContentCouldBeLoaded() {
     model.loadContent()
 
-    XCTAssertEqual(model.content, articleContent)
+    XCTAssertEqual(model.state, .loaded(article, articleContent))
   }
 
-  func test_content_ShouldEmitEmptyArticleContentOnLoadError() {
-    listArticleContent = FailingListArticleContent()
-    model = ArticleContentViewModel(getArticle: getArticle, listArticleContent: listArticleContent, article: article)
+  func test_state_shouldEmitErrorInCaseLoadingOfArticleFails() {
+    getArticle = FailingGetArticle(getError: .error)
+    model = ArticleContentViewModel(
+      getArticle: getArticle,
+      listArticleContent: listArticleContent,
+      articleId: article.id
+    )
+    model.loadContent()
 
-    XCTAssertEqual(model.content, ArticleContent.createEmpty())
+    XCTAssertEqual(model.state, .error)
+  }
+
+  func test_state_shouldEmitErrorInCaseLoadingOfArticleReturnsNil() {
+    getArticle = MockGetArticle(article: nil)
+    model = ArticleContentViewModel(
+      getArticle: getArticle,
+      listArticleContent: listArticleContent,
+      articleId: article.id
+    )
+    model.loadContent()
+
+    XCTAssertEqual(model.state, .error)
+  }
+
+  func test_state_shouldEmitErrorInCaseLoadingOfArticleContentFails() {
+    listArticleContent = FailingListArticleContent()
+    model = ArticleContentViewModel(
+      getArticle: getArticle,
+      listArticleContent: listArticleContent,
+      articleId: article.id
+    )
+    model.loadContent()
+
+    XCTAssertEqual(model.state, .error)
   }
 }

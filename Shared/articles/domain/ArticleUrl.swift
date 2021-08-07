@@ -13,7 +13,6 @@ struct ArticleUrl {
   let url: URL
   let path: String?
 
-
   init(url: URL) {
     self.url = url
     if let path = ArticleUrl.matchPath(url: url.absoluteString) {

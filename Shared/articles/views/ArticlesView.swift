@@ -29,7 +29,7 @@ struct ArticlesList: View {
     NavigationView {
       VStack {
         List(model.articles) { article in
-          NavigationLink(destination: ArticleContentView(article: article).navigationTitle(article.title)) {
+          NavigationLink(destination: ArticleContentView(articleId: article.id).navigationTitle(article.title)) {
             ArticleView(article: article)
           }
         }
