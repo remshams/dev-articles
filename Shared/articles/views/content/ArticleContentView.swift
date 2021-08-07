@@ -12,25 +12,14 @@ import WebKit
 
 struct ArticleContentView: View {
   @EnvironmentObject var articlesContainer: ArticlesContainer
-  let articleId: ArticleId
-  let article: Article?
+  let articleLoader: ArticleLoader
 
-  init(articleId: ArticleId) {
-    self.articleId = articleId
-    article = nil
-  }
-
-  init(article: Article) {
-    self.article = article
-    articleId = article.id
+  init(articleLoader: ArticleLoader) {
+    self.articleLoader = articleLoader
   }
 
   var body: some View {
-    if let article = article {
-      ContainerView(model: articlesContainer.makeArticleContentViewModel(article: article))
-    } else {
-      ContainerView(model: articlesContainer.makeArticleContentViewModel(articleId: articleId))
-    }
+    ContainerView(model: articlesContainer.makeArticleContentViewModel(articleLoader: articleLoader))
   }
 }
 
@@ -203,7 +192,7 @@ private struct CoverImage: View {
 #if DEBUG
   struct ArticleContent_Previews: PreviewProvider {
     static var previews: some View {
-      ArticleContentView(articleId: articleForPreview.id).environmentObject(
+      ArticleContentView(articleLoader: StaticArticleLoader(article: articleForPreview)).environmentObject(
         articleContainerForPreview
       ).preferredColorScheme(.dark)
     }

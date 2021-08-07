@@ -8,6 +8,10 @@
 import Combine
 import Foundation
 
+protocol ArticleLoader {
+  func load() -> AnyPublisher<Article?, RepositoryError>
+}
+
 enum ArticleContentViewState: Equatable {
   case loading
   case loaded(Article, ArticleContent)
@@ -17,23 +21,26 @@ enum ArticleContentViewState: Equatable {
 class ArticleContentViewModel: ObservableObject {
   @Published var state: ArticleContentViewState
 
-  private let getArticle: GetArticle
+  private let articleLoader: ArticleLoader
   private let listArticleContent: ListArticleContent
-  private let articleId: ArticleId
   private var cancellables: Set<AnyCancellable> = []
 
-  init(getArticle: GetArticle, listArticleContent: ListArticleContent, articleId: ArticleId) {
-    self.getArticle = getArticle
+  init(articleLoader: ArticleLoader, listArticleContent: ListArticleContent) {
+    self.articleLoader = articleLoader
     self.listArticleContent = listArticleContent
-    self.articleId = articleId
     state = .loading
   }
 
   func loadContent() {
-    getArticle.getBy(id: articleId)
-      .combineLatest(listArticleContent.content(for: articleId))
+    articleLoader.load()
+      .flatMap { article -> AnyPublisher<(Article?, ArticleContent?), RepositoryError> in
+        guard let article = article else {
+          return Just((nil, nil)).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+        }
+        return self.listArticleContent.content(for: article.id).map { (article, $0) }.eraseToAnyPublisher()
+      }
       .map { article, content in
-        if let article = article {
+        if let article = article, let content = content {
           return .loaded(article, content)
         } else {
           return .error

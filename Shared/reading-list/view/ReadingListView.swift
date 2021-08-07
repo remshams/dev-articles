@@ -15,6 +15,7 @@ struct ReadingListView: View {
 }
 
 private struct ContainerView: View {
+  @EnvironmentObject var container: ReadingListContainer
   @ObservedObject var model: ReadingListViewModel
   @State var showAddArticle = false
   @State var selectedArticle: ArticleId?
@@ -24,7 +25,7 @@ private struct ContainerView: View {
       List(model.bookmarkedArticles) { bookmarkedArticle in
         NavigationLink(
           destination:
-            ArticleContentView(articleId: bookmarkedArticle.article.id)
+            container.makeArticleContentView(articleId: bookmarkedArticle.id)
             .navigationTitle(bookmarkedArticle.article.title),
           tag: bookmarkedArticle.id,
           selection: $selectedArticle

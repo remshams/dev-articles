@@ -14,20 +14,16 @@ class ArticleContentViewModelTest: XCTestCase {
   var article: Article!
   var articleContent: ArticleContent!
   var listArticleContent: ListArticleContent!
-  var getArticle: GetArticle!
+  var articleLoader: ArticleLoader!
   var model: ArticleContentViewModel!
   var cancellables: Set<AnyCancellable>!
 
   override func setUp() {
     article = Article.createFixture()
     articleContent = ArticleContent.createFixture()
-    getArticle = MockGetArticle(article: article)
+    articleLoader = StaticArticleLoader(article: article)
     listArticleContent = MockListArticleContent(content: articleContent)
-    model = ArticleContentViewModel(
-      getArticle: getArticle,
-      listArticleContent: listArticleContent,
-      articleId: article.id
-    )
+    model = ArticleContentViewModel(articleLoader: articleLoader, listArticleContent: listArticleContent)
     cancellables = []
   }
 
@@ -42,11 +38,10 @@ class ArticleContentViewModelTest: XCTestCase {
   }
 
   func test_state_shouldEmitErrorInCaseLoadingOfArticleFails() {
-    getArticle = FailingGetArticle(getError: .error)
+    articleLoader = GetArticleArticleLoader(getArticle: FailingGetArticle(getError: .error), articleId: article.id)
     model = ArticleContentViewModel(
-      getArticle: getArticle,
-      listArticleContent: listArticleContent,
-      articleId: article.id
+      articleLoader: articleLoader,
+      listArticleContent: listArticleContent
     )
     model.loadContent()
 
@@ -54,11 +49,10 @@ class ArticleContentViewModelTest: XCTestCase {
   }
 
   func test_state_shouldEmitErrorInCaseLoadingOfArticleReturnsNil() {
-    getArticle = MockGetArticle(article: nil)
+    articleLoader = GetArticleArticleLoader(getArticle: MockGetArticle(article: nil), articleId: article.id)
     model = ArticleContentViewModel(
-      getArticle: getArticle,
-      listArticleContent: listArticleContent,
-      articleId: article.id
+      articleLoader: articleLoader,
+      listArticleContent: listArticleContent
     )
     model.loadContent()
 
@@ -68,9 +62,8 @@ class ArticleContentViewModelTest: XCTestCase {
   func test_state_shouldEmitErrorInCaseLoadingOfArticleContentFails() {
     listArticleContent = FailingListArticleContent()
     model = ArticleContentViewModel(
-      getArticle: getArticle,
-      listArticleContent: listArticleContent,
-      articleId: article.id
+      articleLoader: articleLoader,
+      listArticleContent: listArticleContent
     )
     model.loadContent()
 
