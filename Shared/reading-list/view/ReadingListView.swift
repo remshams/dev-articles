@@ -24,7 +24,7 @@ private struct ContainerView: View {
       List(model.bookmarkedArticles) { bookmarkedArticle in
         NavigationLink(
           destination:
-          ArticleContentView(article: bookmarkedArticle.article)
+            ArticleContentView(articleId: bookmarkedArticle.article.id)
             .navigationTitle(bookmarkedArticle.article.title),
           tag: bookmarkedArticle.id,
           selection: $selectedArticle
