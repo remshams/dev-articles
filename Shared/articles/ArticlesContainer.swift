@@ -32,6 +32,14 @@ class ArticlesContainer: ObservableObject {
   func makeArticleContentViewModel(articleId: ArticleId) -> ArticleContentViewModel {
     ArticleContentViewModel(getArticle: getArticle, listArticleContent: listArticleContent, articleId: articleId)
   }
+
+  func makeArticleContentViewModel(article: Article) -> ArticleContentViewModel {
+    ArticleContentViewModel(
+      getArticle: StaticGetArticle(article: article),
+      listArticleContent: listArticleContent,
+      articleId: article.id
+    )
+  }
 }
 
 extension ArticlesContainer: ArticlesUseCaseFactory {
