@@ -27,17 +27,17 @@ class ArticleContentViewModelTest: XCTestCase {
     cancellables = []
   }
 
-  func test_state_shouldEmitLoadingOnInit() {
+  func test_state_shouldBeInLoadingStateOnInit() {
     XCTAssertEqual(model.state, .loading)
   }
 
-  func test_state_shouldEmitLoadedIfArticleAndContentCouldBeLoaded() {
+  func test_state_shouldBeInLoadedSateIfArticleAndContentCouldBeLoaded() {
     model.loadContent()
 
     XCTAssertEqual(model.state, .loaded(article, articleContent))
   }
 
-  func test_state_shouldEmitErrorInCaseLoadingOfArticleFails() {
+  func test_state_shouldBeInErrorStateInCaseLoadingOfArticleFails() {
     articleLoader = GetArticleArticleLoader(getArticle: FailingGetArticle(getError: .error), articleId: article.id)
     model = ArticleContentViewModel(
       articleLoader: articleLoader,
@@ -48,7 +48,7 @@ class ArticleContentViewModelTest: XCTestCase {
     XCTAssertEqual(model.state, .error)
   }
 
-  func test_state_shouldEmitErrorInCaseLoadingOfArticleReturnsNil() {
+  func test_state_shouldBeInErrorStateInCaseLoadingOfArticleReturnsNil() {
     articleLoader = GetArticleArticleLoader(getArticle: MockGetArticle(article: nil), articleId: article.id)
     model = ArticleContentViewModel(
       articleLoader: articleLoader,
@@ -59,7 +59,7 @@ class ArticleContentViewModelTest: XCTestCase {
     XCTAssertEqual(model.state, .error)
   }
 
-  func test_state_shouldEmitErrorInCaseLoadingOfArticleContentFails() {
+  func test_state_shouldBeInErrorStateInCaseLoadingOfArticleContentFails() {
     listArticleContent = FailingListArticleContent()
     model = ArticleContentViewModel(
       articleLoader: articleLoader,
