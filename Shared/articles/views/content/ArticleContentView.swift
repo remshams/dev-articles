@@ -13,9 +13,24 @@ import WebKit
 struct ArticleContentView: View {
   @EnvironmentObject var articlesContainer: ArticlesContainer
   let articleId: ArticleId
+  let article: Article?
+
+  init(articleId: ArticleId) {
+    self.articleId = articleId
+    article = nil
+  }
+
+  init(article: Article) {
+    self.article = article
+    articleId = article.id
+  }
 
   var body: some View {
-    ContainerView(model: articlesContainer.makeArticleContentViewModel(articleId: articleId))
+    if let article = article {
+      ContainerView(model: articlesContainer.makeArticleContentViewModel(article: article))
+    } else {
+      ContainerView(model: articlesContainer.makeArticleContentViewModel(articleId: articleId))
+    }
   }
 }
 
