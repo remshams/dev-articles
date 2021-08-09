@@ -19,18 +19,22 @@ private struct ContainerView: View {
   @ObservedObject var model: ReadingListViewModel
   @State var showAddArticle = false
   @State var selectedArticle: ArticleId?
+  @FetchRequest(
+    entity: ReadingListItem.entity(),
+    sortDescriptors: [NSSortDescriptor(keyPath: \ReadingListItem.savedAt, ascending: true)]
+  ) var allArticles: FetchedResults<ReadingListItem>
 
   var body: some View {
     NavigationView {
-      List(model.bookmarkedArticles) { bookmarkedArticle in
+      List(allArticles) { bookmarkedArticle in
         NavigationLink(
           destination:
-            container.makeArticleContentView(articleId: bookmarkedArticle.id)
-            .navigationTitle(bookmarkedArticle.article.title),
-          tag: bookmarkedArticle.id,
+          container.makeArticleContentView(articleId: bookmarkedArticle.contentId)
+            .navigationTitle(bookmarkedArticle.title),
+          tag: bookmarkedArticle.contentId,
           selection: $selectedArticle
         ) {
-          ArticleView(article: bookmarkedArticle.article)
+          ReadingListItemView(readingListItem: bookmarkedArticle)
         }
       }
       .navigationTitle("Readinglist")
@@ -51,6 +55,14 @@ private struct ContainerView: View {
         } cancelAddArticle: { showAddArticle = false }
       }
     }
+  }
+}
+
+private struct ReadingListItemView: View {
+  let readingListItem: ReadingListItem
+
+  var body: some View {
+    Text(readingListItem.title)
   }
 }
 

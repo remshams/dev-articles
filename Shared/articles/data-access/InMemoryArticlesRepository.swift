@@ -19,10 +19,18 @@ class InMemoryArticlesRepository: InMemoryRepository<Article>, ListArticle {
   }
 
   func getBy(url _: ArticleUrl) -> AnyPublisher<Article?, RepositoryError> {
+    #if DEBUG
     Just(articleForPreview).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+    #else
+    Just(nil).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+    #endif
   }
 
   func getBy(id _: ArticleId) -> AnyPublisher<Article?, RepositoryError> {
+    #if DEBUG
     Just(articleForPreview).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+    #else
+    Just(nil).setFailureType(to: RepositoryError.self).eraseToAnyPublisher()
+    #endif
   }
 }

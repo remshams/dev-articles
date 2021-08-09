@@ -19,13 +19,13 @@ class CoreDataReadingListRepository: AddReadingListItem, ListReadingListItem {
   func addFrom(article: Article) -> AnyPublisher<ReadingListItem, RepositoryError> {
     Just(article)
       .tryMap { article in
-        let readingListItemDto = ReadingListItemDbDto(
+        let readingListItem = ReadingListItem(
           context: managedObjectContext,
           article: article,
           savedAt: Date()
         )
         try managedObjectContext.save()
-        return readingListItemDto.toReadingListItem()
+        return readingListItem
       }
       .mapError { _ in
         RepositoryError.error
@@ -34,26 +34,20 @@ class CoreDataReadingListRepository: AddReadingListItem, ListReadingListItem {
   }
 
   func list() -> AnyPublisher<[ReadingListItem], RepositoryError> {
-    let fetchRequest: NSFetchRequest<ReadingListItemDbDto> = ReadingListItemDbDto.fetchRequest()
+    let fetchRequest: NSFetchRequest<ReadingListItem> = ReadingListItem.fetchRequest()
     return Just(fetchRequest)
       .tryMap { fetchRequest in
         try managedObjectContext.fetch(fetchRequest)
-      }
-      .map { readingListItemDtos in
-        readingListItemDtos.map { $0.toReadingListItem() }
       }
       .mapError { _ in RepositoryError.error }
       .eraseToAnyPublisher()
   }
 
   func list(for articleIds: [ArticleId]) -> AnyPublisher<[ReadingListItem], RepositoryError> {
-    Just(ReadingListItemDbDto
+    Just(ReadingListItem
       .fetchRequest(predicate: NSPredicate(format: "contentId IN %@", articleIds.map { String($0) })))
       .tryMap { fetchRequest in
         try managedObjectContext.fetch(fetchRequest)
-      }
-      .map { readingListItemDbDtos in
-        readingListItemDbDtos.map { $0.toReadingListItem() }
       }
       .mapError { _ in RepositoryError.error }
       .eraseToAnyPublisher()
