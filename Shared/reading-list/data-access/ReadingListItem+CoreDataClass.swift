@@ -9,5 +9,5 @@
 import CoreData
 import Foundation
 
-@objc(ReadingListItemDbDto)
-public class ReadingListItemDbDto: NSManagedObject {}
+@objc(ReadingListItem)
+public class ReadingListItem: NSManagedObject {}
