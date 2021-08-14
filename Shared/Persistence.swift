@@ -35,4 +35,14 @@ struct PersistenceController {
       }
     })
   }
+
+  func save() throws {
+    if context.hasChanges {
+      do {
+        try context.save()
+      } catch {
+        throw RepositoryError.error
+      }
+    }
+  }
 }

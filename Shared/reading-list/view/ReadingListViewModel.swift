@@ -16,7 +16,7 @@ class ReadingListViewModel: ObservableObject {
       bookmarkedArticles.append(BookmarkedArticle.from(article: article))
 
       do {
-        let context = AppContainer.shared.context
+        let context = AppContainer.shared.persistence.context
         context
           .insert(ReadingListItem(context: context, from: article,
                                   savedAt: Date()))

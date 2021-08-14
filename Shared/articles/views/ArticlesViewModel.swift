@@ -53,7 +53,7 @@ class ArticlesViewModel: ObservableObject {
   private func setupAddReadingListItem() {
     toggleBookmarkSubject
       .map {
-        ReadingListItem(context: AppContainer.shared.context, from: $0, savedAt: Date())
+        ReadingListItem(context: AppContainer.shared.persistence.context, from: $0, savedAt: Date())
       }
       .sink(receiveCompletion: { _ in }, receiveValue: readingListItemAdded.send)
       .store(in: &cancellables)

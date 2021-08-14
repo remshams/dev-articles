@@ -28,7 +28,7 @@ struct AppView: App {
       }
       .environmentObject(appContainer.makeArticlesContainer())
       .environmentObject(appContainer.makeReadingListContainer())
-      .environment(\.managedObjectContext, AppContainer.shared.context)
+      .environment(\.managedObjectContext, AppContainer.shared.persistence.context)
     }
   }
 }

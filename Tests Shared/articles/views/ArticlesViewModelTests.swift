@@ -20,7 +20,7 @@ class ArticleViewModelTests: XCTestCase {
   override func setUp() {
     articles = Article.createListFixture(min: 2)
     readingListItem = ReadingListItem(
-      context: AppContainer.shared.context,
+      context: AppContainer.shared.persistence.context,
       from: articles[0],
       savedAt: Date()
     )
