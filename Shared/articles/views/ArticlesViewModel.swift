@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import CoreData
 
 typealias ToggleBookmark = (Article) -> Void
 
@@ -51,8 +52,8 @@ class ArticlesViewModel: ObservableObject {
 
   private func setupAddReadingListItem() {
     toggleBookmarkSubject
-      .flatMap {
-        self.articlesUseCaseFactory.makeAddReadlingListItemFromArticleUseCase(article: $0).start()
+      .map {
+        ReadingListItem(context: AppContainer.shared.managedObjectContext, from: $0, savedAt: Date())
       }
       .sink(receiveCompletion: { _ in }, receiveValue: readingListItemAdded.send)
       .store(in: &cancellables)

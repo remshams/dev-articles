@@ -9,7 +9,7 @@
 import CoreData
 import Foundation
 
-public extension ReadingListItem {
+extension ReadingListItem {
   @nonobjc class func fetchRequest() -> NSFetchRequest<ReadingListItem> {
     NSFetchRequest<ReadingListItem>(entityName: "ReadingListItem")
   }
@@ -19,18 +19,22 @@ public extension ReadingListItem {
   @NSManaged private(set) var savedAt: Date
 }
 
-public extension ReadingListItem {
-  @nonobjc class func fetchRequest(predicate: NSPredicate? = nil) -> NSFetchRequest<ReadingListItem> {
+extension ReadingListItem {
+  @nonobjc class func fetchRequest(predicate: NSPredicate) -> NSFetchRequest<ReadingListItem> {
     let fetchRequest = NSFetchRequest<ReadingListItem>(entityName: "ReadingListItem")
-    if let predicate = predicate {
-      fetchRequest.predicate = predicate
-    }
+    fetchRequest.predicate = predicate
+    return fetchRequest
+  }
+
+  @nonobjc class func fetchRequest(articleIds: [ArticleId]) -> NSFetchRequest<ReadingListItem> {
+    let fetchRequest = NSFetchRequest<ReadingListItem>(entityName: "ReadingListItem")
+    fetchRequest.predicate = NSPredicate(format: "contentId IN %@", articleIds.map { String($0) })
     return fetchRequest
   }
 }
 
 extension ReadingListItem: Identifiable {
-  convenience init(context: NSManagedObjectContext, from article: Article, savedAt: Date) {
+  convenience init(context _: NSManagedObjectContext, from article: Article, savedAt: Date) {
     self.init(context: AppContainer.shared.managedObjectContext)
     title = article.title
     contentId = article.id

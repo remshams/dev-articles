@@ -82,8 +82,7 @@ private struct NoAritcles: View {
             ]
           ),
           getArticle: articlesRepository,
-          listArticleContent: InMemoryArticleContentRepository(),
-          addReadingListItem: InMemoryReadingListRepository(readingListItems: [])
+          listArticleContent: InMemoryArticleContentRepository()
         )
       )
     }

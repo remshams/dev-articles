@@ -1,6 +1,6 @@
 import Combine
-import Foundation
 import CoreData
+import Foundation
 
 protocol ArticlesRepository: ListArticle, GetArticle {}
 protocol ArticleContentRepository: ListArticleContent {}
@@ -11,7 +11,6 @@ struct AppContainer {
   let managedObjectContext: NSManagedObjectContext
   private let persistence: PersistenceController
   private let httpGet: HttpGet
-  private let readingListRepository: CoreDataReadingListRepository
   private let articlesRepository: ArticlesRepository
   private let articleContentRepository: ArticleContentRepository
 
@@ -19,7 +18,6 @@ struct AppContainer {
     persistence = AppContainer.makePersistence()
     managedObjectContext = persistence.context
     httpGet = AppContainer.makeHttpGet()
-    readingListRepository = CoreDataReadingListRepository(managedObjectContext: managedObjectContext)
     articlesRepository = AppContainer.makeArticlesRepository(httpGet: httpGet)
     articleContentRepository = AppContainer.makeArticleContentRepository(httpGet: httpGet)
     print("Running with configuration: \(configuration)")
@@ -29,8 +27,7 @@ struct AppContainer {
     ArticlesContainer(
       listArticle: articlesRepository,
       getArticle: articlesRepository,
-      listArticleContent: articleContentRepository,
-      addReadingListItem: readingListRepository
+      listArticleContent: articleContentRepository
     )
   }
 
@@ -63,8 +60,6 @@ struct AppContainer {
 
   func makeReadingListContainer() -> ReadingListContainer {
     ReadingListContainer(
-      addReadingListItem: readingListRepository,
-      listReadingListItem: readingListRepository,
       getArticle: articlesRepository
     )
   }
