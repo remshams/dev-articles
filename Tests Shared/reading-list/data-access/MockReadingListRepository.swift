@@ -17,7 +17,7 @@ struct InMemoryAddReadingListItem: AddReadingListItem {
   }
 
   func addFrom(article: Article) -> AnyPublisher<ReadingListItem, RepositoryError> {
-    Just(ReadingListItem(context: AppContainer.shared.managedObjectContext, from: article, savedAt: date))
+    Just(ReadingListItem(context: AppContainer.shared.context, from: article, savedAt: date))
       .setFailureType(to: RepositoryError.self)
       .eraseToAnyPublisher()
   }

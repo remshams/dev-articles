@@ -8,7 +8,7 @@ protocol ArticleContentRepository: ListArticleContent {}
 struct AppContainer {
   static let shared = AppContainer()
 
-  let managedObjectContext: NSManagedObjectContext
+  let context: NSManagedObjectContext
   private let persistence: PersistenceController
   private let httpGet: HttpGet
   private let articlesRepository: ArticlesRepository
@@ -16,7 +16,7 @@ struct AppContainer {
 
   init() {
     persistence = AppContainer.makePersistence()
-    managedObjectContext = persistence.context
+    context = persistence.context
     httpGet = AppContainer.makeHttpGet()
     articlesRepository = AppContainer.makeArticlesRepository(httpGet: httpGet)
     articleContentRepository = AppContainer.makeArticleContentRepository(httpGet: httpGet)
