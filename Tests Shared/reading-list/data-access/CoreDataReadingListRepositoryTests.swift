@@ -36,7 +36,7 @@ class CoreDataReadingListRepositoryTests: XCTestCase {
 
   func addReadingListItems(readingListItemsForTest: [ReadingListItem]? = nil) {
     (readingListItemsForTest ?? readingListItems)!.forEach {
-      managedObjectContext.insert(ReadingListItemDbDto(context: managedObjectContext, readingListItem: $0))
+      managedObjectContext.insert(ReadingListItem(context: managedObjectContext, readingListItem: $0))
     }
     do {
       try managedObjectContext.save()
@@ -117,7 +117,6 @@ class CoreDataReadingListRepositoryTests: XCTestCase {
     XCTAssertEqual(resultSortedById.count, expected.count)
     (0 ..< resultSortedById.count).forEach { index in
       XCTAssertEqual(expected[index].contentId, resultSortedById[index].contentId)
-      XCTAssertEqual(expected[index].link, resultSortedById[index].link)
       XCTAssertEqual(expected[index].title, resultSortedById[index].title)
     }
   }

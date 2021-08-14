@@ -6,7 +6,7 @@ protocol ArticleContentRepository: ListArticleContent {}
 
 struct AppContainer {
   let httpGet: HttpGet
-  let managedObjectContext = PersistenceController.shared.container.viewContext
+  let managedObjectContext = PersistenceController.shared.context
   let readingListRepository: CoreDataReadingListRepository
   let articlesRepository: ArticlesRepository
   let articleContentRepository: ArticleContentRepository
