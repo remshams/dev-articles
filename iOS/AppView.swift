@@ -32,7 +32,7 @@ struct AppView: App {
       }
       .environmentObject(appContainer.makeArticlesContainer())
       .environmentObject(appContainer.makeReadingListContainer())
-      .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+      .environment(\.managedObjectContext, PersistenceController.shared.context)
     }
   }
 }

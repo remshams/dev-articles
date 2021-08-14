@@ -29,7 +29,7 @@ public extension ReadingListItem {
 
 extension ReadingListItem: Identifiable {
   convenience init(from article: Article, savedAt: Date) {
-    self.init()
+    self.init(context: PersistenceController.shared.context)
     title = article.title
     contentId = article.id
     self.savedAt = savedAt
