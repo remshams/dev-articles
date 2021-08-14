@@ -10,7 +10,7 @@ import CoreData
 import Foundation
 
 extension ReadingListItem {
-  @nonobjc class func fetchRequest() -> NSFetchRequest<ReadingListItem> {
+  @nonobjc class func fetchRequestAll() -> NSFetchRequest<ReadingListItem> {
     NSFetchRequest<ReadingListItem>(entityName: "ReadingListItem")
   }
 
