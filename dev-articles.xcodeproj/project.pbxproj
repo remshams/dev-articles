@@ -12,12 +12,7 @@
 		4B0E03AA26A73E34005C7D4E /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E03A926A73E34005C7D4E /* Spacing.swift */; };
 		4B0E03AB26A73E34005C7D4E /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E03A926A73E34005C7D4E /* Spacing.swift */; };
 		4B0E03AE26A89822005C7D4E /* Tests macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E03AD26A89822005C7D4E /* Tests macOS.swift */; };
-		4B1F3891265A8B7000D96B71 /* AppAddReadingListItemFromArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F3890265A8B7000D96B71 /* AppAddReadingListItemFromArticleUseCase.swift */; };
-		4B1F3895265A8D8100D96B71 /* AppAddReadingListItemFromArticleUserCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F3894265A8D8100D96B71 /* AppAddReadingListItemFromArticleUserCase.swift */; };
-		4B1F389C265ABA2C00D96B71 /* ReadingListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F389B265ABA2C00D96B71 /* ReadingListUseCase.swift */; };
-		4B1F389D265ABA3000D96B71 /* ReadingListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F389B265ABA2C00D96B71 /* ReadingListUseCase.swift */; };
 		4B1F389F265ABBEE00D96B71 /* ArticlesUseCaseFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F389E265ABBEE00D96B71 /* ArticlesUseCaseFixture.swift */; };
-		4B1F38A1265ABE7200D96B71 /* ReadingListUseCaseFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F38A0265ABE7200D96B71 /* ReadingListUseCaseFixture.swift */; };
 		4B1F38A4265BD49300D96B71 /* ArticleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F38A3265BD49300D96B71 /* ArticleTests.swift */; };
 		4B243D9A2669045100E5E7EB /* ArticleRestDtoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B243D992669045100E5E7EB /* ArticleRestDtoFixture.swift */; };
 		4B243D9E2669071300E5E7EB /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B243D9B2669070900E5E7EB /* DateFormatting.swift */; };
@@ -32,7 +27,6 @@
 		4B26881A262B247A006C4C5B /* ReadingListContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268819262B247A006C4C5B /* ReadingListContainer.swift */; };
 		4B26882A262B3A9D006C4C5B /* ReadingListContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268819262B247A006C4C5B /* ReadingListContainer.swift */; };
 		4B26882B262B3A9D006C4C5B /* ArticlesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268808262B2431006C4C5B /* ArticlesContainer.swift */; };
-		4B268832262B48AF006C4C5B /* InMemoryReadingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268831262B48AF006C4C5B /* InMemoryReadingListRepository.swift */; };
 		4B268839262B4925006C4C5B /* InMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268838262B4925006C4C5B /* InMemoryRepository.swift */; };
 		4B26883A262B4925006C4C5B /* InMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268838262B4925006C4C5B /* InMemoryRepository.swift */; };
 		4B26884D262C377A006C4C5B /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B26884C262C377A006C4C5B /* RepositoryError.swift */; };
@@ -90,8 +84,6 @@
 		4B47CA82269E080D009BDDEB /* AuthorRestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47CA80269E080D009BDDEB /* AuthorRestDto.swift */; };
 		4B47CA8526A0AB20009BDDEB /* AuthorFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47CA8426A0AB20009BDDEB /* AuthorFixture.swift */; };
 		4B47CA8A26A0AC84009BDDEB /* AuthorRestDtoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47CA8926A0AC84009BDDEB /* AuthorRestDtoFixture.swift */; };
-		4B58FB56267625BC008B2A7C /* AppAddReadingListItemFromArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F3890265A8B7000D96B71 /* AppAddReadingListItemFromArticleUseCase.swift */; };
-		4B58FB5726762716008B2A7C /* InMemoryReadingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B268831262B48AF006C4C5B /* InMemoryReadingListRepository.swift */; };
 		4B58FB592676421C008B2A7C /* ContentDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58FB582676421C008B2A7C /* ContentDivider.swift */; };
 		4B58FB5A2676421C008B2A7C /* ContentDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58FB582676421C008B2A7C /* ContentDivider.swift */; };
 		4B5C873E266D0C2A004C94A7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5C873D266D0C2A004C94A7 /* Color.swift */; };
@@ -105,10 +97,6 @@
 		4B5E1B6D26A44648007561F4 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E1B6B26A44648007561F4 /* Application.swift */; };
 		4B6AD7B626076C13009EA5E7 /* ReadingListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7B426076C13009EA5E7 /* ReadingListItem+CoreDataClass.swift */; };
 		4B6AD7B726076C13009EA5E7 /* ReadingListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7B526076C13009EA5E7 /* ReadingListItem+CoreDataProperties.swift */; };
-		4B6AD7C926078280009EA5E7 /* CoreDataReadingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7C826078280009EA5E7 /* CoreDataReadingListRepository.swift */; };
-		4B6AD7CA26078280009EA5E7 /* CoreDataReadingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7C826078280009EA5E7 /* CoreDataReadingListRepository.swift */; };
-		4B6AD7EA26078630009EA5E7 /* ReadingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */; };
-		4B6AD7EB26078630009EA5E7 /* ReadingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */; };
 		4B6AD8112607C4EA009EA5E7 /* ReadingListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7B526076C13009EA5E7 /* ReadingListItem+CoreDataProperties.swift */; };
 		4B6AD8172607C4ED009EA5E7 /* ReadingListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD7B426076C13009EA5E7 /* ReadingListItem+CoreDataClass.swift */; };
 		4B72346125CF12E400766126 /* AppArticlesRestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72346025CF12E400766126 /* AppArticlesRestAdapter.swift */; };
@@ -198,11 +186,7 @@
 		4B03E6D425FCEAFD000A6F7A /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		4B0E03A926A73E34005C7D4E /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		4B0E03AD26A89822005C7D4E /* Tests macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tests macOS.swift"; sourceTree = "<group>"; };
-		4B1F3890265A8B7000D96B71 /* AppAddReadingListItemFromArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAddReadingListItemFromArticleUseCase.swift; sourceTree = "<group>"; };
-		4B1F3894265A8D8100D96B71 /* AppAddReadingListItemFromArticleUserCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAddReadingListItemFromArticleUserCase.swift; sourceTree = "<group>"; };
-		4B1F389B265ABA2C00D96B71 /* ReadingListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListUseCase.swift; sourceTree = "<group>"; };
 		4B1F389E265ABBEE00D96B71 /* ArticlesUseCaseFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesUseCaseFixture.swift; sourceTree = "<group>"; };
-		4B1F38A0265ABE7200D96B71 /* ReadingListUseCaseFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListUseCaseFixture.swift; sourceTree = "<group>"; };
 		4B1F38A3265BD49300D96B71 /* ArticleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTests.swift; sourceTree = "<group>"; };
 		4B243D992669045100E5E7EB /* ArticleRestDtoFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRestDtoFixture.swift; sourceTree = "<group>"; };
 		4B243D9B2669070900E5E7EB /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
@@ -212,7 +196,6 @@
 		4B262798262C8CDF006FD5C9 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		4B268808262B2431006C4C5B /* ArticlesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesContainer.swift; sourceTree = "<group>"; };
 		4B268819262B247A006C4C5B /* ReadingListContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListContainer.swift; sourceTree = "<group>"; };
-		4B268831262B48AF006C4C5B /* InMemoryReadingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReadingListRepository.swift; sourceTree = "<group>"; };
 		4B268838262B4925006C4C5B /* InMemoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryRepository.swift; sourceTree = "<group>"; };
 		4B26884C262C377A006C4C5B /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 		4B27123326AC7689007BC48C /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -254,8 +237,6 @@
 		4B5E1B6B26A44648007561F4 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		4B6AD7B426076C13009EA5E7 /* ReadingListItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReadingListItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4B6AD7B526076C13009EA5E7 /* ReadingListItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReadingListItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		4B6AD7C826078280009EA5E7 /* CoreDataReadingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataReadingListRepository.swift; sourceTree = "<group>"; };
-		4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListRepository.swift; sourceTree = "<group>"; };
 		4B72346025CF12E400766126 /* AppArticlesRestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppArticlesRestAdapter.swift; sourceTree = "<group>"; };
 		4B7BACB425E180A3004A0C4B /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		4B93DBC225F3C18400DBCFA2 /* ArticleRestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRestDto.swift; sourceTree = "<group>"; };
@@ -362,7 +343,6 @@
 			children = (
 				4B268819262B247A006C4C5B /* ReadingListContainer.swift */,
 				4B27124226AC8226007BC48C /* view */,
-				4B1F388F265A8B4400D96B71 /* uses-cases */,
 				4B0AFC43262B223A00BE94F8 /* domain */,
 				4B0AFC42262B222500BE94F8 /* data-access */,
 			);
@@ -412,9 +392,6 @@
 			children = (
 				4B6AD7B426076C13009EA5E7 /* ReadingListItem+CoreDataClass.swift */,
 				4B6AD7B526076C13009EA5E7 /* ReadingListItem+CoreDataProperties.swift */,
-				4B6AD7C826078280009EA5E7 /* CoreDataReadingListRepository.swift */,
-				4B6AD7E926078630009EA5E7 /* ReadingListRepository.swift */,
-				4B268831262B48AF006C4C5B /* InMemoryReadingListRepository.swift */,
 			);
 			path = "data-access";
 			sourceTree = "<group>";
@@ -425,24 +402,6 @@
 				4B27124926AC84CF007BC48C /* BookmarkedArticle.swift */,
 			);
 			path = domain;
-			sourceTree = "<group>";
-		};
-		4B1F388F265A8B4400D96B71 /* uses-cases */ = {
-			isa = PBXGroup;
-			children = (
-				4B1F3890265A8B7000D96B71 /* AppAddReadingListItemFromArticleUseCase.swift */,
-				4B1F389B265ABA2C00D96B71 /* ReadingListUseCase.swift */,
-			);
-			path = "uses-cases";
-			sourceTree = "<group>";
-		};
-		4B1F3893265A8D5000D96B71 /* uses-cases */ = {
-			isa = PBXGroup;
-			children = (
-				4B1F3894265A8D8100D96B71 /* AppAddReadingListItemFromArticleUserCase.swift */,
-				4B1F38A0265ABE7200D96B71 /* ReadingListUseCaseFixture.swift */,
-			);
-			path = "uses-cases";
 			sourceTree = "<group>";
 		};
 		4B1F38A2265BD47400D96B71 /* domain */ = {
@@ -459,7 +418,6 @@
 			isa = PBXGroup;
 			children = (
 				4BF53C4A26ADAD2D00BFAF83 /* views */,
-				4B1F3893265A8D5000D96B71 /* uses-cases */,
 				4BAAA262260F98CD0061F30C /* ReadingListFixture.swift */,
 				4B262740262C49D4006FD5C9 /* data-access */,
 			);
@@ -1091,7 +1049,6 @@
 				4B1F38A4265BD49300D96B71 /* ArticleTests.swift in Sources */,
 				4B47CA6D269211A6009BDDEB /* ArticleContentRestDtoFixture.swift in Sources */,
 				4B47CA65269200EE009BDDEB /* AppArticleContentRestAdapterTest.swift in Sources */,
-				4B1F38A1265ABE7200D96B71 /* ReadingListUseCaseFixture.swift in Sources */,
 				4BAAA2772610DEA50061F30C /* ArrayTests.swift in Sources */,
 				4B46376E263F130F00A41C33 /* AppLoadArticlesUseCaseTests.swift in Sources */,
 				4B47CA8A26A0AC84009BDDEB /* AuthorRestDtoFixture.swift in Sources */,
@@ -1108,7 +1065,6 @@
 				4BAAA263260F98CD0061F30C /* ReadingListFixture.swift in Sources */,
 				4B5C88B425F3B3B900F375F2 /* helpers.swift in Sources */,
 				4BA81A5B261B449F00F0F1C1 /* MockReadingListRepository.swift in Sources */,
-				4B1F3895265A8D8100D96B71 /* AppAddReadingListItemFromArticleUserCase.swift in Sources */,
 				4BF53C5126B07D3F00BFAF83 /* AppArticlesRestAdapterGetTests.swift in Sources */,
 				4B26276E262C50F7006FD5C9 /* DataAccessFixture.swift in Sources */,
 				4B47CA6F26921285009BDDEB /* MockArticleContentRepository.swift in Sources */,
@@ -1141,7 +1097,6 @@
 				4BBBD3DC2662570A0035F2CA /* AsyncViewModel.swift in Sources */,
 				4B463767263EEB1500A41C33 /* UseCase.swift in Sources */,
 				4B03E6D525FCEAFD000A6F7A /* ArticleView.swift in Sources */,
-				4B6AD7EA26078630009EA5E7 /* ReadingListRepository.swift in Sources */,
 				4B2627B9262C925B006FD5C9 /* Configuration.swift in Sources */,
 				4BBBD3CA266250B60035F2CA /* ArticleDetailsView.swift in Sources */,
 				4BA500AD25D97467005AD7D8 /* ArticlesView.swift in Sources */,
@@ -1162,19 +1117,15 @@
 				4B5E1B6C26A44648007561F4 /* Application.swift in Sources */,
 				4B0E03AA26A73E34005C7D4E /* Spacing.swift in Sources */,
 				4B93DBC325F3C18400DBCFA2 /* ArticleRestDto.swift in Sources */,
-				4B1F389C265ABA2C00D96B71 /* ReadingListUseCase.swift in Sources */,
 				4B47CA4D26909A2E009BDDEB /* ArticleContentRestDto.swift in Sources */,
 				4B47CA562690A32B009BDDEB /* ArticleContentViewModel.swift in Sources */,
 				4B47CA7C269E06B5009BDDEB /* Author.swift in Sources */,
-				4B268832262B48AF006C4C5B /* InMemoryReadingListRepository.swift in Sources */,
 				4B47CA5326909B99009BDDEB /* ArticleContent.swift in Sources */,
-				4B1F3891265A8B7000D96B71 /* AppAddReadingListItemFromArticleUseCase.swift in Sources */,
 				4B262736262C3AF0006FD5C9 /* HttpError.swift in Sources */,
 				4B72346125CF12E400766126 /* AppArticlesRestAdapter.swift in Sources */,
 				4BA81A53261A108000F0F1C1 /* BookmarkView.swift in Sources */,
 				4B268809262B2431006C4C5B /* ArticlesContainer.swift in Sources */,
 				4BA81A422617935100F0F1C1 /* Array.swift in Sources */,
-				4B6AD7C926078280009EA5E7 /* CoreDataReadingListRepository.swift in Sources */,
 				4B26884D262C377A006C4C5B /* RepositoryError.swift in Sources */,
 				4B243D9F2669071400E5E7EB /* DateFormatting.swift in Sources */,
 				4B47CA81269E080D009BDDEB /* AuthorRestDto.swift in Sources */,
@@ -1201,21 +1152,17 @@
 				4B26882B262B3A9D006C4C5B /* ArticlesContainer.swift in Sources */,
 				4B2627BA262C925C006FD5C9 /* Configuration.swift in Sources */,
 				4B58FB5A2676421C008B2A7C /* ContentDivider.swift in Sources */,
-				4B6AD7CA26078280009EA5E7 /* CoreDataReadingListRepository.swift in Sources */,
 				4B6AD8172607C4ED009EA5E7 /* ReadingListItem+CoreDataClass.swift in Sources */,
 				4BC96C2125CF103C0081B8FF /* Article.swift in Sources */,
 				4B47CA602690DC1D009BDDEB /* AppArticleContentRepository.swift in Sources */,
 				4B47CA5A2690A5B7009BDDEB /* InMemoryArticleContentRepository.swift in Sources */,
-				4B58FB5726762716008B2A7C /* InMemoryReadingListRepository.swift in Sources */,
 				4B27124826AC83B8007BC48C /* ReadingListViewModel.swift in Sources */,
 				4B47CA632691FEAA009BDDEB /* AppArticleContentRestAdapter.swift in Sources */,
 				4B7BACB625E180A3004A0C4B /* AppContainer.swift in Sources */,
 				4B3DB05F26065B0A003B5CD6 /* Persistence.swift in Sources */,
-				4B6AD7EB26078630009EA5E7 /* ReadingListRepository.swift in Sources */,
 				4BE4FA4325D999CD006D355E /* InMemoryArticlesRepository.swift in Sources */,
 				4BC357DB263DC37500B3B215 /* AppArticlesRepository.swift in Sources */,
 				4B5C873F266D0C2A004C94A7 /* Color.swift in Sources */,
-				4B58FB56267625BC008B2A7C /* AppAddReadingListItemFromArticleUseCase.swift in Sources */,
 				4B463764263EEAE900A41C33 /* AppLoadArticlesUseCase.swift in Sources */,
 				4B6AD8112607C4EA009EA5E7 /* ReadingListItem+CoreDataProperties.swift in Sources */,
 				4BF53C4026AD7B4900BFAF83 /* AddArticleView.swift in Sources */,
@@ -1252,7 +1199,6 @@
 				4B47CA82269E080D009BDDEB /* AuthorRestDto.swift in Sources */,
 				4BF53C5D26B5851000BFAF83 /* ArticleUrl.swift in Sources */,
 				4B27124526AC82F7007BC48C /* ReadingListView.swift in Sources */,
-				4B1F389D265ABA3000D96B71 /* ReadingListUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

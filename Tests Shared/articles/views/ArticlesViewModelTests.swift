@@ -25,8 +25,7 @@ class ArticleViewModelTests: XCTestCase {
       savedAt: Date()
     )
     useCaseFactory = MockArticleUseCaseFactory(
-      loadArticlesUseCase: MockLoadArticlesUseCase(articles: articles),
-      addReadingListItemFromArticleUseCase: MockAddReadingListItemFromArticleUseCase(readingListItem: readingListItem)
+      loadArticlesUseCase: MockLoadArticlesUseCase(articles: articles)
     )
     viewModel = ArticlesViewModel(articlesUseCaseFactory: useCaseFactory)
 

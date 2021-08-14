@@ -23,15 +23,11 @@ struct MockLoadArticlesUseCase: LoadArticlesUseCase {
 
 struct MockArticleUseCaseFactory: ArticlesUseCaseFactory {
   let loadArticlesUseCase: MockLoadArticlesUseCase
-  let addReadingListItemFromArticleUseCase: MockAddReadingListItemFromArticleUseCase
 
   init(
-    loadArticlesUseCase: MockLoadArticlesUseCase = MockLoadArticlesUseCase(),
-    addReadingListItemFromArticleUseCase: MockAddReadingListItemFromArticleUseCase =
-      MockAddReadingListItemFromArticleUseCase()
+    loadArticlesUseCase: MockLoadArticlesUseCase = MockLoadArticlesUseCase()
   ) {
     self.loadArticlesUseCase = loadArticlesUseCase
-    self.addReadingListItemFromArticleUseCase = addReadingListItemFromArticleUseCase
   }
 
   func makeLoadArticlesUseCase(timeCategory _: TimeCategory, page _: Int, pageSize _: Int) -> LoadArticlesUseCase {
@@ -40,9 +36,5 @@ struct MockArticleUseCaseFactory: ArticlesUseCaseFactory {
 
   func makeLoadArticlesUseCase(timeCategory _: TimeCategory, page _: Int) -> LoadArticlesUseCase {
     loadArticlesUseCase
-  }
-
-  func makeAddReadlingListItemFromArticleUseCase(article _: Article) -> AddReadingListItemFromArticleUseCase {
-    addReadingListItemFromArticleUseCase
   }
 }

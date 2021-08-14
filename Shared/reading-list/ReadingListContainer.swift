@@ -8,13 +8,9 @@
 import Foundation
 
 class ReadingListContainer: ObservableObject {
-  let addReadingListItem: AddReadingListItem
-  let listReadingListItem: ListReadingListItem
   let getArticle: GetArticle
 
-  init(addReadingListItem: AddReadingListItem, listReadingListItem: ListReadingListItem, getArticle: GetArticle) {
-    self.addReadingListItem = addReadingListItem
-    self.listReadingListItem = listReadingListItem
+  init(getArticle: GetArticle) {
     self.getArticle = getArticle
   }
 
