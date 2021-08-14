@@ -9,12 +9,8 @@ import Foundation
 import SwiftUI
 
 class ReadingListViewModel: ObservableObject {
-  @Published var bookmarkedArticles: [BookmarkedArticle] = []
-
-  func add(article: Article) {
-    if bookmarkedArticles.firstIndex(where: { $0.id == article.id }) == nil {
-      bookmarkedArticles.append(BookmarkedArticle.from(article: article))
-
+  func add(article: Article, readingListItems: FetchedResults<ReadingListItem>) {
+    if readingListItems.firstIndex(where: { $0.contentId == article.id }) == nil {
       AppContainer.shared.persistence.context
         .insert(ReadingListItem(context: AppContainer.shared.persistence.context, from: article,
                                 savedAt: Date()))

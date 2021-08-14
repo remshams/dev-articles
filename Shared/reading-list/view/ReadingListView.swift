@@ -49,7 +49,7 @@ private struct ContainerView: View {
       }
       .sheet(isPresented: $showAddArticle) {
         AddArticleView { article in
-          model.add(article: article)
+          model.add(article: article, readingListItems: allArticles)
           showAddArticle = false
           selectedArticle = article.id
         } cancelAddArticle: { showAddArticle = false }
