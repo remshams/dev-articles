@@ -35,7 +35,7 @@ extension ReadingListItem {
 
 extension ReadingListItem: Identifiable {
   convenience init(context _: NSManagedObjectContext, from article: Article, savedAt: Date) {
-    self.init(context: AppContainer.shared.managedObjectContext)
+    self.init(context: AppContainer.shared.context)
     title = article.title
     contentId = article.id
     self.savedAt = savedAt
