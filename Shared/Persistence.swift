@@ -8,12 +8,6 @@
 import CoreData
 
 struct PersistenceController {
-  #if RELEASE
-    static let shared = PersistenceController()
-  #else
-    static let shared = PersistenceController(inMemory: true)
-  #endif
-
   let context: NSManagedObjectContext
 
   private let container: NSPersistentContainer

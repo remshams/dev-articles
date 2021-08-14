@@ -21,7 +21,7 @@ class CoreDataReadingListRepository: AddReadingListItem, ListReadingListItem {
       .tryMap { article in
         let readingListItem = ReadingListItem(
           context: managedObjectContext,
-          article: article,
+          from: article,
           savedAt: Date()
         )
         try managedObjectContext.save()
@@ -34,8 +34,7 @@ class CoreDataReadingListRepository: AddReadingListItem, ListReadingListItem {
   }
 
   func list() -> AnyPublisher<[ReadingListItem], RepositoryError> {
-    let fetchRequest: NSFetchRequest<ReadingListItem> = ReadingListItem.fetchRequest()
-    return Just(fetchRequest)
+    return Just(ReadingListItem.fetchRequest())
       .tryMap { fetchRequest in
         try managedObjectContext.fetch(fetchRequest)
       }
@@ -48,6 +47,15 @@ class CoreDataReadingListRepository: AddReadingListItem, ListReadingListItem {
       .fetchRequest(predicate: NSPredicate(format: "contentId IN %@", articleIds.map { String($0) })))
       .tryMap { fetchRequest in
         try managedObjectContext.fetch(fetchRequest)
+      }
+      .mapError { _ in RepositoryError.error }
+      .eraseToAnyPublisher()
+  }
+
+  func clear() -> AnyPublisher<Void, RepositoryError> {
+    Just(ReadingListItem.fetchRequest())
+      .tryMap { fetchRequest in
+        try managedObjectContext.execute(NSBatchDeleteRequest(fetchRequest: fetchRequest))
       }
       .mapError { _ in RepositoryError.error }
       .eraseToAnyPublisher()

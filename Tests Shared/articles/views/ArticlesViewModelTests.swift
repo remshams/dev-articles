@@ -19,7 +19,11 @@ class ArticleViewModelTests: XCTestCase {
 
   override func setUp() {
     articles = Article.createListFixture(min: 2)
-    readingListItem = ReadingListItem(from: articles[0], savedAt: Date())
+    readingListItem = ReadingListItem(
+      context: AppContainer.shared.managedObjectContext,
+      from: articles[0],
+      savedAt: Date()
+    )
     useCaseFactory = MockArticleUseCaseFactory(
       loadArticlesUseCase: MockLoadArticlesUseCase(articles: articles),
       addReadingListItemFromArticleUseCase: MockAddReadingListItemFromArticleUseCase(readingListItem: readingListItem)

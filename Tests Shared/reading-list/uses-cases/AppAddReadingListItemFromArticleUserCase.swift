@@ -29,7 +29,10 @@ class AppAddReadingListItemFromArticleUserCaseTests: XCTestCase {
     collect(stream: useCase.start(), cancellables: &cancellables)
       .sink(
         receiveCompletion: { _ in },
-        receiveValue: { XCTAssertEqual($0, [ReadingListItem(from: self.article, savedAt: self.date)]) }
+        receiveValue: { XCTAssertEqual(
+          $0,
+          [ReadingListItem(context: AppContainer.shared.managedObjectContext, from: self.article, savedAt: self.date)]
+        ) }
       )
       .store(in: &cancellables)
   }
