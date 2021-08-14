@@ -10,6 +10,7 @@ import SwiftUI
 
 @main
 struct AppView: App {
+  @Environment(\.scenePhase) var scenePhase
   let appContainer = AppContainer.shared
 
   var body: some Scene {
@@ -29,6 +30,18 @@ struct AppView: App {
       .environmentObject(appContainer.makeArticlesContainer())
       .environmentObject(appContainer.makeReadingListContainer())
       .environment(\.managedObjectContext, AppContainer.shared.persistence.context)
+      .onChange(of: scenePhase) { newScenePhase in
+        do {
+          switch newScenePhase {
+          case .active:
+            return
+          default:
+            try appContainer.persistence.save()
+          }
+        } catch {
+          fatalError("Saving of main core data context failed")
+        }
+      }
     }
   }
 }

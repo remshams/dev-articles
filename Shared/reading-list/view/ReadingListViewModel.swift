@@ -15,15 +15,9 @@ class ReadingListViewModel: ObservableObject {
     if bookmarkedArticles.firstIndex(where: { $0.id == article.id }) == nil {
       bookmarkedArticles.append(BookmarkedArticle.from(article: article))
 
-      do {
-        let context = AppContainer.shared.persistence.context
-        context
-          .insert(ReadingListItem(context: context, from: article,
-                                  savedAt: Date()))
-        try context.save()
-      } catch {
-        print("Save Error")
-      }
+      AppContainer.shared.persistence.context
+        .insert(ReadingListItem(context: AppContainer.shared.persistence.context, from: article,
+                                savedAt: Date()))
     }
   }
 }
