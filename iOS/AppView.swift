@@ -10,11 +10,7 @@ import SwiftUI
 
 @main
 struct AppView: App {
-  let appContainer: AppContainer
-
-  init() {
-    appContainer = AppContainer()
-  }
+  let appContainer = AppContainer.shared
 
   var body: some Scene {
     WindowGroup {
@@ -32,7 +28,7 @@ struct AppView: App {
       }
       .environmentObject(appContainer.makeArticlesContainer())
       .environmentObject(appContainer.makeReadingListContainer())
-      .environment(\.managedObjectContext, PersistenceController.shared.context)
+      .environment(\.managedObjectContext, AppContainer.shared.managedObjectContext)
     }
   }
 }

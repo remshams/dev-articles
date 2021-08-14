@@ -22,6 +22,6 @@ class InMemoryReadingListRepository: InMemoryRepository<ReadingListItem>, ListRe
   }
 
   func addFrom(article: Article) -> AnyPublisher<ReadingListItem, RepositoryError> {
-    add(entity: ReadingListItem(from: article, savedAt: Date()))
+    add(entity: ReadingListItem(context: AppContainer.shared.managedObjectContext, from: article, savedAt: Date()))
   }
 }

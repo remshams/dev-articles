@@ -1,17 +1,23 @@
 import Combine
 import Foundation
+import CoreData
 
 protocol ArticlesRepository: ListArticle, GetArticle {}
 protocol ArticleContentRepository: ListArticleContent {}
 
 struct AppContainer {
-  let httpGet: HttpGet
-  let managedObjectContext = PersistenceController.shared.context
-  let readingListRepository: CoreDataReadingListRepository
-  let articlesRepository: ArticlesRepository
-  let articleContentRepository: ArticleContentRepository
+  static let shared = AppContainer()
+
+  let managedObjectContext: NSManagedObjectContext
+  private let persistence: PersistenceController
+  private let httpGet: HttpGet
+  private let readingListRepository: CoreDataReadingListRepository
+  private let articlesRepository: ArticlesRepository
+  private let articleContentRepository: ArticleContentRepository
 
   init() {
+    persistence = AppContainer.makePersistence()
+    managedObjectContext = persistence.context
     httpGet = AppContainer.makeHttpGet()
     readingListRepository = CoreDataReadingListRepository(managedObjectContext: managedObjectContext)
     articlesRepository = AppContainer.makeArticlesRepository(httpGet: httpGet)
@@ -43,6 +49,15 @@ struct AppContainer {
       return InMemoryArticleContentRepository()
     default:
       return AppArticleContentRepository(httpGet: httpGet)
+    }
+  }
+
+  private static func makePersistence() -> PersistenceController {
+    switch configuration {
+    case .release:
+      return PersistenceController(inMemory: false)
+    default:
+      return PersistenceController(inMemory: true)
     }
   }
 

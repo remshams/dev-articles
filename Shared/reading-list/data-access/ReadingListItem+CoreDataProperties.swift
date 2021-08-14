@@ -20,23 +20,18 @@ public extension ReadingListItem {
 }
 
 public extension ReadingListItem {
-  @nonobjc class func fetchRequest(predicate: NSPredicate) -> NSFetchRequest<ReadingListItem> {
+  @nonobjc class func fetchRequest(predicate: NSPredicate? = nil) -> NSFetchRequest<ReadingListItem> {
     let fetchRequest = NSFetchRequest<ReadingListItem>(entityName: "ReadingListItem")
-    fetchRequest.predicate = predicate
+    if let predicate = predicate {
+      fetchRequest.predicate = predicate
+    }
     return fetchRequest
   }
 }
 
 extension ReadingListItem: Identifiable {
-  convenience init(from article: Article, savedAt: Date) {
-    self.init(context: PersistenceController.shared.context)
-    title = article.title
-    contentId = article.id
-    self.savedAt = savedAt
-  }
-
-  convenience init(context: NSManagedObjectContext, article: Article, savedAt: Date) {
-    self.init(context: context)
+  convenience init(context: NSManagedObjectContext, from article: Article, savedAt: Date) {
+    self.init(context: AppContainer.shared.managedObjectContext)
     title = article.title
     contentId = article.id
     self.savedAt = savedAt

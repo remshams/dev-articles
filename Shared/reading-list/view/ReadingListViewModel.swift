@@ -16,9 +16,9 @@ class ReadingListViewModel: ObservableObject {
       bookmarkedArticles.append(BookmarkedArticle.from(article: article))
 
       do {
-        let context = PersistenceController.shared.context
+        let context = AppContainer.shared.managedObjectContext
         context
-          .insert(ReadingListItem(context: PersistenceController.shared.context, article: article,
+          .insert(ReadingListItem(context: context, from: article,
                                   savedAt: Date()))
         try context.save()
       } catch {

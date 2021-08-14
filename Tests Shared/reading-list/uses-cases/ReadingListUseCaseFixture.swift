@@ -12,7 +12,11 @@ import Foundation
 struct MockAddReadingListItemFromArticleUseCase: AddReadingListItemFromArticleUseCase {
   let readingListItem: ReadingListItem
 
-  init(readingListItem: ReadingListItem = ReadingListItem(from: Article.createFixture(), savedAt: Date())) {
+  init(readingListItem: ReadingListItem = ReadingListItem(
+    context: AppContainer.shared.managedObjectContext,
+    from: Article.createFixture(),
+    savedAt: Date()
+  )) {
     self.readingListItem = readingListItem
   }
 
