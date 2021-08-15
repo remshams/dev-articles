@@ -5,14 +5,23 @@
 //  Created by Mathias Remshardt on 24.07.21.
 //
 
+import CoreData
 import Foundation
 import SwiftUI
 
 class ReadingListViewModel: ObservableObject {
-  func add(article: Article, readingListItems: FetchedResults<ReadingListItem>) {
-    if readingListItems.firstIndex(where: { $0.contentId == article.id }) == nil {
+  let context: NSManagedObjectContext
+
+  init(context: NSManagedObjectContext = AppContainer.shared.persistence.context) {
+    self.context = context
+  }
+
+  func add(article: Article) {
+    if let readingListItems = try? context.fetch(ReadingListItem.fetchRequest(articleIds: [article.id])),
+       readingListItems.isEmpty
+    {
       AppContainer.shared.persistence.context
-        .insert(ReadingListItem(context: AppContainer.shared.persistence.context, from: article,
+        .insert(ReadingListItem(context: context, from: article,
                                 savedAt: Date()))
     }
   }

@@ -34,6 +34,7 @@ extension ReadingListItem {
 }
 
 extension ReadingListItem: Identifiable {
+
   convenience init(context: NSManagedObjectContext, from article: Article, savedAt: Date) {
     self.init(context: context)
     title = article.title
