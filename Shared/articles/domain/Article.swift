@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import CoreData
 
 typealias ArticleId = String
 
@@ -34,6 +35,12 @@ struct ArticleCommunityData: Equatable {
   let commentsCount: Int
   let positiveReactionsCount: Int
   let publicReactionsCount: Int
+}
+
+extension Article {
+  func toReadingListItem(context: NSManagedObjectContext) -> ReadingListItem {
+    ReadingListItem(context: context, title: title, contentId: id)
+  }
 }
 
 extension Collection where Element == Article {

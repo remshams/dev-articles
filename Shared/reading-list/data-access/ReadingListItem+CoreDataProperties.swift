@@ -34,18 +34,10 @@ extension ReadingListItem {
 }
 
 extension ReadingListItem: Identifiable {
-
-  convenience init(context: NSManagedObjectContext, from article: Article, savedAt: Date) {
+  convenience init(context: NSManagedObjectContext, title: String, contentId: String, savedAt: Date = Date()) {
     self.init(context: context)
-    title = article.title
-    contentId = article.id
+    self.title = title
+    self.contentId = contentId
     self.savedAt = savedAt
-  }
-
-  convenience init(context: NSManagedObjectContext, readingListItem: ReadingListItem) {
-    self.init(context: context)
-    title = readingListItem.title
-    contentId = readingListItem.contentId
-    savedAt = readingListItem.savedAt
   }
 }
