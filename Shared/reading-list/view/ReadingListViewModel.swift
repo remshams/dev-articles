@@ -19,7 +19,7 @@ class ReadingListViewModel: ObservableObject {
   func add(article: Article) {
     if let readingListItems = try? context.fetch(ReadingListItem.fetchRequest(articleIds: [article.id])),
        readingListItems.isEmpty {
-      AppContainer.shared.persistence.context
+      context
         .insert(article.toReadingListItem(context: context))
     }
   }
