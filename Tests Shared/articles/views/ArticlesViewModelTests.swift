@@ -9,21 +9,20 @@ import Combine
 @testable import dev_articles
 import Foundation
 import XCTest
+import CoreData
 
 class ArticleViewModelTests: XCTestCase {
   var articles: [Article]!
   var readingListItem: ReadingListItem!
   var useCaseFactory: MockArticleUseCaseFactory!
   var viewModel: ArticlesViewModel!
+  var context: NSManagedObjectContext!
   var cancellables: Set<AnyCancellable>!
 
   override func setUp() {
+    context = AppContainer.shared.persistence.context
     articles = Article.createListFixture(min: 2)
-    readingListItem = ReadingListItem(
-      context: AppContainer.shared.persistence.context,
-      from: articles[0],
-      savedAt: Date()
-    )
+    readingListItem = articles[0].toReadingListItem(context: context)
     useCaseFactory = MockArticleUseCaseFactory(
       loadArticlesUseCase: MockLoadArticlesUseCase(articles: articles)
     )

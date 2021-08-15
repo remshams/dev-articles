@@ -1,6 +1,6 @@
 import Combine
-import Foundation
 import CoreData
+import Foundation
 
 typealias ToggleBookmark = (Article) -> Void
 
@@ -10,6 +10,7 @@ class ArticlesViewModel: ObservableObject {
   private let loadArticlesSubject = PassthroughSubject<(TimeCategory, Int), Never>()
   private let toggleBookmarkSubject = PassthroughSubject<Article, Never>()
   private let readingListItemAdded = PassthroughSubject<ReadingListItem, Never>()
+  private let context: NSManagedObjectContext
 
   let toggleBookmark: ToggleBookmark
 
@@ -24,7 +25,11 @@ class ArticlesViewModel: ObservableObject {
     }
   }
 
-  init(articlesUseCaseFactory: ArticlesUseCaseFactory) {
+  init(
+    context: NSManagedObjectContext = AppContainer.shared.persistence.context,
+    articlesUseCaseFactory: ArticlesUseCaseFactory
+  ) {
+    self.context = context
     self.articlesUseCaseFactory = articlesUseCaseFactory
     toggleBookmark = toggleBookmarkSubject.send
 
@@ -39,7 +44,7 @@ class ArticlesViewModel: ObservableObject {
   }
 
   private func setupLoadArticles() {
-    loadArticlesSubject.flatMap { (timeCategory, currentPage) in
+    loadArticlesSubject.flatMap { timeCategory, currentPage in
       self.articlesUseCaseFactory.makeLoadArticlesUseCase(timeCategory: timeCategory, page: currentPage)
         .start()
     }
@@ -53,7 +58,7 @@ class ArticlesViewModel: ObservableObject {
   private func setupAddReadingListItem() {
     toggleBookmarkSubject
       .map {
-        ReadingListItem(context: AppContainer.shared.persistence.context, from: $0, savedAt: Date())
+        $0.toReadingListItem(context: self.context)
       }
       .sink(receiveCompletion: { _ in }, receiveValue: readingListItemAdded.send)
       .store(in: &cancellables)
