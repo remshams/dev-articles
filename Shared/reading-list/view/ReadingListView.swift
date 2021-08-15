@@ -22,19 +22,19 @@ private struct ContainerView: View {
   @FetchRequest(
     entity: ReadingListItem.entity(),
     sortDescriptors: [NSSortDescriptor(keyPath: \ReadingListItem.savedAt, ascending: true)]
-  ) var allArticles: FetchedResults<ReadingListItem>
+  ) var readingListItems: FetchedResults<ReadingListItem>
 
   var body: some View {
     NavigationView {
-      List(allArticles) { bookmarkedArticle in
+      List(readingListItems) { readingListItem in
         NavigationLink(
           destination:
-          container.makeArticleContentView(articleId: bookmarkedArticle.contentId)
-            .navigationTitle(bookmarkedArticle.title),
-          tag: bookmarkedArticle.contentId,
+          container.makeArticleContentView(articleId: readingListItem.contentId)
+            .navigationTitle(readingListItem.title),
+          tag: readingListItem.contentId,
           selection: $selectedArticle
         ) {
-          ReadingListItemView(readingListItem: bookmarkedArticle)
+          ReadingListItemView(readingListItem: readingListItem)
         }
       }
       .navigationTitle("Readinglist")
