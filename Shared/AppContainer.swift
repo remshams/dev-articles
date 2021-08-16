@@ -9,6 +9,8 @@ struct AppContainer {
   static let shared = AppContainer()
 
   let persistence: PersistenceController
+  let articlesContainer: ArticlesContainer
+  let readingListContainer: ReadingListContainer
   private let httpGet: HttpGet
   private let articlesRepository: ArticlesRepository
   private let articleContentRepository: ArticleContentRepository
@@ -18,14 +20,27 @@ struct AppContainer {
     httpGet = AppContainer.makeHttpGet()
     articlesRepository = AppContainer.makeArticlesRepository(httpGet: httpGet)
     articleContentRepository = AppContainer.makeArticleContentRepository(httpGet: httpGet)
+    articlesContainer = AppContainer.makeArticlesContainer(
+      listArticle: articlesRepository,
+      getAritcle: articlesRepository,
+      listArticleContent: articleContentRepository
+    )
+    readingListContainer = AppContainer.makeReadingListContainer(
+      context: persistence.context,
+      getArticle: articlesRepository
+    )
     print("Running with configuration: \(configuration)")
   }
 
-  func makeArticlesContainer() -> ArticlesContainer {
+  private static func makeArticlesContainer(
+    listArticle: ListArticle,
+    getAritcle: GetArticle,
+    listArticleContent: ListArticleContent
+  ) -> ArticlesContainer {
     ArticlesContainer(
-      listArticle: articlesRepository,
-      getArticle: articlesRepository,
-      listArticleContent: articleContentRepository
+      listArticle: listArticle,
+      getArticle: getAritcle,
+      listArticleContent: listArticleContent
     )
   }
 
@@ -56,9 +71,11 @@ struct AppContainer {
     }
   }
 
-  func makeReadingListContainer() -> ReadingListContainer {
+  private static func makeReadingListContainer(context: NSManagedObjectContext,
+                                               getArticle: GetArticle) -> ReadingListContainer {
     ReadingListContainer(
-      getArticle: articlesRepository
+      context: context,
+      getArticle: getArticle
     )
   }
 
