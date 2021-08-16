@@ -26,7 +26,7 @@ private struct ContainerView: View {
   var body: some View {
     NavigationView {
       VStack(alignment: .leading) {
-        ArticleLinkView(model: model)
+        ArticleLinkView(model: model, path: $path)
         LoadedArticleView(article: model.article)
         Spacer()
       }
@@ -35,7 +35,7 @@ private struct ContainerView: View {
         ToolbarItem(placement: .confirmationAction) {
           Button {
             model.add()
-          } label: { Text("Add") }.disabled(model.article == nil)
+          } label: { Text("Add") }.disabled(path.isEmpty)
         }
         ToolbarItem(placement: .cancellationAction) {
           Button { model.cancel() } label: { Text("Cancel") }
@@ -47,16 +47,20 @@ private struct ContainerView: View {
 
 private struct ArticleLinkView: View {
   let model: AddArticleViewModel
-  @State var path: String = ""
+  @Binding var path: String
   var body: some View {
-    VStack {
+    HStack {
       TextField("Article Link", text: $path, onCommit: {
         model.loadArticle(for: path)
       })
         .disableAutocorrection(true)
         .textFieldStyle(RoundedBorderTextFieldStyle())
-        .padding(.medium)
+      Button {
+        model.loadArticle(for: path)
+      } label: { Text("Preview") }
+        .disabled(path.isEmpty)
     }
+    .padding(.medium)
   }
 }
 
@@ -75,6 +79,7 @@ private struct LoadedArticleView: View {
   struct AddArticleView_Previews: PreviewProvider {
     static var previews: some View {
       AddArticleView(addArticle: { _ in }, cancelAddArticle: {})
+        .environmentObject(readingListContainerForPreview)
     }
   }
 #endif

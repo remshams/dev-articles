@@ -18,7 +18,8 @@ class ReadingListContainer: ObservableObject {
   }
 
   func makeAddArticleViewModel(addArticle: @escaping AddArticle,
-                               cancelAddArticle: @escaping CancelAddArticle) -> AddArticleViewModel {
+                               cancelAddArticle: @escaping CancelAddArticle) -> AddArticleViewModel
+  {
     AddArticleViewModel(addArticle: addArticle, cancelAddArticle: cancelAddArticle, getArticle: getArticle)
   }
 
@@ -30,3 +31,10 @@ class ReadingListContainer: ObservableObject {
     ReadingListViewModel(context: context)
   }
 }
+
+#if DEBUG
+  let readingListContainerForPreview = ReadingListContainer(
+    context: AppContainer.shared.persistence.context,
+    getArticle: InMemoryArticlesRepository()
+  )
+#endif
