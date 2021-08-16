@@ -27,8 +27,8 @@ struct AppView: App {
             Text("Readinglist")
           }
       }
-      .environmentObject(appContainer.makeArticlesContainer())
-      .environmentObject(appContainer.makeReadingListContainer())
+      .environmentObject(appContainer.articlesContainer)
+      .environmentObject(appContainer.readingListContainer)
       .environment(\.managedObjectContext, AppContainer.shared.persistence.context)
       .onChange(of: scenePhase) { newScenePhase in
         do {

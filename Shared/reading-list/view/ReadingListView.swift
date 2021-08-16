@@ -9,8 +9,9 @@ import Foundation
 import SwiftUI
 
 struct ReadingListView: View {
+  @EnvironmentObject var readingListContainer: ReadingListContainer
   var body: some View {
-    ContainerView(model: ReadingListViewModel())
+    ContainerView(model: readingListContainer.makeReadingListViewModel())
   }
 }
 

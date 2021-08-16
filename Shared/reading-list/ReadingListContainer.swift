@@ -5,12 +5,15 @@
 //  Created by Mathias Remshardt on 17.04.21.
 //
 
+import CoreData
 import Foundation
 
 class ReadingListContainer: ObservableObject {
+  let context: NSManagedObjectContext
   let getArticle: GetArticle
 
-  init(getArticle: GetArticle) {
+  init(context: NSManagedObjectContext, getArticle: GetArticle) {
+    self.context = context
     self.getArticle = getArticle
   }
 
@@ -21,5 +24,9 @@ class ReadingListContainer: ObservableObject {
 
   func makeArticleContentView(articleId: ArticleId) -> ArticleContentView {
     ArticleContentView(articleLoader: GetArticleArticleLoader(getArticle: getArticle, articleId: articleId))
+  }
+
+  func makeReadingListViewModel() -> ReadingListViewModel {
+    ReadingListViewModel(context: context)
   }
 }

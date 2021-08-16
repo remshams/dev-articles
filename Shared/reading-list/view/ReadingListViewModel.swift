@@ -12,7 +12,7 @@ import SwiftUI
 class ReadingListViewModel: ObservableObject {
   let context: NSManagedObjectContext
 
-  init(context: NSManagedObjectContext = AppContainer.shared.persistence.context) {
+  init(context: NSManagedObjectContext ) {
     self.context = context
   }
 

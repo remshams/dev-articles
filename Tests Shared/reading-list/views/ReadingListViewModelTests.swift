@@ -19,8 +19,8 @@ class ReadingListViewModelTests: XCTestCase {
   override func setUp() {
     AppContainer.shared.persistence.context.reset()
     article = Article.createFixture()
-    model = ReadingListViewModel()
     context = AppContainer.shared.persistence.context
+    model = ReadingListViewModel(context: context)
   }
 
   func test_add_shouldAddArticleToList() throws {
