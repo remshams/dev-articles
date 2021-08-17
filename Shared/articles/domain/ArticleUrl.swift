@@ -22,6 +22,14 @@ struct ArticleUrl {
     }
   }
 
+  init?(url: String) {
+    if let url = URL(string: url) {
+      self.init(url: url)
+    } else {
+      return nil
+    }
+  }
+
   private static func matchPath(url: String) -> String? {
     guard let regex = try? NSRegularExpression(pattern: pathRegexString),
           let match = regex.firstMatch(in: url, range: NSRange(location: 0, length: url.count)),

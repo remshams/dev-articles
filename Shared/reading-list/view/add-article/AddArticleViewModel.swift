@@ -31,10 +31,14 @@ class AddArticleViewModel: ObservableObject {
   }
 
   func loadArticle(for url: String) {
-    getArticle.getBy(url: ArticleUrl(url: URL(string: url)!))
-      .replaceError(with: nil)
-      .assign(to: \.article, on: self)
-      .store(in: &cancellables)
+    if let articleUrl = ArticleUrl(url: url) {
+      getArticle.getBy(url: articleUrl)
+        .replaceError(with: nil)
+        .assign(to: \.article, on: self)
+        .store(in: &cancellables)
+    } else {
+      article = nil
+    }
   }
 
   func add() {
