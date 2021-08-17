@@ -33,7 +33,13 @@ class AddArticleViewModelTests: XCTestCase {
     XCTAssertEqual(model.article, article)
   }
 
-  // TODO Replace with error handling (message or the like)
+  // TODO: Replace with error handling (message or the like)
+  func test_loadArticle_shoudSetArticleToNilInCaseUrlIsInvalid() {
+    model.loadArticle(for: "")
+
+    XCTAssertNil(model.article)
+  }
+
   func test_loadArticle_shoudSetArticleToNilInCaseItCannotBeLoaded() {
     getArticle = FailingGetArticle(getError: .error)
     model = AddArticleViewModel(
