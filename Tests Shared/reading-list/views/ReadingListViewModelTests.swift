@@ -5,11 +5,11 @@
 //  Created by Mathias Remshardt on 25.07.21.
 //
 
+import CoreData
 @testable import dev_articles
 import Foundation
 import SwiftUI
 import XCTest
-import CoreData
 
 class ReadingListViewModelTests: XCTestCase {
   var article: Article!
@@ -41,5 +41,13 @@ class ReadingListViewModelTests: XCTestCase {
 
     let readingListItems = try context.fetch(ReadingListItem.fetchRequest(articleIds: [article.id, otherArticle.id]))
     XCTAssertEqual(readingListItems.count, 2)
+  }
+
+  func test_remove_shouldRemoveExistingReadingListItem() throws {
+    let readingListItem = ReadingListItem(context: context, title: "remove", contentId: "0")
+    model.remove(readingListItem: readingListItem)
+
+    let readingListItems = try context.fetch(ReadingListItem.fetchRequestAll())
+    XCTAssertEqual(readingListItems.count, 0)
   }
 }

@@ -27,16 +27,19 @@ private struct ContainerView: View {
 
   var body: some View {
     NavigationView {
-      List(readingListItems) { readingListItem in
-        NavigationLink(
-          destination:
-          container.makeArticleContentView(articleId: readingListItem.contentId)
-            .navigationTitle(readingListItem.title),
-          tag: readingListItem.contentId,
-          selection: $selectedArticle
-        ) {
-          ReadingListItemView(readingListItem: readingListItem)
+      List {
+        ForEach(readingListItems) { readingListItem in
+          NavigationLink(
+            destination:
+            container.makeArticleContentView(articleId: readingListItem.contentId)
+              .navigationTitle(readingListItem.title),
+            tag: readingListItem.contentId,
+            selection: $selectedArticle
+          ) {
+            ReadingListItemView(readingListItem: readingListItem)
+          }
         }
+        .onDelete(perform: delete)
       }
       .navigationTitle("Readinglist")
       .toolbar {
@@ -55,6 +58,12 @@ private struct ContainerView: View {
           selectedArticle = article.id
         } cancelAddArticle: { showAddArticle = false }
       }
+    }
+  }
+
+  private func delete(at index: IndexSet) {
+    index.forEach {
+      model.remove(readingListItem: readingListItems[$0])
     }
   }
 }
