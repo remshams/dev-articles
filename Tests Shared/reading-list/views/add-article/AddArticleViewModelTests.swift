@@ -15,7 +15,7 @@ class AddArticleViewModelTests: XCTestCase {
   var getArticle: GetArticle!
   let addArticleDefault: AddArticle = { _ in }
   let cancelAddArticeDefault: CancelAddArticle = {}
-  let articlePath = "articlePath"
+  let articlePath = articleForPreview.metaData.link.absoluteString
 
   override func setUp() {
     article = Article.createFixture()
@@ -30,17 +30,35 @@ class AddArticleViewModelTests: XCTestCase {
   func test_loadArticle_shouldLoadArticle() {
     model.loadArticle(for: articlePath)
 
-    XCTAssertEqual(model.article, article)
+    XCTAssertEqual(model.state, .articleLoaded(article))
   }
 
   // TODO: Replace with error handling (message or the like)
-  func test_loadArticle_shoudSetArticleToNilInCaseUrlIsInvalid() {
+  func test_loadArticle_shouldDisplayErrorMessageInCaseUrlIsInvalid() {
     model.loadArticle(for: "")
 
-    XCTAssertNil(model.article)
+    XCTAssertEqual(model.state, .error("Article Url invalid"))
   }
 
-  func test_loadArticle_shoudSetArticleToNilInCaseItCannotBeLoaded() {
+  func test_loadArticle_shouldDisplayErrorMessageInCaseUrlIsInvalidDevToUrl() {
+    model.loadArticle(for: "https://www.apple.de")
+
+    XCTAssertEqual(model.state, .error("Article Url invalid"))
+  }
+
+  func test_loadArticle_shouldDisplayErrorMessageInCaseArticleCouldNotBeFound() {
+    getArticle = MockGetArticle(article: nil)
+    model = AddArticleViewModel(
+      addArticle: addArticleDefault,
+      cancelAddArticle: cancelAddArticeDefault,
+      getArticle: getArticle
+    )
+    model.loadArticle(for: articlePath)
+
+    XCTAssertEqual(model.state, .error("Article not found"))
+  }
+
+  func test_loadArticle_shouldDisplayErrorMessageInCaseArticleCouldNotBeLoaded() {
     getArticle = FailingGetArticle(getError: .error)
     model = AddArticleViewModel(
       addArticle: addArticleDefault,
@@ -49,7 +67,7 @@ class AddArticleViewModelTests: XCTestCase {
     )
     model.loadArticle(for: articlePath)
 
-    XCTAssertNil(model.article)
+    XCTAssertEqual(model.state, .error("Article load error"))
   }
 
   func test_add_shouldCallAddArticleCallback() {
@@ -63,7 +81,7 @@ class AddArticleViewModelTests: XCTestCase {
       cancelAddArticle: cancelAddArticeDefault,
       getArticle: getArticle
     )
-    model.loadArticle(for: "link")
+    model.loadArticle(for: articlePath)
     model.add()
 
     waitForExpectations(timeout: 2)

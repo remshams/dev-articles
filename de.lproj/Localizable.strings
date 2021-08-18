@@ -14,3 +14,7 @@
 "Article Link" = "Artikel Link";
 "Article Title" = "Titel:";
 "Preview" = "Vorschau";
+"Enter valid article url" = "Bitte eine gültige Artikel Url eingeben";
+"Article Url invalid" = "Artikel Url ist keine gültige dev.to Url";
+"Article not found" = "Artikel konnte nicht gefunden werden";
+"Article load error" = "Artikel konnte nicht geladen werden";

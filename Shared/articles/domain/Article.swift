@@ -64,7 +64,7 @@ extension Collection where Element == Article {
     id: "0",
     description: "Article for Preview",
     metaData: ArticleMetaData(
-      link: URL(string: "https://www.dev.to")!,
+      link: URL(string: "https://dev.to/samuelfaure/is-dev-to-victim-of-its-own-success-1ioj")!,
       coverImageUrl: nil,
       publishedAt: Date(),
       readingTime: 12

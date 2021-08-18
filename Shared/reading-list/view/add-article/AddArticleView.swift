@@ -27,9 +27,10 @@ private struct ContainerView: View {
     NavigationView {
       VStack(alignment: .leading) {
         ArticleLinkView(model: model, path: $path)
-        LoadedArticleView(article: model.article)
+        AddArticlePreviewView(state: model.state)
         Spacer()
       }
+      .padding(.medium)
       .navigationTitle("Add Article")
       .toolbar {
         ToolbarItem(placement: .confirmationAction) {
@@ -41,6 +42,21 @@ private struct ContainerView: View {
           Button { model.cancel() } label: { Text("Cancel") }
         }
       }
+    }
+  }
+}
+
+private struct AddArticlePreviewView: View {
+  let state: AddArticleViewState
+
+  var body: some View {
+    switch state {
+    case let .articleLoaded(article):
+      LoadedArticleView(article: article)
+    case let .error(message):
+      LoadArticleErrorView(message: message)
+    case .initial:
+      NoArticleLoadedView()
     }
   }
 }
@@ -60,7 +76,6 @@ private struct ArticleLinkView: View {
       } label: { Text("Preview") }
         .disabled(path.isEmpty)
     }
-    .padding(.medium)
   }
 }
 
@@ -70,8 +85,21 @@ private struct LoadedArticleView: View {
   var body: some View {
     if let article = article {
       ArticleCardView(article: article)
-        .padding(.medium)
     }
+  }
+}
+
+private struct LoadArticleErrorView: View {
+  let message: LocalizedStringKey
+
+  var body: some View {
+    Text(message).foregroundColor(.red).italic().fontWeight(.light)
+  }
+}
+
+private struct NoArticleLoadedView: View {
+  var body: some View {
+    Text("Enter valid article url").italic().fontWeight(.light)
   }
 }
 
