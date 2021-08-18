@@ -9,6 +9,8 @@
 import CoreData
 import Foundation
 
+typealias ContentId = String
+
 @objc(ReadingListItem)
 public class ReadingListItem: NSManagedObject {
   @NSManaged private(set) var title: String
