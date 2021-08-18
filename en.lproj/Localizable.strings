@@ -14,3 +14,7 @@
 "Articel Link" = "Article Link";
 "Article Title" = "Title:";
 "Preview" = "Preview";
+"Enter valid article url" = "Please enter a dev.to article url";
+"Article Url invalid" = "Article Url is not a valid dev.to url";
+"Article not found" = "Article could not be found";
+"Article load error" = "Articel could not be loaded";
