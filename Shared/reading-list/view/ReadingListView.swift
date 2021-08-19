@@ -50,6 +50,9 @@ private struct ContainerView: View {
             Image(systemName: "plus")
           }
         }
+        ToolbarItem(placement: .navigationBarLeading) {
+          EditButton()
+        }
       }
       .sheet(isPresented: $showAddArticle) {
         AddArticleView { article in
