@@ -35,7 +35,7 @@ private struct ContainerView: View {
       .toolbar {
         ToolbarItem(placement: .confirmationAction) {
           Button {
-            model.add()
+            model.loadArticle(for: path, shouldAdd: true)
           } label: { Text("Add") }.disabled(path.isEmpty)
         }
         ToolbarItem(placement: .cancellationAction) {
@@ -62,11 +62,13 @@ private struct AddArticlePreviewView: View {
 }
 
 private struct ArticleLinkView: View {
+  private static let linkPlaceholder = "https://dev.to/samuelfaure/is-dev-to-victim-of-its-own-success-1ioj"
+
   let model: AddArticleViewModel
   @Binding var path: String
   var body: some View {
     HStack {
-      TextField("Article Link", text: $path, onCommit: {
+      TextField(ArticleLinkView.linkPlaceholder, text: $path, onCommit: {
         model.loadArticle(for: path)
       })
         .disableAutocorrection(true)

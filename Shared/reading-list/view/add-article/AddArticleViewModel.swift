@@ -36,7 +36,7 @@ class AddArticleViewModel: ObservableObject {
     self.getArticle = getArticle
   }
 
-  func loadArticle(for url: String) {
+  func loadArticle(for url: String, shouldAdd: Bool = false) {
     if let articleUrl = ArticleUrl(url: url), articleUrl.path != nil {
       getArticle.getBy(url: articleUrl)
         .map { article in
@@ -47,7 +47,12 @@ class AddArticleViewModel: ObservableObject {
           }
         }
         .replaceError(with: AddArticleViewState.error("Article load error"))
-        .assign(to: \.state, on: self)
+        .sink { state in
+          self.state = state
+          if shouldAdd {
+            self.add()
+          }
+        }
         .store(in: &cancellables)
     } else {
       state = AddArticleViewState.error("Article Url invalid")
@@ -64,5 +69,18 @@ class AddArticleViewModel: ObservableObject {
 
   func cancel() {
     cancelAddArticle()
+  }
+
+  private func loadArticle(articleUrl: ArticleUrl) -> AnyPublisher<AddArticleViewState, Never> {
+    getArticle.getBy(url: articleUrl)
+      .map { article in
+        if let article = article {
+          return AddArticleViewState.articleLoaded(article)
+        } else {
+          return AddArticleViewState.error("Article not found")
+        }
+      }
+      .replaceError(with: AddArticleViewState.error("Article load error"))
+      .eraseToAnyPublisher()
   }
 }
