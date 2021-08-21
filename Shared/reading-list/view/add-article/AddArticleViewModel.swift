@@ -12,10 +12,16 @@ import SwiftUI
 typealias AddArticle = (Article) -> Void
 typealias CancelAddArticle = () -> Void
 
+enum AddArticleViewError: Error {
+  case notFound
+  case notLoaded
+  case urlInvalid
+}
+
 enum AddArticleViewState: Equatable {
   case initial
   case articleLoaded(Article)
-  case error(LocalizedStringKey)
+  case error(AddArticleViewError)
 }
 
 class AddArticleViewModel: ObservableObject {
@@ -43,10 +49,10 @@ class AddArticleViewModel: ObservableObject {
           if let article = article {
             return AddArticleViewState.articleLoaded(article)
           } else {
-            return AddArticleViewState.error("Article not found")
+            return AddArticleViewState.error(.notFound)
           }
         }
-        .replaceError(with: AddArticleViewState.error("Article load error"))
+        .replaceError(with: AddArticleViewState.error(.notLoaded))
         .sink { state in
           self.state = state
           if shouldAdd {
@@ -55,7 +61,7 @@ class AddArticleViewModel: ObservableObject {
         }
         .store(in: &cancellables)
     } else {
-      state = AddArticleViewState.error("Article Url invalid")
+      state = AddArticleViewState.error(.urlInvalid)
     }
   }
 
@@ -69,18 +75,5 @@ class AddArticleViewModel: ObservableObject {
 
   func cancel() {
     cancelAddArticle()
-  }
-
-  private func loadArticle(articleUrl: ArticleUrl) -> AnyPublisher<AddArticleViewState, Never> {
-    getArticle.getBy(url: articleUrl)
-      .map { article in
-        if let article = article {
-          return AddArticleViewState.articleLoaded(article)
-        } else {
-          return AddArticleViewState.error("Article not found")
-        }
-      }
-      .replaceError(with: AddArticleViewState.error("Article load error"))
-      .eraseToAnyPublisher()
   }
 }

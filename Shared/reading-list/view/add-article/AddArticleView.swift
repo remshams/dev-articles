@@ -19,6 +19,8 @@ struct AddArticleView: View {
   }
 }
 
+// MARK: Content
+
 private struct ContainerView: View {
   @ObservedObject var model: AddArticleViewModel
   @State var path: String = ""
@@ -53,10 +55,10 @@ private struct AddArticlePreviewView: View {
     switch state {
     case let .articleLoaded(article):
       LoadedArticleView(article: article)
-    case let .error(message):
-      LoadArticleErrorView(message: message)
+    case let .error(error):
+      ArticleErrorContainerView(error: error)
     case .initial:
-      NoArticleLoadedView()
+      EmptyView()
     }
   }
 }
@@ -81,27 +83,54 @@ private struct ArticleLinkView: View {
   }
 }
 
+// MARK: Loading
+
 private struct LoadedArticleView: View {
   let article: Article?
 
   var body: some View {
     if let article = article {
-      ArticleCardView(article: article)
+      ArticleCardView(article: article).padding(.top, .medium)
+      Spacer()
     }
-  }
-}
-
-private struct LoadArticleErrorView: View {
-  let message: LocalizedStringKey
-
-  var body: some View {
-    Text(message).foregroundColor(.red).italic().fontWeight(.light)
   }
 }
 
 private struct NoArticleLoadedView: View {
   var body: some View {
-    Text("Enter valid article url").italic().fontWeight(.light)
+    EmptyView()
+  }
+}
+
+// MARK: Error
+
+private struct ArticleErrorContainerView: View {
+  let error: AddArticleViewError
+
+  var body: some View {
+    VStack {
+      HStack {
+        switch error {
+        case .notFound:
+          ArticleErrorView(code: "404", message: "Article not found")
+        case .notLoaded:
+          ArticleErrorView(code: "500", message: "Article load error")
+        case .urlInvalid:
+          ArticleErrorView(code: "500", message: "Article Url invalid")
+        }
+      }.frame(maxWidth: .infinity)
+    }.frame(maxHeight: .infinity)
+  }
+}
+
+private struct ArticleErrorView: View {
+  let (code, message): (String, LocalizedStringKey)
+
+  var body: some View {
+    VStack {
+      Text(code).font(.largeTitle).bold()
+      Text(message).italic().fontWeight(.light)
+    }
   }
 }
 
@@ -110,6 +139,7 @@ private struct NoArticleLoadedView: View {
     static var previews: some View {
       AddArticleView(addArticle: { _ in }, cancelAddArticle: {})
         .environmentObject(readingListContainerForPreview)
+      ArticleErrorView(code: "404", message: "Article not found")
     }
   }
 #endif
