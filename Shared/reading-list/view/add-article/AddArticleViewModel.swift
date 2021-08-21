@@ -55,7 +55,7 @@ class AddArticleViewModel: ObservableObject {
         .replaceError(with: AddArticleViewState.error(.notLoaded))
         .sink { state in
           self.state = state
-          if shouldAdd {
+          if shouldAdd, case .articleLoaded(_) = state {
             self.add()
           }
         }
