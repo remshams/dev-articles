@@ -58,13 +58,13 @@ class AddArticleViewModelTests: XCTestCase {
   func test_loadArticle_shouldDisplayErrorMessageInCaseUrlIsInvalid() {
     model.loadArticle(for: "")
 
-    XCTAssertEqual(model.state, .error("Article Url invalid"))
+    XCTAssertEqual(model.state, .error(.urlInvalid))
   }
 
   func test_loadArticle_shouldDisplayErrorMessageInCaseUrlIsInvalidDevToUrl() {
     model.loadArticle(for: "https://www.apple.de")
 
-    XCTAssertEqual(model.state, .error("Article Url invalid"))
+    XCTAssertEqual(model.state, .error(.urlInvalid))
   }
 
   func test_loadArticle_shouldDisplayErrorMessageInCaseArticleCouldNotBeFound() {
@@ -76,7 +76,7 @@ class AddArticleViewModelTests: XCTestCase {
     )
     model.loadArticle(for: articlePath)
 
-    XCTAssertEqual(model.state, .error("Article not found"))
+    XCTAssertEqual(model.state, .error(.notFound))
   }
 
   func test_loadArticle_shouldDisplayErrorMessageInCaseArticleCouldNotBeLoaded() {
@@ -88,7 +88,7 @@ class AddArticleViewModelTests: XCTestCase {
     )
     model.loadArticle(for: articlePath)
 
-    XCTAssertEqual(model.state, .error("Article load error"))
+    XCTAssertEqual(model.state, .error(.notLoaded))
   }
 
   // MARK: Add article
