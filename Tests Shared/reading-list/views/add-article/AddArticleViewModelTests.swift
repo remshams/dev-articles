@@ -16,6 +16,12 @@ class AddArticleViewModelTests: XCTestCase {
   let addArticleDefault: AddArticle = { _ in }
   let cancelAddArticeDefault: CancelAddArticle = {}
   let articlePath = articleForPreview.metaData.link.absoluteString
+  let createAddArticle = { (exp: XCTestExpectation, article: Article) -> AddArticle in
+    { articleReceived in
+      XCTAssertEqual(articleReceived, article)
+      exp.fulfill()
+    }
+  }
 
   override func setUp() {
     article = Article.createFixture()
@@ -27,13 +33,28 @@ class AddArticleViewModelTests: XCTestCase {
     )
   }
 
+  // MARK: Load Article
+
   func test_loadArticle_shouldLoadArticle() {
     model.loadArticle(for: articlePath)
 
     XCTAssertEqual(model.state, .articleLoaded(article))
   }
 
-  // TODO: Replace with error handling (message or the like)
+  func test_loadArticle_shouldLoadAndAddArticle() {
+    let exp = expectation(description: #function)
+    let addArticle = createAddArticle(exp, article)
+    model = AddArticleViewModel(
+      addArticle: addArticle,
+      cancelAddArticle: cancelAddArticeDefault,
+      getArticle: getArticle
+    )
+    model.loadArticle(for: articlePath, shouldAdd: true)
+
+    XCTAssertEqual(model.state, .articleLoaded(article))
+    waitForExpectations(timeout: 2)
+  }
+
   func test_loadArticle_shouldDisplayErrorMessageInCaseUrlIsInvalid() {
     model.loadArticle(for: "")
 
@@ -70,12 +91,11 @@ class AddArticleViewModelTests: XCTestCase {
     XCTAssertEqual(model.state, .error("Article load error"))
   }
 
+  // MARK: Add article
+
   func test_add_shouldCallAddArticleCallback() {
     let exp = expectation(description: #function)
-    let addArticle: AddArticle = { articleReceived in
-      XCTAssertEqual(articleReceived, self.article)
-      exp.fulfill()
-    }
+    let addArticle = createAddArticle(exp, article)
     model = AddArticleViewModel(
       addArticle: addArticle,
       cancelAddArticle: cancelAddArticeDefault,
