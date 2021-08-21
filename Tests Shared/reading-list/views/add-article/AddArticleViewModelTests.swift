@@ -43,9 +43,8 @@ class AddArticleViewModelTests: XCTestCase {
 
   func test_loadArticle_shouldLoadAndAddArticle() {
     let exp = expectation(description: #function)
-    let addArticle = createAddArticle(exp, article)
     model = AddArticleViewModel(
-      addArticle: addArticle,
+      addArticle: createAddArticle(exp, article),
       cancelAddArticle: cancelAddArticeDefault,
       getArticle: getArticle
     )
@@ -95,9 +94,8 @@ class AddArticleViewModelTests: XCTestCase {
 
   func test_add_shouldCallAddArticleCallback() {
     let exp = expectation(description: #function)
-    let addArticle = createAddArticle(exp, article)
     model = AddArticleViewModel(
-      addArticle: addArticle,
+      addArticle: createAddArticle(exp, article),
       cancelAddArticle: cancelAddArticeDefault,
       getArticle: getArticle
     )
