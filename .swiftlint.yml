@@ -7,3 +7,4 @@ type_name:
 
 disabled_rules:
   - opening_brace
+  - trailing_whitespace
